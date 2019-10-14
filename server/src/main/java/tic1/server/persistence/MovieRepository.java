@@ -1,6 +1,6 @@
 package tic1.server.persistence;
 
-import tic1.server.business.entities.Movie;
+import tic1.commons.
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

@@ -26,9 +26,9 @@ public class MovieRestController {
         movieMgr.updateMovie(id, movie);
     }
 
-    @GetMapping("/movie/title/{title")
+    @GetMapping("/movie/title/{title}")
     public List<Movie> moviesByTitle(@PathVariable("title") String title){
-        return MovieRepository.findByName(title);
+        return movieRepository.findByName(title);
     }
     
 
