@@ -1,0 +1,15 @@
+.back {
+    -fx-background-image: url('../images/Cinema.jpg');
+    -fx-background-size: cover;
+}
+
+.text-field {
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+
+.password-field {
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+

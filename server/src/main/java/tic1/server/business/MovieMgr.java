@@ -1,7 +1,7 @@
 package tic1.server.business;
 
-import tic1.server.business.exception.ResourceNotFoundException;
-import tic1.server.business.entities.Movie;
+import tic1.commons.business.exceptions.ResourceNotFoundException;
+import tic1.server.entities.Movie;
 import tic1.server.persistence.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,14 +21,7 @@ public class MovieMgr {
         return movieRepository.findAll();
     }
 
-    public void addMovie(String name, String description, String actors, String duration) {
-
-        Movie movie = new Movie();
-
-        movie.setName(name);
-        movie.setDescription(description);
-        movie.setActors(actors);
-        movie.setDuration(duration);
+    public void addMovie(Movie movie) {
 
         movieRepository.save(movie);
 

@@ -1,4 +1,6 @@
-package tic1.server.business.entities;
+package tic1.server.entities;
+
+import tic1.commons.transfers.MovieDTO;
 
 import javax.persistence.*;
 
@@ -24,6 +26,12 @@ public class Movie {
     private String duration;
 
     public Movie(MovieDTO temp)  {
+
+        this.actors = temp.getActors();
+        this.description = temp.getDescription();
+        this.duration = temp.getDuration();
+        this.id = temp.getId();
+        this.name = temp.getName();
 
     }
 
@@ -68,7 +76,14 @@ public class Movie {
     }
 
     public MovieDTO toDTO() {
+       MovieDTO movieDTO = new MovieDTO();
+        movieDTO.setActors(this.actors);
+        movieDTO.setDescription(this.description);
+        movieDTO.setDuration(this.duration);
+        movieDTO.setName(this.name);
+        movieDTO.setId(this.id);
 
+        return movieDTO;
     }
 
     @Override

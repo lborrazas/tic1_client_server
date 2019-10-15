@@ -1,0 +1,17 @@
+.header-section {
+    -fx-padding: 10px;
+    -fx-font-size: 20px;
+    -fx-background-color: #3B3F42;
+}
+
+.header-section Button {
+    -fx-padding: 10px;
+    -fx-font-size: 15px;
+    -fx-background-color: #3B3F42;
+    -fx-text-fill: red;
+}
+
+.header-section Label {
+    -fx-text-fill: blue;
+    -fx-padding: 10px;
+}
