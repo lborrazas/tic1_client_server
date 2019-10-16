@@ -1,7 +1,6 @@
-package com.example.movie_crud.ui.movie;
+package tic1.client.ui.movie;
 
-import com.example.movie_crud.business.MovieMgr;
-import com.example.movie_crud.business.entities.Movie;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -14,6 +13,9 @@ import javafx.scene.layout.Background;
 import javafx.scene.text.Text;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import tic1.client.models.Movie;
+import tic1.client.services.MovieRestTemplate;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -21,7 +23,7 @@ import java.util.ResourceBundle;
 public class MovieDetailsController implements Initializable {
 
     @Autowired
-    MovieMgr movieMgr;
+    MovieRestTemplate movieRestTemplate;
 
     @FXML
     private Text movie_name;

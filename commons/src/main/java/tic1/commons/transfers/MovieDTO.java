@@ -6,8 +6,16 @@ public class MovieDTO {
     private String duration;
     private String actors;
     private String name;
-    private long id;
 
+
+
+    public MovieDTO(String description, String duration, String actors, String name) {
+        this.description = description;
+        this.duration = duration;
+        this.actors = actors;
+        this.name = name;
+
+    }
 
     public String getDescription() {
         return description;
@@ -41,11 +49,4 @@ public class MovieDTO {
         this.name = name;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 }
