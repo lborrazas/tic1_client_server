@@ -1,9 +1,8 @@
-package com.example.movie_crud.ui.movie;
+package tic1.client.ui.movie;
 
-import com.example.movie_crud.business.MovieMgr;
-import com.example.movie_crud.business.entities.Movie;
-import com.example.movie_crud.ui.Principal;
-import com.example.movie_crud.ui.Principal2;
+
+import tic1.client.models.Movie;
+import tic1.client.services.MovieRestTemplate;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -18,6 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import tic1.client.ui.Principal2;
 
 @Controller
 public class MovieController {
@@ -30,7 +30,7 @@ public class MovieController {
     }
 
     @Autowired
-    private MovieMgr movieMgr;
+    private MovieRestTemplate movieRestTemplate;
 
     @FXML
     private Button btnClose;
@@ -83,9 +83,7 @@ public class MovieController {
                 String actors = txtActors.getText();
 
                 try {
-
-                    movieMgr.addMovie(name, description, actors, duration);
-
+                    movieRestTemplate.createMovie(description, duration, name, actors);
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
                     close(event);
                     principal.refreshTable();
@@ -100,10 +98,12 @@ public class MovieController {
 
     @FXML
     void clean() {
+
         txtName.setText(null);
         txtDescription.setText(null);
         txtDuration.setText(null);
         txtActors.setText(null);
+
     }
 
     private void showAlert(String title, String contextText) {

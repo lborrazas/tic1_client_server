@@ -1,10 +1,9 @@
-package com.example.movie_crud.ui;
-
-import com.example.movie_crud.MovieCrudApplication;
-import com.example.movie_crud.business.MovieMgr;
-import com.example.movie_crud.business.entities.Movie;
-import com.example.movie_crud.ui.movie.MovieController;
-import com.example.movie_crud.ui.movie.MovieDetailsController;
+package tic1.client.ui;
+import tic1.client.ClientApplication;
+import tic1.client.models.Movie;
+import tic1.client.services.MovieRestTemplate;
+import tic1.client.ui.movie.MovieController;
+import tic1.client.ui.movie.MovieDetailsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +19,7 @@ import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 public class Principal2 implements Initializable {
 
     @Autowired
-    private MovieMgr movieMgr;
+    private MovieRestTemplate movieRestTemplate; //todo all movimgr references to controller
 
     @FXML
     private TableView<Movie> movieTable;
@@ -52,7 +52,7 @@ public class Principal2 implements Initializable {
     @FXML
     void addMovie(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddMovie.fxml"));
 
@@ -65,7 +65,7 @@ public class Principal2 implements Initializable {
 
     private void loadMovies() {
         movieList.clear();
-        movieList.addAll(movieMgr.findAll());
+        movieList.addAll((Movie) movieRestTemplate.findAll());  //todo Stop casting
 
         movieTable.setItems(movieList);
     }
@@ -81,7 +81,7 @@ public class Principal2 implements Initializable {
 
     public void refreshTable() {
         movieList.clear();
-        movieList.addAll(movieMgr.findAll());
+        movieList.addAll((Movie) movieRestTemplate.findAll()); //todo Stop Casting
 
         movieTable.setItems(movieList);
 
@@ -92,7 +92,7 @@ public class Principal2 implements Initializable {
         try {
             //Load second scene
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+            fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
             Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
 
@@ -112,7 +112,7 @@ public class Principal2 implements Initializable {
 
     public void viewDetails() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
         Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
         Stage stage = new Stage();
@@ -124,7 +124,7 @@ public class Principal2 implements Initializable {
     @FXML
     public void deleteMovie(ActionEvent event) {
         //Fetch the selected row
-        Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
+       Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Deleting book");
@@ -133,7 +133,8 @@ public class Principal2 implements Initializable {
 
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         if (answer.get() == ButtonType.OK) {
-            movieMgr.deleteMovie(selectedForDeletion.getId());
+            movieRestTemplate.deleteMovie();
+           // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
             alert1.setContentText("Pelicula " +  selectedForDeletion.getName() + " borrada con exito.");
             movieList.remove(selectedForDeletion);
 
@@ -145,10 +146,10 @@ public class Principal2 implements Initializable {
     @FXML
     public void editMovie(ActionEvent event) {
         //Fetch the selected row
-        Movie selectedForEdit = movieTable.getSelectionModel().getSelectedItem();
+       Movie selectedForEdit = movieTable.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+            fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
             Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddMovie.fxml"));
 

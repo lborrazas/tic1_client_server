@@ -1,7 +1,7 @@
-package com.example.movie_crud.ui.login;
+package tic1.client.ui.login;
 
-import com.example.movie_crud.MovieCrudApplication;
-import com.example.movie_crud.ui.Principal;
+
+import tic1.client.ClientApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
+import tic1.client.ui.Principal2;
 
 @Controller
 public class LoginController {
@@ -30,9 +31,9 @@ public class LoginController {
     @FXML
     void login(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(MovieCrudApplication.getContext()::getBean);
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Principal.class.getResource("Principal.fxml"));
+        Parent root = fxmlLoader.load(Principal2.class.getResource("Principal.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);

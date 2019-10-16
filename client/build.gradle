@@ -4,17 +4,30 @@ plugins {
 	id 'java'
 }
 
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+
 group = 'tic1'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-repositories {
-	mavenCentral()
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
 }
 
 dependencies {
+	compile('tic1:commons')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile('tic1:commons')
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	implementation("com.jfoenix:jfoenix:8.0.8")
+	compile fileTree(dir: 'lib', include: '*.jar')
 
 }

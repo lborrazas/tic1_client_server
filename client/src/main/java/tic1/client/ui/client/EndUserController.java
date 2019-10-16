@@ -1,4 +1,4 @@
-package com.example.movie_crud.ui.client;
+package tic1.client.ui.client;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
