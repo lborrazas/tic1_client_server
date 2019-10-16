@@ -82,7 +82,6 @@ public class Movie {
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
-
         return movieDTO;
     }
 
