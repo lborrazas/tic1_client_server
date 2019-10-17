@@ -8,6 +8,8 @@ public class MovieDTO {
     private String name;
 
 
+    public MovieDTO() {
+    }
 
     public MovieDTO(String description, String duration, String actors, String name) {
         this.description = description;

@@ -58,7 +58,7 @@ public class Principal2 implements Initializable {
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/com/example/movie_crud/ui/styles/style.css");
+        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
         stage.show();
     }
@@ -161,7 +161,7 @@ public class Principal2 implements Initializable {
             Stage stage = new Stage(StageStyle.DECORATED);
             stage.setTitle("Editar Pelicula");
             Scene scene = new Scene(root);
-            scene.getStylesheets().add("/com/example/movie_crud/ui/styles/style.css");
+            scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
             stage.setScene(scene);
             stage.show();
 

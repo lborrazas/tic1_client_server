@@ -1,6 +1,8 @@
 package tic1.client.models;
 
-import tic1.commons.transfers.MovieDTO;
+import tic1.commons.transfers.MovieDTO; //TODO auqnue lo muestra no esta compliandolo :(
+
+
 
 public class Movie {
     String name;
@@ -49,5 +51,25 @@ public class Movie {
 
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", actors='" + actors + '\'' +
+                ", duration='" + duration + '\'' +
+                '}';
+    }
+
+    public MovieDTO toDTO() {
+        MovieDTO movieDTO = new MovieDTO();
+        movieDTO.setActors(this.actors);
+        movieDTO.setDescription(this.description);
+        movieDTO.setDuration(this.duration);
+        movieDTO.setName(this.name);
+//        movieDTO.setId(this.id);
+        return movieDTO;
     }
 }

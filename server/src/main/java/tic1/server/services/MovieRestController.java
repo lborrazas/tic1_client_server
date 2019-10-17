@@ -13,7 +13,6 @@ import java.util.stream.Collectors;
 
 @RestController
 public class MovieRestController {
-
     @Autowired
     MovieRepository movieRepository;
     @Autowired
@@ -40,6 +39,16 @@ public class MovieRestController {
                .map(Movie::toDTO)
                .collect(Collectors.toList());
     }
+
+    @GetMapping("/movie")
+    public List<MovieDTO> movies(){
+        List<Movie> movies = movieRepository.findAll(); //todo List must be pages not full
+        return movies.stream()
+                .map(Movie::toDTO)
+                .collect(Collectors.toList());
+    }
+
+
 
 
 
