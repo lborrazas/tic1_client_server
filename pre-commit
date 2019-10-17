@@ -15,6 +15,14 @@ else
 	against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 fi
 
+branch=`git symbolic-ref HEAD`
+if [ "$branch" = "refs/heads/master" ]; then
+    echo "Direct commits to the master branch are not allowed."
+    exit 1
+fi
+
+
+
 # If you want to allow non-ASCII filenames set this variable to true.
 allownonascii=$(git config --bool hooks.allownonascii)
 
