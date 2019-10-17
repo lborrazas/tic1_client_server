@@ -18,126 +18,155 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.Principal2">
-   <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="/movie_crud/ui/styles/dark-theme.css">
-         <top>
-            <BorderPane prefHeight="60.0" styleClass="header-section" prefWidth="700.0" BorderPane.alignment="CENTER">
-               <left>
-                  <HBox alignment="CENTER" BorderPane.alignment="CENTER">
-                     <children>
-                        <Label alignment="CENTER" text="Admin V 1.0.0" textAlignment="CENTER">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <BorderPane.margin>
-                        <Insets left="20.0" />
-                     </BorderPane.margin>
-                  </HBox>
-               </left>
-               <right>
-                  <MenuButton styleClass="menu-button" text="Cuenta" BorderPane.alignment="CENTER">
-                    <items>
-                      <MenuItem text="Cerrar Sesion" />
-                      <MenuItem text="Ir a Inicio" />
-                    </items>
-                     <BorderPane.margin>
-                        <Insets right="20.0" />
-                     </BorderPane.margin>
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </MenuButton>
-               </right>
-            </BorderPane>
-         </top>
-         <left>
-             <VBox prefHeight="445.0" prefWidth="154.0" styleClass="toolbar-container" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
-                 <children>
-                     <JFXButton contentDisplay="TOP" mnemonicParsing="false" onAction="#addMovie" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Agregar Pelicula" textAlignment="CENTER">
-                         <graphic>
-                             <FontAwesomeIconView glyphName="FILM" size="25" />
-                         </graphic>
-                     </JFXButton>
-                     <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Agregar Teatro" textAlignment="CENTER">
-                         <graphic>
-                             <FontAwesomeIconView glyphName="BOOK" size="25" />
-                         </graphic>
-                     </JFXButton>
-                     <JFXButton contentDisplay="TOP" layoutX="10.0" layoutY="223.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="160.0" styleClass="toolbar-button" text="Configuracion" textAlignment="CENTER">
-                         <graphic>
-                             <FontAwesomeIconView glyphName="COG" size="25" />
-                         </graphic>
-                     </JFXButton>
-                 </children>
-             </VBox>
-         </left>
-         <center>
-             <JFXTabPane fx:id="mainTabPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                 <tabs>
-                     <Tab fx:id="movieTab" closable="false" styleClass="tab-main" text="Peliculas">
-                         <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                     <TableView fx:id="movieTable" prefHeight="370.0" prefWidth="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                         <columns>
-                                             <TableColumn fx:id="colName" maxWidth="4000.0" prefWidth="415.0" text="Name" />
-                                             <TableColumn fx:id="colDuration" maxWidth="4000.0" prefWidth="143.0" text="Duration" />
-                                             <TableColumn maxWidth="4000.0" prefWidth="75.0" text="Genero" />
-                                         </columns>
-                                         <VBox.margin>
-                                             <Insets left="10.0" right="5.0" />
-                                         </VBox.margin>
-                                         <columnResizePolicy>
-                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                         </columnResizePolicy>
-                                         <contextMenu>
-                                             <ContextMenu>
-                                                 <items>
-                                                     <MenuItem fx:id="edit" mnemonicParsing="false" onAction="#editMovie" text="Editar" />
-                                                     <MenuItem fx:id="delete" mnemonicParsing="false" onAction="#deleteMovie" text="Eliminar" />
-                                                 </items>
-                                             </ContextMenu>
-                                         </contextMenu>
-                                     </TableView>
-                                 </children>
-                             </AnchorPane>
-                         </content>
-                     </Tab>
-                     <Tab fx:id="theatreTab" closable="false" styleClass="tab-main" text="Teatros">
-                         <content>
-                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                 <children>
-                                     <TableView fx:id="theatre_table" prefHeight="370.0" prefWidth="560.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                         <columns>
-                                             <TableColumn maxWidth="4000.0" prefWidth="415.0" text="Name" />
-                                             <TableColumn maxWidth="4000.0" prefWidth="143.0" text="Duration" />
-                                             <TableColumn maxWidth="4000.0" prefWidth="75.0" text="Genero" />
-                                         </columns>
-                                         <VBox.margin>
-                                             <Insets left="10.0" right="5.0" />
-                                         </VBox.margin>
-                                         <columnResizePolicy>
-                                             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                                         </columnResizePolicy>
-                                         <contextMenu>
-                                             <ContextMenu>
-                                                 <items>
-                                                     <MenuItem fx:id="editTheatre" mnemonicParsing="false" onAction="#editMovie" text="Editar" />
-                                                     <MenuItem fx:id="deleteTheatre" mnemonicParsing="false" onAction="#deleteMovie" text="Eliminar" />
-                                                 </items>
-                                             </ContextMenu>
-                                         </contextMenu>
-                                     </TableView>
-                                 </children>
-                             </AnchorPane>
-                         </content>
-                     </Tab>
-                 </tabs>
-             </JFXTabPane>
-         </center>
-      </BorderPane>
-   </children>
+
+<StackPane fx:id="rootPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" stylesheets="/movie_crud/ui/styles/dark-theme.css" fx:controller="tic1.client.ui.Principal2">
+    <children>
+        <AnchorPane fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
+            <children>
+                <AnchorPane prefHeight="500.0" prefWidth="250.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="250.0">
+                            <children>
+                                <Label text="Admin V1.0.0">
+                                    <font>
+                                        <Font name="Arial" size="24.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="25.0" />
+                                    </padding>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <VBox layoutY="94.0" prefHeight="406.0" prefWidth="250.0" styleClass="toolbar-container">
+                            <children>
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#addMovie" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Pelicula">
+                                    <VBox.margin>
+                                        <Insets top="2.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Arial" size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIconView fill="WHITE" glyphName="FILM" size="22" />
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="25.0" />
+                                    </padding>
+                                </JFXButton>
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Teatro">
+                                    <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Arial" size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="22" />
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="25.0" />
+                                    </padding>
+                                </JFXButton>
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Configuracion">
+                                    <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                    <font>
+                                        <Font name="Arial" size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIconView fill="WHITE" glyphName="COG" size="22" />
+                                    </graphic>
+                                    <padding>
+                                        <Insets left="25.0" />
+                                    </padding>
+                                </JFXButton>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="250.0" layoutY="79.0" prefHeight="500.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <BorderPane layoutX="99.0" layoutY="50.0" prefHeight="500.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <top>
+                                <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <MenuButton graphicTextGap="10.0" mnemonicParsing="false" styleClass="menu-button" text="Cuenta">
+                                            <items>
+                                                <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
+                                                <MenuItem mnemonicParsing="false" text="Ir a Inicio" />
+                                            </items>
+                                            <font>
+                                                <Font name="Arial" size="16.0" />
+                                            </font>
+                                            <graphic>
+                                                <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+                                            </graphic>
+                                        </MenuButton>
+                                    </children>
+                                    <padding>
+                                        <Insets right="25.0" />
+                                    </padding>
+                                </HBox>
+                            </top>
+                            <center>
+                                <JFXTabPane fx:id="mainTabPane" BorderPane.alignment="CENTER">
+                                    <tabs>
+                                        <Tab fx:id="movieTab" closable="false" styleClass="tab-main" text="Peliculas">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                    <children>
+                                                        <TableView fx:id="movieTable" layoutX="55.0" layoutY="46.0" prefHeight="363.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <columns>
+                                                                <TableColumn fx:id="colName" prefWidth="175.0" text="Nombre" />
+                                                                <TableColumn fx:id="colDuration" prefWidth="175.0" text="Duracion" />
+                                                                <TableColumn fx:id="colGenre" prefWidth="175.0" text="Genero" />
+                                                            </columns>
+                                                            <contextMenu>
+                                                                <ContextMenu>
+                                                                    <items>
+                                                                        <MenuItem fx:id="view" mnemonicParsing="false" onAction="#viewDetails" text="Ver" />
+                                                                        <MenuItem fx:id="edit" mnemonicParsing="false" onAction="#editMovie" text="Editar" />
+                                                                        <MenuItem fx:id="delete" mnemonicParsing="false" onAction="#deleteMovie" text="Eliminar" />
+                                                                    </items>
+                                                                </ContextMenu>
+                                                            </contextMenu>
+                                                        </TableView>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                        <Tab fx:id="theatreTab" closable="false" styleClass="tab-main" text="Teatros">
+                                            <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                    <children>
+                                                        <TableView prefHeight="403.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                            <columns>
+                                                                <TableColumn prefWidth="175.0" text="Nombre" />
+                                                                <TableColumn prefWidth="175.0" text="Duracion" />
+                                                                <TableColumn prefWidth="175.0" text="Genero" />
+                                                            </columns>
+                                                            <contextMenu>
+                                                                <ContextMenu>
+                                                                    <items>
+                                                                        <MenuItem mnemonicParsing="false" text="Ver" />
+                                                                        <MenuItem mnemonicParsing="false" text="Editar" />
+                                                                        <MenuItem mnemonicParsing="false" text="Eliminar" />
+                                                                    </items>
+                                                                </ContextMenu>
+                                                            </contextMenu>
+                                                        </TableView>
+                                                    </children>
+                                                </AnchorPane>
+                                            </content>
+                                        </Tab>
+                                    </tabs>
+                                </JFXTabPane>
+                            </center>
+                        </BorderPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
 </StackPane>

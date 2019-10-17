@@ -1,4 +1,6 @@
 package tic1.client.ui;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import tic1.client.ClientApplication;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
@@ -41,10 +43,27 @@ public class Principal2 implements Initializable {
     public TableColumn<Movie, String> colDuration;
 
     @FXML
+    private StackPane rootPane;
+
+    @FXML
+    private AnchorPane mainContainer;
+
+    @FXML
+    private Tab movieTab;
+
+    @FXML
     private MenuItem edit;
 
     @FXML
     private MenuItem delete;
+
+    private ClientApplication clientApplication;
+
+    @Autowired
+    public Principal2(ClientApplication clientApplication) {
+        this.clientApplication = clientApplication;
+    }
+
 
     private ObservableList<Movie> movieList = FXCollections.observableArrayList();
     private ObservableList<String> genres = FXCollections.observableArrayList("Accion", "Drama", "Suspenso");

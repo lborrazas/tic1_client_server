@@ -7,8 +7,12 @@
     -fx-color-1:#1976D2;
 }
 
-
-
+.menu-button {
+    -fx-font-family: "FontAwesome";
+    -fx-padding: 10px;
+    -fx-font-size: 15px;
+    -fx-background-color: transparent;
+}
 
 .menu-button > .label {
     -fx-text-fill: white;
@@ -21,25 +25,43 @@
     -fx-text-fill: white;
 }
 
-.menu-item:hover, .menu-item:visited{
+.menu-item:hover, .menu-item:focused{
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
 }
-.menu-item:hover > .label{
+.menu-item:hover, .menu-item:focused > .label{
     -fx-text-fill: -fx-primary;
 }
-/*.menu-item:hover .label, .menu-item:visited .label{
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: -fx-primary;
+
+/*.menu-item:focused {
+    -fx-background-color: derive(-fx-secondary, 20%);
+    -fx-text-fill: derive(-fx-primary, 20%);
+}
+.menu-item:focused > .label{
+    -fx-text-fill: derive(-fx-primary, 20%);
 }*/
 
-.menu-button {
-    -fx-padding: 10px;
-    -fx-font-size: 15px;
-    -fx-background-color: transparent;
+.menu-button:hover, .menu-button:pressed {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: -fx-secondary;
+    -fx-fill: -fx-secondary;
 }
 
-.header-section Label {
+.menu-button:hover > .label {
+    -fx-text-fill: -fx-secondary;
+    -fx-fill: -fx-secondary;
+}
+
+.menu-button:hover > .arrow-button > .arrow {
+    -fx-background-color: -fx-secondary;
+}
+
+.menu-button:hover .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-fill: -fx-secondary;
+}
+
+Label {
     -fx-text-fill: #ffffff;
 }
 
@@ -48,9 +70,10 @@
     -fx-background-color: -fx-primary;
 }
 
-.glyph-icon
+.glyph-icon-carousel
 {
-    -fx-fill: -fx-primarytext;
+    -fx-fill: white;
+    -fx-font-size: 26;
 }
 
 .text {
@@ -58,7 +81,8 @@
 }
 
 .button{
-    -fx-text-fill: -fx-primarytext;
+    -fx-font-family: "Material Design Icons";
+    -fx-text-fill: white;
     -fx-background-color: -fx-primary;
     -fx-border-color: -fx-secondary;
     -fx-border-radius: 20px;
@@ -66,15 +90,113 @@
     -fx-font-size: 12pt;
 }
 
-.button:hover, .button:focused{
+.button:hover {
+    -fx-font-family: "Material Design Icons";
     -fx-border-color: -fx-secondary;
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
 }
 
+.button:hover .glyph-icon {
+    -fx-font-family: "Material Design Icons";
+    -fx-fill: -fx-primary;
+    -fx-font-size: 26;
+}
+
+.buy-button{
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: white;
+    -fx-background-color: -fx-primary;
+    -fx-border-color: -fx-secondary;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-size: 12pt;
+}
+
+.buy-button:hover, .buy-button:pressed {
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: -fx-secondary;
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+}
+
+.buy-button:hover .glyph-icon, .buy-button:pressed .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-fill: -fx-primary;
+    -fx-font-size: 26;
+}
+
+.button-back {
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: none;
+}
+.button-back:hover, .button-back:pressed {
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: none;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-secondary;
+    -fx-fill: -fx-secondary;
+    -fx-effect: null;
+}
+
+.button-back:hover .glyph-icon, .button-back:pressed {
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: none;
+    -fx-background-color: transparent;
+    -fx-fill: -fx-secondary;
+    -fx-effect: null;
+}
+
+.carousel-button {
+    -fx-font-family: "Material Design Icons";
+    -fx-text-fill: -fx-primary;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 12pt;
+}
+
+.carousel-button:hover
+{
+    -fx-font-family: "Material Design Icons";
+    -fx-text-fill: -fx-secondary;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
+
+.carousel-button:hover .glyph-icon, .carousel-button:hover .glyph-icon
+{
+    -fx-font-family: "Material Design Icons";
+    -fx-fill: -fx-secondary;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
+
+.search-button {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: -fx-primary;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 12pt;
+}
+
+.search-button:hover {
+    -fx-font-family: "FontAwesome";
+    -fx-fill: -fx-secondary;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
+
+.search-button:hover .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-fill: -fx-secondary;
+    -fx-background-color: none;
+    -fx-border-color: none;
+}
+
 .text-field
 {
     -fx-text-fill: -fx-primarytext;
+    -fx-prompt-text-fill: white;
     -fx-font-size : 12pt;
     -jfx-focus-color: -fx-secondary;
     -fx-text-fill: derive(-fx-secondary, 20%);
@@ -87,6 +209,10 @@
     -fx-text-fill: derive(-fx-secondary, 20%);
     -fx-prompt-text-fill: -fx-primarytext;
     -fx-fill: -fx-primarytext;
+}
+
+.combo-box > .arrow-button > .arrow {
+    -fx-background-color: white;
 }
 
 /*Login Screen Specific*/
@@ -145,7 +271,9 @@
 
 .context-menu
 {
+    -fx-font-family: Arial;
     -fx-background-color:  derive(-fx-primary, 20%);
+    -fx-font-size: 15px;
 }
 
 /*Hamburger Styling*/
@@ -162,21 +290,31 @@
 /*Toolbar buttons*/
 .toolbar-button
 {
-    -fx-border-color: transparent;
-    -fx-background-color: derive(-fx-primary, 10%);
-    -fx-background-radius: 0px;
-    -fx-border-radius: 0px;
-}
-.toolbar-button:hover
-{
+    -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-color: -fx-primary;
+    -fx-background-radius: 30 0 0 30;
+    -fx-border-radius: 30 0 0 30;
+    -fx-effect: null;
+}
+
+
+.toolbar-button:hover
+{
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: transparent;
+    -fx-background-radius: 30 0 0 30;
+    -fx-background-color: derive(-fx-primary, 10%);
     -fx-text-fill: -fx-secondary;
+    -fx-effect: null;
+
 }
 
 .toolbar-button:hover .glyph-icon, .toolbar-button:hover .glyph-icon
 {
+    -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
+    -fx-effect: null;
 }
 
 /*Text styling*/

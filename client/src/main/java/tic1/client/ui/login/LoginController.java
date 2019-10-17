@@ -40,8 +40,8 @@ public class LoginController {
         stage.show();
     }
 
-    double x = 0;
-    double y = 0;
+    private double x = 0;
+    private double y = 0;
 
     @FXML
     void dragged(MouseEvent event) {
@@ -56,6 +56,4 @@ public class LoginController {
         x = event.getSceneX();
         y = event.getSceneY();
     }
-
 }
-

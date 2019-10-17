@@ -15,10 +15,10 @@ import javafx.application.Application;
 
 @SpringBootApplication
 public class ClientApplication extends Application {
+
 	private static ConfigurableApplicationContext context;
 
 	private Parent root;
-
 
 	public void init() throws Exception {
 		ClientApplication.context = SpringApplication.run(ClientApplication.class);

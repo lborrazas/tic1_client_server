@@ -26,11 +26,11 @@ public class MovieRestTemplate { //todo try and catch for Templates
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public void updateMovie(String description, String duration, String actors, String name) {
+    public void updateMovie(Movie movie) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<MovieDTO> body = new HttpEntity<>(
-                new MovieDTO(description, duration, actors, name));
+                new MovieDTO(movie.getDescription(), movie.getDuration(), movie.getActors(), movie.getName()));
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/movie", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
