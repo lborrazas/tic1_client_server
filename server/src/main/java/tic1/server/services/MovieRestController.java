@@ -27,7 +27,7 @@ public class MovieRestController {
         movieMgr.addMovie(new Movie(movie));
     }
 
-    @PutMapping("/movie")
+    @PutMapping("/movie/{id}")
     public void update(@PathVariable("id") Long id, @RequestBody MovieDTO movie){
         movieMgr.updateMovie(id, new Movie(movie));
     }
@@ -40,12 +40,23 @@ public class MovieRestController {
                .collect(Collectors.toList());
     }
 
+    @GetMapping("/movie/{id}")
+    public MovieDTO moviesByTitle(@PathVariable("id") long id){
+        Movie movie = movieMgr.getOne(id);
+        return movie.toDTO();
+    }
+
     @GetMapping("/movie")
     public List<MovieDTO> movies(){
         List<Movie> movies = movieRepository.findAll(); //todo List must be pages not full
         return movies.stream()
                 .map(Movie::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @DeleteMapping("/movie/{id}")
+    public void delete(@PathVariable("id") Long id){
+        movieMgr.deleteMovie(id);
     }
 
 

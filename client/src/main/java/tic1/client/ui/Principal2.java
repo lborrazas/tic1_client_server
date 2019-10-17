@@ -152,7 +152,7 @@ public class Principal2 implements Initializable {
 
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         if (answer.get() == ButtonType.OK) {
-            movieRestTemplate.deleteMovie();
+            movieRestTemplate.deleteMovie(1);
            // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
             alert1.setContentText("Pelicula " +  selectedForDeletion.getName() + " borrada con exito.");
             movieList.remove(selectedForDeletion);
