@@ -7,18 +7,18 @@
 #
 # To enable this hook, rename this file to "pre-commit".
 
+branch=`git symbolic-ref HEAD`
+if [ "$branch" = "refs/heads/master" ]; then
+    echo "Direct commits to the branch master are not allowed"
+    exit 1
+fi
+
 if git rev-parse --verify HEAD >/dev/null 2>&1
 then
 	against=HEAD
 else
 	# Initial commit: diff against an empty tree object
 	against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
-fi
-
-branch=`git symbolic-ref HEAD`
-if [ "$branch" = "refs/heads/master" ]; then
-    echo "Direct commits to the master branch are not allowed."
-    exit 1
 fi
 
 
