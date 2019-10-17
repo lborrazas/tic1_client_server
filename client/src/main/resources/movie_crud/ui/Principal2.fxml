@@ -18,9 +18,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" stylesheets="/com/example/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.movie_crud.ui.Principal2">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="460.0" prefWidth="700.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.Principal2">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="/com/example/movie_crud/ui/styles/dark-theme.css">
+      <BorderPane prefHeight="200.0" prefWidth="200.0" stylesheets="/movie_crud/ui/styles/dark-theme.css">
          <top>
             <BorderPane prefHeight="60.0" styleClass="header-section" prefWidth="700.0" BorderPane.alignment="CENTER">
                <left>

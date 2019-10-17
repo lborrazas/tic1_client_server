@@ -81,9 +81,10 @@ public class MovieController {
                 String description = txtDescription.getText();
                 String duration = txtDuration.getText();
                 String actors = txtActors.getText();
+                Movie movie = new Movie();
 
                 try {
-                    movieRestTemplate.createMovie(description, duration, name, actors);
+                    movieRestTemplate.createMovie(movie);
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
                     close(event);
                     principal.refreshTable();

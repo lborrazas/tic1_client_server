@@ -25,12 +25,15 @@ public class Movie {
     @Column(nullable = false)
     private String duration;
 
+    public Movie() {
+    }
+
     public Movie(MovieDTO temp)  {
 
         this.actors = temp.getActors();
         this.description = temp.getDescription();
         this.duration = temp.getDuration();
-        this.id = temp.getId();
+//        this.id = temp.getId();
         this.name = temp.getName();
 
     }
@@ -81,7 +84,7 @@ public class Movie {
         movieDTO.setDescription(this.description);
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
-        movieDTO.setId(this.id);
+//        movieDTO.setId(this.id);
         return movieDTO;
     }
 

@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 @Service
 public class MovieRestTemplate { //todo try and catch for Templates
 
-    public void createMovie(String description, String duration, String actors, String name) {
+    public void createMovie(Movie movie) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<MovieDTO> body = new HttpEntity<>(
-                new MovieDTO(description, duration, actors, name));
+                movie.toDTO());
         ResponseEntity<String> response =
-                restTemplate.exchange("http://10.252.254.8:8080/MovieDTO", HttpMethod.POST, body, String.class);
+                restTemplate.exchange("http://localhost:8080/movie", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
@@ -32,7 +32,7 @@ public class MovieRestTemplate { //todo try and catch for Templates
         HttpEntity<MovieDTO> body = new HttpEntity<>(
                 new MovieDTO(description, duration, actors, name));
         ResponseEntity<String> response =
-                restTemplate.exchange("http://10.252.254.8:8080/Movie", HttpMethod.POST, body, String.class);
+                restTemplate.exchange("http://localhost:8080/movie", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
@@ -40,7 +40,7 @@ public class MovieRestTemplate { //todo try and catch for Templates
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
-                "http://localhost:8080/Movie/",
+                "http://localhost:8080/movie",
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<MovieDTO>>(){});
@@ -50,6 +50,8 @@ public class MovieRestTemplate { //todo try and catch for Templates
                // .map(movieDTO -> new Movie(movieDTO))
                 .collect(Collectors.toList());
     }
+
+
 
     public void deleteMovie(){
 

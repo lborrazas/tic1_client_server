@@ -1,33 +1,39 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.9.RELEASE'
+	}
+
+	repositories {
+		mavenCentral()
+	}
+
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+
 plugins {
 	id 'org.springframework.boot' version '2.1.9.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
 }
 
-repositories {
-	mavenCentral()
-	jcenter()
-}
-
-
 group = 'tic1'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
+repositories {
+	mavenCentral()
 }
 
+
+
 dependencies {
-	compile('tic1:commons')
+	implementation('tic1:commons')
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	implementation("com.jfoenix:jfoenix:8.0.8")
+	implementation 'org.springframework.boot:spring-boot-devtools'
 	compile fileTree(dir: 'lib', include: '*.jar')
 
 }
