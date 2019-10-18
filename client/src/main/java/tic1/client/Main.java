@@ -11,12 +11,18 @@ public class Main {
         List<Movie> movies = movieRestTemplate.findAll();
         System.out.println(movies.get(0).toString());
 
-        Movie movie = new Movie();
-        movie.setActors("Mary Brown");
-        movie.setDescription("Romantic Movie");
-        movie.setDuration("2 hours");
-        movie.setName("La Ultima Cena");
 
-        movieRestTemplate.createMovie(movie);
+        Movie movie = new Movie();
+        movie.setActors("Juan");
+        movie.setDescription("Ya fue");
+        movie.setDuration("1:30");
+        movie.setName("La Peli");
+
+     //   Movie movieFromRepo = movieRestTemplate.showMovie(5);
+     //   System.out.println(movieFromRepo.toString());
+
+       // movieRestTemplate.updateMovie(2,movie);
+       // movieRestTemplate.deleteMovie(3);
+      //  movieRestTemplate.createMovie(movie);
     }
 }

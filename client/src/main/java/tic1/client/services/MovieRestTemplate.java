@@ -26,18 +26,33 @@ public class MovieRestTemplate { //todo try and catch for Templates
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public void updateMovie(Movie movie) {
+    public void updateMovie(int id, Movie movie) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<MovieDTO> body = new HttpEntity<>(
                 new MovieDTO(movie.getDescription(), movie.getDuration(), movie.getActors(), movie.getName()));
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/movie", HttpMethod.POST, body, String.class);
+                restTemplate.exchange("http://localhost:8080/movie/"+id, HttpMethod.PUT, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public List<Movie> findAll(){
+    public void deleteMovie(int id) {
+        RestTemplate restTemplate =
+                new RestTemplate();
+        ResponseEntity<String> response =
+                restTemplate.exchange("http://localhost:8080/movie/"+id, HttpMethod.DELETE, null, String.class);
+        System.out.println("RestTemplate response : " + response.getBody());
+    }
 
+    public Movie showMovie(int id){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<MovieDTO> response = restTemplate.exchange(
+                "http://localhost:8080/movie/" + id, HttpMethod.GET, null, MovieDTO.class);
+        MovieDTO movie = response.getBody();
+        return new Movie(movie);
+    }
+
+    public List<Movie> findAll(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
                 "http://localhost:8080/movie",
@@ -52,9 +67,5 @@ public class MovieRestTemplate { //todo try and catch for Templates
     }
 
 
-
-    public void deleteMovie(){
-
-    }
 }
 

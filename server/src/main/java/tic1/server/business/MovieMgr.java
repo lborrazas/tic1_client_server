@@ -39,6 +39,7 @@ public class MovieMgr {
         existingMovie.setName(movie.getName());
         existingMovie.setDescription(movie.getDescription());
         existingMovie.setDuration(movie.getDuration());
+        existingMovie.setActors(movie.getActors());
 
         movieRepository.save(existingMovie);
     }
