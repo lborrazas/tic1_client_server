@@ -4,6 +4,7 @@ import javafx.scene.layout.StackPane;
 import tic1.client.ClientApplication;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.movie.MovieController;
 import tic1.client.ui.movie.MovieDetailsController;
 import javafx.collections.FXCollections;
@@ -73,7 +74,7 @@ public class Principal2 implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddMovie.fxml"));
+        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("/movie_crud/ui/movie/AddMovie.fxml"));
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -84,7 +85,7 @@ public class Principal2 implements Initializable {
 
     private void loadMovies() {
         movieList.clear();
-        movieList.addAll((Movie) movieRestTemplate.findAll());  //todo Stop casting
+        movieList.addAll(movieRestTemplate.findAll());
 
         movieTable.setItems(movieList);
     }
@@ -113,7 +114,7 @@ public class Principal2 implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-            Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
+            Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
 
             //Get controller of scene2
             MovieDetailsController movieDetailsController = fxmlLoader.getController();
@@ -133,7 +134,7 @@ public class Principal2 implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
+        Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);
@@ -146,13 +147,15 @@ public class Principal2 implements Initializable {
        Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Deleting book");
-        alert.setContentText("Are you sure want to delete the book " + selectedForDeletion.getName() + " ?");
+        alert.setHeaderText(null);
+        alert.setTitle("Eliminando Pelicula...");
+        alert.setContentText("Seguro quieres eliminar " + selectedForDeletion.getName() + " de manera permanente?");
+        AlertMaker.styleAlert(alert);
         Optional<ButtonType> answer = alert.showAndWait();
 
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         if (answer.get() == ButtonType.OK) {
-            movieRestTemplate.deleteMovie(1);
+            movieRestTemplate.deleteMovie(selectedForDeletion.getId());
            // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
             alert1.setContentText("Pelicula " +  selectedForDeletion.getName() + " borrada con exito.");
             movieList.remove(selectedForDeletion);
@@ -170,7 +173,7 @@ public class Principal2 implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-            Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("AddMovie.fxml"));
+            Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("/movie_crud/ui/movie/AddMovie.fxml"));
 
             //Get controller of scene2
             MovieController movieController = fxmlLoader.getController();

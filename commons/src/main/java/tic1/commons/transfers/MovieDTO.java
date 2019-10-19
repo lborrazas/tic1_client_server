@@ -2,6 +2,7 @@ package tic1.commons.transfers;
 
 public class MovieDTO {
 
+    private long id;
     private String description;
     private String duration;
     private String actors;
@@ -11,7 +12,8 @@ public class MovieDTO {
     public MovieDTO() {
     }
 
-    public MovieDTO(String description, String duration, String actors, String name) {
+    public MovieDTO(long id, String description, String duration, String actors, String name) {
+        this.id = id;
         this.description = description;
         this.duration = duration;
         this.actors = actors;
@@ -51,4 +53,11 @@ public class MovieDTO {
         this.name = name;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

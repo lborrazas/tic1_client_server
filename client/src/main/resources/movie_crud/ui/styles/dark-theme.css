@@ -90,14 +90,19 @@ Label {
     -fx-font-size: 12pt;
 }
 
-.button:hover {
+.button .glyph-icon{
+    -fx-font-size: 26;
+}
+
+.button:hover, .button:pressed{
     -fx-font-family: "Material Design Icons";
     -fx-border-color: -fx-secondary;
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
+
 }
 
-.button:hover .glyph-icon {
+.button:hover .glyph-icon, .button:pressed .glyph-icon{
     -fx-font-family: "Material Design Icons";
     -fx-fill: -fx-primary;
     -fx-font-size: 26;
@@ -111,6 +116,9 @@ Label {
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
     -fx-font-size: 12pt;
+}
+.buy-button .glyph-icon{
+    -fx-font-size: 26;
 }
 
 .buy-button:hover, .buy-button:pressed {
@@ -129,6 +137,9 @@ Label {
 .button-back {
     -fx-font-family: "FontAwesome";
     -fx-border-color: none;
+}
+.button-back .glyph-icon{
+    -fx-font-size: 26;
 }
 .button-back:hover, .button-back:pressed {
     -fx-font-family: "FontAwesome";
@@ -152,23 +163,28 @@ Label {
     -fx-text-fill: -fx-primary;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 12pt;
+    /*-fx-font-size: 12pt;*/
+}
+.carousel-button .glyph-icon{
+    -fx-font-size: 50;
 }
 
 .carousel-button:hover
 {
     -fx-font-family: "Material Design Icons";
     -fx-text-fill: -fx-secondary;
-    -fx-background-color: none;
+    -fx-background-color: transparent;
     -fx-border-color: none;
+    -fx-font-size: 50;
 }
 
-.carousel-button:hover .glyph-icon, .carousel-button:hover .glyph-icon
+.carousel-button:hover .glyph-icon
 {
     -fx-font-family: "Material Design Icons";
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
+    -fx-font-size: 50;
 }
 
 .search-button {
@@ -176,21 +192,27 @@ Label {
     -fx-text-fill: -fx-primary;
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 12pt;
+    /*-fx-font-size: 26;*/
 }
 
-.search-button:hover {
+.search-button .glyph-icon{
+    -fx-font-size: 26;
+}
+
+.search-button:hover, .search-button:pressed {
     -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
+    -fx-font-size: 26;
 }
 
-.search-button:hover .glyph-icon {
+.search-button:hover .glyph-icon, .search-button:pressed .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
+    -fx-font-size: 26;
 }
 
 .text-field
@@ -504,6 +526,73 @@ Label {
     -fx-background-color: transparent;
     -fx-text-fill: -fx-secondary;
     -fx-font-size: 12pt;
+}
+
+.tiles-button {
+    -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 28;
+
+}
+.tiles-button .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 50;
+}
+
+.tiles-button:hover .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-effect: null;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 50;
+}
+
+.tiles-button:hover {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-effect: null;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+}
+
+/*Footer*/
+
+.footer-button {
+    -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+
+}
+.footer-button .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 50;
+}
+
+.footer-button:hover .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-effect: null;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 50;
+}
+
+.footer-button:hover {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-effect: null;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
 }
 
 /*Alert Dialog*/

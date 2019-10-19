@@ -99,7 +99,7 @@ public class MovieController {
 
                 showAlert("Pelicula actualizada", "Se actualizo con exito la pelicula!");
 
-                movieRestTemplate.updateMovie(4,movieForEdit);
+                movieRestTemplate.updateMovie(movieForEdit.getId(),movieForEdit);
 
                 isEditing = false;
 
