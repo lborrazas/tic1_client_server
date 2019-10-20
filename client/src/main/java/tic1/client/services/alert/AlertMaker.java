@@ -176,7 +176,7 @@ public class AlertMaker {
     public static void styleAlert(Alert alert) {
 
         DialogPane dialogPane = alert.getDialogPane();
-        dialogPane.getStylesheets().add(AlertMaker.class.getResource("/com/example/movie_crud/ui/styles/dark-theme.css")
+        dialogPane.getStylesheets().add(AlertMaker.class.getResource("/movie_crud/ui/styles/dark-theme.css")
                 .toExternalForm());
         dialogPane.getStyleClass().add("custom-alert");
     }

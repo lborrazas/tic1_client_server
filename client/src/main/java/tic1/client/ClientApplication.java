@@ -12,6 +12,7 @@ import tic1.client.ui.Principal2;
 import java.io.IOException;
 
 import javafx.application.Application;
+import tic1.client.ui.client.EndUserController;
 
 @SpringBootApplication
 public class ClientApplication extends Application {
@@ -28,11 +29,12 @@ public class ClientApplication extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-		root = fxmlLoader.load(Principal2.class.getResourceAsStream("Principal2.fxml"));
-        /*root = fxmlLoader.load(EndUserController.class.getResourceAsStream("EndUser.fxml"));
+//		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
+        root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
 
         EndUserController endUserController = fxmlLoader.getController();
-        endUserController.populateCarousel();*/
+        endUserController.populateMovieCarousel();
+        endUserController.populateTheatreCarousel();
 		Scene scene= new Scene(root);
 		scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
 //        scene.setFill(Color.TRANSPARENT);

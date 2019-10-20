@@ -72,7 +72,7 @@ public class MovieDetailsController implements Initializable {
     public void goToMain(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(Principal2.class.getResourceAsStream("Principal2.fxml"));
+        Parent root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
         Scene scene = new Scene(root,800,500);
         Stage stage =  (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);

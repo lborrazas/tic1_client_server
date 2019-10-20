@@ -33,7 +33,7 @@ public class Movie {
         this.actors = temp.getActors();
         this.description = temp.getDescription();
         this.duration = temp.getDuration();
-//        this.id = temp.getId();
+        this.id = temp.getId();
         this.name = temp.getName();
 
     }

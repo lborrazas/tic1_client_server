@@ -26,17 +26,17 @@ public class MovieRestTemplate { //todo try and catch for Templates
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public void updateMovie(int id, Movie movie) {
+    public void updateMovie(long id, Movie movie) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<MovieDTO> body = new HttpEntity<>(
-                new MovieDTO(movie.getDescription(), movie.getDuration(), movie.getActors(), movie.getName()));
+                new MovieDTO(movie.getId(), movie.getDescription(), movie.getDuration(), movie.getActors(), movie.getName()));
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/movie/"+id, HttpMethod.PUT, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public void deleteMovie(int id) {
+    public void deleteMovie(long id) {
         RestTemplate restTemplate =
                 new RestTemplate();
         ResponseEntity<String> response =
@@ -44,7 +44,7 @@ public class MovieRestTemplate { //todo try and catch for Templates
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public Movie showMovie(int id){
+    public Movie showMovie(long id){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<MovieDTO> response = restTemplate.exchange(
                 "http://localhost:8080/movie/" + id, HttpMethod.GET, null, MovieDTO.class);
