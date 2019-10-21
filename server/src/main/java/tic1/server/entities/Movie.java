@@ -25,6 +25,9 @@ public class Movie {
     @Column(nullable = false)
     private String duration;
 
+    @Column(nullable = false)
+    private String genre;
+
     public Movie() {
     }
 
@@ -35,7 +38,17 @@ public class Movie {
         this.duration = temp.getDuration();
         this.id = temp.getId();
         this.name = temp.getName();
+        this.genre = temp.getGenre();
 
+    }
+
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 
     public long getId() {
@@ -85,6 +98,7 @@ public class Movie {
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
+        movieDTO.setGenre(this.genre);
         return movieDTO;
     }
 
@@ -96,6 +110,7 @@ public class Movie {
                 ", description='" + description + '\'' +
                 ", actors='" + actors + '\'' +
                 ", duration='" + duration + '\'' +
+                ", genre='" + genre + '\'' +
                 '}';
     }
 }

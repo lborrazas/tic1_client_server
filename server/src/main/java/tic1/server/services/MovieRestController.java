@@ -34,9 +34,17 @@ public class MovieRestController {
         movieMgr.updateMovie(id, new Movie(movie));
     }
 
-    @GetMapping("/movie/title/{title}")
-    public List<MovieDTO> moviesByTitle(@PathVariable("title") String title) {
-        List<Movie> movies = movieRepository.findByName(title); //todo List must be pages not full
+    @GetMapping("/movie/title/{title}/{page}")
+    public List<MovieDTO> moviesByTitle(@PathVariable("title") String title, @PathVariable("page") int page) {
+        List<Movie> movies = movieMgr.findByNamePaged(title, page); //todo List must be pages not full
+        return movies.stream()
+                .map(Movie::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/movie/genre/{genre}/{page}")
+    public List<MovieDTO> moviesByGenre(@PathVariable("genre") String genre, @PathVariable("page") int page) {
+        List<Movie> movies = movieMgr.findByGenrePaged(genre, page); //todo List must be pages not full
         return movies.stream()
                 .map(Movie::toDTO)
                 .collect(Collectors.toList());
@@ -74,20 +82,5 @@ public class MovieRestController {
     public void delete(@PathVariable("id") Long id) {
         movieMgr.deleteMovie(id);
     }
-
-  /*  @GetMapping(params = { "page", "size" })
-    public List<MovieDTO> findPaginated(@RequestParam("page") int page,
-                                   @RequestParam("size") int size, UriComponentsBuilder uriBuilder,
-                                   HttpServletResponse response) {
-        Page<MovieDTO> resultPage = service.findPaginated(page, size);
-        if (page > resultPage.getTotalPages()) {
-            throw new MyResourceNotFoundException();
-        }
-        eventPublisher.publishEvent(new PaginatedResultsRetrievedEvent<MovieDTO>(
-                MovieDTO.class, uriBuilder, response, page, resultPage.getTotalPages(), size));
-
-        return resultPage.getContent();
-    }*/
-
 
 }
