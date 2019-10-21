@@ -2,6 +2,10 @@ package tic1.client.ui.client;
 
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
+import javafx.animation.Transition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -11,6 +15,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
@@ -34,10 +41,52 @@ public class EndUserController {
     @FXML
     private GridPane footer;
 
+    @FXML
+    public StackPane main_carousel;
+
     private List<String> list = new ArrayList<>();
+
     private int j = 0, k = 0;
+
     private double orgCliskSceneX, orgReleaseSceneX;
-    private ImageView imageView;
+
+    public void populateMainCarousel() {
+
+        ImageView[] slides = new ImageView[2];
+        Image image1 = new Image("/movie_crud/ui/images/carousel-test/Donandres-grande.jpg");
+        Image image2 = new Image("/movie_crud/ui/images/carousel-test/Cinema.jpg");
+        slides[0] = new ImageView(image1);
+        slides[1] = new ImageView(image2);
+
+        SequentialTransition slideshow = new SequentialTransition();
+
+        for (ImageView slide : slides) {
+
+            SequentialTransition sequentialTransition = new SequentialTransition();
+
+            FadeTransition fadeIn = getFadeTransition(slide, 0.0, 1.0, 2000);
+            PauseTransition stayOn = new PauseTransition(Duration.millis(2000));
+            FadeTransition fadeOut = getFadeTransition(slide, 1.0, 0.0, 2000);
+
+            sequentialTransition.getChildren().addAll(fadeIn, stayOn, fadeOut);
+            slide.setOpacity(0);
+            main_carousel.setClip(new Rectangle(1000, 320));
+            main_carousel.getChildren().add(slide);
+            slideshow.getChildren().add(sequentialTransition);
+
+        }
+        slideshow.play();
+    }
+
+    private FadeTransition getFadeTransition(ImageView imageView, double fromValue, double toValue, int durationInMilliseconds) {
+
+        FadeTransition ft = new FadeTransition(Duration.millis(durationInMilliseconds), imageView);
+        ft.setFromValue(fromValue);
+        ft.setToValue(toValue);
+
+        return ft;
+
+    }
 
     public void populateMovieCarousel() {
 
