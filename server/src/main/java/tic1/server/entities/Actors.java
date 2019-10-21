@@ -1,6 +1,6 @@
 package tic1.server.entities;
 
-import tic1.commons.transfers.ActorsDto;
+//import tic1.commons.transfers.ActorsDto;
 
 import javax.persistence.*;
 
@@ -20,12 +20,12 @@ public class Actors {
     public Actors() {
     }
 
-    public Actors(ActorsDto actorsDto){
+ /*   public Actors(ActorsDto actorsDto){
         this.edad = actorsDto.getEdad();
         this.id =actorsDto.getId();
         this.name=actorsDto.getName();
 
-    }
+    }*/
 
     public Actors(long id, String name, int edad) {
         this.id = id;
@@ -33,7 +33,7 @@ public class Actors {
         edad = edad;
     }
 
-    public ActorsDto toDto()
+  /*  public ActorsDto toDto()
  {
         ActorsDto actorsDto = new ActorsDto();
         actorsDto.setEdad(this.edad);
@@ -41,7 +41,7 @@ public class Actors {
         actorsDto.setName(this.name);
         return actorsDto;
  }
-
+*/
     public long getId() {
         return id;
     }

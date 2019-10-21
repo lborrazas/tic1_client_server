@@ -100,7 +100,7 @@ public class MovieController implements Initializable {
                 movieForEdit.setDescription(txtDescription.getText());
                 movieForEdit.setActors(txtActors.getText());
                 movieForEdit.setDuration(txtDuration.getText());
-                movieForEdit.setGenre("Hola");
+                movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
 
                 showAlert("Pelicula actualizada", "Se actualizo con exito la pelicula!");
 

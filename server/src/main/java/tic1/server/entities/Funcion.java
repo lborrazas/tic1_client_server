@@ -8,13 +8,13 @@ import java.time.LocalDate;
 public class Funcion {
     @EmbeddedId
     @Id
-    private FuncioPK id;
+    private FuncionPK id;
 
-    public Funcion(FuncioPK id, Movie movie) {
+    public Funcion(FuncionPK id, Movie movie) {
         this.id = id;
         this.movie = movie;
     }
-
+//funcion sala una tabla aparte
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "movie_id")
     private Movie movie;
@@ -22,11 +22,11 @@ public class Funcion {
     public Funcion() {
     }
 
-    public FuncioPK getId() {
+    public FuncionPK getId() {
         return id;
     }
 
-    public void setId(FuncioPK id) {
+    public void setId(FuncionPK id) {
         this.id = id;
     }
 

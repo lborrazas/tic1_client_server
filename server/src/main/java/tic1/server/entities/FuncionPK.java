@@ -5,17 +5,17 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 @Embeddable
-public class FuncioPK implements Serializable {
+public class FuncionPK implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id",referencedColumnName = "id")
     private Sala salon;
 
 
-    public FuncioPK() {
+    public FuncionPK() {
     }
 
-    public FuncioPK(Sala salon, LocalDate fecha) {
+    public FuncionPK(Sala salon, LocalDate fecha) {
         this.salon = salon;
         this.fecha = fecha;
     }
