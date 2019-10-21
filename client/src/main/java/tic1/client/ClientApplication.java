@@ -29,12 +29,13 @@ public class ClientApplication extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-//		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
-        root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
+        /*root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
 
         EndUserController endUserController = fxmlLoader.getController();
         endUserController.populateMovieCarousel();
         endUserController.populateTheatreCarousel();
+        endUserController.populateMainCarousel();*/
 		Scene scene= new Scene(root);
 		scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
 //        scene.setFill(Color.TRANSPARENT);

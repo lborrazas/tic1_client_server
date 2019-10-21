@@ -88,7 +88,11 @@ Label {
     -fx-border-color: -fx-secondary;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    -fx-font-size: 12pt;
+    -fx-font-size: 14px;
+}
+
+.button .glyph-icon {
+    -fx-font-size: 26;
 }
 
 .button:hover {
@@ -96,6 +100,7 @@ Label {
     -fx-border-color: -fx-secondary;
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
+    -fx-font-size: 14px;
 }
 
 .button:hover .glyph-icon {
@@ -136,6 +141,10 @@ Label {
     -fx-border-color: none;
 }
 
+.button-back .glyph-icon{
+    -fx-font-size: 26;
+}
+
 .button-back:hover, .button-back:pressed {
     -fx-font-family: "FontAwesome";
     -fx-border-color: none;
@@ -161,12 +170,17 @@ Label {
     -fx-font-size: 12pt;
 }
 
+.carousel-button .glyph-icon{
+    -fx-font-size: 50;
+}
+
 .carousel-button:hover
 {
     -fx-font-family: "Material Design Icons";
     -fx-text-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
+    -fx-font-size: 50;
 }
 
 .carousel-button:hover .glyph-icon, .carousel-button:hover .glyph-icon
@@ -175,6 +189,7 @@ Label {
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
+    -fx-font-size: 50;
 }
 
 .search-button {
@@ -183,6 +198,9 @@ Label {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-font-size: 12pt;
+}
+.search-button .glyph-icon{
+    -fx-font-size: 26;
 }
 
 .search-button:hover {
@@ -197,6 +215,7 @@ Label {
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
+    -fx-font-size: 26;
 }
 
 .text-field
@@ -567,6 +586,40 @@ Label {
     -fx-background-color: derive(-fx-primary, 30%);
 }
 
+.tiles-button {
+    -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 28;
+
+}
+.tiles-button .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 50;
+}
+
+.tiles-button:hover .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-effect: null;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 50;
+}
+
+.tiles-button:hover {
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: white;
+    -fx-fill: white;
+    -fx-effect: null;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-font-size: 28;
+}
+
 /*Footer*/
 
 .footer-button {
@@ -582,7 +635,11 @@ Label {
     -fx-effect: null;
     -fx-background-color: transparent;
     -fx-border-color: none;
-    -fx-font-size: 50px;
+    -fx-font-size: 50;
+}
+
+.footer-button .glyph-icon {
+    -fx-font-size: 50;
 }
 
 .footer-button:hover {

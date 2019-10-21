@@ -1,4 +1,7 @@
 package tic1.client.ui;
+import com.jfoenix.controls.JFXTextField;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import tic1.client.ClientApplication;
@@ -60,6 +63,9 @@ public class Principal2 implements Initializable {
 
     private ClientApplication clientApplication;
 
+    @FXML
+    private JFXTextField filter;
+
     @Autowired
     public Principal2(ClientApplication clientApplication) {
         this.clientApplication = clientApplication;
@@ -97,11 +103,33 @@ public class Principal2 implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         loadMovies();
+
+        FilteredList<Movie> filteredData = new FilteredList<>(movieList, e -> true);
+
+        filter.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(movie -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (movie.getName().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } /*else if () {
+
+            }*/
+                return false;
+            });
+        });
+        SortedList<Movie> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(movieTable.comparatorProperty());
+        movieTable.setItems(sortedData);
     }
 
     public void refreshTable() {
         movieList.clear();
-        movieList.addAll((Movie) movieRestTemplate.findAll()); //todo Stop Casting
+        movieList.addAll(movieRestTemplate.findAll());
 
         movieTable.setItems(movieList);
 
@@ -130,13 +158,18 @@ public class Principal2 implements Initializable {
         }
     }
 
-    public void viewDetails() throws IOException {
+    public void viewDetails(ActionEvent event) throws IOException {
+        Movie selectedForPreview = movieTable.getSelectionModel().getSelectedItem();
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-
         Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
+
+        MovieDetailsController movieDetailsController = fxmlLoader.getController();
+        movieDetailsController.loadData(selectedForPreview);
+
+        Scene scene = new Scene(root,800,600);
+        Stage stage =  (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
         stage.setScene(scene);
         stage.show();
     }

@@ -4,7 +4,6 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.ImageView?>
@@ -15,12 +14,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" prefHeight="1200.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.client.EndUserController">
+<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" prefHeight="625.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.client.EndUserController">
     <content>
         <AnchorPane prefHeight="1200.0" prefWidth="1000.0" styleClass="root">
             <children>
@@ -36,11 +36,8 @@
                                 <RowConstraints maxHeight="255.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                             <children>
-                                <ImageView fitHeight="320.0" fitWidth="1000.0" pickOnBounds="true" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-                                    <viewport>
-                                        <Rectangle2D />
-                                    </viewport>
-                                </ImageView>
+                                <StackPane fx:id="main_carousel" maxHeight="-Infinity" prefHeight="320.0" prefWidth="1000.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                                </StackPane>
                                 <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
                                     <children>
                                         <JFXButton alignment="CENTER" buttonType="RAISED" graphicTextGap="10.0" prefHeight="35.0" ripplerFill="WHITE" styleClass="button" text="Registrarse" textAlignment="CENTER" textFill="WHITE">
@@ -212,7 +209,7 @@
                                 <Line endX="-100.0" endY="-100.0" opacity="0.7" startX="-100.0" startY="-15.0" stroke="#282828" GridPane.columnIndex="2" />
                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                     <children>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
+                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="16.0" />
                                             </font>
@@ -223,7 +220,7 @@
                                                 <FontAwesomeIconView fill="WHITE" glyphName="FACEBOOK_SQUARE" size="50" />
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
+                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="16.0" />
                                             </font>
@@ -234,7 +231,7 @@
                                                 <FontAwesomeIconView fill="WHITE" glyphName="TWITTER" size="50" />
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="62.0" layoutY="10.0" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
+                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="62.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="16.0" />
                                             </font>
@@ -245,7 +242,7 @@
                                                 <FontAwesomeIconView fill="WHITE" glyphName="INSTAGRAM" size="50" />
                                             </graphic>
                                         </JFXButton>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="114.0" layoutY="10.0" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
+                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="114.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
                                             <font>
                                                 <Font name="Arial" size="16.0" />
                                             </font>
