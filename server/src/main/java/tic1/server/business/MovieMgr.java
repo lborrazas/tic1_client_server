@@ -69,4 +69,11 @@ public class MovieMgr {
        return movies.getContent();
     }
 
+
+    public List<Movie> findByGenrePaged(String genre, int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        List<Movie> movies = movieRepository.findAllByGenre(genre, pageable);
+        return movies;
+    }
+
 }

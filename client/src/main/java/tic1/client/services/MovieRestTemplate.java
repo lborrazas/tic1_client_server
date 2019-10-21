@@ -30,7 +30,7 @@ public class MovieRestTemplate { //todo try and catch for Templates
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<MovieDTO> body = new HttpEntity<>(
-                new MovieDTO(movie.getId(), movie.getDescription(), movie.getDuration(), movie.getActors(), movie.getName()));
+                new MovieDTO(movie.getId(), movie.getDescription(), movie.getDuration(), movie.getActors(), movie.getName(), movie.getGenre()));
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/movie/"+id, HttpMethod.PUT, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
@@ -52,6 +52,7 @@ public class MovieRestTemplate { //todo try and catch for Templates
         return new Movie(movie);
     }
 
+    @Deprecated
     public List<Movie> findAll(){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
@@ -63,6 +64,49 @@ public class MovieRestTemplate { //todo try and catch for Templates
         return movies.stream()
                 .map(Movie::new)
                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
+    }
+
+
+    public List<Movie> findAllPaged(int page){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/movie/paged/" + page,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<MovieDTO>>(){});
+        List<MovieDTO> movies = response.getBody();
+        return movies.stream()
+                .map(Movie::new)
+                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
+    }
+
+    public List<Movie> filterGenrePaged(String genre, int page){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/movie/genre/" + genre+ "/" +page,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<MovieDTO>>(){});
+        List<MovieDTO> movies = response.getBody();
+        return movies.stream()
+                .map(Movie::new)
+                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
+    }
+
+    public List<Movie> filterTitlePaged(String title, int page){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/movie/title/" + title+ "/" +page,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<MovieDTO>>(){});
+        List<MovieDTO> movies = response.getBody();
+        return movies.stream()
+                .map(Movie::new)
+                // .map(movieDTO -> new Movie(movieDTO))
                 .collect(Collectors.toList());
     }
 
