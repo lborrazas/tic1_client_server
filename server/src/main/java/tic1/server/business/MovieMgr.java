@@ -1,5 +1,8 @@
 package tic1.server.business;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
 import tic1.server.entities.Movie;
 import tic1.server.persistence.MovieRepository;
@@ -53,4 +56,17 @@ public class MovieMgr {
 
         return ResponseEntity.ok().build();
     }
+
+    public List<Movie> findByNamePaged(String name, int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        List<Movie> movies = movieRepository.findAllByName(name, pageable);
+        return movies;
+    }
+
+    public List<Movie> findAllPaged(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Movie> movies = movieRepository.findAll(pageable);
+       return movies.getContent();
+    }
+
 }

@@ -84,7 +84,7 @@ public class Movie {
         movieDTO.setDescription(this.description);
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
-//        movieDTO.setId(this.id);
+        movieDTO.setId(this.id);
         return movieDTO;
     }
 
