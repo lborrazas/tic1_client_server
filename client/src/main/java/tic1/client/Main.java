@@ -5,6 +5,7 @@ import tic1.client.services.MovieRestTemplate;
 
 import java.util.List;
 
+
 public class Main {
     public static void main(String[] args){
         MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
