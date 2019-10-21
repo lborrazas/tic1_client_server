@@ -12,7 +12,10 @@ public class Sala {
     private int m;
     @Column
     private int n;
-
+    //falta cine
+    @ManyToOne
+    @JoinColumn(name = "cine_id")
+    private Cine cine;
     private Seat[][] disponibilidad;
 
     @ManyToOne(cascade = CascadeType.ALL)

@@ -35,8 +35,8 @@ public class ClientApplication extends Application {
         EndUserController endUserController = fxmlLoader.getController();
         endUserController.populateMovieCarousel();
         endUserController.populateTheatreCarousel();
-        endUserController.populateMainCarousel();*/
-		Scene scene= new Scene(root);
+        endUserController.populateMainCarousel();
+		*/Scene scene= new Scene(root);
 		scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
 //        scene.setFill(Color.TRANSPARENT);
 		primaryStage.setScene(scene);

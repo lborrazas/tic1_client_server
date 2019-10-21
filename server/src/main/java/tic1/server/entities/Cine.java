@@ -1,7 +1,5 @@
 package tic1.server.entities;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,6 +13,11 @@ public class Cine {
     public String nombre;
     @Column
     public String location;
+
+    @ManyToOne
+    @JoinColumn(name = "id_proveedora")
+     public Proveedor proveedor;
+
 
     public Cine() {
     }
