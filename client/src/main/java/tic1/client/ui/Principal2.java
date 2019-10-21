@@ -47,6 +47,9 @@ public class Principal2 implements Initializable {
     public TableColumn<Movie, String> colDuration;
 
     @FXML
+    public TableColumn<Movie, String> colGenre;
+
+    @FXML
     private StackPane rootPane;
 
     @FXML
@@ -102,6 +105,7 @@ public class Principal2 implements Initializable {
 
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
         loadMovies();
 
         FilteredList<Movie> filteredData = new FilteredList<>(movieList, e -> true);

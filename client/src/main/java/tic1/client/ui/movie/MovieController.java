@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -19,10 +20,12 @@ import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.Principal2;
 
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 @Controller
-public class MovieController {
+public class MovieController implements Initializable {
 
     private Principal2 principal;
 
@@ -81,6 +84,7 @@ public class MovieController {
         String description = txtDescription.getText();
         String duration = txtDuration.getText();
         String actors = txtActors.getText();
+        String genre = txtGenre.getSelectionModel().getSelectedItem();
 
         if (isEditing) {
 
@@ -96,10 +100,11 @@ public class MovieController {
                 movieForEdit.setDescription(txtDescription.getText());
                 movieForEdit.setActors(txtActors.getText());
                 movieForEdit.setDuration(txtDuration.getText());
+                movieForEdit.setGenre("Hola");
 
                 showAlert("Pelicula actualizada", "Se actualizo con exito la pelicula!");
 
-                movieRestTemplate.updateMovie(movieForEdit.getId(),movieForEdit);
+                movieRestTemplate.updateMovie(movieForEdit.getId(), movieForEdit);
 
                 isEditing = false;
 
@@ -126,6 +131,7 @@ public class MovieController {
                     movie.setDescription(description);
                     movie.setDuration(duration);
                     movie.setActors(actors);
+                    movie.setGenre(genre);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
 
@@ -167,7 +173,7 @@ public class MovieController {
             txtDescription.setText(movie.getDescription());
             txtActors.setText(movie.getActors());
             txtDuration.setText(movie.getDuration());
-            txtGenre.setItems(genres);
+            txtGenre.getSelectionModel().select(movie.getGenre());
             isEditing = true;
             movieForEdit = movie;
 
@@ -182,5 +188,10 @@ public class MovieController {
 
     public void setEditing(boolean editing) {
         isEditing = editing;
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        txtGenre.setItems(genres);
     }
 }
