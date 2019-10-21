@@ -1,6 +1,7 @@
 package tic1.client.ui.movie;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,20 @@ public class MovieDetailsController implements Initializable {
     private Button buy_btn;
 
     @FXML
+    private JFXComboBox<?> movie_date;
+
+    @FXML
+    private JFXComboBox<?> movie_time;
+
+    @FXML
+    private JFXButton minus_button;
+
+    @FXML
+    private TextField movie_quantity;
+
+    private int numberOfEntrances = 0;
+
+    @FXML
     public void loadData(Movie movie) {
 
         movie_name.setText(movie.getName());
@@ -66,7 +82,18 @@ public class MovieDetailsController implements Initializable {
     }
 
     public void buyAction(ActionEvent event) {
+        numberOfEntrances = 0;
+        movie_quantity.setText(String.valueOf(numberOfEntrances));
+    }
 
+    public void sum() {
+        if (numberOfEntrances < 20) numberOfEntrances++;
+        movie_quantity.setText(String.valueOf(numberOfEntrances));
+    }
+
+    public void minus() {
+        if (numberOfEntrances > 0) numberOfEntrances--;
+        movie_quantity.setText(String.valueOf(numberOfEntrances));
     }
 
     public void goToMain(ActionEvent actionEvent) throws IOException {
