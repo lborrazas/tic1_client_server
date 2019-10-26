@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefWidth="300.0" styleClass="root" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.client.ToolbarController">
+    <children>
+        <Pane prefHeight="150.0" prefWidth="200.0" />
+        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" prefHeight="65.0" prefWidth="300.0" styleClass="toolbar-button" text="Peliculas">
+            <graphic>
+                <FontAwesomeIconView fill="WHITE" glyphName="FILM" size="22" />
+            </graphic>
+            <font>
+                <Font name="Arial" size="21.0" />
+            </font>
+        </JFXButton>
+        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="160.0" prefHeight="65.0" prefWidth="300.0" styleClass="toolbar-button" text="Teatro">
+            <graphic>
+                <FontAwesomeIconView fill="WHITE" glyphName="STAR" size="22" />
+            </graphic>
+            <font>
+                <Font name="Arial" size="21.0" />
+            </font>
+        </JFXButton>
+        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="225.0" prefHeight="65.0" prefWidth="300.0" styleClass="toolbar-button" text="Configuracion">
+            <graphic>
+                <FontAwesomeIconView fill="WHITE" glyphName="COG" size="22" />
+            </graphic>
+            <font>
+                <Font name="Arial" size="21.0" />
+            </font>
+        </JFXButton>
+        <JFXButton alignment="BASELINE_LEFT" graphicTextGap="10.0" layoutX="10.0" layoutY="290.0" prefHeight="65.0" prefWidth="300.0" styleClass="toolbar-button" text="Cerrrar Sesion">
+            <graphic>
+                <FontAwesomeIconView fill="WHITE" glyphName="SIGN_OUT" size="22" />
+            </graphic>
+            <font>
+                <Font name="Arial" size="21.0" />
+            </font>
+        </JFXButton>
+        <VBox alignment="BOTTOM_RIGHT" prefHeight="215.0" prefWidth="200.0">
+            <children>
+                <Button mnemonicParsing="false" styleClass="admin" text="Admin" />
+            </children>
+        </VBox>
+    </children>
+</VBox>

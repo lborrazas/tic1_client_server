@@ -1,290 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" prefHeight="625.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.client.EndUserController">
-    <content>
-        <AnchorPane prefHeight="1200.0" prefWidth="1000.0" styleClass="root">
+<AnchorPane fx:id="root" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.client.EndUserController">
+    <children>
+        <ScrollPane fx:id="pane" hbarPolicy="NEVER" prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+            <content>
+                <AnchorPane prefHeight="625.0" prefWidth="1200.0">
+                    <children>
+                        <GridPane fx:id="grid" layoutY="69.0" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: #2A2E37" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" maxHeight="1.7976931348623157E308" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+        <JFXDrawer fx:id="header" onScrollFinished="#show" onScrollStarted="#hide" prefHeight="70.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <BorderPane prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <top>
-                        <GridPane prefHeight="320.0" prefWidth="1000.0">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="246.0" minWidth="10.0" prefWidth="246.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="893.0" minWidth="10.0" prefWidth="754.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="255.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
+                <HBox fx:id="box" prefHeight="70.0" prefWidth="1000.0" style="-fx-background-color: black;">
+                    <children>
+                        <JFXHamburger fx:id="hamburger" prefHeight="110.0" prefWidth="110.0">
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </JFXHamburger>
+                        <Pane prefHeight="110.0" prefWidth="662.0" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <StackPane fx:id="main_carousel" maxHeight="-Infinity" prefHeight="320.0" prefWidth="1000.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowSpan="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-                                </StackPane>
-                                <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.vgrow="ALWAYS">
-                                    <children>
-                                        <JFXButton alignment="CENTER" buttonType="RAISED" graphicTextGap="10.0" prefHeight="35.0" ripplerFill="WHITE" styleClass="button" text="Registrarse" textAlignment="CENTER" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets right="15.0" top="15.0" />
-                                            </HBox.margin>
-                                            <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT_PLUS" size="24" />
-                                            </graphic>
-                                        </JFXButton>
-                                        <JFXButton alignment="CENTER" buttonType="RAISED" graphicTextGap="10.0" prefHeight="35.0" ripplerFill="WHITE" styleClass="button" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="14.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets right="30.0" top="15.0" />
-                                            </HBox.margin>
-                                            <graphic>
-                                                <MaterialDesignIconView fill="WHITE" glyphName="ACCOUNT" size="24" />
-                                            </graphic>
-                                        </JFXButton>
-                                    </children>
-                                </HBox>
-                                <Pane prefHeight="65.0" prefWidth="114.0">
-                                    <children>
-                                        <ImageView fitHeight="120.0" fitWidth="247.0" pickOnBounds="true" preserveRatio="true" />
-                                    </children>
-                                </Pane>
+                                <MenuButton graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
+                                    <items>
+                                        <MenuItem mnemonicParsing="false" text="Action 1" />
+                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                    </items>
+                                    <font>
+                                        <Font name="Arial" size="15.0" />
+                                    </font>
+                                    <graphic>
+                                        <FontAwesomeIconView fill="WHITE" glyphName="USER" size="22" />
+                                    </graphic>
+                                </MenuButton>
                             </children>
-                        </GridPane>
-                    </top>
-                    <center>
-                        <GridPane fx:id="main_grid" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="770.0" BorderPane.alignment="CENTER">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints maxHeight="50.0" minHeight="0.0" prefHeight="50.0" />
-                                <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" />
-                                <RowConstraints maxHeight="250.0" minHeight="10.0" prefHeight="250.0" vgrow="SOMETIMES" />
-                                <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="180.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <HBox fx:id="theatre_carousel" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                                <HBox fx:id="movie_carousel" alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="250.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
-                                <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="50.0" GridPane.rowIndex="2">
-                                    <children>
-                                        <MaterialDesignIconView fill="WHITE" glyphName="THEATER" size="26">
-                                            <HBox.margin>
-                                                <Insets left="30.0" />
-                                            </HBox.margin>
-                                        </MaterialDesignIconView>
-                                        <Text fill="WHITE" stroke="#0a0000" strokeType="OUTSIDE" strokeWidth="0.0" text="Teatro" textAlignment="CENTER">
-                                            <font>
-                                                <Font name="Arial" size="22.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets left="10.0" />
-                                            </HBox.margin>
-                                        </Text>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="50.0" prefWidth="200.0">
-                                    <children>
-                                        <FontAwesomeIconView fill="WHITE" glyphName="FILM" size="26">
-                                            <HBox.margin>
-                                                <Insets left="30.0" />
-                                            </HBox.margin>
-                                        </FontAwesomeIconView>
-                                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Peliculas" textAlignment="CENTER">
-                                            <font>
-                                                <Font name="Arial" size="22.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets left="10.0" />
-                                            </HBox.margin>
-                                        </Text>
-                                    </children>
-                                </HBox>
-                                <GridPane maxHeight="-Infinity" minHeight="-Infinity" prefHeight="180.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
-                                    <columnConstraints>
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="34.0" prefWidth="100.0" />
-                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <children>
-                                        <Line endX="-100.20710754394531" endY="-154.02694702148438" layoutX="359.0" layoutY="185.0" startX="-100.0" startY="-15.0" strokeWidth="2.0" GridPane.columnIndex="1" />
-                                        <Line endX="-100.20710754394531" endY="-154.02694702148438" layoutX="111.0" layoutY="185.0" startX="-100.0" startY="-15.0" strokeWidth="2.0" GridPane.columnIndex="2" />
-                                        <JFXButton alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" prefHeight="180.0" prefWidth="330.0" styleClass="tiles-button" text="Promociones" textAlignment="CENTER" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="28.0" />
-                                            </font>
-                                        </JFXButton>
-                                        <JFXButton alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="341.0" styleClass="tiles-button" text="Complejos" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
-                                            <font>
-                                                <Font name="Arial" size="28.0" />
-                                            </font>
-                                        </JFXButton>
-                                        <JFXButton alignment="CENTER" contentDisplay="TOP" graphicTextGap="10.0" layoutX="10.0" layoutY="10.0" prefHeight="180.0" prefWidth="330.0" styleClass="tiles-button" text="Proximos Estrenos" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2">
-                                            <font>
-                                                <Font name="Arial" size="28.0" />
-                                            </font>
-                                        </JFXButton>
-                                    </children>
-                                </GridPane>
-                                <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="1">
-                                    <children>
-                                        <JFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" pickOnBounds="false" styleClass="search-button" textAlignment="CENTER" textFill="TRANSPARENT">
-                                            <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="26" strokeWidth="5.0" />
-                                            </graphic>
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                        </JFXButton>
-                                    </children>
-                                    <padding>
-                                        <Insets right="20.0" />
-                                    </padding>
-                                </HBox>
-                                <HBox alignment="CENTER_RIGHT" minHeight="-Infinity" prefHeight="50.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                    <padding>
-                                        <Insets right="20.0" />
-                                    </padding>
-                                    <children>
-                                        <JFXButton alignment="CENTER" contentDisplay="GRAPHIC_ONLY" ellipsisString="" graphicTextGap="0.0" maxHeight="50.0" maxWidth="50.0" minHeight="50.0" minWidth="50.0" pickOnBounds="false" styleClass="search-button" textFill="TRANSPARENT">
-                                            <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="26" />
-                                            </graphic>
-                                 <HBox.margin>
-                                    <Insets right="10.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                                        </JFXButton>
-                                    </children>
-                                </HBox>
-                            </children>
-                        </GridPane>
-                    </center>
-                    <bottom>
-                        <GridPane fx:id="footer" minHeight="-Infinity" prefHeight="110.0" style="-fx-background-color: #AB3F42;" BorderPane.alignment="CENTER">
-                            <columnConstraints>
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="34.0" prefWidth="100.0" />
-                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.0" prefWidth="100.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            </rowConstraints>
-                            <children>
-                                <Line endX="-100.0" endY="-100.0" opacity="0.7" startX="-100.0" startY="-15.0" stroke="#282828" GridPane.columnIndex="1">
-                                    <GridPane.margin>
-                                        <Insets bottom="20.0" top="20.0" />
-                                    </GridPane.margin>
-                                </Line>
-                                <Line endX="-100.0" endY="-100.0" opacity="0.7" startX="-100.0" startY="-15.0" stroke="#282828" GridPane.columnIndex="2" />
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                                    <children>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="16.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets left="5.0" right="5.0" />
-                                            </HBox.margin>
-                                            <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="FACEBOOK_SQUARE" size="50" />
-                                            </graphic>
-                                        </JFXButton>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="16.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets right="5.0" />
-                                            </HBox.margin>
-                                            <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="TWITTER" size="50" />
-                                            </graphic>
-                                        </JFXButton>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="62.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="16.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets right="5.0" />
-                                            </HBox.margin>
-                                            <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="INSTAGRAM" size="50" />
-                                            </graphic>
-                                        </JFXButton>
-                                        <JFXButton buttonType="RAISED" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="114.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="72.0" prefWidth="72.0" ripplerFill="#c6b3b3" styleClass="footer-button" text=" " textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="16.0" />
-                                            </font>
-                                            <HBox.margin>
-                                                <Insets right="5.0" />
-                                            </HBox.margin>
-                                            <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="YOUTUBE" size="50" />
-                                            </graphic>
-                                        </JFXButton>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                                    <children>
-                                        <Label graphicTextGap="5.0" text="(+598) 4224 - 4228" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial" size="31.0" />
-                                            </font>
-                                            <graphic>
-                                                <FontAwesomeIconView fill="WHITE" glyphName="PHONE" size="36" />
-                                            </graphic>
-                                        </Label>
-                                    </children>
-                                    <padding>
-                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                    </padding>
-                                </HBox>
-                                <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                                    <children>
-                                        <JFXButton styleClass="footer-button" textFill="WHITE" />
-                                        <JFXButton layoutX="10.0" layoutY="10.0" styleClass="footer-button" textFill="WHITE" />
-                                        <JFXButton layoutX="10.0" layoutY="35.0" styleClass="footer-button" textFill="WHITE" />
-                                    </children>
-                                    <padding>
-                                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                                    </padding>
-                                </VBox>
-                            </children>
-                        </GridPane>
-                    </bottom>
-                </BorderPane>
+                        </HBox>
+                    </children>
+                </HBox>
             </children>
-        </AnchorPane>
-    </content>
-</ScrollPane>
+        </JFXDrawer>
+    </children>
+</AnchorPane>

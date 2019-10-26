@@ -1,292 +1,249 @@
 package tic1.client.ui.client;
 
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView;
-import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
-import javafx.animation.SequentialTransition;
-import javafx.animation.Transition;
-import javafx.event.EventHandler;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXDrawersStack;
+import com.jfoenix.controls.JFXHamburger;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.ResourceBundle;
+
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
+import javafx.geometry.VPos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
-import javafx.util.Duration;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import java.util.ArrayList;
-import java.util.List;
+import tic1.client.ClientApplication;
+import tic1.client.models.Movie;
+import tic1.client.services.MovieRestTemplate;
+import tic1.client.ui.movie.MovieDetailsController;
 
 @Controller
-public class EndUserController {
+public class EndUserController implements Initializable {
+
+    @Autowired
+    private MovieRestTemplate movieMgr;
 
     @FXML
-    private GridPane main_grid;
+    private AnchorPane root;
 
     @FXML
-    private HBox theatre_carousel;
+    private JFXHamburger hamburger;
 
     @FXML
-    private HBox movie_carousel;
+    private JFXDrawer drawer;
 
     @FXML
-    private GridPane tiles;
+    private JFXDrawer header;
 
     @FXML
-    private GridPane footer;
+    private HBox box;
 
     @FXML
-    public StackPane main_carousel;
+    private GridPane grid;
 
-    private List<String> list = new ArrayList<>();
+    @FXML
+    private ScrollPane pane;
 
-    private int j = 0, k = 0;
+    @FXML
+    private ImageView pic;
 
-    private double orgCliskSceneX, orgReleaseSceneX;
+    @FXML
+    private Image image;
 
-    public void populateMainCarousel() {
+    @FXML
+    String id;
 
-        ImageView[] slides = new ImageView[2];
-        Image image1 = new Image("/movie_crud/ui/images/carousel-test/Donandres-grande.jpg");
-        Image image2 = new Image("/movie_crud/ui/images/carousel-test/Cinema.jpg");
-        slides[0] = new ImageView(image1);
-        slides[1] = new ImageView(image2);
+    private ArrayList<File> fileList = new ArrayList<>();
 
-        SequentialTransition slideshow = new SequentialTransition();
+    private HBox hb = new HBox();
 
-        for (ImageView slide : slides) {
+    private static final String LEFT = "LEFT";
 
-            SequentialTransition sequentialTransition = new SequentialTransition();
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
-            FadeTransition fadeIn = getFadeTransition(slide, 0.0, 1.0, 2000);
-            PauseTransition stayOn = new PauseTransition(Duration.millis(2000));
-            FadeTransition fadeOut = getFadeTransition(slide, 1.0, 0.0, 2000);
+        header.setDirection(JFXDrawer.DrawerDirection.TOP);
+        header.setSidePane(box);
+        header.setDefaultDrawerSize(70);
+        header.setOverLayVisible(false);
+        header.setResizableOnDrag(true);
+        DropShadow effect = new DropShadow();
+        effect.setColor(Color.BLACK);
+        effect.setOffsetX(0f);
+        effect.setOffsetY(0f);
+        effect.setHeight(120);
+        header.setEffect(effect);
+        header.open();
 
-            sequentialTransition.getChildren().addAll(fadeIn, stayOn, fadeOut);
-            slide.setOpacity(0);
-            main_carousel.setClip(new Rectangle(1000, 320));
-            main_carousel.getChildren().add(slide);
-            slideshow.getChildren().add(sequentialTransition);
+        pane.heightProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                grid.setMinHeight(newValue.doubleValue());
+            }
+        });
 
-        }
-        slideshow.play();
-    }
-
-    private FadeTransition getFadeTransition(ImageView imageView, double fromValue, double toValue, int durationInMilliseconds) {
-
-        FadeTransition ft = new FadeTransition(Duration.millis(durationInMilliseconds), imageView);
-        ft.setFromValue(fromValue);
-        ft.setToValue(toValue);
-
-        return ft;
-
-    }
-
-    public void populateMovieCarousel() {
+        pane.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                grid.setMinWidth(newValue.doubleValue());
+            }
+        });
 
         try {
-            list.add("movie_crud/ui/images/carousel-test/A.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A1.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A6.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A-11.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A-11.jpg");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/movie_crud/ui/client/toolbar.fxml"));
+            VBox box = loader.load();
+            drawer.setSidePane(box);
+            drawer.setDefaultDrawerSize(300);
 
-            Button lButton = new Button();
-            Button rButton = new Button();
-
-            MaterialDesignIconView leftArrow = new MaterialDesignIconView(MaterialDesignIcon.CHEVRON_LEFT);
-            MaterialDesignIconView rightArrow = new MaterialDesignIconView(MaterialDesignIcon.CHEVRON_RIGHT);
-
-            leftArrow.getStyleClass().add("glyph-icon-carousel");
-            rightArrow.getStyleClass().add("glyph-icon-carousel");
-
-            lButton.setGraphic(leftArrow);
-            rButton.setGraphic(rightArrow);
-
-            lButton.getStyleClass().add("carousel-button");
-            rButton.getStyleClass().add("carousel-button");
-
-            lButton.setMaxWidth(20);
-            rButton.setMaxWidth(20);
-            lButton.setMinWidth(20);
-            rButton.setMinWidth(20);
-
-            Image[] images = new Image[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                images[i] = new Image(list.get(i));
-            }
-
-            ImageView imageView1 = new ImageView(images[k % list.size()]);
-            ImageView imageView2 = new ImageView(images[(k + 1) % list.size()]);
-            ImageView imageView3 = new ImageView(images[(k + 2) % list.size()]);
-            ImageView imageView4 = new ImageView(images[(k + 3) % list.size()]);
-            ImageView imageView5 = new ImageView(images[(k + 4) % list.size()]);
-            //imageView.setCursor(Cursor.CLOSED_HAND);
-
-            //imageView.setOnMousePressed(circleOnMousePressedEventHandler);
-
-            /*imageView.setOnMouseReleased(e -> {
-                orgReleaseSceneX = e.getSceneX();
-                if (orgCliskSceneX > orgReleaseSceneX) {
-                    lButton.fire();
-                } else {
-                    rButton.fire();
-                }
-            });*/
-
-            lButton.setOnAction(e -> {
-                k = (k + 1) % list.size();
-
-                imageView1.setImage(images[(k) % list.size()]);
-                imageView2.setImage(images[(k + 1) % list.size()]);
-                imageView3.setImage(images[(k + 2) % list.size()]);
-                imageView4.setImage(images[(k + 3) % list.size()]);
-                imageView5.setImage(images[(k + 4) % list.size()]);
-
-            });
-            rButton.setOnAction(e -> {
-                k = (k - 1) % list.size();
-                if (k == 0 || k > list.size() + 1 || k == -1) {
-                    k = list.size() - 1;
-                }
-
-                imageView1.setImage(images[(k) % list.size()]);
-                imageView2.setImage(images[(k + 1) % list.size()]);
-                imageView3.setImage(images[(k + 2) % list.size()]);
-                imageView4.setImage(images[(k + 3) % list.size()]);
-                imageView5.setImage(images[(k + 4) % list.size()]);
-
-            });
-
-            imageView1.setFitHeight(210);
-            imageView1.setFitWidth(130);
-            imageView2.setFitHeight(210);
-            imageView2.setFitWidth(130);
-            imageView3.setFitHeight(210);
-            imageView3.setFitWidth(130);
-            imageView4.setFitHeight(210);
-            imageView4.setFitWidth(130);
-            imageView5.setFitHeight(210);
-            imageView5.setFitWidth(130);
-
-            movie_carousel.setSpacing(15);
-            movie_carousel.setAlignment(Pos.CENTER);
-            movie_carousel.getChildren().addAll(lButton, imageView1, imageView2, imageView3, imageView4, imageView5, rButton);
-            //hBox.getChildren().addAll(imageView);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
-    }
 
-    public void populateTheatreCarousel() {
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+            transition.setRate(transition.getRate() * -1);
+            transition.play();
 
+            if (drawer.isOpened()) {
+                drawer.close();
+            } else {
+                drawer.open();
+            }
+        });
+
+//        String path = "/com/example/movie_crud/ui/images/movieImages/";
+        String path = null;
         try {
-            list.add("movie_crud/ui/images/carousel-test/A.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A1.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A6.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A-11.jpg");
-            list.add("movie_crud/ui/images/carousel-test/A-11.jpg");
-
-            Button lButton = new Button();
-            Button rButton = new Button();
-
-            MaterialDesignIconView leftArrow = new MaterialDesignIconView(MaterialDesignIcon.CHEVRON_LEFT);
-            MaterialDesignIconView rightArrow = new MaterialDesignIconView(MaterialDesignIcon.CHEVRON_RIGHT);
-
-            leftArrow.getStyleClass().add("glyph-icon-carousel");
-            rightArrow.getStyleClass().add("glyph-icon-carousel");
-
-            lButton.setGraphic(leftArrow);
-            rButton.setGraphic(rightArrow);
-
-            lButton.getStyleClass().add("carousel-button");
-            rButton.getStyleClass().add("carousel-button");
-
-            lButton.setMaxWidth(20);
-            rButton.setMaxWidth(20);
-            lButton.setMinWidth(20);
-            rButton.setMinWidth(20);
-
-            Image[] images = new Image[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                images[i] = new Image(list.get(i));
-            }
-
-            ImageView imageView1 = new ImageView(images[j % list.size()]);
-            ImageView imageView2 = new ImageView(images[(j + 1) % list.size()]);
-            ImageView imageView3 = new ImageView(images[(j + 2) % list.size()]);
-            ImageView imageView4 = new ImageView(images[(j + 3) % list.size()]);
-            ImageView imageView5 = new ImageView(images[(j + 4) % list.size()]);
-            //imageView.setCursor(Cursor.CLOSED_HAND);
-
-            //imageView.setOnMousePressed(circleOnMousePressedEventHandler);
-
-            /*imageView.setOnMouseReleased(e -> {
-                orgReleaseSceneX = e.getSceneX();
-                if (orgCliskSceneX > orgReleaseSceneX) {
-                    lButton.fire();
-                } else {
-                    rButton.fire();
-                }
-            });*/
-
-            lButton.setOnAction(e -> {
-                j = (j + 1) % list.size();
-
-                imageView1.setImage(images[(j) % list.size()]);
-                imageView2.setImage(images[(j + 1) % list.size()]);
-                imageView3.setImage(images[(j + 2) % list.size()]);
-                imageView4.setImage(images[(j + 3) % list.size()]);
-                imageView5.setImage(images[(j + 4) % list.size()]);
-
-            });
-            rButton.setOnAction(e -> {
-                j = (j - 1) % list.size();
-                if (j == 0 || j > list.size() + 1 || j == -1) {
-                    j = list.size() - 1;
-                }
-
-                imageView1.setImage(images[(j) % list.size()]);
-                imageView2.setImage(images[(j + 1) % list.size()]);
-                imageView3.setImage(images[(j + 2) % list.size()]);
-                imageView4.setImage(images[(j + 3) % list.size()]);
-                imageView5.setImage(images[(j + 4) % list.size()]);
-
-            });
-
-            imageView1.setFitHeight(210);
-            imageView1.setFitWidth(130);
-            imageView2.setFitHeight(210);
-            imageView2.setFitWidth(130);
-            imageView3.setFitHeight(210);
-            imageView3.setFitWidth(130);
-            imageView4.setFitHeight(210);
-            imageView4.setFitWidth(130);
-            imageView5.setFitHeight(210);
-            imageView5.setFitWidth(130);
-
-            theatre_carousel.setSpacing(15);
-            theatre_carousel.setAlignment(Pos.CENTER);
-            theatre_carousel.getChildren().addAll(lButton, imageView1, imageView2, imageView3, imageView4, imageView5, rButton);
-            //hBox.getChildren().addAll(imageView);
-
-        } catch (Exception e) {
+            path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/movie-crud/src/main/resources/com/example/movie_crud/ui/images/movieImages", "UTF-8");
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
+        }
+
+        File folder = new File(path);
+        // pushing single path files in the array filelist1
+        fileList.addAll(Arrays.asList(folder.listFiles()));
+
+        grid.setPadding(new Insets(7,7,7,7));
+        // setting interior grid padding
+        grid.setHgap(10);
+        grid.setVgap(10);
+        // grid.setGridLinesVisible(true);
+
+        int rows = (int) ((fileList.size() / (this.root.getWidth() / 160)) + 1);
+        int columns = 6;
+        int imageIndex = 0;
+
+        for (int i = 0 ; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (imageIndex < fileList.size()) {
+                    addImage(imageIndex, j, i);
+                    imageIndex++;
+                }
+            }
         }
     }
 
-    private EventHandler<MouseEvent> circleOnMousePressedEventHandler = new EventHandler<MouseEvent>() {
+    private void addImage(int index, int colIndex, int rowIndex) {
 
-        @Override
-        public void handle(MouseEvent t) {
-            orgCliskSceneX = t.getSceneX();
-        }
-    };
+        hb.setAlignment(Pos.CENTER);
+
+
+        /*Label name = new Label(id);
+        name.setFont(Font.font("Arial"));
+//        hb.getChildren().add(name);
+
+        hb.setOnMouseEntered(e -> {
+            if (!name.isVisible()) name.setVisible(true);
+        });
+
+        hb.setOnMouseExited(e -> {
+            if (name.isVisible()) {
+                name.setVisible(false);
+            }
+        });
+*/
+        String idToCut = fileList.get(index).getName();
+        String id = idToCut.substring(0, (idToCut.length() - 4));
+        // System.out.println(id);
+        // System.out.println(fileList.get(i).getName());
+        image = new Image(fileList.get(index).toURI().toString());
+        pic = new ImageView();
+        pic.setFitWidth(160);
+        pic.setFitHeight(220);
+        pic.setImage(image);
+        pic.setId(id);
+        hb.getChildren().add(pic);
+//        hb.getChildren().add(name);
+        GridPane.setConstraints(pic, colIndex, rowIndex, 1, 1, HPos.CENTER, VPos.CENTER);
+        // grid.add(pic, imageCol, imageRow);
+        grid.getChildren().addAll(pic);
+
+        pic.getStyleClass().add("pics");
+        pic.setOnMouseEntered(e -> {
+
+        });
+
+        Tooltip.install(pic, new Tooltip(id));
+        pic.setOnMouseClicked(e -> {
+            try {
+                Movie selectedForPreview = movieMgr.findByName(id); // Manera de asociar la foto con la pelicula.
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+                Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
+
+                MovieDetailsController movieDetailsController = fxmlLoader.getController();
+                movieDetailsController.loadData(selectedForPreview);
+
+                Stage stage = new Stage(StageStyle.DECORATED);
+                Scene scene = new Scene(root);
+                scene.getStylesheets().add("/com/example/movie_crud/ui/styles/dark-theme.css");
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+    }
+
+    @FXML
+    void show(ScrollEvent event) {
+        if (!header.isOpened() || !header.isOpening()) header.open();
+    }
+
+    @FXML
+    void hide(ScrollEvent event) {
+        if (!header.isClosed() || !header.isClosing()) header.close();
+    }
 }

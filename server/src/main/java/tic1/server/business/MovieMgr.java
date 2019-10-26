@@ -77,4 +77,8 @@ public class MovieMgr {
         return movies;
     }
 
+    public List<Movie> findByName(String name) {
+        return movieRepository.findByName(name);
+    }
+
 }
