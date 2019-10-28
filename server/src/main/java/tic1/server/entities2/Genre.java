@@ -3,15 +3,16 @@ package tic1.server.entities2;
 import javax.persistence.*;
 
 @Entity
-@Table
-public class Provider {
+@Table(name ="Genre" )
+public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @Column
-    private String name;
 
-    public Provider() {
+    @Column
+    private String genre;
+
+    public Genre() {
     }
 
     public long getId() {
@@ -22,11 +23,11 @@ public class Provider {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getGenre() {
+        return genre;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }
