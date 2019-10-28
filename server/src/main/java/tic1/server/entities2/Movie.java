@@ -18,7 +18,7 @@ public class Movie {
 
 
     @Column
-    public int duration;
+    public long duration;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "movieGenre")
@@ -59,11 +59,11 @@ public class Movie {
         this.description = description;
     }
 
-    public int getDuration() {
+    public long getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(long duration) {
         this.duration = duration;
     }
 
@@ -83,7 +83,7 @@ public class Movie {
         this.actors = actors;
     }
 
-    public Byte[] getImageCartelera() {
+    public Byte[] getImage() {
         return imageCartelera;
     }
 

@@ -1,6 +1,5 @@
 package tic1.server.entities2;
 
-import tic1.server.entities.Proveedor;
 
 import javax.persistence.*;
 

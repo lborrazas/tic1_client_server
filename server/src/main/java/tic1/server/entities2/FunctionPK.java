@@ -4,8 +4,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@Entity
-@Table
+@Embeddable
 public class FunctionPK {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salaId",referencedColumnName = "id")

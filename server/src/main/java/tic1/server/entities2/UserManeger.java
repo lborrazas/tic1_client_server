@@ -1,11 +1,13 @@
 package tic1.server.entities2;
 
-import tic1.server.entities.User;
+import tic1.server.entities2.User;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
 @DiscriminatorValue("Manager")
 public class UserManeger extends User {
     private String role;

@@ -1,9 +1,11 @@
 package tic1.server.persistence;
 
 import org.springframework.data.domain.Pageable;
-import tic1.server.entities.Movie;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import tic1.server.entities2.Movie;
+
 import java.util.List;
 
 @Repository
