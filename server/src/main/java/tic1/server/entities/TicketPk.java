@@ -1,6 +1,4 @@
-package tic1.server.entities2;
-
-import org.hibernate.annotations.JoinColumnOrFormula;
+package tic1.server.entities;
 
 
 import javax.persistence.*;

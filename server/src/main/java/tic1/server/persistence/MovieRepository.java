@@ -4,8 +4,8 @@ import org.springframework.data.domain.Pageable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tic1.server.entities2.Genre;
-import tic1.server.entities2.Movie;
+import tic1.server.entities.Genre;
+import tic1.server.entities.Movie;
 
 import java.util.List;
 

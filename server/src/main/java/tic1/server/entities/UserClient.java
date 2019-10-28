@@ -1,9 +1,7 @@
-package tic1.server.entities2;
-
-import tic1.server.entities2.Ticket;
+package tic1.server.entities;
 
 import javax.persistence.*;
-import java.util.List;
+
 @Entity
 @DiscriminatorValue("Client")
 public class UserClient extends User {

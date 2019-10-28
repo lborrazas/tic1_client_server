@@ -5,7 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
 
-import tic1.server.entities2.Movie;
+import tic1.server.entities.Movie;
 import tic1.server.persistence.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
