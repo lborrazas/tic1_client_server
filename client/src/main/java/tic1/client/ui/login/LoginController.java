@@ -22,6 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import tic1.client.ui.Principal2;
+import tic1.client.ui.client.EndUserController;
 
 @Controller
 public class LoginController {
@@ -116,14 +117,23 @@ public class LoginController {
     }
 
     @FXML
-    void login(ActionEvent event) throws Exception {
+    public void login(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(Principal2.class.getResource("Principal.fxml"));
+        Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
         stage.show();
+        close(event);
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

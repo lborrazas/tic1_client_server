@@ -120,8 +120,9 @@ public class EndUserController implements Initializable {
         });
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/movie_crud/ui/client/toolbar.fxml"));
-            VBox box = loader.load();
+            FXMLLoader loader = new FXMLLoader();
+
+            VBox box = loader.load(getClass().getResourceAsStream("/movie_crud/ui/client/toolbar.fxml"));
             drawer.setSidePane(box);
             drawer.setDefaultDrawerSize(300);
 
@@ -145,20 +146,17 @@ public class EndUserController implements Initializable {
 //        String path = "/com/example/movie_crud/ui/images/movieImages/";
         String path = null;
         try {
-            path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/movie-crud/src/main/resources/com/example/movie_crud/ui/images/movieImages", "UTF-8");
+            path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
         File folder = new File(path);
-        // pushing single path files in the array filelist1
         fileList.addAll(Arrays.asList(folder.listFiles()));
 
         grid.setPadding(new Insets(7,7,7,7));
-        // setting interior grid padding
         grid.setHgap(10);
         grid.setVgap(10);
-        // grid.setGridLinesVisible(true);
 
         int rows = (int) ((fileList.size() / (this.root.getWidth() / 160)) + 1);
         int columns = 6;
