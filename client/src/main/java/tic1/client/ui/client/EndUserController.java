@@ -217,14 +217,14 @@ public class EndUserController implements Initializable {
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
             try {
-                Movie selectedForPreview = movieMgr.findByName(id); // Manera de asociar la foto con la pelicula.
+               Movie selectedForPreview = movieMgr.filterTitlePaged(id,0).get(0); // Manera de asociar la foto con la pelicula.
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
                 Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
 
                 MovieDetailsController movieDetailsController = fxmlLoader.getController();
-                movieDetailsController.loadData(selectedForPreview);
+               movieDetailsController.loadData(selectedForPreview);
 
                 Stage stage = new Stage(StageStyle.DECORATED);
                 Scene scene = new Scene(root);

@@ -1,12 +1,14 @@
 package tic1.server.entities;
 
-import tic1.commons.transfers.MovieDTO;
+import tic1.commons.transfers.MovieActorDTO;
+import tic1.commons.transfers.NewMovieDTO;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "movie")
+@Table(name = "movie2")
 public class Movie2 {
 
     @Id
@@ -53,9 +55,8 @@ public class Movie2 {
     @JoinTable(name = "Elenco")
     private List<Actors> elenco;
 
-    private String actors;
 
-/*    public Movie(MovieDTO temp)  {
+/*    public Movie(NewMovieDTO temp)  {
 
         this.actors = temp.getActors();
         this.description = temp.getDescription();
@@ -117,13 +118,6 @@ public class Movie2 {
         this.description = description;
     }
 
-    public String getActors() {
-        return actors;
-    }
-
-    public void setActors(String actors) {
-        this.actors = actors;
-    }
 
     public String getDuration() {
         return duration;
@@ -133,15 +127,16 @@ public class Movie2 {
         this.duration = duration;
     }
 
-   /* public MovieDTO toDTO() {
-        MovieDTO movieDTO = new MovieDTO();
-        movieDTO.setActors(this.actors);
+    public NewMovieDTO toDTO() {
+        NewMovieDTO movieDTO = new NewMovieDTO();
+       // movieDTO.setActors(this.elenco.stream().map(e -> e.toDTO()).collect(Collectors.toList()));
+        movieDTO.setActors(this.elenco.stream().map(Actors::toDTO).collect(Collectors.toList()));
         movieDTO.setDescription(this.description);
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
         return movieDTO;
-    }*/
+    }
 
     @Override
     public String toString() {

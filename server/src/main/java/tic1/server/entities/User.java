@@ -14,6 +14,4 @@ public class User {
     @Column
     public int creditCard;
 
-
-
 }

@@ -109,7 +109,5 @@ public class MovieRestTemplate { //todo try and catch for Templates
                 // .map(movieDTO -> new Movie(movieDTO))
                 .collect(Collectors.toList());
     }
-
-
 }
 

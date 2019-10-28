@@ -2,6 +2,8 @@ package tic1.server.entities;
 
 //import tic1.commons.transfers.ActorsDto;
 
+import tic1.commons.transfers.MovieActorDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -33,15 +35,15 @@ public class Actors {
         edad = edad;
     }
 
-  /*  public ActorsDto toDto()
+    public MovieActorDTO toDTO()
  {
-        ActorsDto actorsDto = new ActorsDto();
+        MovieActorDTO actorsDto = new MovieActorDTO();
         actorsDto.setEdad(this.edad);
         actorsDto.setId(this.id);
         actorsDto.setName(this.name);
         return actorsDto;
  }
-*/
+
     public long getId() {
         return id;
     }
