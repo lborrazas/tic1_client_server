@@ -13,6 +13,7 @@ import java.io.IOException;
 
 import javafx.application.Application;
 import tic1.client.ui.client.EndUserController;
+import tic1.client.ui.login.LoginController;
 
 @SpringBootApplication
 public class ClientApplication extends Application {
@@ -29,7 +30,8 @@ public class ClientApplication extends Application {
 	public void start(Stage primaryStage) throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
+		root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
+//		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
         /*root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
 
         EndUserController endUserController = fxmlLoader.getController();
@@ -37,7 +39,7 @@ public class ClientApplication extends Application {
         endUserController.populateTheatreCarousel();
         endUserController.populateMainCarousel();
 		*/Scene scene= new Scene(root);
-		scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+//		scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
 //        scene.setFill(Color.TRANSPARENT);
 		primaryStage.setScene(scene);
 //        primaryStage.initStyle(StageStyle.TRANSPARENT);

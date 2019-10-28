@@ -216,8 +216,8 @@ public class EndUserController implements Initializable {
 
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
-            try {
-                Movie selectedForPreview = movieMgr.findByName(id); // Manera de asociar la foto con la pelicula.
+           /* try {
+                *//*Movie selectedForPreview = movieMgr.findByName(id); // Manera de asociar la foto con la pelicula.
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
@@ -230,10 +230,10 @@ public class EndUserController implements Initializable {
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add("/com/example/movie_crud/ui/styles/dark-theme.css");
                 stage.setScene(scene);
-                stage.show();
+                stage.show();*//*
             } catch (IOException ex) {
                 ex.printStackTrace();
-            }
+            }*/
         });
     }
 

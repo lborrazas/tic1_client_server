@@ -1,15 +1,41 @@
-.back {
-    -fx-background-image: url('../images/carousel-test/Cinema.jpg');
-    -fx-background-size: cover;
+* {
+    -fx-primary : #2A2E37;
+    -fx-secondary : #FFFF8D;
+    -fx-primarytext : #B2B2B2;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-color-1:#1976D2;
 }
 
-.text-field {
-    -fx-prompt-text-fill: white;
+.button {
+    -fx-border-radius: 20px;
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-primary;
+    -fx-background-radius: 20px;
+}
+
+.social-btn {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: none;
+}
+
+.social-btn .glyph-icon {
+    -fx-fill: white;
+}
+
+.sign-btn {
+    -fx-background-color: #2f2f2ff3;
     -fx-text-fill: white;
 }
 
-.password-field {
-    -fx-prompt-text-fill: white;
-    -fx-text-fill: white;
+.forget-password-btn {
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+
 }
+
+.forget-password-btn:pressed {
+    -fx-effect: null;
+}
+
 
