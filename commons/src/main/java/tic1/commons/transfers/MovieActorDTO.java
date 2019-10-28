@@ -4,7 +4,7 @@ public class MovieActorDTO {
 
     private long id;
     private String name;
-    private int edad;
+    private int age;
 
 
     public long getId() {
@@ -23,11 +23,11 @@ public class MovieActorDTO {
         this.name = name;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getAge() {
+        return age;
     }
 
-    public void setEdad(int edad) {
-        this.edad = edad;
+    public void setAge(int age) {
+        this.age = age;
     }
 }
