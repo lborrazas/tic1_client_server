@@ -3,8 +3,7 @@ package tic1.server.entities;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
-@Entity
-@Table
+@Embeddable
 public class FunctionPK {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salaId",referencedColumnName = "id")

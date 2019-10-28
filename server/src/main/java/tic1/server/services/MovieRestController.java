@@ -2,15 +2,12 @@ package tic1.server.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 import tic1.server.business.MovieMgr;
 import tic1.server.entities.Movie;
 import tic1.commons.transfers.MovieDTO;
 import tic1.server.persistence.MovieRepository;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 

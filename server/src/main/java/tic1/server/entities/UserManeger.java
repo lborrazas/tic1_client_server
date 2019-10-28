@@ -1,9 +1,11 @@
 package tic1.server.entities;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
 @DiscriminatorValue("Manager")
 public class UserManeger extends User {
     private String role;

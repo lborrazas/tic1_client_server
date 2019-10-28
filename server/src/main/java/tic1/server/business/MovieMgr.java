@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
+
 import tic1.server.entities.Movie;
 import tic1.server.persistence.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +44,7 @@ public class MovieMgr {
         existingMovie.setDescription(movie.getDescription());
         existingMovie.setDuration(movie.getDuration());
         existingMovie.setActors(movie.getActors());
-        existingMovie.setGenre(movie.getGenre());
+        existingMovie.setGenres(movie.getGenres());
 
         movieRepository.save(existingMovie);
     }
