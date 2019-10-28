@@ -4,6 +4,7 @@ import org.springframework.data.domain.Pageable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import tic1.server.entities2.Genre;
 import tic1.server.entities2.Movie;
 
 import java.util.List;
@@ -12,6 +13,6 @@ import java.util.List;
 public interface MovieRepository extends JpaRepository<Movie, Long> {
     List<Movie> findByName(String title);
     List<Movie> findAllByName(String name, Pageable pageable);
-    List<Movie> findAllByGenre(String genre, Pageable pageable);
+    List<Movie> findAllByGenre(Genre genre, Pageable pageable);
 
 }
