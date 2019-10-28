@@ -1,6 +1,4 @@
-package tic1.server.entities2;
-
-import tic1.server.entities.Ticket;
+package tic1.server.entities;
 
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;

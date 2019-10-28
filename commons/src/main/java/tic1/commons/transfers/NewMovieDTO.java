@@ -1,67 +1,58 @@
 package tic1.commons.transfers;
+
 import java.util.List;
 
 public class NewMovieDTO {
-        private long id;
-        private String description;
-        private String duration;
-        private List<MovieActorDTO> actors;
-        private String name;
-        private String genre;
+    private long id;
+    private String description;
+    private long duration;
+    private List<MovieActorDTO> actors;
+    private String name;
+    private List<MovieGenreDTO> genres;
 
 
-        public NewMovieDTO() {
-        }
+    public NewMovieDTO() {
+    }
 
-        public NewMovieDTO(long id, String description, String duration, List<MovieActorDTO> actors, String name, String genre) {
-            this.id = id;
-            this.description = description;
-            this.duration = duration;
-            this.actors = actors;
-            this.name = name;
-            this.genre = genre;
+    public List<MovieGenreDTO> getGenres() {
+        return genres;
+    }
 
-        }
+    public void setGenres(List<MovieGenreDTO> genres) {
+        this.genres = genres;
+    }
 
-        public String getGenre() {
-            return genre;
-        }
+    public String getDescription() {
+        return description;
+    }
 
-        public void setGenre(String genre) {
-            this.genre = genre;
-        }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-        public String getDescription() {
-            return description;
-        }
+    public long getDuration() {
+        return duration;
+    }
 
-        public void setDescription(String description) {
-            this.description = description;
-        }
+    public void setDuration(long duration) {
+        this.duration = duration;
+    }
 
-        public String getDuration() {
-            return duration;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setDuration(String duration) {
-            this.duration = duration;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public long getId() {
+        return id;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public long getId() {
-            return id;
-        }
-
-        public void setId(long id) {
-            this.id = id;
-        }
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public List<MovieActorDTO> getActors() {
         return actors;

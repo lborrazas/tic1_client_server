@@ -1,4 +1,4 @@
-package tic1.server.entities2;
+package tic1.server.entities;
 
 import javax.persistence.*;
 

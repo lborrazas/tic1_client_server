@@ -1,19 +1,13 @@
-package tic1.server.entities2;
+package tic1.commons.transfers;
 
-import javax.persistence.*;
+public class MovieGenreDTO {
 
-@Entity
-@Table(name ="Genre" )
-public class Genre {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @Column
-    private String genre;
-
-    public Genre() {
+    public MovieGenreDTO() {
     }
+
+    private String genre;
 
     public long getId() {
         return id;

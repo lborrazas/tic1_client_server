@@ -1,4 +1,4 @@
-package tic1.server.entities2;
+package tic1.server.entities;
 
 //import tic1.commons.transfers.ActorsDto;
 
@@ -28,6 +28,12 @@ public class Actor {
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    public Actor(MovieActorDTO tempDTO){
+        this.age = tempDTO.getAge();
+        this.id = tempDTO.getId();
+        this.name = tempDTO.getName();
     }
 
     public MovieActorDTO toDTO()

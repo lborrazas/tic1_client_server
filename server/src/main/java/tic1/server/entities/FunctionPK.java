@@ -1,7 +1,6 @@
-package tic1.server.entities2;
+package tic1.server.entities;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -9,19 +8,19 @@ import java.time.LocalDateTime;
 public class FunctionPK {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salaId",referencedColumnName = "id")
-    private Sala salaId;
+    private Sala sala;
     @Column
     private LocalDateTime date;
 
     public FunctionPK() {
     }
 
-    public Sala getSalaId() {
-        return salaId;
+    public Sala getSala() {
+        return sala;
     }
 
-    public void setSalaId(Sala salaId) {
-        this.salaId = salaId;
+    public void setSala(Sala sala) {
+        this.sala = sala;
     }
 
     public LocalDateTime getDate() {
