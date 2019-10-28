@@ -1,7 +1,7 @@
 package tic1.server.entities;
 
 import tic1.commons.transfers.NewMovieDTO;
-
+import tic1.server.entities.Actors;
 
 import javax.persistence.*;
 import java.util.List;
@@ -37,14 +37,10 @@ public class Movie {
     private Byte[] imageCartelera;
 
     public Movie(NewMovieDTO movie) {
-        this.actors = movie.getActors().stream().map(Actor::new).collect(Collectors.toList());
-        this.description = movie.getDescription();
-        this.duration = movie.getDuration();
-        this.genres = movie.getGenres().stream().map(Genre::new).collect(Collectors.toList());
-        this.name = movie.getName();
-        this.id = this.getId();
-        this.imageCartelera = this.getImageCartelera();
+        this.actors = movie.getActors().stream().map(Actor::new);
     }
+
+
 
     public NewMovieDTO toDTO() {
         NewMovieDTO movieDTO = new NewMovieDTO();
