@@ -2,6 +2,10 @@ package tic1.client.ui.movie;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +15,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
@@ -64,6 +70,12 @@ public class MovieDetailsController implements Initializable {
     @FXML
     private TextField movie_quantity;
 
+    @FXML
+    private AnchorPane rootContainer;
+
+    @FXML
+    private AnchorPane anchorRoot;
+
     private int numberOfEntrances = 0;
 
     @FXML
@@ -81,9 +93,23 @@ public class MovieDetailsController implements Initializable {
 //        loadData();
     }
 
-    public void buyAction(ActionEvent event) {
-        numberOfEntrances = 0;
-        movie_quantity.setText(String.valueOf(numberOfEntrances));
+    public void buyAction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(SeatSelectionController.class.getResourceAsStream("/movie_crud/ui/movie/SeatSelection.fxml"));
+        Scene scene = buy_btn.getScene();
+        root.translateYProperty().set(scene.getHeight());
+
+        rootContainer.getChildren().add(root);
+
+        Timeline timeline = new Timeline();
+        KeyValue kv = new KeyValue(root.translateYProperty(), 0, Interpolator.EASE_IN);
+        KeyFrame kf = new KeyFrame(Duration.seconds(1), kv);
+        timeline.getKeyFrames().add(kf);
+        timeline.setOnFinished(t -> {
+            rootContainer.getChildren().remove(anchorRoot);
+        });
+        timeline.play();
     }
 
     public void sum() {

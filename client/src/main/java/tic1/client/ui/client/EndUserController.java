@@ -70,6 +70,8 @@ public class EndUserController implements Initializable {
 
     @FXML
     private GridPane grid;
+    private int rows = 4;
+    private int columns = 8;
 
     @FXML
     private ScrollPane pane;
@@ -119,6 +121,16 @@ public class EndUserController implements Initializable {
             }
         });
 
+        /*grid.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (fileList.size() > 0) {
+                    rows = (int) ((fileList.size() / (newValue.doubleValue() / 160)) + 1);
+                    columns = fileList.size() / rows;
+                }
+            }
+        });*/
+
         try {
             FXMLLoader loader = new FXMLLoader();
 
@@ -146,7 +158,7 @@ public class EndUserController implements Initializable {
 //        String path = "/com/example/movie_crud/ui/images/movieImages/";
         String path = null;
         try {
-            path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
+            path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -154,15 +166,15 @@ public class EndUserController implements Initializable {
         File folder = new File(path);
         fileList.addAll(Arrays.asList(folder.listFiles()));
 
-        grid.setPadding(new Insets(7,7,7,7));
+        grid.setPadding(new Insets(7, 7, 7, 7));
         grid.setHgap(10);
         grid.setVgap(10);
 
-        int rows = (int) ((fileList.size() / (this.root.getWidth() / 160)) + 1);
-        int columns = 6;
+        columns = 1000 / 160;
+        rows = (int) ((fileList.size() / columns) + 1);
         int imageIndex = 0;
 
-        for (int i = 0 ; i < rows; i++) {
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (imageIndex < fileList.size()) {
                     addImage(imageIndex, j, i);
@@ -214,8 +226,8 @@ public class EndUserController implements Initializable {
 
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
-           /* try {
-                *//*Movie selectedForPreview = movieMgr.findByName(id); // Manera de asociar la foto con la pelicula.
+             try {
+             Movie selectedForPreview = movieMgr.filterTitlePaged(id, 1).get(0); // Manera de asociar la foto con la pelicula.
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
@@ -228,10 +240,10 @@ public class EndUserController implements Initializable {
                 Scene scene = new Scene(root);
                 scene.getStylesheets().add("/com/example/movie_crud/ui/styles/dark-theme.css");
                 stage.setScene(scene);
-                stage.show();*//*
+                stage.show();
             } catch (IOException ex) {
                 ex.printStackTrace();
-            }*/
+            }
         });
     }
 
