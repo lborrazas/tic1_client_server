@@ -62,8 +62,12 @@
     -fx-font-size: 22;
 }
 
+.menu-button .glyph-icon {
+    -fx-font-size: 22;
+}
+
 Label {
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: white;
 }
 
 
@@ -218,13 +222,11 @@ Label {
     -fx-font-size: 26;
 }
 
-.text-field
-{
-    -fx-text-fill: -fx-primarytext;
+.text-field {
+    -fx-text-fill: white;
     -fx-prompt-text-fill: white;
     -fx-font-size : 12pt;
     -jfx-focus-color: -fx-secondary;
-    -fx-text-fill: derive(-fx-secondary, 20%);
 }
 
 .text-field:disabled {
@@ -239,14 +241,37 @@ Label {
     -fx-font-size : 15;
     -fx-prompt-text-fill: white;
     -fx-fill: white;
+    -jfx-focus-color: -fx-secondary;
 }
 
 .combo-box .text {
     -fx-fill: white;
 }
 
+.combo-box .list-cell {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: -fx-secondary;
+    -fx-fill: -fx-secondary;
+}
+
+.combo-box .list-cell:hover .text {
+    -fx-fill: -fx-secondary;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+    -fx
+}
+
 .combo-box > .arrow-button > .arrow {
     -fx-background-color: white;
+    -jfx-focus-color: -fx-secondary;
+}
+
+.combo-box > .arrow-button > .arrow:visited {
+    -fx-background-color: -fx-secondary;
+    -jfx-focus-color: -fx-secondary;
 }
 
 .minus_button, .plus_button {
@@ -290,6 +315,54 @@ Label {
     -fx-background-color: -fx-secondary;
     -fx-text-fill: transparent;
     -fx-fill: white;
+}
+
+.admin {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+
+}
+
+.admin:hover {
+    -fx-effect: null;
+    -fx-background-color: transparent;
+    -fx-border-color: none;
+    -fx-text-fill: white;
+    -fx-underline: true;
+    -fx-fill: white;
+}
+
+.image_button {
+    -fx-pref-height: 35px;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-border-radius: 10px 10px 10px 0px;
+    -fx-background-radius: 10px 10px 10px 0px;
+    -fx-font-size: 16px;
+}
+
+.image_button:hover {
+    -fx-border-radius: 10px 10px 10px 0px;
+    -fx-background-radius: 10px 10px 10px 0px;
+    -fx-border-color: -fx-secondary;
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+    -fx-font-size: 16px;
+}
+
+.image-field {
+    -fx-pref-height: 35px;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-font-size: 16px;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+}
+
+.image-field:disabled {
+    -fx-border-color: white;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
 }
 /*Login Screen Specific*/
 
@@ -353,13 +426,25 @@ Label {
 }
 
 /*Hamburger Styling*/
+.jfx-hamburger {
+    -fx-spacing: 5;
+    -fx-cursor: hand;
+}
+
 .jfx-hamburger-icon{
     -fx-spacing: 7;
 }
 
+.jfx-hamburger StackPane {
+    -fx-pref-width: 40px;
+    -fx-pref-height: 4px;
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+}
+
 .jfx-hamburger-icon StackPane
 {
-    -fx-background-color: -fx-secondary;
+    -fx-background-color: white;
     -fx-background-radius: 5px;
 }
 
@@ -677,4 +762,9 @@ Label {
     -fx-font-size: 18px;
     -fx-font-style: italic;
     -fx-fill: -fx-primary;
+}
+
+.pics:hover {
+    -fx-background-color: white;
+    -fx-opacity: 0.6;
 }

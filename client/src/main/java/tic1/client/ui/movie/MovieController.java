@@ -1,5 +1,6 @@
 package tic1.client.ui.movie;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
@@ -10,8 +11,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,8 @@ import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.Principal2;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -59,7 +64,13 @@ public class MovieController implements Initializable {
     private JFXComboBox<String> txtGenre;
 
     @FXML
+    private JFXButton fileChooser;
+
+    @FXML
     private StackPane rootPane;
+
+    @FXML
+    private TextField imageId;
 
     @FXML
     private VBox mainContainer;
@@ -179,6 +190,17 @@ public class MovieController implements Initializable {
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void chooseFile(ActionEvent event) throws IOException {
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+        String relativePath = null;
+
+        if (selectedFile != null) {
+            imageId.setText(selectedFile.getName());
         }
     }
 

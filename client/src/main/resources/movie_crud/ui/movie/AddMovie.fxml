@@ -4,16 +4,16 @@
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="rootPane" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.MovieController">
     <children>
-        <BorderPane prefHeight="350.0" prefWidth="500.0">
+        <BorderPane prefHeight="500.0" prefWidth="500.0">
             <center>
                 <VBox fx:id="mainContainer" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="497.0" prefWidth="500.0" spacing="10.0" BorderPane.alignment="CENTER">
                     <children>
@@ -51,9 +51,26 @@
                         </JFXTextField>
                         <JFXComboBox fx:id="txtGenre" editable="true" focusColor="WHITE" labelFloat="true" prefHeight="30.0" prefWidth="125.0" promptText="Genero" styleClass="combo-box" unFocusColor="WHITE">
                             <VBox.margin>
-                                <Insets left="20.0" right="20.0" />
+                                <Insets bottom="15.0" left="20.0" right="20.0" />
                             </VBox.margin>
                         </JFXComboBox>
+                  <HBox>
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" right="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField fx:id="imageId" disable="true" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="35.0" promptText="Imagen" styleClass="image-field">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </TextField>
+                        <JFXButton fx:id="fileChooser" maxHeight="-Infinity" minHeight="-Infinity" onAction="#chooseFile" prefHeight="35.0" styleClass="image_button" text="Seleccionar...">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                     </children>
                     <padding>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -61,7 +78,7 @@
                 </VBox>
             </center>
             <bottom>
-                <HBox alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="550.0" spacing="10.0" BorderPane.alignment="CENTER">
+                <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="550.0" spacing="10.0" BorderPane.alignment="CENTER">
                     <children>
                         <JFXButton alignment="CENTER" mnemonicParsing="false" onAction="#close" prefHeight="30.0" prefWidth="90.0" styleClass="button" text="Cancelar">
                             <font>
@@ -80,6 +97,12 @@
                             </HBox.margin>
                         </JFXButton>
                     </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" top="10.0" />
+               </padding>
                 </HBox>
             </bottom>
         </BorderPane>
