@@ -14,9 +14,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.events.JFXDrawerEvent;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -106,6 +108,7 @@ public class EndUserController implements Initializable {
         effect.setHeight(120);
         header.setEffect(effect);
         header.open();
+        drawer.toBack();
 
         pane.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -226,19 +229,19 @@ public class EndUserController implements Initializable {
 
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
-             try {
-             Movie selectedForPreview = movieMgr.filterTitlePaged(id, 1).get(0); // Manera de asociar la foto con la pelicula.
+            try {
+                Movie selectedForPreview = movieMgr.filterTitlePaged(id, 1).get(0); // Manera de asociar la foto con la pelicula.
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-                Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
+                Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
 
                 MovieDetailsController movieDetailsController = fxmlLoader.getController();
                 movieDetailsController.loadData(selectedForPreview);
 
                 Stage stage = new Stage(StageStyle.DECORATED);
                 Scene scene = new Scene(root);
-                scene.getStylesheets().add("/com/example/movie_crud/ui/styles/dark-theme.css");
+                scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
                 stage.setScene(scene);
                 stage.show();
             } catch (IOException ex) {
@@ -249,11 +252,17 @@ public class EndUserController implements Initializable {
 
     @FXML
     void show(ScrollEvent event) {
-        if (!header.isOpened() || !header.isOpening()) header.open();
+        if (!header.isOpened() || !header.isOpening()) {
+            drawer.toFront();
+            header.open();
+        }
     }
 
     @FXML
     void hide(ScrollEvent event) {
-        if (!header.isClosed() || !header.isClosing()) header.close();
+        if (!header.isClosed() || !header.isClosing()) {
+            header.close();
+            drawer.toBack();
+        }
     }
 }
