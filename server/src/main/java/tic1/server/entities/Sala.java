@@ -1,10 +1,9 @@
 package tic1.server.entities;
 
-
 import javax.persistence.*;
 
 @Entity
-@Table(name= "sala")
+@Table
 public class Sala {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)

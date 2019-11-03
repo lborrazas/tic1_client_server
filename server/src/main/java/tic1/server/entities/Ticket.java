@@ -2,8 +2,8 @@ package tic1.server.entities;
 
 import javax.persistence.*;
 
-@Table
 @Entity
+@Table
 public class Ticket {
 
     @EmbeddedId

@@ -1,11 +1,9 @@
 package tic1.server.entities;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 @DiscriminatorValue("Client")
 public class UserClient {
 

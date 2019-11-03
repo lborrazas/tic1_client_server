@@ -7,6 +7,7 @@ import tic1.commons.business.exceptions.ResourceNotFoundException;
 
 import tic1.server.entities.Movie;
 import tic1.server.persistence.MovieRepository;
+import tic1.server.entities.Genre;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,6 @@ public class MovieMgr {
         existingMovie.setDuration(movie.getDuration());
         existingMovie.setActors(movie.getActors());
         existingMovie.setGenres(movie.getGenres());
-
         movieRepository.save(existingMovie);
     }
 
@@ -72,7 +72,7 @@ public class MovieMgr {
     }
 
 
-    public List<Movie> findByGenrePaged(String genre, int page) {
+    public List<Movie> findByGenrePaged(Genre genre, int page) {
         Pageable pageable = PageRequest.of(page, 5);
         List<Movie> movies = movieRepository.findAllByGenre(genre, pageable);
         return movies;

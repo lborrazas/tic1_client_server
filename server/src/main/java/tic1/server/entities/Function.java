@@ -2,6 +2,8 @@ package tic1.server.entities;
 
 import javax.persistence.*;
 
+@Entity
+@Table
 public class Function {
     @EmbeddedId
     @Id

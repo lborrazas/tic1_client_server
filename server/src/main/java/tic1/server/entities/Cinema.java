@@ -1,6 +1,5 @@
 package tic1.server.entities;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -17,7 +16,7 @@ public class Cinema {
 
     @ManyToOne
     @JoinColumn(name = "id_provider")
-     public Provider provider;
+    public Provider provider;
 
 
     public Cinema() {
@@ -55,3 +54,6 @@ public class Cinema {
         this.provider = provider;
     }
 }
+
+
+

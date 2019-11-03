@@ -5,7 +5,7 @@ import tic1.commons.transfers.MovieGenreDTO;
 import javax.persistence.*;
 
 @Entity
-@Table(name ="Genre" )
+@Table
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

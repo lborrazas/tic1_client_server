@@ -1,5 +1,6 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.MovieDTO;
 import tic1.commons.transfers.NewMovieDTO;
 import tic1.server.entities.Actor;
 
@@ -34,7 +35,7 @@ public class Movie {
     @JoinTable(name = "cast")
     private List<Actor> actors;
 
-    @Lob
+   // @Lob
     @Column(name = "imagen_Cartelera",columnDefinition = "largeLob")
     private Byte[] imageCartelera;
 
