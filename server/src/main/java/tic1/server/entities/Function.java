@@ -13,6 +13,10 @@ public class Function {
     @JoinColumn(name = "movieId")
     private Movie movie;
 
+    @Column(name = "second_id",unique = true,nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO )
+    private long secondId;
+
     public Function() {
     }
 

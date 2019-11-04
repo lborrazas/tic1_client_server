@@ -59,11 +59,11 @@ public class MovieMgr {
         return ResponseEntity.ok().build();
     }
 
-    public List<Movie> findByNamePaged(String name, int page) {
-        Pageable pageable = PageRequest.of(page, 5);
-        List<Movie> movies = movieRepository.findAllByName(name, pageable);
-        return movies;
-    }
+   //// public List<Movie> findByNamePaged(String name, int page) {
+      //  Pageable pageable = PageRequest.of(page, 5);
+     //   List<Movie> movies = movieRepository.findAllByName(name, pageable);
+  //      return movies;
+   // }
 
     public List<Movie> findAllPaged(int page) {
         Pageable pageable = PageRequest.of(page, 10);
@@ -72,14 +72,14 @@ public class MovieMgr {
     }
 
 
-    public List<Movie> findByGenrePaged(Genre genre, int page) {
-        Pageable pageable = PageRequest.of(page, 5);
-        List<Movie> movies = movieRepository.findAllByGenre(genre, pageable);
-        return movies;
-    }
+    //public List<Movie> findByGenrePaged(Genre genres, int page) {
+       // Pageable pageable = PageRequest.of(page, 5);
+      //  List<Movie> movies = movieRepository.findAllByGenre(genres, pageable);
+    //    return movies;
+   // }
 
-    public List<Movie> findByName(String name) {
-        return movieRepository.findByName(name);
-    }
+  //  public List<Movie> findByName(String name) {
+    //    return movieRepository.findByName(name);
+    //}
 
 }

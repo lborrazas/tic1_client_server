@@ -12,7 +12,7 @@ public class Actor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+
     private long id;
     @Column
     private String name;

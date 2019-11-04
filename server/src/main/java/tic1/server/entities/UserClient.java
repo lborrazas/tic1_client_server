@@ -5,7 +5,9 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Client")
-public class UserClient {
+public class UserClient  extends User{
+
+
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ticket_id")
