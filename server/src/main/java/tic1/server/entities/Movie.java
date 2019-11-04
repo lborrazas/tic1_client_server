@@ -35,13 +35,9 @@ public class Movie {
 
     private List<Actor> actors;
 
-   // @Lob
-   // @Column(name = "imagen_Cartelera",columnDefinition = "largeLob")
-    //private Byte[] imageCartelera;
 
     public Movie() {
     }
-
 
 
     public Movie(NewMovieDTO temp)  {
@@ -118,11 +114,4 @@ public class Movie {
         this.actors = actors;
     }
 
-   // public Byte[] getImage() {
-     //   return imageCartelera;
-    //}
-
-    //public void setImageCartelera(Byte[] imageCartelera) {
-      //  this.imageCartelera = imageCartelera;
-   // }
 }
