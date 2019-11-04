@@ -17,21 +17,21 @@ public class Actor {
     @Column
     private String name;
     @Column
-    private int age;
+    private int year;
 
     public Actor() {
     }
 
 
 
-    public Actor(long id, String name, int age) {
+    public Actor(long id, String name, int year) {
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.year = year;
     }
 
     public Actor(MovieActorDTO tempDTO){
-        this.age = tempDTO.getAge();
+        this.year = tempDTO.getYear();
         this.id = tempDTO.getId();
         this.name = tempDTO.getName();
     }
@@ -39,7 +39,7 @@ public class Actor {
     public MovieActorDTO toDTO()
  {
         MovieActorDTO actorsDto = new MovieActorDTO();
-        actorsDto.setAge(this.age);
+        actorsDto.setYear(this.year);
         actorsDto.setId(this.id);
         actorsDto.setName(this.name);
         return actorsDto;
@@ -61,12 +61,12 @@ public class Actor {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getYear() {
+        return year;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setYear(int year) {
+        this.year = year;
     }
 
 
