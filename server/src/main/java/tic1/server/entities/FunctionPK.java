@@ -14,6 +14,11 @@ public class FunctionPK {
     public FunctionPK() {
     }
 
+    public FunctionPK(Sala sala, LocalDateTime date) {
+        this.sala = sala;
+        this.date = date;
+    }
+
     public Sala getSala() {
         return sala;
     }

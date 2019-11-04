@@ -81,5 +81,4 @@ public class MovieRestController {
     public void delete(@PathVariable("id") Long id) {
         movieMgr.deleteMovie(id);
     }
-
 }
