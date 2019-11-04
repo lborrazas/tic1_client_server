@@ -25,19 +25,19 @@ public class Genre {
         this.id = id;
     }
 
+    public MovieGenreDTO toDTO(){
+        MovieGenreDTO tempDTO = new MovieGenreDTO();
+        tempDTO.setGenre(this.genre);
+        tempDTO.setId(this.id);
+        return tempDTO;
+    }
+
     public String getGenre() {
         return genre;
     }
 
     public void setGenre(String genre) {
         this.genre = genre;
-    }
-
-    public MovieGenreDTO toDTO(){
-        MovieGenreDTO tempDTO = new MovieGenreDTO();
-        tempDTO.setGenre(this.genre);
-        tempDTO.setId(this.id);
-        return tempDTO;
     }
 
     public Genre(MovieGenreDTO tempDTO){

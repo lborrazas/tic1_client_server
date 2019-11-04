@@ -1,7 +1,10 @@
 package tic1.client.models;
 
-import tic1.commons.transfers.MovieDTO; //TODO auqnue lo muestra no esta compliandolo :(
+import tic1.commons.transfers.NewMovieDTO; //TODO auqnue lo muestra no esta compliandolo :(
 
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 public class Movie {
@@ -9,38 +12,40 @@ public class Movie {
     private long id;
     private String name;
     private String description;
-    private String actors;
-    private String duration;
-    private String genre;
+    private List<Actor> actors;
+    private long duration;
+    private List<Genre> genre;
 
     public Movie() {
         this.name = null;
     }
 
-    public Movie(MovieDTO movie){
+    public Movie(NewMovieDTO movie){
         this.id = movie.getId();
         this.name = movie.getName();
         this.description = movie.getDescription();
-        this.actors = movie.getActors();
+        this.actors = movie.getActors().stream().map(Actor::new).collect(Collectors.toList());
         this.duration = movie.getDuration();
-        this.genre = movie.getGenre();
+        this.genre = movie.getGenres().stream().map(Genre::new).collect(Collectors.toList());
     }
 
-    public Movie(long id, String name, String description, String actors, String duration, String genre) {
+    public NewMovieDTO toDTO() {
+        NewMovieDTO movieDTO = new NewMovieDTO();
+        movieDTO.setActors(this.actors.stream().map(Actor::toDTO).collect(Collectors.toList()));
+        movieDTO.setDescription(this.description);
+        movieDTO.setDuration(this.duration);
+        movieDTO.setName(this.name);
+        movieDTO.setId(this.id);
+        movieDTO.setGenres(this.genre.stream().map(Genre::toDTO).collect(Collectors.toList()));
+        return movieDTO;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
         this.id = id;
-        this.name = name;
-        this.description = description;
-        this.actors = actors;
-        this.duration = duration;
-        this.genre = genre;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
     }
 
     public String getName() {
@@ -59,50 +64,27 @@ public class Movie {
         this.description = description;
     }
 
-    public String getActors() {
+    public List<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(String actors) {
+    public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
 
-    public String getDuration() {
+    public long getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(long duration) {
         this.duration = duration;
     }
 
-    @Override
-    public String toString() {
-        return "Movie{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", actors='" + actors + '\'' +
-                ", duration='" + duration + '\'' +
-                ", genre='" + genre + '\'' +
-                '}';
+    public List<Genre> getGenre() {
+        return genre;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public MovieDTO toDTO() {
-        MovieDTO movieDTO = new MovieDTO();
-        movieDTO.setActors(this.actors);
-        movieDTO.setDescription(this.description);
-        movieDTO.setDuration(this.duration);
-        movieDTO.setName(this.name);
-        movieDTO.setId(this.id);
-        movieDTO.setGenre(this.genre);
-        return movieDTO;
+    public void setGenre(List<Genre> genre) {
+        this.genre = genre;
     }
 }

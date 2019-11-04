@@ -1,11 +1,8 @@
 package tic1.server.entities;
 
-import tic1.commons.transfers.MovieDTO;
 import tic1.commons.transfers.NewMovieDTO;
-import tic1.server.entities.Actor;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,7 +29,6 @@ public class Movie {
     private List<Genre> genres;
 
     @ManyToMany(cascade = CascadeType.ALL)
-
     private List<Actor> actors;
 
 
@@ -110,8 +106,26 @@ public class Movie {
         return actors;
     }
 
+    public void addActor(Actor actor) {
+        //prevent endless loop
+        if (this.actors.contains(actor))
+            return ;
+        //add new follower
+        actors.add(actor);
+    }
+
+
+    public void removeActor(Actor actor) {
+        //prevent endless loop
+        if (!actors.contains(actor))
+            return ;
+        //remove the follower
+        actors.remove(actor);
+        //remove myself from the follower
+      //  follower.stopFollowingTwitter(this);
+    }
+
     public void setActors(List<Actor> actors) {
         this.actors = actors;
     }
-
 }

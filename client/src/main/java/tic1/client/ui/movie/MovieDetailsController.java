@@ -71,8 +71,8 @@ public class MovieDetailsController implements Initializable {
 
         movie_name.setText(movie.getName());
         movie_description.setText(movie.getDescription());
-        movie_actors.setText(movie.getActors());
-        movie_duration.setText(movie.getDuration());
+      //  movie_actors.setText(movie.getActors());
+      //  movie_duration.setText(movie.getDuration());
 
     }
 

@@ -107,11 +107,11 @@ public class MovieController implements Initializable {
 
             } else {
 
-                movieForEdit.setName(txtName.getText());
-                movieForEdit.setDescription(txtDescription.getText());
-                movieForEdit.setActors(txtActors.getText());
-                movieForEdit.setDuration(txtDuration.getText());
-                movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
+              //  movieForEdit.setName(txtName.getText());
+              //  movieForEdit.setDescription(txtDescription.getText());
+              //  movieForEdit.setActors(txtActors.getText());
+              //  movieForEdit.setDuration(txtDuration.getText());
+              //  movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
 
                 showAlert("Pelicula actualizada", "Se actualizo con exito la pelicula!");
 
@@ -138,11 +138,11 @@ public class MovieController implements Initializable {
 
                     Movie movie = new Movie();
 
-                    movie.setName(name);
-                    movie.setDescription(description);
-                    movie.setDuration(duration);
-                    movie.setActors(actors);
-                    movie.setGenre(genre);
+              //      movie.setName(name);
+              //      movie.setDescription(description);
+              //      movie.setDuration(duration);
+                //    movie.setActors(actors);
+                 //   movie.setGenre(genre);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
 
@@ -182,9 +182,9 @@ public class MovieController implements Initializable {
 
             txtName.setText(movie.getName());
             txtDescription.setText(movie.getDescription());
-            txtActors.setText(movie.getActors());
-            txtDuration.setText(movie.getDuration());
-            txtGenre.getSelectionModel().select(movie.getGenre());
+      //      txtActors.setText(movie.getActors());
+     //       txtDuration.setText(movie.getDuration());
+     //       txtGenre.getSelectionModel().select(movie.getGenre());
             isEditing = true;
             movieForEdit = movie;
 
