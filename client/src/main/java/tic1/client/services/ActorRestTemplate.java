@@ -1,6 +1,7 @@
 package tic1.client.services;
 
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
@@ -32,5 +33,25 @@ public class ActorRestTemplate {
         return movies.stream()
                 .map(Actor::new)
                 .collect(Collectors.toList());
+    }
+
+
+    public void deleteGenre(long id) {
+        RestTemplate restTemplate =
+                new RestTemplate();
+        ResponseEntity<String> response =
+                restTemplate.exchange("http://localhost:8080/genre/"+id, HttpMethod.DELETE, null, String.class);
+        System.out.println("RestTemplate response : " + response.getBody());
+    }
+
+
+    public void createActor(Actor actor) {
+        RestTemplate restTemplate =
+                new RestTemplate();
+        HttpEntity<MovieActorDTO> body = new HttpEntity<>(
+                actor.toDTO());
+        ResponseEntity<String> response =
+                restTemplate.exchange("http://localhost:8080/actor", HttpMethod.POST, body, String.class);
+        System.out.println("RestTemplate response : " + response.getBody());
     }
 }
