@@ -1,13 +1,22 @@
 package tic1.server.entities;
 
+import javax.persistence.*;
 
+@Entity
+@Table
 public class Seat {
-    private char estado ;//
-    // O =ocupide
-    // T=transacion
-    // F= free
-    // i no disponible
+@EmbeddedId
+private SeatPk id;
+
+
     public Seat() {
-        this.estado = 'F';
+    }
+
+    public SeatPk getId() {
+        return id;
+    }
+
+    public void setId(SeatPk id) {
+        this.id = id;
     }
 }

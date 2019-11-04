@@ -2,15 +2,14 @@ package tic1.server.services;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriComponentsBuilder;
 import tic1.server.business.MovieMgr;
 import tic1.server.entities.Movie;
-import tic1.commons.transfers.MovieDTO;
+import tic1.server.entities.Genre;
+import tic1.commons.transfers.NewMovieDTO;
+import tic1.commons.transfers.NewMovieDTO;
 import tic1.server.persistence.MovieRepository;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,46 +22,47 @@ public class MovieRestController {
 
     @Autowired
     private ModelMapper modelMapper;
+    private Genre genres;
 
     @PostMapping("/movie")
-    public void save(@RequestBody MovieDTO movie) {
+    public void save(@RequestBody NewMovieDTO movie) {
         movieMgr.addMovie(new Movie(movie));
     }
 
     @PutMapping("/movie/{id}")
-    public void update(@PathVariable("id") Long id, @RequestBody MovieDTO movie) {
+    public void update(@PathVariable("id") Long id, @RequestBody NewMovieDTO movie) {
         movieMgr.updateMovie(id, new Movie(movie));
     }
 
-    @GetMapping("/movie/title/{title}/{page}")
-    public List<MovieDTO> moviesByTitle(@PathVariable("title") String title, @PathVariable("page") int page) {
-        List<Movie> movies = movieMgr.findByNamePaged(title, page); //todo List must be pages not full
-        return movies.stream()
-                .map(Movie::toDTO)
-                .collect(Collectors.toList());
-    }
+    //@GetMapping("/movie/title/{title}/{page}")
+    //public List<NewMovieDTO> moviesByTitle(@PathVariable("title") String title, @PathVariable("page") int page) {
+       /// List<Movie> movies = movieMgr.findByNamePaged(title, page); //todo List must be pages not full
+        //return movies.stream()
+          //      .map(Movie::toDTO)
+            //    .collect(Collectors.toList());
+    //}
 
-    @GetMapping("/movie/genre/{genre}/{page}")
-    public List<MovieDTO> moviesByGenre(@PathVariable("genre") String genre, @PathVariable("page") int page) {
-        List<Movie> movies = movieMgr.findByGenrePaged(genre, page); //todo List must be pages not full
-        return movies.stream()
-                .map(Movie::toDTO)
-                .collect(Collectors.toList());
-    }
+    //@GetMapping("/movie/genre/{genre}/{page}")
+    //public List<NewMovieDTO> moviesByGenre(@PathVariable("genres") Genre genres, @PathVariable("page") int page) {
+       // List<Movie> movies = movieMgr.findByGenrePaged(genres, page); //todo List must be pages not full
+       // return movies.stream()
+         //       .map(Movie::toDTO)
+           //     .collect(Collectors.toList());
+    //}
 
     @GetMapping("/movie/{id}")
-    public MovieDTO moviesByTitle(@PathVariable("id") long id) {
+    public NewMovieDTO moviesByTitle(@PathVariable("id") long id) {
         Movie movie = movieMgr.getOne(id);
         return movie.toDTO();
     }
 
     /*@GetMapping("/movie/genre/{genre}/{page}")
-    public List<MovieDTO> moviesByGenresWithPages(@PathVariable("genre") String genre, @PathVariable("page") int page){
+    public List<NewMovieDTO> moviesByGenresWithPages(@PathVariable("genre") String genre, @PathVariable("page") int page){
         List<Movie> movies = movieMgr.
     }*/
 
     @GetMapping("/movie")
-    public List<MovieDTO> movies() {
+    public List<NewMovieDTO> movies() {
         List<Movie> movies = movieRepository.findAll(); //todo List must be pages not full
         return movies.stream()
                 .map(Movie::toDTO)
@@ -70,7 +70,7 @@ public class MovieRestController {
     }
 
     @GetMapping("/movie/paged/{page}")
-    public List<MovieDTO> moviesPaged(@PathVariable("page") int page) {
+    public List<NewMovieDTO> moviesPaged(@PathVariable("page") int page) {
        List<Movie> movies = movieMgr.findAllPaged(page);
         return movies.stream()
                 .map(Movie::toDTO)
@@ -82,5 +82,4 @@ public class MovieRestController {
     public void delete(@PathVariable("id") Long id) {
         movieMgr.deleteMovie(id);
     }
-
 }

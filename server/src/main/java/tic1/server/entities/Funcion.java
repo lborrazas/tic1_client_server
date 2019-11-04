@@ -1,48 +1,38 @@
 package tic1.server.entities;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 
 @Entity
 @Table
 public class Funcion {
     @EmbeddedId
     @Id
-    private FuncionPK id;
+    private FunctionPK id;
 
-    public Funcion(FuncionPK id, Movie movie) {
-        this.id = id;
-        this.movie = movie;
-    }
-//funcion sala una tabla aparte
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movie_id")
+    @JoinColumn(name = "movieId",foreignKey = @ForeignKey(name = "fksala_function"))
     private Movie movie;
+
+    @Column(name = "second_id",unique = true,nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO )
+    private long secondId;
 
     public Funcion() {
     }
 
-    public FuncionPK getId() {
+    public FunctionPK getId() {
         return id;
     }
 
-    public void setId(FuncionPK id) {
+    public void setId(FunctionPK id) {
         this.id = id;
     }
 
-    public Sala getSalon() {
-        return this.id.getSalon() ;
+    public Movie getMovie() {
+        return movie;
     }
 
-    public void setSalon(Sala salon) {
-        this.id.setSalon(salon);
-    }
-
-    public LocalDate getFecha() {
-        return id.getFecha();
-    }
-
-    public void setFecha(LocalDate fecha) {
-        id.setFecha(fecha);
+    public void setMovie(Movie movie) {
+        this.movie = movie;
     }
 }

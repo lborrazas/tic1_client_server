@@ -2,10 +2,8 @@ package tic1.server.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import tic1.server.entities.User;
-
-
-
+import tic1.server.entities.Seat;
+import tic1.server.entities.SeatPk;
 @Repository
-public interface UserRepository extends JpaRepository<User,Long>{
+public interface SeatRepository extends JpaRepository<Seat, SeatPk> {
 }
