@@ -114,7 +114,6 @@ public class Movie {
         actors.add(actor);
     }
 
-
     public void removeActor(Actor actor) {
         //prevent endless loop
         if (!actors.contains(actor))
