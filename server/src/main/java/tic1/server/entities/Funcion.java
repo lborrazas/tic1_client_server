@@ -4,20 +4,20 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class Function {
+public class Funcion {
     @EmbeddedId
     @Id
     private FunctionPK id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movieId")
+    @JoinColumn(name = "movieId",foreignKey = @ForeignKey(name = "fksala_function"))
     private Movie movie;
 
     @Column(name = "second_id",unique = true,nullable = false)
     @GeneratedValue(strategy = GenerationType.AUTO )
     private long secondId;
 
-    public Function() {
+    public Funcion() {
     }
 
     public FunctionPK getId() {

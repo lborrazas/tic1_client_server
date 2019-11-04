@@ -5,7 +5,10 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Client")
-public class UserClient extends User {
+public class UserClient  extends User{
+
+
+
 
     private String creditCard;
 

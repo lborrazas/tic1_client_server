@@ -7,20 +7,20 @@ import java.io.Serializable;
 public class TicketPk implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_function",referencedColumnName = "second_id")
-    private Function function ;
+    private Funcion funcion;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumns({@JoinColumn,@JoinColumn,@JoinColumn})
+    @JoinColumns({@JoinColumn(foreignKey = @ForeignKey(name = "FkRow_ticket")),@JoinColumn(foreignKey = @ForeignKey(name = "fkcolum_ticket")),@JoinColumn(foreignKey = @ForeignKey(name = "fksala_ticket"))})
     private Seat seat;
 
     public TicketPk() {
     }
 
-    public Function getFunction() {
-        return function;
+    public Funcion getFuncion() {
+        return funcion;
     }
 
-    public void setFunction(Function function) {
-        this.function = function;
+    public void setFuncion(Funcion funcion) {
+        this.funcion = funcion;
     }
 
     public Seat getSeat() {

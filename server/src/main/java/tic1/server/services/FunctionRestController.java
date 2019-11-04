@@ -7,7 +7,7 @@ import tic1.commons.transfers.FunctionDTO;
 import tic1.commons.transfers.NewMovieDTO;
 import tic1.server.business.FunctionMgr;
 import tic1.server.business.SalaMgr;
-import tic1.server.entities.Function;
+import tic1.server.entities.Funcion;
 import tic1.server.entities.Movie;
 import tic1.server.entities.Sala;
 
@@ -24,7 +24,7 @@ public class FunctionRestController {
     public FunctionDTO getFunctionDto(@PathVariable("sala_id") long sala_id, @PathVariable("date")LocalDateTime localDateTime){
         FunctionDTO functionDTO = new FunctionDTO();
         Sala sala = salaMgr.getSalaById(sala_id);
-        Function function = functionMgr.getFunctionByPk(sala, localDateTime);
+        Funcion function = functionMgr.getFunctionByPk(sala, localDateTime);
 
         functionDTO.setSala(sala.getId());
         functionDTO.setCinemaName(sala.getCinema().getName());
