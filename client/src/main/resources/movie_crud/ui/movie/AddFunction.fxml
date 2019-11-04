@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.AddFunctionController">
+   <children>
+      <VBox layoutX="30.0" layoutY="14.0" prefHeight="291.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </JFXComboBox>
+            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </JFXComboBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+   </padding>
+</AnchorPane>
