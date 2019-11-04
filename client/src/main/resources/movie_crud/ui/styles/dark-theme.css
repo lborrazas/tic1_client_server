@@ -7,6 +7,18 @@
     -fx-color-1:#1976D2;
 }
 
+.texts {
+    -fx-font-family: Arial;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-fill: white;
+}
+
+.movie-list {
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: derive(-fx-primary, -30%);
+}
+
 .menu-button {
     -fx-font-family: "FontAwesome";
     -fx-padding: 10px;
@@ -92,11 +104,7 @@ Label {
     -fx-border-color: -fx-secondary;
     -fx-border-radius: 20px;
     -fx-background-radius: 20px;
-    -fx-font-size: 14px;
-}
-
-.button .glyph-icon {
-    -fx-font-size: 26;
+    -fx-font-size: 12pt;
 }
 
 .button:hover {
@@ -104,7 +112,6 @@ Label {
     -fx-border-color: -fx-secondary;
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
-    -fx-font-size: 14px;
 }
 
 .button:hover .glyph-icon {
@@ -142,11 +149,8 @@ Label {
 
 .button-back {
     -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
     -fx-border-color: none;
-}
-
-.button-back .glyph-icon{
-    -fx-font-size: 26;
 }
 
 .button-back:hover, .button-back:pressed {
@@ -174,17 +178,12 @@ Label {
     -fx-font-size: 12pt;
 }
 
-.carousel-button .glyph-icon{
-    -fx-font-size: 50;
-}
-
 .carousel-button:hover
 {
     -fx-font-family: "Material Design Icons";
     -fx-text-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
-    -fx-font-size: 50;
 }
 
 .carousel-button:hover .glyph-icon, .carousel-button:hover .glyph-icon
@@ -193,7 +192,6 @@ Label {
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
-    -fx-font-size: 50;
 }
 
 .search-button {
@@ -202,9 +200,6 @@ Label {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-font-size: 12pt;
-}
-.search-button .glyph-icon{
-    -fx-font-size: 26;
 }
 
 .search-button:hover {
@@ -219,14 +214,15 @@ Label {
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
-    -fx-font-size: 26;
 }
 
-.text-field {
-    -fx-text-fill: white;
+.text-field
+{
+    -fx-text-fill: -fx-primarytext;
     -fx-prompt-text-fill: white;
     -fx-font-size : 12pt;
     -jfx-focus-color: -fx-secondary;
+    -fx-text-fill: derive(-fx-secondary, 20%);
 }
 
 .text-field:disabled {
@@ -241,37 +237,26 @@ Label {
     -fx-font-size : 15;
     -fx-prompt-text-fill: white;
     -fx-fill: white;
-    -jfx-focus-color: -fx-secondary;
 }
 
 .combo-box .text {
     -fx-fill: white;
 }
 
-.combo-box .list-cell {
-    -fx-background-color: -fx-primary;
-    -fx-text-fill: -fx-secondary;
-    -fx-fill: -fx-secondary;
-}
-
-.combo-box .list-cell:hover .text {
-    -fx-fill: -fx-secondary;
-}
-
-.combo-box .list-cell:hover {
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: -fx-primary;
-    -fx-fill: -fx-primary;
-}
-
 .combo-box > .arrow-button > .arrow {
     -fx-background-color: white;
-    -jfx-focus-color: -fx-secondary;
 }
 
-.combo-box > .arrow-button > .arrow:visited {
-    -fx-background-color: -fx-secondary;
-    -jfx-focus-color: -fx-secondary;
+.minus_button {
+    -fx-border-width: 1px 0px 1px 1px;
+    -fx-background-radius: 20px 0px 0px 20px;
+    -fx-border-radius: 20px 0px 0px 20px;
+}
+
+.plus_button {
+    -fx-border-width: 1px 1px 1px 0 px;
+    -fx-background-radius: 0px 20px 20px 0px;
+    -fx-border-radius: 0px 20px 20px 0px;
 }
 
 .minus_button, .plus_button {
@@ -301,68 +286,19 @@ Label {
     -fx-background-color: -fx-secondary;
 }
 
-.minus-button:hover, .minus-button:pressed {
-    -fx-font-family: "FontAwesome";
-    -fx-fill: white;
-    -fx-border-color: -fx-secondary;
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: transparent;
-}
-
-.plus-button:hover, .plus-button:pressed {
-    -fx-font-family: "FontAwesome";
-    -fx-border-color: -fx-secondary;
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: transparent;
-    -fx-fill: white;
-}
-
 .admin {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-
+    -fx-font-size: 13px;
 }
 
 .admin:hover {
     -fx-effect: null;
     -fx-background-color: transparent;
-    -fx-border-color: none;
+    -fx-border-color: transparent;
     -fx-text-fill: white;
+    -fx-font-size: 13px;
     -fx-underline: true;
-    -fx-fill: white;
-}
-
-.image_button {
-    -fx-pref-height: 35px;
-    -fx-text-fill: white;
-    -fx-background-color: transparent;
-    -fx-border-color: white;
-    -fx-border-radius: 10px 10px 10px 0px;
-    -fx-background-radius: 10px 10px 10px 0px;
-    -fx-font-size: 16px;
-}
-
-.image_button:hover {
-    -fx-border-radius: 10px 10px 10px 0px;
-    -fx-background-radius: 10px 10px 10px 0px;
-    -fx-border-color: -fx-secondary;
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: -fx-primary;
-    -fx-font-size: 16px;
-}
-
-.image-field {
-    -fx-pref-height: 35px;
-    -fx-border-width: 0px 0px 1px 0px;
-    -fx-font-size: 16px;
-    -fx-background-color: transparent;
-    -fx-border-color: white;
-}
-
-.image-field:disabled {
-    -fx-border-color: white;
-    -fx-text-fill: white;
-    -fx-opacity: 1;
 }
 /*Login Screen Specific*/
 
@@ -431,15 +367,15 @@ Label {
     -fx-cursor: hand;
 }
 
-.jfx-hamburger-icon{
-    -fx-spacing: 7;
-}
-
 .jfx-hamburger StackPane {
     -fx-pref-width: 40px;
     -fx-pref-height: 4px;
     -fx-background-color: white;
     -fx-background-radius: 5px;
+}
+
+.jfx-hamburger-icon{
+    -fx-spacing: 7;
 }
 
 .jfx-hamburger-icon StackPane
@@ -449,33 +385,47 @@ Label {
 }
 
 /*Toolbar buttons*/
+
 .toolbar-button
 {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
-    -fx-background-color: -fx-primary;
+    -fx-background-color: derive(-fx-primary, -40%);
     -fx-background-radius: 30 0 0 30;
     -fx-border-radius: 30 0 0 30;
     -fx-effect: null;
+    -fx-font-size: 21px;
 }
 
+.toolbar-button .glyph-icon
+{
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: transparent;
+    -fx-background-color: derive(-fx-primary, -40%);
+    -fx-background-radius: 30 0 0 30;
+    -fx-border-radius: 30 0 0 30;
+    -fx-effect: null;
+    -fx-font-size: 26;
+}
 
 .toolbar-button:hover
 {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-radius: 30 0 0 30;
-    -fx-background-color: derive(-fx-primary, 10%);
+    -fx-background-color: derive(-fx-primary, -30%);
     -fx-text-fill: -fx-secondary;
     -fx-effect: null;
+    -fx-font-size: 21px;
 
 }
 
-.toolbar-button:hover .glyph-icon, .toolbar-button:hover .glyph-icon
+.toolbar-button:hover .glyph-icon
 {
     -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
     -fx-effect: null;
+    -fx-font-size: 26;
 }
 
 /*Text styling*/
@@ -671,40 +621,6 @@ Label {
     -fx-background-color: derive(-fx-primary, 30%);
 }
 
-.tiles-button {
-    -fx-font-family: "FontAwesome";
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-font-size: 28;
-
-}
-.tiles-button .glyph-icon {
-    -fx-font-family: "FontAwesome";
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-font-size: 50;
-}
-
-.tiles-button:hover .glyph-icon {
-    -fx-font-family: "FontAwesome";
-    -fx-text-fill: white;
-    -fx-fill: white;
-    -fx-effect: null;
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-font-size: 50;
-}
-
-.tiles-button:hover {
-    -fx-font-family: "FontAwesome";
-    -fx-text-fill: white;
-    -fx-fill: white;
-    -fx-effect: null;
-    -fx-background-color: transparent;
-    -fx-border-color: none;
-    -fx-font-size: 28;
-}
-
 /*Footer*/
 
 .footer-button {
@@ -720,11 +636,7 @@ Label {
     -fx-effect: null;
     -fx-background-color: transparent;
     -fx-border-color: none;
-    -fx-font-size: 50;
-}
-
-.footer-button .glyph-icon {
-    -fx-font-size: 50;
+    -fx-font-size: 50px;
 }
 
 .footer-button:hover {
@@ -767,4 +679,16 @@ Label {
 .pics:hover {
     -fx-background-color: white;
     -fx-opacity: 0.6;
+}
+
+#box {
+    -fx-background-color: derive(-fx-primary, -40%);
+}
+
+.header {
+    -fx-background-color: derive(-fx-primary, -40%);
+}
+
+ScrollPane {
+    -fx-border-color: none;
 }

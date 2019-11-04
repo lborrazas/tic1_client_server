@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane prefHeight="695.0" prefWidth="1000.0" style="-fx-background-color: #2a2e37;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.SeatSelectionController">
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<StackPane fx:id="rootContainer" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: #2a2e37;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.SeatSelectionController">
    <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="120.0" StackPane.alignment="TOP_LEFT">
+         <children>
+            <JFXButton fx:id="backButton" onAction="#goToDetails" styleClass="button-back" text="Volver" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="26" />
+               </graphic>
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 5px; -fx-background-radius: 8px; -fx-background-color: white;">
          <children>
             <Pane layoutX="225.0" layoutY="14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" style="-fx-background-color: #1976D2; -fx-background-radius: 5px;">
@@ -27,272 +34,7 @@
                   </Label>
                </children>
             </Pane>
-            <GridPane alignment="CENTER" layoutX="314.0" layoutY="196.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="80.0">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="50.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="229.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="445.0" layoutY="302.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="6" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="7" GridPane.rowIndex="4">
-                     <children>
-                        <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                     </children>
-                  </VBox>
-               </children>
-            </GridPane>
-            <AnchorPane layoutX="3.0" layoutY="515.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <children>
-                  <HBox prefHeight="72.0" prefWidth="300.0" AnchorPane.leftAnchor="250.0" AnchorPane.rightAnchor="250.0">
-                     <children>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <MaterialDesignIconView disable="true" glyphName="SEAT_INDIVIDUAL_SUITE" opacity="0.6" size="40" />
-                              <Label text="Ocupado" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <MaterialDesignIconView fill="LIME" glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                              <Label text="Seeccionado" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" layoutX="210.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
-                           <children>
-                              <MaterialDesignIconView glyphName="SEAT_INDIVIDUAL_SUITE" size="40" />
-                              <Label text="Libre" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <JFXButton buttonType="RAISED" layoutX="694.0" layoutY="16.0" prefHeight="40.0" prefWidth="100.0" style="-fx-border-color: white; -fx-border-radius: 30px; -fx-background-radius: 30px;" text="Siguiente" textFill="WHITE" AnchorPane.rightAnchor="0.0">
-                     <font>
-                        <Font name="Arial" size="16.0" />
-                     </font>
-                  </JFXButton>
-               </children>
-            </AnchorPane>
          </children>
       </AnchorPane>
-      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="200.0" />
    </children>
 </StackPane>
