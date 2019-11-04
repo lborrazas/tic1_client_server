@@ -36,4 +36,9 @@ public class Genre {
         tempDTO.setId(this.id);
         return tempDTO;
     }
+
+    public void Genre(MovieGenreDTO temp){
+        this.setId(temp.getId());
+        this.setGenre(temp.getGenre());
+    }
 }

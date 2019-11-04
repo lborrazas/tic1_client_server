@@ -24,11 +24,11 @@ public class Movie {
     @Column
     public long duration;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
 
     private List<Genre> genres;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.MERGE)
     private List<Actor> actors;
 
 

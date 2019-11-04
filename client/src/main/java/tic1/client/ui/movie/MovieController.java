@@ -12,13 +12,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.Actor;
@@ -29,7 +28,6 @@ import tic1.client.services.GenreRestTemplate;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.Principal2;
-import tic1.client.ui.multiselectcombobox.AutocompleteMultiSelectionBox;
 import tic1.commons.transfers.MovieActorDTO;
 
 import java.io.File;
@@ -69,7 +67,7 @@ public class MovieController implements Initializable {
     private JFXTextField txtDuration;
 
     @FXML
-    private JFXComboBox<String> txtGenre;
+    private JFXComboBox<Genre> txtGenre;
 
     @FXML
     private JFXButton fileChooser;
@@ -89,6 +87,8 @@ public class MovieController implements Initializable {
 
     private List<String> actors = new ArrayList<>();
 
+    private List<String> genres = new ArrayList<>();
+
     @FXML
     void close(ActionEvent actionEvent) {
         Node source = (Node) actionEvent.getSource();
@@ -103,7 +103,7 @@ public class MovieController implements Initializable {
         String description = txtDescription.getText();
         long duration = Long.parseLong(txtDuration.getText());
         List<String> actors = this.actors;
-        String genre = txtGenre.getSelectionModel().getSelectedItem();
+        List<String> genres = this.genres;
 
         if (isEditing) {
 
@@ -118,8 +118,8 @@ public class MovieController implements Initializable {
                 movieForEdit.setName(txtName.getText());
                 movieForEdit.setDescription(txtDescription.getText());
                 movieForEdit.addActor(txtActors.getSelectionModel().getSelectedItem());
-                movieForEdit.setDuration(txtDuration.getText());
-                movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
+                movieForEdit.setDuration(Long.parseLong(txtDuration.getText()));
+                movieForEdit.addGenre(txtGenre.getSelectionModel().getSelectedItem());
 
                 showAlert("Pelicula actualizada", "Se actualizo con exito la pelicula!");
 
@@ -150,8 +150,8 @@ public class MovieController implements Initializable {
                     movie.setName(name);
                     movie.setDescription(description);
                     movie.setDuration(duration);
-                    movie.setActors(actors);
-                    movie.setGenre(genre);
+                    /*movie.setActors(actors);
+                    movie.setGenre(genre);*/
 
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
 
@@ -173,7 +173,7 @@ public class MovieController implements Initializable {
         txtName.setText(null);
         txtDescription.setText(null);
         txtDuration.setText(null);
-        txtActors.setText(null);
+//        txtActors.setText(null);
 
     }
 
@@ -191,9 +191,9 @@ public class MovieController implements Initializable {
 
             txtName.setText(movie.getName());
             txtDescription.setText(movie.getDescription());
-            txtActors.setText(movie.getActors());
-            txtDuration.setText(movie.getDuration());
-            txtGenre.getSelectionModel().select(movie.getGenre());
+            /*txtActors.setText(movie.getActors());
+            txtGenre.getSelectionModel().select(movie.getGenre());*/
+            txtDuration.setText(Long.toString(movie.getDuration()));
             isEditing = true;
             movieForEdit = movie;
 
@@ -223,14 +223,36 @@ public class MovieController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Callback<ListView<Actor>, ListCell<Actor>> factory1 = lv -> new ListCell<Actor>() {
+
+            @Override
+            protected void updateItem(Actor item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+
+        };
+        Callback<ListView<Genre>, ListCell<Genre>> factory2 = lv -> new ListCell<Genre>() {
+
+            @Override
+            protected void updateItem(Genre item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getGenre());
+            }
+
+        };
+
+        txtActors.setCellFactory(factory1);
+        txtActors.setButtonCell(factory1.call(null));
+        txtGenre.setCellFactory(factory2);
+        txtGenre.setButtonCell(factory2.call(null));
+
         ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
         GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
-//        List<Actor> actors = actorRestTemplate
-//        List<Genre> genres = genreRestTemplate
+        ObservableList<Actor> actors = FXCollections.observableArrayList(actorRestTemplate.findAll());
+        ObservableList<Genre> genres = FXCollections.observableArrayList(genreRestTemplate.findAll());
+
         txtActors.setItems(actors);
         txtGenre.setItems(genres);
-        AutocompleteMultiSelectionBox combobox = new AutocompleteMultiSelectionBox();
-        combobox.setSuggestions(genres);
-        mainContainer.getChildren().add(combobox);
     }
 }

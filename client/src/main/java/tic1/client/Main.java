@@ -19,9 +19,7 @@ public class Main {
         GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
         ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
         Genre genre = genreRestTemplate.showGenre(3);
-        System.out.println(genre.getGenre());
         Actor actor = actorRestTemplate.showActor(9);
-        System.out.println(actor.getName());
         Movie movie = new Movie();
         ArrayList<Actor> actors = new ArrayList<>();
         actors.add(actor);
@@ -33,7 +31,14 @@ public class Main {
         movie.setGenre(genres);
         movie.setDuration(100);
 
-        movieRestTemplate.createMovie(movie);
+        List<Actor> actors2 = actorRestTemplate.findAll();
+        System.out.println(actors2.get(0).getName());
+
+        List<Genre> genres1 = genreRestTemplate.findAll();
+        System.out.println(genres1.get(0).getGenre());
+
+
+       // movieRestTemplate.createMovie(movie);
        // List<Movie> movies = movieRestTemplate.findAllPaged(1);
        // List<Movie> movies = movieRestTemplate.filterGenrePaged("dramatica", 0);
        // List<Movie> movies = movieRestTemplate.filterTitlePaged("NOMBRE", 0);
