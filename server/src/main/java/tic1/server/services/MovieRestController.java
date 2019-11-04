@@ -30,7 +30,7 @@ public class MovieRestController {
         Movie move = new Movie(movie);
         System.out.println(move.getActors().get(0).getName());
         System.out.println(move.getActors().get(0).getId());
-        //movieMgr.addMovie(new Movie(movie));
+        movieMgr.addMovie(new Movie(movie));
     }
 
     @PutMapping("/movie/{id}")
