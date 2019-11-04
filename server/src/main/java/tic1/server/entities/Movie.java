@@ -35,9 +35,6 @@ public class Movie {
 
     private List<Actor> actors;
 
-   // @Lob
-   // @Column(name = "imagen_Cartelera",columnDefinition = "largeLob")
-    //private Byte[] imageCartelera;
 
     public Movie() {
     }

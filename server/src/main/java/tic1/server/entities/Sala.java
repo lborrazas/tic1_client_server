@@ -7,10 +7,10 @@ import javax.persistence.*;
 public class Sala {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @Column(name = "id", updatable = false, nullable = false)
+    @Column(name = "id", nullable = false)
     private long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;
 

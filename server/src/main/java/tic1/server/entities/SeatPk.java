@@ -7,14 +7,14 @@ import java.io.Serializable;
 public class SeatPk implements Serializable {
 
     @Column
-    private long row; //pK
+    private long fila; //pK
     @Column
-    private long column; //pK
-
+    private long columna; //pK
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_sala")
+    @JoinColumn(name = "id_sala",referencedColumnName = "id",foreignKey = @ForeignKey(name = "fksala_seat"))
     private Sala sala; //pK
+
 
     public SeatPk() {
     }
@@ -27,20 +27,20 @@ public class SeatPk implements Serializable {
         this.sala = sala;
     }
 
-    public long getRow() {
-        return row;
+    public long getFila() {
+        return fila;
     }
 
-    public void setRow(long row) {
-        this.row = row;
+    public void setFila(long fila) {
+        this.fila = fila;
     }
 
-    public long getColumn() {
-        return column;
+    public long getColumna() {
+        return columna;
     }
 
-    public void setColumn(long column) {
-        this.column = column;
+    public void setColumna(long columna) {
+        this.columna = columna;
     }
 
 
