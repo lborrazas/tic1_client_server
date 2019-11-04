@@ -61,4 +61,6 @@ public class NewMovieDTO {
     public void setActors(List<MovieActorDTO> actors) {
         this.actors = actors;
     }
+
+
 }

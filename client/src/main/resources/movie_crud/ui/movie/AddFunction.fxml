@@ -1,35 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.AddFunctionController">
+<AnchorPane prefHeight="355.0" prefWidth="600.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.AddFunctionController">
    <children>
       <VBox layoutX="30.0" layoutY="14.0" prefHeight="291.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+            <JFXComboBox fx:id="cinemaName" focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" promptText="Cine" unFocusColor="WHITE">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
             </JFXComboBox>
-            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+            <JFXComboBox fx:id="salaName" focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" promptText="Sala" unFocusColor="WHITE">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
             </JFXComboBox>
-            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+            <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="540.0">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
-            </JFXComboBox>
-            <JFXComboBox focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="570.0" unFocusColor="WHITE">
+            </DatePicker>
+            <HBox>
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
-            </JFXComboBox>
+               <children>
+                  <JFXComboBox fx:id="timePicker" focusColor="WHITE" prefHeight="35.0" prefWidth="250.0" promptText="Hora" unFocusColor="WHITE" />
+                  <JFXButton prefHeight="35.0" prefWidth="80.0" text="Agregar">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="200.0">
+               <children>
+                  <JFXButton buttonType="RAISED" onAction="#close" prefHeight="35.0" text="Cancelar">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#addFunction" prefHeight="35.0" text="Guardar">
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>

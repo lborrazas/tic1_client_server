@@ -428,6 +428,48 @@ Label {
     -fx-font-size: 26;
 }
 
+.toolbar-button-admin
+{
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: transparent;
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 30 0 0 30;
+    -fx-border-radius: 30 0 0 30;
+    -fx-effect: null;
+    -fx-font-size: 16px;
+}
+
+.toolbar-button-admin .glyph-icon
+{
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: transparent;
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 30 0 0 30;
+    -fx-border-radius: 30 0 0 30;
+    -fx-effect: null;
+    -fx-font-size: 26;
+}
+
+.toolbar-button-admin:hover
+{
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: transparent;
+    -fx-background-radius: 30 0 0 30;
+    -fx-background-color: derive(-fx-primary, 20%);
+    -fx-text-fill: -fx-secondary;
+    -fx-effect: null;
+    -fx-font-size: 16px;
+
+}
+
+.toolbar-button-admin:hover .glyph-icon
+{
+    -fx-font-family: "FontAwesome";
+    -fx-fill: -fx-secondary;
+    -fx-effect: null;
+    -fx-font-size: 26;
+}
+
 /*Text styling*/
 .main-text
 {
