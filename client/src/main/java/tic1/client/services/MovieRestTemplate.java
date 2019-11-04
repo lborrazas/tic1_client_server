@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import tic1.client.models.Movie;
-import tic1.commons.transfers.MovieDTO;
+import tic1.commons.transfers.NewMovieDTO;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class MovieRestTemplate { //todo try and catch for Templates
     public void createMovie(Movie movie) {
         RestTemplate restTemplate =
                 new RestTemplate();
-        HttpEntity<MovieDTO> body = new HttpEntity<>(
+        HttpEntity<NewMovieDTO> body = new HttpEntity<>(
                 movie.toDTO());
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/movie", HttpMethod.POST, body, String.class);
@@ -29,8 +29,8 @@ public class MovieRestTemplate { //todo try and catch for Templates
     public void updateMovie(long id, Movie movie) {
         RestTemplate restTemplate =
                 new RestTemplate();
-        HttpEntity<MovieDTO> body = new HttpEntity<>(
-                new MovieDTO(movie.getId(), movie.getDescription(), movie.getDuration(), movie.getActors(), movie.getName(), movie.getGenre()));
+        HttpEntity<NewMovieDTO> body = new HttpEntity<>(
+                movie.toDTO());
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/movie/"+id, HttpMethod.PUT, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
@@ -46,21 +46,21 @@ public class MovieRestTemplate { //todo try and catch for Templates
 
     public Movie showMovie(long id){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<MovieDTO> response = restTemplate.exchange(
-                "http://localhost:8080/movie/" + id, HttpMethod.GET, null, MovieDTO.class);
-        MovieDTO movie = response.getBody();
+        ResponseEntity<NewMovieDTO> response = restTemplate.exchange(
+                "http://localhost:8080/movie/" + id, HttpMethod.GET, null, NewMovieDTO.class);
+        NewMovieDTO movie = response.getBody();
         return new Movie(movie);
     }
 
     @Deprecated
     public List<Movie> findAll(){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
+        ResponseEntity<List<NewMovieDTO>> response = restTemplate.exchange(
                 "http://localhost:8080/movie",
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<MovieDTO>>(){});
-        List<MovieDTO> movies = response.getBody();
+                new ParameterizedTypeReference<List<NewMovieDTO>>(){});
+        List<NewMovieDTO> movies = response.getBody();
         return movies.stream()
                 .map(Movie::new)
                // .map(movieDTO -> new Movie(movieDTO))
@@ -70,12 +70,12 @@ public class MovieRestTemplate { //todo try and catch for Templates
 
     public List<Movie> findAllPaged(int page){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
+        ResponseEntity<List<NewMovieDTO>> response = restTemplate.exchange(
                 "http://localhost:8080/movie/paged/" + page,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<MovieDTO>>(){});
-        List<MovieDTO> movies = response.getBody();
+                new ParameterizedTypeReference<List<NewMovieDTO>>(){});
+        List<NewMovieDTO> movies = response.getBody();
         return movies.stream()
                 .map(Movie::new)
                 // .map(movieDTO -> new Movie(movieDTO))
@@ -84,12 +84,12 @@ public class MovieRestTemplate { //todo try and catch for Templates
 
     public List<Movie> filterGenrePaged(String genre, int page){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
+        ResponseEntity<List<NewMovieDTO>> response = restTemplate.exchange(
                 "http://localhost:8080/movie/genre/" + genre+ "/" +page,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<MovieDTO>>(){});
-        List<MovieDTO> movies = response.getBody();
+                new ParameterizedTypeReference<List<NewMovieDTO>>(){});
+        List<NewMovieDTO> movies = response.getBody();
         return movies.stream()
                 .map(Movie::new)
                 // .map(movieDTO -> new Movie(movieDTO))
@@ -98,12 +98,12 @@ public class MovieRestTemplate { //todo try and catch for Templates
 
     public List<Movie> filterTitlePaged(String title, int page){
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<MovieDTO>> response = restTemplate.exchange(
+        ResponseEntity<List<NewMovieDTO>> response = restTemplate.exchange(
                 "http://localhost:8080/movie/title/" + title+ "/" +page,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<MovieDTO>>(){});
-        List<MovieDTO> movies = response.getBody();
+                new ParameterizedTypeReference<List<NewMovieDTO>>(){});
+        List<NewMovieDTO> movies = response.getBody();
         return movies.stream()
                 .map(Movie::new)
                 // .map(movieDTO -> new Movie(movieDTO))

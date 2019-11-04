@@ -24,6 +24,13 @@ public class GenreRestController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/genre/{id}")
+    public MovieGenreDTO genre(@PathVariable long id) {
+      Genre genre = genreRepository.findById(id).get();
+      return genre.toDTO();
+    }
+
+
     @PostMapping("/genre")
     public void save(@RequestBody MovieGenreDTO genreDto){
         Genre genre = new Genre(genreDto);
