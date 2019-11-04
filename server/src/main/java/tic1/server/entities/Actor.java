@@ -2,46 +2,49 @@ package tic1.server.entities;
 
 //import tic1.commons.transfers.ActorsDto;
 
+import tic1.commons.transfers.MovieActorDTO;
+
 import javax.persistence.*;
 
 @Entity
 @Table
-public class Actors {
+public class Actor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+
     private long id;
     @Column
     private String name;
     @Column
-    private int edad;
+    private int age;
 
-    public Actors() {
+    public Actor() {
     }
 
- /*   public Actors(ActorsDto actorsDto){
-        this.edad = actorsDto.getEdad();
-        this.id =actorsDto.getId();
-        this.name=actorsDto.getName();
 
-    }*/
 
-    public Actors(long id, String name, int edad) {
+    public Actor(long id, String name, int age) {
         this.id = id;
         this.name = name;
-        edad = edad;
+        this.age = age;
     }
 
-  /*  public ActorsDto toDto()
+    public Actor(MovieActorDTO tempDTO){
+        this.age = tempDTO.getAge();
+        this.id = tempDTO.getId();
+        this.name = tempDTO.getName();
+    }
+
+    public MovieActorDTO toDTO()
  {
-        ActorsDto actorsDto = new ActorsDto();
-        actorsDto.setEdad(this.edad);
+        MovieActorDTO actorsDto = new MovieActorDTO();
+        actorsDto.setAge(this.age);
         actorsDto.setId(this.id);
         actorsDto.setName(this.name);
         return actorsDto;
  }
-*/
+
     public long getId() {
         return id;
     }
@@ -58,11 +61,13 @@ public class Actors {
         this.name = name;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getAge() {
+        return age;
     }
 
-    public void setEdad(int edad) {
-        edad = edad;
+    public void setAge(int age) {
+        this.age = age;
     }
+
+
 }
