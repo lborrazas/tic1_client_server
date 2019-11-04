@@ -6,6 +6,8 @@ import org.springframework.web.client.RestTemplate;
 import tic1.client.models.Actor;
 import tic1.commons.transfers.MovieActorDTO;
 
+import java.util.List;
+
 public class ActorRestTemplate {
     public Actor showActor(long id){
         RestTemplate restTemplate = new RestTemplate();

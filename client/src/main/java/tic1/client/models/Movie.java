@@ -72,6 +72,25 @@ public class Movie {
         this.actors = actors;
     }
 
+    public void addActor(Actor actor) {
+        //prevent endless loop
+        if (this.actors.contains(actor))
+            return ;
+        //add new follower
+        actors.add(actor);
+    }
+
+
+    public void removeActor(Actor actor) {
+        //prevent endless loop
+        if (!actors.contains(actor))
+            return ;
+        //remove the follower
+        actors.remove(actor);
+        //remove myself from the follower
+        //  follower.stopFollowingTwitter(this);
+    }
+
     public long getDuration() {
         return duration;
     }

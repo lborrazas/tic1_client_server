@@ -21,7 +21,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import tic1.client.models.Actor;
+import tic1.client.models.Genre;
 import tic1.client.models.Movie;
+import tic1.client.services.ActorRestTemplate;
+import tic1.client.services.GenreRestTemplate;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.Principal2;
@@ -59,7 +63,7 @@ public class MovieController implements Initializable {
     private JFXTextField txtDescription;
 
     @FXML
-    private JFXComboBox<String> txtActors;
+    private JFXComboBox<Actor> txtActors;
 
     @FXML
     private JFXTextField txtDuration;
@@ -78,8 +82,6 @@ public class MovieController implements Initializable {
 
     @FXML
     private VBox mainContainer;
-
-    private ObservableSet<String> genres = FXCollections.emptyObservableSet();
 
     private boolean isEditing = false;
 
@@ -115,7 +117,7 @@ public class MovieController implements Initializable {
 
                 movieForEdit.setName(txtName.getText());
                 movieForEdit.setDescription(txtDescription.getText());
-                movieForEdit.setActors(txtActors.getSelectionModel().getSelectedItem());
+                movieForEdit.addActor(txtActors.getSelectionModel().getSelectedItem());
                 movieForEdit.setDuration(txtDuration.getText());
                 movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
 
@@ -221,13 +223,13 @@ public class MovieController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
+        GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
+//        List<Actor> actors = actorRestTemplate
+//        List<Genre> genres = genreRestTemplate
+        txtActors.setItems(actors);
         txtGenre.setItems(genres);
         AutocompleteMultiSelectionBox combobox = new AutocompleteMultiSelectionBox();
-        genres.add("Accion");
-        genres.add("Drama");
-        genres.add("Hola");
-        genres.add("Como");
-        genres.add("Andas");
         combobox.setSuggestions(genres);
         mainContainer.getChildren().add(combobox);
     }
