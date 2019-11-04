@@ -9,7 +9,8 @@ import javax.persistence.*;
 @DiscriminatorColumn(name="Type", discriminatorType =DiscriminatorType.STRING)
 public class User {
     @Id
-    @Column(name="id",length = 40)
+    @GeneratedValue(strategy =GenerationType.AUTO)
+
     private String username;
     @Column(name = "password",length = 40)
     private String password;

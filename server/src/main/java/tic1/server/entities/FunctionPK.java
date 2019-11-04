@@ -1,10 +1,11 @@
 package tic1.server.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Embeddable
-public class FunctionPK {
+public class FunctionPK implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "salaId",referencedColumnName = "id")
     private Sala sala;

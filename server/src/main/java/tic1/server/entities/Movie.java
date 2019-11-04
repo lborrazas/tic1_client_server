@@ -28,16 +28,16 @@ public class Movie {
     public long duration;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "movieGenre")
+
     private List<Genre> genres;
 
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "cast")
+
     private List<Actor> actors;
 
    // @Lob
-    @Column(name = "imagen_Cartelera",columnDefinition = "largeLob")
-    private Byte[] imageCartelera;
+   // @Column(name = "imagen_Cartelera",columnDefinition = "largeLob")
+    //private Byte[] imageCartelera;
 
     public Movie() {
     }
@@ -55,9 +55,9 @@ public class Movie {
 
     }
 
-    public Byte[] getImageCartelera() {
-        return imageCartelera;
-    }
+   // public Byte[] getImageCartelera() {
+        //return imageCartelera;
+    //}
 
     public long getId() {
         return id;
@@ -118,11 +118,11 @@ public class Movie {
         this.actors = actors;
     }
 
-    public Byte[] getImage() {
-        return imageCartelera;
-    }
+   // public Byte[] getImage() {
+     //   return imageCartelera;
+    //}
 
-    public void setImageCartelera(Byte[] imageCartelera) {
-        this.imageCartelera = imageCartelera;
-    }
+    //public void setImageCartelera(Byte[] imageCartelera) {
+      //  this.imageCartelera = imageCartelera;
+   // }
 }

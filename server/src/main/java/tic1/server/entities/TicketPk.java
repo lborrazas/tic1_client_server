@@ -1,14 +1,15 @@
 package tic1.server.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Embeddable
-public class TicketPk {
+public class TicketPk implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumns({@JoinColumn(),@JoinColumn()})
+    @JoinColumn(name = "id_function",referencedColumnName = "second_id")
     private Function function ;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn()
+    @JoinColumns({@JoinColumn,@JoinColumn,@JoinColumn})
     private Seat seat;
 
     public TicketPk() {

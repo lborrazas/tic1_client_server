@@ -14,7 +14,7 @@ public class Ticket {
     private float discount;
     @Column
     private float price;
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "id_client")
     private UserClient client;
 
