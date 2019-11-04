@@ -1,6 +1,7 @@
 package tic1.server.entities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -17,7 +18,16 @@ public class Funcion {
     @GeneratedValue(strategy = GenerationType.AUTO )
     private long secondId;
 
+    @Column
+    private LocalDateTime fecha;
+
+    @Column
+    private String sala;
+    @Column
+    private long salaid;
+
     public Funcion() {
+
     }
 
     public FunctionPK getId() {
@@ -26,6 +36,9 @@ public class Funcion {
 
     public void setId(FunctionPK id) {
         this.id = id;
+        this.fecha=id.getDate();
+        this.sala=id.getSala().getName();
+        this.salaid=id.getSala().getId();
     }
 
     public Movie getMovie() {

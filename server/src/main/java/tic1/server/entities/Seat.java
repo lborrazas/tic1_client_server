@@ -7,9 +7,14 @@ import javax.persistence.*;
 public class Seat {
 @EmbeddedId
 private SeatPk id;
+@Column
+private long salaid;
+@Column
+private String sala;
 
 
     public Seat() {
+
     }
 
     public SeatPk getId() {
@@ -18,5 +23,7 @@ private SeatPk id;
 
     public void setId(SeatPk id) {
         this.id = id;
+        this.salaid=id.getSala().getId();
+        this.sala=id.getSala().getName();
     }
 }

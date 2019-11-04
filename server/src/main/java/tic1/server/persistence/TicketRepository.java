@@ -5,7 +5,15 @@ import org.springframework.stereotype.Repository;
 
 import tic1.server.entities.Ticket;
 import tic1.server.entities.TicketPk;
+import tic1.server.entities.UserClient;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, TicketPk>{
+    List<Ticket> findAllByFecha(LocalDateTime today);
+    List<Ticket> findAllBySala(String sala);
+    List<Ticket> findAllBySalaid(Long salaid);
+    List<Ticket> findAllByClient(UserClient client);
 }

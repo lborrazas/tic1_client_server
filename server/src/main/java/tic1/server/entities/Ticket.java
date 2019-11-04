@@ -1,6 +1,7 @@
 package tic1.server.entities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -18,6 +19,13 @@ public class Ticket {
     @JoinColumn(name = "id_client")
     private UserClient client;
 
+    @Column
+    private String sala;
+    @Column
+    private long salaid;
+    @Column
+    private LocalDateTime fecha;
+
     public Ticket() {
     }
 
@@ -27,6 +35,9 @@ public class Ticket {
 
     public void setId(TicketPk id) {
         this.id = id;
+        this.salaid=id.getFuncion().getId().getSala().getId();
+        this.sala=id.getFuncion().getId().getSala().getName();
+        this.fecha=id.getFuncion().getId().getDate();
     }
 
     public boolean isBought() {

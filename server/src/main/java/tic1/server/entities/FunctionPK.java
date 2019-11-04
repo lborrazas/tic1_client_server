@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 @Embeddable
 public class FunctionPK implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "salaId",referencedColumnName = "id")
+    @JoinColumn(name = "salaId1",referencedColumnName = "id")
     private Sala sala;
     @Column
     private LocalDateTime date;
