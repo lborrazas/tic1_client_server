@@ -10,7 +10,7 @@ public class Transaccion {
     private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client")
-    private UserClient client;
+    @JoinColumn(name = "client",foreignKey = @ForeignKey(name = "fkcliente_transaccion"))
+    private User client;
 
 }
