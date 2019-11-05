@@ -12,7 +12,6 @@ public class Actor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private long id;
     @Column
     private String name;
@@ -23,27 +22,19 @@ public class Actor {
     }
 
 
-
-    public Actor(long id, String name, int age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
-
-    public Actor(MovieActorDTO tempDTO){
+    public Actor(MovieActorDTO tempDTO) {
         this.age = tempDTO.getAge();
         this.id = tempDTO.getId();
         this.name = tempDTO.getName();
     }
 
-    public MovieActorDTO toDTO()
- {
+    public MovieActorDTO toDTO() {
         MovieActorDTO actorsDto = new MovieActorDTO();
         actorsDto.setAge(this.age);
         actorsDto.setId(this.id);
         actorsDto.setName(this.name);
         return actorsDto;
- }
+    }
 
     public long getId() {
         return id;
