@@ -21,10 +21,7 @@ public class Funcion {
     @Column
     private LocalDateTime fecha;
 
-    @Column
-    private String sala;
-    @Column
-    private long salaid;
+
 
     public Funcion() {
 
@@ -36,9 +33,7 @@ public class Funcion {
 
     public void setId(FunctionPK id) {
         this.id = id;
-        this.fecha=id.getDate();
-        this.sala=id.getSala().getName();
-        this.salaid=id.getSala().getId();
+
     }
 
     public Movie getMovie() {

@@ -17,14 +17,8 @@ public class Ticket {
     private float price;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_client")
-    private UserClient client;
+    private Transaccion transaccion;
 
-    @Column
-    private String sala;
-    @Column
-    private long salaid;
-    @Column
-    private LocalDateTime fecha;
 
     public Ticket() {
     }
@@ -35,9 +29,7 @@ public class Ticket {
 
     public void setId(TicketPk id) {
         this.id = id;
-        this.salaid=id.getFuncion().getId().getSala().getId();
-        this.sala=id.getFuncion().getId().getSala().getName();
-        this.fecha=id.getFuncion().getId().getDate();
+
     }
 
     public boolean isBought() {
@@ -64,11 +56,11 @@ public class Ticket {
         this.price = price;
     }
 
-    public UserClient getClient() {
-        return client;
+    public Transaccion getTransaccion() {
+        return transaccion;
     }
 
-    public void setClient(UserClient client) {
-        this.client = client;
+    public void setTransaccion(Transaccion transaccion) {
+        this.transaccion = transaccion;
     }
 }
