@@ -26,11 +26,8 @@ public class MovieRestController {
 
     @PostMapping("/movie")
     public void save(@RequestBody NewMovieDTO movie) {
-        System.out.println(movie.getActors().get(0).getName());
         Movie move = new Movie(movie);
-        System.out.println(move.getActors().get(0).getName());
-        System.out.println(move.getActors().get(0).getId());
-        //movieMgr.addMovie(new Movie(movie));
+        movieMgr.addMovie(new Movie(movie));
     }
 
     @PutMapping("/movie/{id}")
@@ -66,11 +63,12 @@ public class MovieRestController {
     }*/
 
     @GetMapping("/movie")
-    public List<NewMovieDTO> movies() {
+    public List<Movie> movies() {
         List<Movie> movies = movieRepository.findAll(); //todo List must be pages not full
-        return movies.stream()
-                .map(Movie::toDTO)
-                .collect(Collectors.toList());
+        return movies;
+//        return movies.stream()
+//                .map(Movie::toDTO)
+//                .collect(Collectors.toList());
     }
 
     @GetMapping("/movie/paged/{page}")

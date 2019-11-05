@@ -10,11 +10,22 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-
     @Column
     private String genre;
 
     public Genre() {
+    }
+
+    public Genre(MovieGenreDTO tempDTO) {
+        this.genre = tempDTO.getGenre();
+        this.id = tempDTO.getId();
+    }
+
+    public MovieGenreDTO toDTO() {
+        MovieGenreDTO tempDTO = new MovieGenreDTO();
+        tempDTO.setGenre(this.genre);
+        tempDTO.setId(this.id);
+        return tempDTO;
     }
 
     public long getId() {
@@ -25,12 +36,6 @@ public class Genre {
         this.id = id;
     }
 
-    public MovieGenreDTO toDTO(){
-        MovieGenreDTO tempDTO = new MovieGenreDTO();
-        tempDTO.setGenre(this.genre);
-        tempDTO.setId(this.id);
-        return tempDTO;
-    }
 
     public String getGenre() {
         return genre;
@@ -40,9 +45,5 @@ public class Genre {
         this.genre = genre;
     }
 
-    public Genre(MovieGenreDTO tempDTO){
-        this.genre = tempDTO.getGenre();
-        this.id = tempDTO.getId();
 
-    }
 }
