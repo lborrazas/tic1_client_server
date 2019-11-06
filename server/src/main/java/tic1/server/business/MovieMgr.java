@@ -5,6 +5,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
 
+import tic1.server.entities.Actor;
 import tic1.server.entities.Movie;
 import tic1.server.persistence.MovieRepository;
 import tic1.server.entities.Genre;
@@ -59,26 +60,38 @@ public class MovieMgr {
         return ResponseEntity.ok().build();
     }
 
-   //// public List<Movie> findByNamePaged(String name, int page) {
-      //  Pageable pageable = PageRequest.of(page, 5);
-     //   List<Movie> movies = movieRepository.findAllByName(name, pageable);
-  //      return movies;
-   // }
+    public List<Movie> findByNamePaged(String name, int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        List<Movie> movies = movieRepository.findAllByName(name, pageable);
+        return movies;
+    }
+
+    public List<Movie> findByActorPaged(Actor actor, int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        List<Movie> movies = movieRepository.findAllByActors(actor, pageable);
+        return movies;
+    }
+
+    public List<Movie> findByGenrePaged(Genre genre, int page) {
+        Pageable pageable = PageRequest.of(page, 5);
+        List<Movie> movies = movieRepository.findAllByGenres(genre, pageable);
+        return movies;
+    }
 
     public List<Movie> findAllPaged(int page) {
         Pageable pageable = PageRequest.of(page, 10);
         Page<Movie> movies = movieRepository.findAll(pageable);
-       return movies.getContent();
+        return movies.getContent();
     }
 
 
     //public List<Movie> findByGenrePaged(Genre genres, int page) {
-       // Pageable pageable = PageRequest.of(page, 5);
-      //  List<Movie> movies = movieRepository.findAllByGenre(genres, pageable);
+    // Pageable pageable = PageRequest.of(page, 5);
+    //  List<Movie> movies = movieRepository.findAllByGenre(genres, pageable);
     //    return movies;
-   // }
+    // }
 
-  //  public List<Movie> findByName(String name) {
+    //  public List<Movie> findByName(String name) {
     //    return movieRepository.findByName(name);
     //}
 

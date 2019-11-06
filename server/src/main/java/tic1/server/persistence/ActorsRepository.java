@@ -11,5 +11,5 @@ import java.util.List;
 public interface ActorsRepository extends JpaRepository<Actor,Long> {
 
     //List<Actor> findAllByName(String name, Pageable pageable);
-    // List<Actor> findByName()
+
 }

@@ -9,6 +9,16 @@ public class Sala {
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private long id;
+    @Column
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cinema")

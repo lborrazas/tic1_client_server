@@ -60,7 +60,8 @@ public class MovieListController implements Initializable {
         Movie movie = new Movie();
         movie.setName("Star Wars");
         movie.setDescription("Descjsldfiuoipwfhjfhujbhuifhjd");
-        movie.setDuration(120);
+     //   movie.setDuration("1h 50m");
+     //   movie.setActors("Luk Skywalker");
         addMovie(movie);
         addMovie(movie);
         addMovie(movie);
@@ -123,10 +124,10 @@ public class MovieListController implements Initializable {
         desc.setText(movie.getDescription());
         Text duration = new Text("duration");
         duration.getStyleClass().add("texts");
-        duration.setText(Long.toString(movie.getDuration()));
+       // duration.setText(movie.getDuration());
         Text actors = new Text("actors");
         actors.getStyleClass().add("texts");
-//        actors.setText(movie.getActors());
+       // actors.setText(movie.getActors());
         JFXButton comprar = new JFXButton("Comprar");
 
        /* image = new Image(movie.getImageID());
