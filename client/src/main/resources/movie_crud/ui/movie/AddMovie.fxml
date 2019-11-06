@@ -33,14 +33,11 @@
                                 <Insets bottom="15.0" left="20.0" right="20.0" />
                             </VBox.margin>
                         </JFXTextField>
-                        <JFXTextField fx:id="txtActors" focusColor="WHITE" labelFloat="true" layoutX="15.0" layoutY="474.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="500.0" promptText="Actores" styleClass="text-field" unFocusColor="WHITE">
-                            <font>
-                                <Font name="Arial" size="14.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets bottom="15.0" left="20.0" right="20.0" />
-                            </VBox.margin>
-                        </JFXTextField>
+                  <JFXComboBox fx:id="txtActors" focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="500.0" promptText="Actors" unFocusColor="WHITE">
+                     <VBox.margin>
+                        <Insets bottom="15.0" left="20.0" right="20.0" />
+                     </VBox.margin>
+                  </JFXComboBox>
                         <JFXTextField fx:id="txtDuration" focusColor="WHITE" labelFloat="true" layoutX="15.0" layoutY="505.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="500.0" promptText="Duracion" styleClass="text-field" unFocusColor="WHITE">
                             <font>
                                 <Font name="Arial" size="14.0" />

@@ -2,8 +2,38 @@ package tic1.client.ui.client;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXDrawersStack;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.events.JFXDrawerEvent;
+import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.Parent;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Tooltip;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import tic1.client.ClientApplication;
+import tic1.client.models.Movie;
+import tic1.client.services.MovieRestTemplate;
+import tic1.client.ui.movie.MovieDetailsController;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,39 +44,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
-import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.geometry.VPos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import tic1.client.ClientApplication;
-import tic1.client.models.Movie;
-import tic1.client.services.MovieRestTemplate;
-import tic1.client.ui.movie.MovieDetailsController;
-
 @Controller
 public class EndUserController implements Initializable {
 
@@ -54,7 +51,15 @@ public class EndUserController implements Initializable {
     private MovieRestTemplate movieMgr;
 
     @FXML
-    private AnchorPane root;
+    private AnchorPane rootContainer;
+
+    @FXML
+    private AnchorPane mainContent;
+
+    @FXML
+    public VBox toolbarContent;
+
+    private Parent movieDetails;
 
     @FXML
     private JFXHamburger hamburger;
@@ -69,7 +74,12 @@ public class EndUserController implements Initializable {
     private HBox box;
 
     @FXML
+    private AnchorPane homeContent;
+
+    @FXML
     private GridPane grid;
+    private int rows = 4;
+    private int columns = 8;
 
     @FXML
     private ScrollPane pane;
@@ -87,7 +97,20 @@ public class EndUserController implements Initializable {
 
     private HBox hb = new HBox();
 
-    private static final String LEFT = "LEFT";
+    @FXML
+    private JFXButton homeButton;
+
+    @FXML
+    private JFXButton moviesButton;
+
+    @FXML
+    private JFXButton theatreButton;
+
+    @FXML
+    private JFXButton settingsButton;
+
+    @FXML
+    private JFXButton logOutButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -105,6 +128,7 @@ public class EndUserController implements Initializable {
         header.setEffect(effect);
         header.open();
 
+
         pane.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
@@ -119,16 +143,33 @@ public class EndUserController implements Initializable {
             }
         });
 
-        try {
-            FXMLLoader loader = new FXMLLoader();
+        /*grid.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                if (fileList.size() > 0) {
+                    rows = (int) ((fileList.size() / (newValue.doubleValue() / 160)) + 1);
+                    columns = fileList.size() / rows;
+                }
+            }
+        });*/
 
-            VBox box = loader.load(getClass().getResourceAsStream("/movie_crud/ui/client/toolbar.fxml"));
-            drawer.setSidePane(box);
-            drawer.setDefaultDrawerSize(300);
+        drawer.setSidePane(toolbarContent);
+        drawer.setDefaultDrawerSize(300);
+        drawer.toBack();
 
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        drawer.onDrawerOpenedProperty().addListener(new ChangeListener<EventHandler<JFXDrawerEvent>>() {
+            @Override
+            public void changed(ObservableValue<? extends EventHandler<JFXDrawerEvent>> observable, EventHandler<JFXDrawerEvent> oldValue, EventHandler<JFXDrawerEvent> newValue) {
+                drawer.toFront();
+            }
+        });
+
+        drawer.onDrawerClosedProperty().addListener(new ChangeListener<EventHandler<JFXDrawerEvent>>() {
+            @Override
+            public void changed(ObservableValue<? extends EventHandler<JFXDrawerEvent>> observable, EventHandler<JFXDrawerEvent> oldValue, EventHandler<JFXDrawerEvent> newValue) {
+                drawer.toBack();
+            }
+        });
 
         HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
         transition.setRate(-1);
@@ -138,8 +179,10 @@ public class EndUserController implements Initializable {
 
             if (drawer.isOpened()) {
                 drawer.close();
+                drawer.toBack();
             } else {
                 drawer.open();
+                drawer.toFront();
             }
         });
 
@@ -154,15 +197,15 @@ public class EndUserController implements Initializable {
         File folder = new File(path);
         fileList.addAll(Arrays.asList(folder.listFiles()));
 
-        grid.setPadding(new Insets(7,7,7,7));
+        grid.setPadding(new Insets(7, 7, 7, 7));
         grid.setHgap(10);
         grid.setVgap(10);
 
-        int rows = (int) ((fileList.size() / (this.root.getWidth() / 160)) + 1);
-        int columns = 6;
+        columns = 1000 / 160;
+        rows = (int) ((fileList.size() / columns) + 1);
         int imageIndex = 0;
 
-        for (int i = 0 ; i < rows; i++) {
+        for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
                 if (imageIndex < fileList.size()) {
                     addImage(imageIndex, j, i);
@@ -214,34 +257,59 @@ public class EndUserController implements Initializable {
 
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
-           /* try {
-                *//*Movie selectedForPreview = movieMgr.findByName(id); // Manera de asociar la foto con la pelicula.
+            try {
+                Movie selectedForPreview = movieMgr.filterTitlePaged(id, 1).get(0); // Manera de asociar la foto con la pelicula.
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-                Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("MovieDetails.fxml"));
-
+                Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
+                movieDetails = root;
                 MovieDetailsController movieDetailsController = fxmlLoader.getController();
                 movieDetailsController.loadData(selectedForPreview);
 
-                Stage stage = new Stage(StageStyle.DECORATED);
-                Scene scene = new Scene(root);
-                scene.getStylesheets().add("/com/example/movie_crud/ui/styles/dark-theme.css");
-                stage.setScene(scene);
-                stage.show();*//*
+                mainContent.getChildren().removeAll();
+                mainContent.getChildren().setAll(root);
             } catch (IOException ex) {
                 ex.printStackTrace();
-            }*/
+            }
         });
     }
 
     @FXML
-    void show(ScrollEvent event) {
-        if (!header.isOpened() || !header.isOpening()) header.open();
+    public void goBack() {
+        mainContent.getChildren().removeAll();
+        mainContent.getChildren().setAll(homeContent);
     }
 
     @FXML
-    void hide(ScrollEvent event) {
-        if (!header.isClosed() || !header.isClosing()) header.close();
+    void home(ActionEvent event) throws IOException {
+        mainContent.getChildren().removeAll();
+        mainContent.getChildren().setAll(homeContent);
+    }
+
+    @FXML
+    void logOut(ActionEvent event) {
+
+    }
+
+    @FXML
+    void movies(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(MovieListController.class.getResourceAsStream("/movie_crud/ui/client/MovieList.fxml"));
+        MovieListController movieListController = fxmlLoader.getController();
+        /*Movie movie = new Movie();
+        movie.setName("Star Wars");
+        movie.setDescription("Descjsldfiuoipwfhjfhujbhuifhjd");
+        movie.setDuration("1h 50m");
+        movie.setActors("Luk Skywalker");
+        movieListController.addMovie(movie);*/
+        mainContent.getChildren().removeAll();
+        mainContent.getChildren().setAll(root);
+    }
+
+    @FXML
+    void settings(ActionEvent event) {
+
     }
 }

@@ -3,8 +3,11 @@ package tic1.client.ui.movie;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,16 +21,21 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import tic1.client.models.Actor;
+import tic1.client.models.Genre;
 import tic1.client.models.Movie;
+import tic1.client.services.ActorRestTemplate;
+import tic1.client.services.GenreRestTemplate;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.Principal2;
+import tic1.client.ui.multiselectcombobox.AutocompleteMultiSelectionBox;
+import tic1.commons.transfers.MovieActorDTO;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 @Controller
 public class MovieController implements Initializable {
@@ -55,7 +63,7 @@ public class MovieController implements Initializable {
     private JFXTextField txtDescription;
 
     @FXML
-    private JFXTextField txtActors;
+    private JFXComboBox<Actor> txtActors;
 
     @FXML
     private JFXTextField txtDuration;
@@ -75,11 +83,11 @@ public class MovieController implements Initializable {
     @FXML
     private VBox mainContainer;
 
-    private ObservableList<String> genres = FXCollections.observableArrayList("Accion", "Drama", "Suspenso");
-
     private boolean isEditing = false;
 
     private Movie movieForEdit;
+
+    private List<String> actors = new ArrayList<>();
 
     @FXML
     void close(ActionEvent actionEvent) {
@@ -93,25 +101,25 @@ public class MovieController implements Initializable {
 
         String name = txtName.getText();
         String description = txtDescription.getText();
-        String duration = txtDuration.getText();
-        String actors = txtActors.getText();
+        long duration = Long.parseLong(txtDuration.getText());
+        List<String> actors = this.actors;
         String genre = txtGenre.getSelectionModel().getSelectedItem();
 
         if (isEditing) {
 
             if (name == null || name.equals("") || description == null || description.equals("") ||
-                    duration == null || duration.equals("") || actors == null || actors.equals("")) {
+                    duration == 0 || actors == null) {
 
                 AlertMaker.showMaterialDialog(rootPane, mainContainer, new ArrayList<>(), "Datos faltantes!"
                         , "No se ingresaron los datos necesarios para completar el ingreso.");
 
             } else {
 
-              //  movieForEdit.setName(txtName.getText());
-              //  movieForEdit.setDescription(txtDescription.getText());
-              //  movieForEdit.setActors(txtActors.getText());
-              //  movieForEdit.setDuration(txtDuration.getText());
-              //  movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
+                movieForEdit.setName(txtName.getText());
+                movieForEdit.setDescription(txtDescription.getText());
+                movieForEdit.addActor(txtActors.getSelectionModel().getSelectedItem());
+                movieForEdit.setDuration(txtDuration.getText());
+                movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
 
                 showAlert("Pelicula actualizada", "Se actualizo con exito la pelicula!");
 
@@ -127,7 +135,8 @@ public class MovieController implements Initializable {
             if (txtName.getText() == null || txtName.getText().equals("") ||
                     txtDescription.getText() == null || txtDescription.getText().equals("") ||
                     txtDuration.getText() == null || txtDuration.getText().equals("") ||
-                    txtActors.getText() == null || txtActors.getText().equals("")) {
+                    txtActors.getSelectionModel().getSelectedItem() == null ||
+                    txtActors.getSelectionModel().getSelectedItem().equals("")) {
 
                 AlertMaker.showMaterialDialog(rootPane, mainContainer, new ArrayList<>(), "Datos faltantes"
                         , "No se ingresaron los datos necesarios para completar el ingreso.");
@@ -138,11 +147,11 @@ public class MovieController implements Initializable {
 
                     Movie movie = new Movie();
 
-              //      movie.setName(name);
-              //      movie.setDescription(description);
-              //      movie.setDuration(duration);
-                //    movie.setActors(actors);
-                 //   movie.setGenre(genre);
+                    movie.setName(name);
+                    movie.setDescription(description);
+                    movie.setDuration(duration);
+                    movie.setActors(actors);
+                    movie.setGenre(genre);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
 
@@ -182,9 +191,9 @@ public class MovieController implements Initializable {
 
             txtName.setText(movie.getName());
             txtDescription.setText(movie.getDescription());
-      //      txtActors.setText(movie.getActors());
-     //       txtDuration.setText(movie.getDuration());
-     //       txtGenre.getSelectionModel().select(movie.getGenre());
+            txtActors.setText(movie.getActors());
+            txtDuration.setText(movie.getDuration());
+            txtGenre.getSelectionModel().select(movie.getGenre());
             isEditing = true;
             movieForEdit = movie;
 
@@ -214,6 +223,14 @@ public class MovieController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
+        GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
+//        List<Actor> actors = actorRestTemplate
+//        List<Genre> genres = genreRestTemplate
+        txtActors.setItems(actors);
         txtGenre.setItems(genres);
+        AutocompleteMultiSelectionBox combobox = new AutocompleteMultiSelectionBox();
+        combobox.setSuggestions(genres);
+        mainContainer.getChildren().add(combobox);
     }
 }
