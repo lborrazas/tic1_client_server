@@ -15,6 +15,7 @@ public class Ticket {
     private float discount;
     @Column
     private float price;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "transaccion",foreignKey = @ForeignKey(name = "fktransaccion_ticket"))
     private Transaccion transaccion;
