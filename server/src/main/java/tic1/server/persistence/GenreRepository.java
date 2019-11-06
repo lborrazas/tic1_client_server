@@ -11,6 +11,7 @@ import java.util.List;
 public interface GenreRepository extends JpaRepository<Genre,Long> {
 
     List<Genre> findAllByGenre(String genre);
+    List<Genre> findAllById(Long id);
 
     List<Genre> findByGenre(String genre); //todo cambiar por la de juan
 }
