@@ -1,6 +1,5 @@
 package tic1.server.business;
 
-import com.sun.tools.javac.jvm.Gen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tic1.server.entities.Genre;
@@ -20,6 +19,12 @@ public class GenreMgr {
     public List<Genre> findById(long id) {
         return   genreRepository.findAllById(id);
     }
+
+    public Genre getOne(long id) {
+        return   genreRepository.getOne(id);
+    }
+
+
 
     public void save(Genre genre) {
         genreRepository.save(genre);

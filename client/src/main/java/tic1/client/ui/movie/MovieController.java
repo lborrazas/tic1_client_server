@@ -118,8 +118,8 @@ public class MovieController implements Initializable {
                 movieForEdit.setName(txtName.getText());
                 movieForEdit.setDescription(txtDescription.getText());
                 movieForEdit.addActor(txtActors.getSelectionModel().getSelectedItem());
-                movieForEdit.setDuration(txtDuration.getText());
-                movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
+              //  movieForEdit.setDuration(txtDuration.getText());
+              //  movieForEdit.setGenre(txtGenre.getSelectionModel().getSelectedItem());
 
                 showAlert("Pelicula actualizada", "Se actualizo con exito la pelicula!");
 
@@ -150,8 +150,8 @@ public class MovieController implements Initializable {
                     movie.setName(name);
                     movie.setDescription(description);
                     movie.setDuration(duration);
-                    movie.setActors(actors);
-                    movie.setGenre(genre);
+                 //   movie.setActors(actors);
+                 //   movie.setGenre(genre);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
 
@@ -173,7 +173,7 @@ public class MovieController implements Initializable {
         txtName.setText(null);
         txtDescription.setText(null);
         txtDuration.setText(null);
-        txtActors.setText(null);
+       // txtActors.setText(null);
 
     }
 
@@ -191,9 +191,9 @@ public class MovieController implements Initializable {
 
             txtName.setText(movie.getName());
             txtDescription.setText(movie.getDescription());
-            txtActors.setText(movie.getActors());
-            txtDuration.setText(movie.getDuration());
-            txtGenre.getSelectionModel().select(movie.getGenre());
+         //   txtActors.setText(movie.getActors());
+        //    txtDuration.setText(movie.getDuration());
+        //    txtGenre.getSelectionModel().select(movie.getGenre());
             isEditing = true;
             movieForEdit = movie;
 
@@ -227,10 +227,10 @@ public class MovieController implements Initializable {
         GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
 //        List<Actor> actors = actorRestTemplate
 //        List<Genre> genres = genreRestTemplate
-        txtActors.setItems(actors);
+    /*    txtActors.setItems(actors);
         txtGenre.setItems(genres);
         AutocompleteMultiSelectionBox combobox = new AutocompleteMultiSelectionBox();
-        combobox.setSuggestions(genres);
-        mainContainer.getChildren().add(combobox);
+        combobox.setSuggestions(genres);*/
+   //     mainContainer.getChildren().add(combobox);
     }
 }
