@@ -5,7 +5,7 @@ import tic1.commons.transfers.MovieActorDTO;
 public class Actor {
     private long id;
     private String name;
-    private int age;
+    private int year;
 
     public long getId() {
         return id;
@@ -23,26 +23,26 @@ public class Actor {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public int getYear() {
+        return year;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setYear(int year) {
+        this.year = year;
     }
 
     public Actor() {
     }
 
     public Actor(MovieActorDTO temp){
-        this.age = temp.getAge();
+        this.year = temp.getYear();
         this.id = temp.getId();
         this.name = temp.getName();
     }
 
     public MovieActorDTO toDTO(){
         MovieActorDTO temp = new MovieActorDTO();
-        temp.setAge(this.age);
+        temp.setYear(this.year);
         temp.setId(this.id);
         temp.setName(this.name);
         return temp;
