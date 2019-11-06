@@ -16,178 +16,190 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.MovieDetailsController">
+<AnchorPane fx:id="rootContainer" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: #2a2e37;" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.MovieDetailsController">
    <children>
-      <ImageView fitHeight="320.0" fitWidth="800.0" pickOnBounds="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-      <GridPane layoutY="247.0" prefHeight="347.0" prefWidth="800.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <columnConstraints>
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints maxHeight="38.0" minHeight="10.0" percentHeight="30.0" prefHeight="38.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="50.0" minHeight="10.0" percentHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="38.0" minHeight="10.0" percentHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="38.0" minHeight="10.0" percentHeight="20.0" prefHeight="38.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="79.0" minHeight="10.0" percentHeight="50.0" prefHeight="57.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="20.0" minHeight="0.0" percentHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="133.0" minHeight="0.0" percentHeight="50.0" prefHeight="133.0" vgrow="SOMETIMES" />
-         </rowConstraints>
+      <AnchorPane fx:id="anchorRoot" prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label style="-fx-text-fill: white;" text="Descripción" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Arial Bold" size="20.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="movie_description" prefHeight="80.0" prefWidth="740.0" style="-fx-text-fill: white;" text="desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-" wrapText="true" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
-               <GridPane.margin>
-                  <Insets left="30.0" right="30.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Arial" size="14.0" />
-               </font>
-               <padding>
-                  <Insets top="-30.0" />
-               </padding>
-            </Label>
-            <Label style="-fx-text-fill: white;" text="Elenco:" GridPane.rowIndex="5" GridPane.valignment="TOP">
-               <font>
-                  <Font name="Arial Bold" size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="movie_actors" style="-fx-text-fill: white;" text="Actors" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="TOP">
-               <font>
-                  <Font name="Arial" size="16.0" />
-               </font>
-               <padding>
-                  <Insets left="90.0" />
-               </padding>
-            </Label>
-            <Text fx:id="movie_name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white;" text="Nombre Pelicula">
-               <font>
-                  <Font name="Arial" size="36.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-            </Text>
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="90.0" style="-fx-background-color: #080808; -fx-opacity: .9; -fx-background-radius: 5px;" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
+            <ImageView fitHeight="320.0" fitWidth="1000.0" pickOnBounds="true" />
+            <GridPane layoutY="222.0" prefHeight="403.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="222.0">
+               <columnConstraints>
+                  <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" minWidth="10.0" percentWidth="100.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="38.0" minHeight="10.0" percentHeight="30.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="10.0" percentHeight="20.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="38.0" minHeight="10.0" percentHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="38.0" minHeight="10.0" percentHeight="20.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="79.0" minHeight="10.0" percentHeight="50.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="0.0" percentHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="133.0" minHeight="0.0" percentHeight="50.0" prefHeight="133.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <Text fx:id="movie_duration" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-text-alignment: center;" text="Duration" wrappingWidth="52.9169921875">
+                  <Label style="-fx-text-fill: white;" text="Descripción" GridPane.rowIndex="3">
+                     <font>
+                        <Font name="Arial Bold" size="20.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="movie_description" prefHeight="80.0" prefWidth="740.0" style="-fx-text-fill: white;" text="desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-" wrapText="true" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                     <GridPane.margin>
+                        <Insets left="30.0" right="30.0" />
+                     </GridPane.margin>
                      <font>
                         <Font name="Arial" size="14.0" />
                      </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Text>
-               </children>
-               <GridPane.margin>
-                  <Insets left="30.0" top="-5.0" />
-               </GridPane.margin>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6">
-               <children>
-                  <HBox alignment="CENTER_LEFT">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="40" />
-                        <ComboBox prefHeight="40.0" prefWidth="150.0" promptText="Fecha:" styleClass="combo-box" />
-                     </children>
-                     <HBox.margin>
+                     <padding>
+                        <Insets top="-30.0" />
+                     </padding>
+                  </Label>
+                  <Label style="-fx-text-fill: white;" text="Elenco:" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial Bold" size="16.0" />
+                     </font>
+                     <GridPane.margin>
                         <Insets left="30.0" />
-                     </HBox.margin>
-                  </HBox>
-                  <VBox alignment="CENTER" prefWidth="72.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
-                     </children>
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="movie_actors" style="-fx-text-fill: white;" text="Actors" GridPane.halignment="LEFT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                     <font>
+                        <Font name="Arial" size="16.0" />
+                     </font>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets left="90.0" />
                      </padding>
-                  </VBox>
-                  <HBox alignment="CENTER_LEFT">
+                  </Label>
+                  <Text fx:id="movie_name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white;" text="Nombre Pelicula">
+                     <font>
+                        <Font name="Arial" size="36.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="30.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="90.0" style="-fx-background-color: #080808; -fx-opacity: .9; -fx-background-radius: 5px;" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.vgrow="NEVER">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="CLOCK_ALT" size="40" />
-                        <ComboBox prefHeight="40.0" prefWidth="150.0" promptText="Hora:" styleClass="combo-box" />
+                        <Text fx:id="movie_duration" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-text-fill: white; -fx-text-alignment: center;" text="Duration" wrappingWidth="52.9169921875">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Text>
                      </children>
+                     <GridPane.margin>
+                        <Insets left="30.0" top="-5.0" />
+                     </GridPane.margin>
                   </HBox>
-                  <VBox alignment="CENTER" layoutX="233.0" layoutY="10.0" prefWidth="72.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6">
                      <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-                  <VBox alignment="CENTER_LEFT">
-                     <children>
-                        <HBox>
+                        <HBox alignment="CENTER_LEFT">
                            <children>
-                              <JFXButton fx:id="minus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#minus" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 0px 1px 1px; -fx-background-radius: 20px 0px 0px 20px; -fx-border-radius: 20px 0px 0px 20px;" styleClass="minus-button" textFill="TRANSPARENT">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
-                                 </graphic>
-                                 <padding>
-                                    <Insets left="2.0" top="2.0" />
-                                 </padding>
-                              </JFXButton>
-                              <TextField fx:id="movie_quantity" alignment="CENTER" disable="true" prefHeight="40.0" prefWidth="50.0" promptText="0" style="-fx-border-radius: 0; -fx-background-radius: 0; -fx-border-color: white; -fx-text-fill: white; -fx-background-color: transparent; -fx-prompt-text-fill: white;">
-                                 <font>
-                                    <Font name="Arial" size="15.0" />
-                                 </font>
-                              </TextField>
-                              <JFXButton fx:id="plus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#sum" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 1px 1px 0 px; -fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 20px 20px 0px;" styleClass="plus-button" textFill="#bf8a8a00">
-                                 <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15" />
-                                 </graphic>
-                                 <padding>
-                                    <Insets right="2.0" top="2.0" />
-                                 </padding>
-                              </JFXButton>
+                              <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="40" />
+                              <ComboBox prefHeight="40.0" prefWidth="150.0" promptText="Fecha:" styleClass="combo-box" />
+                           </children>
+                           <HBox.margin>
+                              <Insets left="30.0" />
+                           </HBox.margin>
+                        </HBox>
+                        <VBox alignment="CENTER" prefWidth="112.0">
+                           <children>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <HBox alignment="CENTER_LEFT">
+                           <children>
+                              <FontAwesomeIconView fill="WHITE" glyphName="CLOCK_ALT" size="40" />
+                              <ComboBox prefHeight="40.0" prefWidth="150.0" promptText="Hora:" styleClass="combo-box" />
                            </children>
                         </HBox>
+                        <VBox alignment="CENTER" layoutX="233.0" layoutY="10.0" prefWidth="112.0">
+                           <children>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER_LEFT">
+                           <children>
+                              <Label text="Cantidad:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial" size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="2.0" top="-14.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <HBox>
+                                 <children>
+                                    <JFXButton fx:id="minus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#minus" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 0px 1px 1px; -fx-background-radius: 20px 0px 0px 20px; -fx-border-radius: 20px 0px 0px 20px;" styleClass="minus-button" textFill="TRANSPARENT">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
+                                       </graphic>
+                                       <padding>
+                                          <Insets left="2.0" top="2.0" />
+                                       </padding>
+                                    </JFXButton>
+                                    <TextField fx:id="movie_quantity" alignment="CENTER" disable="true" prefHeight="40.0" prefWidth="50.0" promptText="0" style="-fx-border-radius: 0; -fx-background-radius: 0; -fx-border-color: white; -fx-text-fill: white; -fx-background-color: transparent; -fx-prompt-text-fill: white;">
+                                       <font>
+                                          <Font name="Arial" size="15.0" />
+                                       </font>
+                                    </TextField>
+                                    <JFXButton fx:id="plus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#sum" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 1px 1px 0 px; -fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 20px 20px 0px;" styleClass="plus-button" textFill="#bf8a8a00">
+                                       <graphic>
+                                          <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15" />
+                                       </graphic>
+                                       <padding>
+                                          <Insets right="2.0" top="2.0" />
+                                       </padding>
+                                    </JFXButton>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" layoutX="382.0" layoutY="10.0" prefWidth="112.0">
+                           <children>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <JFXButton fx:id="buy_btn" alignment="CENTER" mnemonicParsing="false" onAction="#buyAction" prefHeight="40.0" prefWidth="115.0" styleClass="buy-button" text="Comprar" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="15.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="TAG" size="22" />
+                           </graphic>
+                           <HBox.margin>
+                              <Insets right="30.0" />
+                           </HBox.margin>
+                        </JFXButton>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER" layoutX="382.0" layoutY="10.0" prefWidth="72.0">
-                     <children>
-                        <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
-                     </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
-                  </VBox>
-                  <JFXButton fx:id="buy_btn" alignment="CENTER" mnemonicParsing="false" onAction="#buyAction" prefHeight="40.0" prefWidth="115.0" styleClass="buy-button" text="Comprar" textFill="WHITE">
-                     <font>
-                        <Font name="Arial" size="15.0" />
-                     </font>
+                  </HBox>
+               </children>
+            </GridPane>
+            <HBox layoutY="14.0" prefHeight="40.0" prefWidth="109.0">
+               <children>
+                  <JFXButton onAction="#goToMain" styleClass="button-back" text="Volver" textFill="WHITE">
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="TAG" size="22" />
+                        <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="26" />
                      </graphic>
-                     <HBox.margin>
-                        <Insets right="30.0" />
-                     </HBox.margin>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
                   </JFXButton>
                </children>
             </HBox>
          </children>
-      </GridPane>
-      <HBox layoutY="14.0" prefHeight="40.0" prefWidth="109.0">
-         <children>
-            <JFXButton onAction="#goToMain" styleClass="button-back" text="Volver" textFill="WHITE">
-               <graphic>
-                  <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="26" />
-               </graphic>
-               <font>
-                  <Font name="Arial" size="18.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </HBox>
+      </AnchorPane>
    </children>
 </AnchorPane>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<StackPane fx:id="rootContainer" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: #2a2e37;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.SeatSelectionController">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="120.0" StackPane.alignment="TOP_LEFT">
+         <children>
+            <JFXButton fx:id="backButton" onAction="#goToDetails" styleClass="button-back" text="Volver" textFill="WHITE">
+               <graphic>
+                  <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="26" />
+               </graphic>
+               <font>
+                  <Font name="Arial" size="18.0" />
+               </font>
+            </JFXButton>
+         </children>
+      </HBox>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" style="-fx-border-color: black; -fx-border-width: 3px; -fx-border-radius: 5px; -fx-background-radius: 8px; -fx-background-color: white;">
+         <children>
+            <Pane layoutX="225.0" layoutY="14.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" style="-fx-background-color: #1976D2; -fx-background-radius: 5px;">
+               <children>
+                  <Label alignment="CENTER" layoutX="146.0" layoutY="5.0" text="SCREEN" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
