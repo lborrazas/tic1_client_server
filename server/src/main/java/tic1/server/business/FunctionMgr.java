@@ -6,6 +6,7 @@ import tic1.server.entities.Funcion;
 import tic1.server.entities.FunctionPK;
 import tic1.server.entities.Sala;
 import tic1.server.persistence.FunctionRepository;
+import tic1.server.persistence.MovieRepository;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +14,9 @@ import java.time.LocalDateTime;
 public class FunctionMgr {
     @Autowired
     private FunctionRepository funcionRepository;
+    @Autowired
+    private MovieRepository movieRepository;
+
 
     public Funcion getFunctionByPk(Sala sala, LocalDateTime localDateTime){
         FunctionPK functionPK = new FunctionPK(sala, localDateTime);

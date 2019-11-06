@@ -3,14 +3,13 @@ package tic1.server.services;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tic1.server.business.ActorsMgr;
+import tic1.server.business.GenreMgr;
 import tic1.server.business.MovieMgr;
 import tic1.server.entities.Actor;
 import tic1.server.entities.Movie;
 import tic1.server.entities.Genre;
 import tic1.commons.transfers.NewMovieDTO;
-import tic1.commons.transfers.NewMovieDTO;
-import tic1.server.persistence.ActorsRepository;
-import tic1.server.persistence.GenreRepository;
 import tic1.server.persistence.MovieRepository;
 
 import java.util.List;
@@ -22,10 +21,10 @@ public class MovieRestController {
     MovieRepository movieRepository;
 
     @Autowired
-    GenreRepository genreRepository;
+    GenreMgr genreMgr;
 
     @Autowired
-    ActorsRepository actorRepository;
+    ActorsMgr actorsMgr;
 
     @Autowired
     MovieMgr movieMgr;
@@ -69,7 +68,7 @@ public class MovieRestController {
 
     @GetMapping("/movie/genre/{genre}/{page}")
     public List<NewMovieDTO> moviesByGenresWithPages(@PathVariable("genre") String genreName, @PathVariable("page") int page){
-        Genre genre =  genreRepository.findByGenre(genreName).get(0);
+        Genre genre =  genreMgr.findByGenre(genreName).get(0);
         List<Movie> movies = movieMgr.findByGenrePaged(genre, page);
         return movies.stream()
                 .map(Movie::toDTO)
@@ -78,7 +77,7 @@ public class MovieRestController {
 
     @GetMapping("/movie/actor/{actor}/{page}")
     public List<NewMovieDTO> moviesByActorWithPages(@PathVariable("actor") Long actorId, @PathVariable("page") int page){
-        Actor actor =  actorRepository.getOne(actorId);
+        Actor actor =  actorsMgr.getOne(actorId);
         List<Movie> movies = movieMgr.findByActorPaged(actor, page);
         return movies.stream()
                 .map(Movie::toDTO)

@@ -14,8 +14,8 @@ public class Transaccion {
     @JoinColumn(name = "client",foreignKey = @ForeignKey(name = "fkcliente_transaccion"))
     private User client;
 
-/*    @Column
-    private List<String> consumibles;*/
+    //  @Column
+   // private List<String> consumibles;
 
     @Column
     private  int precioTotal;
@@ -39,13 +39,13 @@ public class Transaccion {
         this.client = client;
     }
 
-/*    public List<String> getConsumibles() {
-        return consumibles;
-    }
+   // public List<String> getConsumibles() {
+    //   return consumibles;
+    //}
 
-    public void setConsumibles(List<String> consumibles) {
-        this.consumibles = consumibles;
-    }*/
+    //public void setConsumibles(List<String> consumibles) {
+    //  this.consumibles = consumibles;
+    //}
 
     public int getPrecioTotal() {
         return precioTotal;
