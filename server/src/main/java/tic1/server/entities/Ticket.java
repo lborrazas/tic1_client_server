@@ -1,6 +1,7 @@
 package tic1.server.entities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -15,8 +16,9 @@ public class Ticket {
     @Column
     private float price;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_client")
-    private UserClient client;
+    @JoinColumn(name = "transaccion",foreignKey = @ForeignKey(name = "fktransaccion_ticket"))
+    private Transaccion transaccion;
+
 
     public Ticket() {
     }
@@ -27,6 +29,7 @@ public class Ticket {
 
     public void setId(TicketPk id) {
         this.id = id;
+
     }
 
     public boolean isBought() {
@@ -53,11 +56,11 @@ public class Ticket {
         this.price = price;
     }
 
-    public UserClient getClient() {
-        return client;
+    public Transaccion getTransaccion() {
+        return transaccion;
     }
 
-    public void setClient(UserClient client) {
-        this.client = client;
+    public void setTransaccion(Transaccion transaccion) {
+        this.transaccion = transaccion;
     }
 }

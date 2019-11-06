@@ -9,7 +9,7 @@ public class UserClient  extends User{
 
 
 
-
+    @Column
     private String creditCard;
 
 
