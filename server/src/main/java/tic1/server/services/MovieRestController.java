@@ -67,8 +67,8 @@ public class MovieRestController {
     }
 
     @GetMapping("/movie/genre/{genre}/{page}")
-    public List<NewMovieDTO> moviesByGenresWithPages(@PathVariable("genre") String genreName, @PathVariable("page") int page){
-        Genre genre =  genreMgr.findByGenre(genreName).get(0);
+    public List<NewMovieDTO> moviesByGenresWithPages(@PathVariable("genre") long genreId, @PathVariable("page") int page){
+        Genre genre =  genreMgr.getOne(genreId);
         List<Movie> movies = movieMgr.findByGenrePaged(genre, page);
         return movies.stream()
                 .map(Movie::toDTO)
