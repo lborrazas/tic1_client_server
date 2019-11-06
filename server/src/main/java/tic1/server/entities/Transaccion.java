@@ -20,4 +20,39 @@ public class Transaccion {
     @Column
     private  int precioTotal;
 
+    public Transaccion() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getClient() {
+        return client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+    public List<String> getConsumibles() {
+        return consumibles;
+    }
+
+    public void setConsumibles(List<String> consumibles) {
+        this.consumibles = consumibles;
+    }
+
+    public int getPrecioTotal() {
+        return precioTotal;
+    }
+
+    public void setPrecioTotal(int precioTotal) {
+        this.precioTotal = precioTotal;
+    }
 }
+
