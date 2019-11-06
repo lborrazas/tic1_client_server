@@ -1,6 +1,7 @@
 package tic1.server.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table
@@ -12,5 +13,11 @@ public class Transaccion {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "client",foreignKey = @ForeignKey(name = "fkcliente_transaccion"))
     private User client;
+
+    @Column
+    private List<String> consumibles;
+
+    @Column
+    private  int precioTotal;
 
 }
