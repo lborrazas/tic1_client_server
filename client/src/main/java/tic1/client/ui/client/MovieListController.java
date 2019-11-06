@@ -1,9 +1,12 @@
 package tic1.client.ui.client;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,8 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -19,12 +24,19 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Callback;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
+import tic1.client.models.Actor;
+import tic1.client.models.Genre;
 import tic1.client.models.Movie;
+import tic1.client.services.ActorRestTemplate;
+import tic1.client.services.GenreRestTemplate;
+import tic1.client.services.MovieRestTemplate;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -43,28 +55,57 @@ public class MovieListController implements Initializable {
     private VBox list;
 
     @FXML
-    private JFXDrawer drawer;
+    private JFXComboBox<Genre> genreFilter;
 
     @FXML
-    private JFXDrawer header;
-
-    @FXML
-    private HBox box;
-
-    @FXML
-    private JFXHamburger hamburger;
+    private JFXComboBox<Actor> actorFilter;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Callback<ListView<Actor>, ListCell<Actor>> factory1 = lv1 -> new ListCell<Actor>() {
 
-        Movie movie = new Movie();
+            @Override
+            protected void updateItem(Actor item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+
+        };
+
+        actorFilter.setCellFactory(factory1);
+        actorFilter.setButtonCell(factory1.call(null));
+
+        Callback<ListView<Genre>, ListCell<Genre>> factory2 = lv2 -> new ListCell<Genre>() {
+
+            @Override
+            protected void updateItem(Genre genre, boolean empty2) {
+                super.updateItem(genre, empty2);
+                setText(empty2 ? "" : genre.getGenre());
+            }
+
+        };
+
+        genreFilter.setCellFactory(factory2);
+        genreFilter.setButtonCell(factory2.call(null));
+
+        GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
+        ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
+        MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
+        List<Movie> movies = movieRestTemplate.findAllPaged(0);
+        for (Movie movie : movies) {
+            addMovie(movie);
+        }
+        actorFilter.setItems(FXCollections.observableArrayList(actorRestTemplate.findAll()));
+        genreFilter.setItems(FXCollections.observableArrayList(genreRestTemplate.findAll()));
+
+        /*Movie movie = new Movie();
         movie.setName("Star Wars");
         movie.setDescription("Descjsldfiuoipwfhjfhujbhuifhjd");
      //   movie.setDuration("1h 50m");
      //   movie.setActors("Luk Skywalker");
         addMovie(movie);
         addMovie(movie);
-        addMovie(movie);
+        addMovie(movie);*/
     }
 
     /*<AnchorPane layoutX="236.0" prefHeight="250.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -110,7 +151,7 @@ public class MovieListController implements Initializable {
                         </AnchorPane>*/
 
     @FXML
-    public void addMovie(Movie movie) {
+    private void addMovie(Movie movie) {
         AnchorPane box = new AnchorPane();
         box.setMinWidth(list.getWidth());
         box.setPrefHeight(250);
@@ -124,10 +165,10 @@ public class MovieListController implements Initializable {
         desc.setText(movie.getDescription());
         Text duration = new Text("duration");
         duration.getStyleClass().add("texts");
-       // duration.setText(movie.getDuration());
+        duration.setText(Long.toString(movie.getDuration()));
         Text actors = new Text("actors");
         actors.getStyleClass().add("texts");
-       // actors.setText(movie.getActors());
+        // actors.setText(movie.getActors());
         JFXButton comprar = new JFXButton("Comprar");
 
        /* image = new Image(movie.getImageID());
@@ -168,8 +209,6 @@ public class MovieListController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
-        EndUserController endUserController = fxmlLoader.getController();
-        endUserController.goBack();
     }
 }
 

@@ -276,6 +276,12 @@ public class MovieController implements Initializable {
         Actor actor = txtActors.getSelectionModel().getSelectedItem();
         if (actor != null) {
             actors.remove(actor);
+            StringBuilder actors = new StringBuilder();
+            for (Actor actor1 : this.actors) {
+                actors.append(actor1.getName()).append(" ");
+            }
+            actorsList.setText("");
+            actorsList.setText(actors.toString());
         }
     }
 
@@ -284,6 +290,11 @@ public class MovieController implements Initializable {
         Genre genre = txtGenre.getSelectionModel().getSelectedItem();
         if (genre != null) {
             genres.remove(genre);
+            StringBuilder genres = new StringBuilder();
+            for (Genre genre1 :  this.genres) {
+                genres.append(genre1.getGenre()).append(" ");
+            }
+            genresList.setText(genres.toString());
         }
     }
 
@@ -292,9 +303,12 @@ public class MovieController implements Initializable {
         Actor actor = txtActors.getSelectionModel().getSelectedItem();
         if (actor != null) {
             actors.add(actor);
-
-            System.out.println(actors);
-//            movieForEdit.addActor(actor);
+            StringBuilder actors = new StringBuilder();
+            for (Actor actor1 : this.actors) {
+                actors.append(actor1.getName()).append(" ");
+            }
+            actorsList.setText("");
+            actorsList.setText(actors.toString());
         }
     }
 
@@ -303,6 +317,12 @@ public class MovieController implements Initializable {
         Genre genre = txtGenre.getSelectionModel().getSelectedItem();
         if (genre != null) {
             genres.add(genre);
+
+            StringBuilder genres = new StringBuilder();
+            for (Genre genre1 : this.genres) {
+                genres.append(genre1.getGenre()).append(" ");
+            }
+            genresList.setText(genres.toString());
 //            movieForEdit.addGenre(genre);
         }
     }
