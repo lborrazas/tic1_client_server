@@ -3,9 +3,29 @@ package tic1.client.models;
 import tic1.commons.transfers.MovieActorDTO;
 
 public class Actor {
+
     private long id;
+
     private String name;
+
     private int age;
+
+    public Actor() {
+    }
+
+    public Actor(MovieActorDTO temp){
+        this.age = temp.getAge();
+        this.id = temp.getId();
+        this.name = temp.getName();
+    }
+
+    public MovieActorDTO toDTO(){
+        MovieActorDTO temp = new MovieActorDTO();
+        temp.setAge(this.age);
+        temp.setId(this.id);
+        temp.setName(this.name);
+        return temp;
+    }
 
     public long getId() {
         return id;
@@ -29,22 +49,5 @@ public class Actor {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public Actor() {
-    }
-
-    public Actor(MovieActorDTO temp){
-        this.age = temp.getAge();
-        this.id = temp.getId();
-        this.name = temp.getName();
-    }
-
-    public MovieActorDTO toDTO(){
-        MovieActorDTO temp = new MovieActorDTO();
-        temp.setAge(this.age);
-        temp.setId(this.id);
-        temp.setName(this.name);
-        return temp;
     }
 }

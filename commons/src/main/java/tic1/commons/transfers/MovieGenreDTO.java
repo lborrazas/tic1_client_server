@@ -4,10 +4,10 @@ public class MovieGenreDTO {
 
     private long id;
 
+    private String genre;
+
     public MovieGenreDTO() {
     }
-
-    private String genre;
 
     public long getId() {
         return id;

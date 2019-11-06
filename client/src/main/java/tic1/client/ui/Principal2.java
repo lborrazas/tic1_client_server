@@ -213,7 +213,6 @@ public class Principal2 implements Initializable {
 
             Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("/movie_crud/ui/movie/AddMovie.fxml"));
 
-            //Get controller of scene2
             MovieController movieController = fxmlLoader.getController();
             //Pass whatever data you want. You can have multiple method calls here
             movieController.loadMovieData(selectedForEdit);
