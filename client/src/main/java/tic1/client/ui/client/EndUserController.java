@@ -294,6 +294,8 @@ public class EndUserController implements Initializable {
 
     @FXML
     void home(ActionEvent event) {
+        drawer.close();
+        hamburgerTransition(hamburger);
         mainContent.getChildren().removeAll();
         mainContent.getChildren().setAll(homeContent);
     }
@@ -315,6 +317,8 @@ public class EndUserController implements Initializable {
         movie.setDuration("1h 50m");
         movie.setActors("Luk Skywalker");
         movieListController.addMovie(movie);*/
+        drawer.close();
+        hamburgerTransition(hamburger);
         mainContent.getChildren().removeAll();
         mainContent.getChildren().setAll(root);
     }
@@ -330,5 +334,13 @@ public class EndUserController implements Initializable {
 
     public void setMoviesAreLoaded(boolean moviesAreLoaded) {
         this.moviesAreLoaded = moviesAreLoaded;
+    }
+
+    private void hamburgerTransition(JFXHamburger hamburger) {
+
+        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition.setRate(-1);
+        transition.setRate(transition.getRate() * -1);
+        transition.play();
     }
 }

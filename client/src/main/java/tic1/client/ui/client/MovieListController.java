@@ -33,11 +33,13 @@ import tic1.client.models.Movie;
 import tic1.client.services.ActorRestTemplate;
 import tic1.client.services.GenreRestTemplate;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.ui.movie.MovieListItemController;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 @Controller
 public class MovieListController implements Initializable {
@@ -93,7 +95,11 @@ public class MovieListController implements Initializable {
         MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
         List<Movie> movies = movieRestTemplate.findAllPaged(0);
         for (Movie movie : movies) {
-            addMovie(movie);
+            try {
+                addMovie(movie);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         actorFilter.setItems(FXCollections.observableArrayList(actorRestTemplate.findAll()));
         genreFilter.setItems(FXCollections.observableArrayList(genreRestTemplate.findAll()));
@@ -151,8 +157,8 @@ public class MovieListController implements Initializable {
                         </AnchorPane>*/
 
     @FXML
-    private void addMovie(Movie movie) {
-        AnchorPane box = new AnchorPane();
+    private void addMovie(Movie movie) throws IOException {
+        /*AnchorPane box = new AnchorPane();
         box.setMinWidth(list.getWidth());
         box.setPrefHeight(250);
         ImageView pic;
@@ -168,8 +174,9 @@ public class MovieListController implements Initializable {
         duration.setText(Long.toString(movie.getDuration()));
         Text actors = new Text("actors");
         actors.getStyleClass().add("texts");
-        // actors.setText(movie.getActors());
-        JFXButton comprar = new JFXButton("Comprar");
+         actors.setText(movie.getActors().stream().map(Actor::getName)
+                 .collect(Collectors.joining(", ")));
+        JFXButton comprar = new JFXButton("Comprar");*/
 
        /* image = new Image(movie.getImageID());
         pic = new ImageView();
@@ -179,7 +186,7 @@ public class MovieListController implements Initializable {
         box.getChildren().add(pic);
         pic.setLayoutX(15);
         pic.setLayoutY(15);
-        pic.getStyleClass().add("pics");*/
+        pic.getStyleClass().add("pics");*//*
         box.getChildren().add(nombre);
         nombre.setLayoutX(175);
         nombre.setLayoutY(40);
@@ -197,11 +204,14 @@ public class MovieListController implements Initializable {
         comprar.setLayoutX(890);
         comprar.setLayoutY(200);
         box.getStyleClass().add("movie-list");
+*/
 
-
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(MovieListItemController.class.getResourceAsStream("/movie_crud/ui/movie/MovieListItem.fxml"));
+        MovieListItemController movieListItemController = fxmlLoader.getController();
+        movieListItemController.populate(movie);
 //        box.getStylesheets().add("/com/example/movie_crud/ui/styles/dark-theme.css");
-        list.getChildren().add(box);
-
+        list.getChildren().add(root);
     }
 
     @FXML
