@@ -20,4 +20,5 @@ dependencies {
 	runtimeOnly 'mysql:mysql-connector-java'
     compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.5'
 	compile('tic1:commons')
+	compile "org.springframework.boot:spring-boot-configuration-processor"
 }
