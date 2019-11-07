@@ -20,8 +20,9 @@ public class Main {
         MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
         GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
         ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
-        Genre genre = genreRestTemplate.showGenre(9);
-        Actor actor = actorRestTemplate.showActor(4);
+        Genre genre = genreRestTemplate.showGenre(6);
+        Genre genre2 = genreRestTemplate.showGenre(9);
+        Actor actor = actorRestTemplate.showActor(1);
         Actor actor2 = actorRestTemplate.showActor(3);
         Movie movie = new Movie();
         Set<Actor> actors = new HashSet<>();
@@ -29,18 +30,19 @@ public class Main {
         actors.add(actor2);
         Set<Genre> genres = new HashSet<>();
         genres.add(genre);
-        movie.setName("Buenas Tardes");
-        movie.setDescription("descripcion");
+        genres.add(genre2);
+        movie.setName("PasteStorm");
+        movie.setDescription("lo ke");
         movie.setActors(actors);
         movie.setGenre(genres);
-        movie.setDuration(400);
+        movie.setDuration(120);
 
 
-        movieRestTemplate.createMovie(movie);
-       // List<Movie> movies = movieRestTemplate.findAllPaged(1);
-       // List<Movie> movies = movieRestTemplate.filterGenrePaged("dramatica", 0);
-       // List<Movie> movies = movieRestTemplate.filterTitlePaged("NOMBRE", 0);
-      //  System.out.println(movies.get(0).toString());
+       // movieRestTemplate.createMovie(movie);
+        List<Movie> moviesFilter =  movieRestTemplate.filterActorPaged(actor2,0);
+        System.out.println(moviesFilter.get(0).getName());
+
+
 
        // Movie movieForEdit = movies.get(0);
        // System.out.println(movieForEdit.getGenre());

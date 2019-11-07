@@ -2,6 +2,8 @@ package tic1.client.models;
 
 import tic1.commons.transfers.NewMovieDTO; //TODO auqnue lo muestra no esta compliandolo :(
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.Set;
 import java.util.stream.Collector;
@@ -20,7 +22,7 @@ public class Movie {
 
     private long duration;
 
-    private Set<Genre> genre;
+    private Set<Genre> genres;
 
     public Movie() {
         this.name = null;
@@ -32,7 +34,8 @@ public class Movie {
         this.description = movie.getDescription();
         this.actors = movie.getActors().stream().map(Actor::new).collect(Collectors.toSet());
         this.duration = movie.getDuration();
-        this.genre = movie.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
+        this.genres = movie.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
+        //this.genres = movie.getGenres().stream().map(Genre::new).distinct().collect(Collectors.toList());
     }
 
     public NewMovieDTO toDTO() {
@@ -42,7 +45,7 @@ public class Movie {
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
-        movieDTO.setGenres(this.genre.stream().map(Genre::toDTO).collect(Collectors.toSet()));
+        movieDTO.setGenres(this.genres.stream().map(Genre::toDTO).collect(Collectors.toSet()));
         return movieDTO;
     }
 
@@ -99,19 +102,19 @@ public class Movie {
 
     public void addGenre(Genre genre) {
         //prevent endless loop
-        if (this.genre.contains(genre))
+        if (this.genres.contains(genre))
             return ;
         //add new follower
-        this.genre.add(genre);
+        this.genres.add(genre);
     }
 
 
     public void removeGenre(Genre genre) {
         //prevent endless loop
-        if (!this.genre.contains(genre))
+        if (!this.genres.contains(genre))
             return ;
         //remove the follower
-        this.genre.remove(genre);
+        this.genres.remove(genre);
         //remove myself from the follower
         //  follower.stopFollowingTwitter(this);
     }
@@ -125,10 +128,10 @@ public class Movie {
     }
 
     public Set<Genre> getGenre() {
-        return genre;
+        return this.genres;
     }
 
-    public void setGenre(Set<Genre> genre) {
-        this.genre = genre;
+    public void setGenre(Set<Genre> genres) {
+        this.genres = genres;
     }
 }
