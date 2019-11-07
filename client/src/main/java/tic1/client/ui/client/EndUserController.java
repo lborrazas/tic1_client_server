@@ -115,6 +115,8 @@ public class EndUserController implements Initializable {
 
     private boolean moviesAreLoaded = false;
 
+    private HamburgerBackArrowBasicTransition transition;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -174,7 +176,7 @@ public class EndUserController implements Initializable {
             }
         });
 
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition = new HamburgerBackArrowBasicTransition(hamburger);
         transition.setRate(-1);
         hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             transition.setRate(transition.getRate() * -1);
@@ -337,9 +339,6 @@ public class EndUserController implements Initializable {
     }
 
     private void hamburgerTransition(JFXHamburger hamburger) {
-
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
-        transition.setRate(-1);
         transition.setRate(transition.getRate() * -1);
         transition.play();
     }
