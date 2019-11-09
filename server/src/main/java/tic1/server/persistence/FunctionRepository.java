@@ -16,7 +16,7 @@ import static java.time.LocalDate.now;
 
 @Repository
 public interface FunctionRepository extends JpaRepository<Funcion, FunctionPK> {
-  List<Funcion> findByFecha(LocalDateTime fecha);
+
   List<Funcion> findAllByIdSala(Sala sala);
 
   List<Funcion> findAllByMovieAndIdDateAfter(Movie movie, LocalDateTime today);//cuando se llame la funcion usar now()

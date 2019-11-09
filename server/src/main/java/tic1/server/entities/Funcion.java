@@ -18,10 +18,13 @@ public class Funcion {
     @GeneratedValue(strategy = GenerationType.AUTO )
     private long secondId;
 
-    @Column
-    private LocalDateTime fecha;
+    public long getSecondId() {
+        return secondId;
+    }
 
-
+    public void setSecondId(long secondId) {
+        this.secondId = secondId;
+    }
 
     public Funcion() {
 
