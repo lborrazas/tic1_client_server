@@ -8,15 +8,15 @@ public class Cinema {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    public long id;
+    private long id;
     @Column
-    public String name;
+    private String name;
     @Column
-    public String location;
+    private String location;
 
     @ManyToOne
     @JoinColumn(name = "id_provider")
-    public Provider provider;
+    private Provider provider;
 
 
     public Cinema() {

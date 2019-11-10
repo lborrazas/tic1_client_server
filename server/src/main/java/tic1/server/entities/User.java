@@ -11,9 +11,9 @@ public class User {
     @Id
     @GeneratedValue(strategy =GenerationType.AUTO)
     private  long id;
-    @Column
+    @Column(nullable = false)
     private String username;
-    @Column(name = "password",length = 40)
+    @Column(name = "password",length = 40,nullable = false)
     private String password;
 
     public User() {
