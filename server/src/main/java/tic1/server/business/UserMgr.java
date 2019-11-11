@@ -48,5 +48,9 @@ public class UserMgr {
     }
 
 
+    public List<User> getByType(String type){
+        return userRepository.findByPreference(type);
+    }
+
 
 }

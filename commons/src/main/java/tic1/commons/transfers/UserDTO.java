@@ -46,4 +46,8 @@ public class UserDTO {
     public void setProvider(long provider) {
         this.provider_id = provider_id;
     }
+
+
+
+
 }
