@@ -10,4 +10,6 @@ import java.util.List;
 public interface CinemaRepository extends JpaRepository<Cinema,Long> {
     List<Cinema> findByName(String name);
     List<Cinema> findAllByProvider(Provider  provider);
+    List<Cinema> findAllByProviderId(long  providerId);
+    List<Cinema> findAllByProviderName(String  providerName);
 }

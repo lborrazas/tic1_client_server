@@ -30,4 +30,5 @@ public class TicketPk implements Serializable {
     public void setSeat(Seat seat) {
         this.seat = seat;
     }
+
 }

@@ -15,6 +15,7 @@ public class FunctionPK implements Serializable {
     public FunctionPK() {
     }
 
+
     public FunctionPK(Sala sala, LocalDateTime date) {
         this.sala = sala;
         this.date = date;

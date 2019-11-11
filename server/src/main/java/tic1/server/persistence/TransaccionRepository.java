@@ -9,4 +9,6 @@ import java.util.List;
 public interface TransaccionRepository extends JpaRepository<Transaccion,Long> {
 
     List<Transaccion> findAllByClient(Client client);
+    List<Transaccion> findAllByClientId(long id);
+    List<Transaccion> findAllByClientUsername(String username);
 }

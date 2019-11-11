@@ -14,6 +14,7 @@ import tic1.client.ui.Principal2;
 import java.io.IOException;
 
 import javafx.application.Application;
+import tic1.client.ui.PrincipalManagerController;
 import tic1.client.ui.client.EndUserController;
 import tic1.client.ui.login.LoginController;
 
@@ -33,7 +34,9 @@ public class ClientApplication extends Application {
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 //		root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
-		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
+//		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
+		root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+		root = fxmlLoader.load(PrincipalManagerController.class.getResourceAsStream("/movie_crud/ui/PrincipalManager.fxml"));
 
 		Scene scene= new Scene(root);
 //        scene.setFill(Color.TRANSPARENT);

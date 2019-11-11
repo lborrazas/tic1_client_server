@@ -12,6 +12,8 @@ public class Ticket {
     @Column
     private boolean isBought;
     @Column
+    private boolean isLock;
+    @Column
     private float discount;
     @Column
     private float price;
@@ -31,6 +33,14 @@ public class Ticket {
     public void setId(TicketPk id) {
         this.id = id;
 
+    }
+
+    public boolean isLock() {
+        return isLock;
+    }
+
+    public void setLock(boolean lock) {
+        isLock = lock;
     }
 
     public boolean isBought() {

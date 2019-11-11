@@ -14,10 +14,15 @@ import java.util.stream.Collectors;
 public class Movie {
 
     private long id;
+
     private String name;
+
     private String description;
+
     private Set<Actor> actors;
+
     private long duration;
+
     private Set<Genre> genres;
     private String imagePath;
 
@@ -111,6 +116,24 @@ public class Movie {
             return ;
         //remove the follower
         actors.remove(actor);
+        //remove myself from the follower
+        //  follower.stopFollowingTwitter(this);
+    }
+    public void addGenre(Genre genre) {
+        //prevent endless loop
+        if (this.genres.contains(genre))
+            return ;
+        //add new follower
+        this.genres.add(genre);
+    }
+
+
+    public void removeGenre(Genre genre) {
+        //prevent endless loop
+        if (!this.genres.contains(genre))
+            return ;
+        //remove the follower
+        this.genres.remove(genre);
         //remove myself from the follower
         //  follower.stopFollowingTwitter(this);
     }
