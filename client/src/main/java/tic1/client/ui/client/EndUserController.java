@@ -8,6 +8,7 @@ import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -112,6 +113,10 @@ public class EndUserController implements Initializable {
     @FXML
     private JFXButton logOutButton;
 
+    private boolean moviesAreLoaded = false;
+
+    private HamburgerBackArrowBasicTransition transition;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -171,7 +176,7 @@ public class EndUserController implements Initializable {
             }
         });
 
-        HamburgerBackArrowBasicTransition transition = new HamburgerBackArrowBasicTransition(hamburger);
+        transition = new HamburgerBackArrowBasicTransition(hamburger);
         transition.setRate(-1);
         hamburger.addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
             transition.setRate(transition.getRate() * -1);
@@ -179,37 +184,42 @@ public class EndUserController implements Initializable {
 
             if (drawer.isOpened()) {
                 drawer.close();
-                drawer.toBack();
+                drawer.setOnDrawerClosed(new EventHandler<JFXDrawerEvent>() {
+                    @Override
+                    public void handle(JFXDrawerEvent event) {
+                        drawer.toBack();
+                    }
+                });
             } else {
                 drawer.open();
                 drawer.toFront();
             }
         });
+        if (!moviesAreLoaded) {
+            String path = null;
+            try {
+                path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
 
-//        String path = "/com/example/movie_crud/ui/images/movieImages/";
-        String path = null;
-        try {
-            path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+            File folder = new File(path);
+            fileList.addAll(Arrays.asList(folder.listFiles()));
 
-        File folder = new File(path);
-        fileList.addAll(Arrays.asList(folder.listFiles()));
+            grid.setPadding(new Insets(7, 7, 7, 7));
+            grid.setHgap(10);
+            grid.setVgap(10);
 
-        grid.setPadding(new Insets(7, 7, 7, 7));
-        grid.setHgap(10);
-        grid.setVgap(10);
+            columns = 1000 / 160;
+            rows = (int) ((fileList.size() / columns) + 1);
+            int imageIndex = 0;
 
-        columns = 1000 / 160;
-        rows = (int) ((fileList.size() / columns) + 1);
-        int imageIndex = 0;
-
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (imageIndex < fileList.size()) {
-                    addImage(imageIndex, j, i);
-                    imageIndex++;
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    if (imageIndex < fileList.size()) {
+                        addImage(imageIndex, j, i);
+                        imageIndex++;
+                    }
                 }
             }
         }
@@ -258,13 +268,14 @@ public class EndUserController implements Initializable {
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
             try {
-                Movie selectedForPreview = movieMgr.filterTitlePaged(id, 1).get(0); // Manera de asociar la foto con la pelicula.
+                Movie selectedForPreview = movieMgr.filterTitlePaged(id, 0).get(0); // Manera de asociar la foto con la pelicula.
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
                 Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
                 movieDetails = root;
                 MovieDetailsController movieDetailsController = fxmlLoader.getController();
+                movieDetailsController.setMovieDetails(selectedForPreview);
                 movieDetailsController.loadData(selectedForPreview);
 
                 mainContent.getChildren().removeAll();
@@ -276,13 +287,17 @@ public class EndUserController implements Initializable {
     }
 
     @FXML
-    public void goBack() {
-        mainContent.getChildren().removeAll();
+    public void goBack(AnchorPane root) {
+        System.out.println("entro");
+        mainContent.getChildren().removeAll(root);
+        System.out.println("saco todo");
         mainContent.getChildren().setAll(homeContent);
     }
 
     @FXML
-    void home(ActionEvent event) throws IOException {
+    void home(ActionEvent event) {
+        drawer.close();
+        hamburgerTransition(hamburger);
         mainContent.getChildren().removeAll();
         mainContent.getChildren().setAll(homeContent);
     }
@@ -298,12 +313,8 @@ public class EndUserController implements Initializable {
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(MovieListController.class.getResourceAsStream("/movie_crud/ui/client/MovieList.fxml"));
         MovieListController movieListController = fxmlLoader.getController();
-        /*Movie movie = new Movie();
-        movie.setName("Star Wars");
-        movie.setDescription("Descjsldfiuoipwfhjfhujbhuifhjd");
-        movie.setDuration("1h 50m");
-        movie.setActors("Luk Skywalker");
-        movieListController.addMovie(movie);*/
+        drawer.close();
+        hamburgerTransition(hamburger);
         mainContent.getChildren().removeAll();
         mainContent.getChildren().setAll(root);
     }
@@ -311,5 +322,18 @@ public class EndUserController implements Initializable {
     @FXML
     void settings(ActionEvent event) {
 
+    }
+
+    public boolean isMoviesAreLoaded() {
+        return moviesAreLoaded;
+    }
+
+    public void setMoviesAreLoaded(boolean moviesAreLoaded) {
+        this.moviesAreLoaded = moviesAreLoaded;
+    }
+
+    private void hamburgerTransition(JFXHamburger hamburger) {
+        transition.setRate(transition.getRate() * -1);
+        transition.play();
     }
 }

@@ -10,7 +10,9 @@ import tic1.client.services.MovieRestTemplate;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class Main {
@@ -18,31 +20,29 @@ public class Main {
         MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
         GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
         ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
-        Genre genre = genreRestTemplate.showGenre(3);
-        Actor actor = actorRestTemplate.showActor(9);
+        Genre genre = genreRestTemplate.showGenre(6);
+        Genre genre2 = genreRestTemplate.showGenre(9);
+        Actor actor = actorRestTemplate.showActor(1);
+        Actor actor2 = actorRestTemplate.showActor(3);
         Movie movie = new Movie();
-        ArrayList<Actor> actors = new ArrayList<>();
+        Set<Actor> actors = new HashSet<>();
         actors.add(actor);
-        ArrayList<Genre> genres = new ArrayList<>();
+        actors.add(actor2);
+        Set<Genre> genres = new HashSet<>();
         genres.add(genre);
-        movie.setName("Dunkirk");
-        movie.setDescription("descripcion");
+        genres.add(genre2);
+        movie.setName("PasteStorm");
+        movie.setDescription("lo ke");
         movie.setActors(actors);
         movie.setGenre(genres);
-        movie.setDuration(100);
-
-        List<Actor> actors2 = actorRestTemplate.findAll();
-        System.out.println(actors2.get(0).getName());
-
-        List<Genre> genres1 = genreRestTemplate.findAll();
-        System.out.println(genres1.get(0).getGenre());
+        movie.setDuration(120);
 
 
-        movieRestTemplate.createMovie(movie);
-       // List<Movie> movies = movieRestTemplate.findAllPaged(1);
-       // List<Movie> movies = movieRestTemplate.filterGenrePaged("dramatica", 0);
-       // List<Movie> movies = movieRestTemplate.filterTitlePaged("NOMBRE", 0);
-      //  System.out.println(movies.get(0).toString());
+       // movieRestTemplate.createMovie(movie);
+        List<Movie> moviesFilter =  movieRestTemplate.filterActorPaged(actor2,0);
+        System.out.println(moviesFilter.get(0).getName());
+
+
 
        // Movie movieForEdit = movies.get(0);
        // System.out.println(movieForEdit.getGenre());

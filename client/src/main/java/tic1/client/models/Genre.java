@@ -3,7 +3,9 @@ package tic1.client.models;
 import tic1.commons.transfers.MovieGenreDTO;
 
 public class Genre {
+
     private long id;
+
     private String genre;
 
     public Genre() {
@@ -12,6 +14,13 @@ public class Genre {
     public Genre(MovieGenreDTO temp) {
         this.genre = temp.getGenre();
         this.id = temp.getId();
+    }
+
+    public MovieGenreDTO toDTO(){
+        MovieGenreDTO tempDTO = new MovieGenreDTO();
+        tempDTO.setGenre(this.genre);
+        tempDTO.setId(this.id);
+        return tempDTO;
     }
 
     public long getId() {
@@ -30,15 +39,8 @@ public class Genre {
         this.genre = genre;
     }
 
-    public MovieGenreDTO toDTO(){
-        MovieGenreDTO tempDTO = new MovieGenreDTO();
-        tempDTO.setGenre(this.genre);
-        tempDTO.setId(this.id);
-        return tempDTO;
-    }
-
-    public void Genre(MovieGenreDTO temp){
+    /*public void Genre(MovieGenreDTO temp){
         this.setId(temp.getId());
         this.setGenre(temp.getGenre());
-    }
+    }*/
 }

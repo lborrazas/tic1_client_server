@@ -10,6 +10,7 @@ private SeatPk id;
 
 
     public Seat() {
+
     }
 
     public SeatPk getId() {
@@ -18,5 +19,6 @@ private SeatPk id;
 
     public void setId(SeatPk id) {
         this.id = id;
+
     }
 }

@@ -1,24 +1,25 @@
 package tic1.commons.transfers;
 
 import java.util.List;
+import java.util.Set;
 
 public class NewMovieDTO {
     private long id;
     private String description;
     private long duration;
-    private List<MovieActorDTO> actors;
+    private Set<MovieActorDTO> actors;
     private String name;
-    private List<MovieGenreDTO> genres;
+    private Set<MovieGenreDTO> genres;
 
 
     public NewMovieDTO() {
     }
 
-    public List<MovieGenreDTO> getGenres() {
+    public Set<MovieGenreDTO> getGenres() {
         return genres;
     }
 
-    public void setGenres(List<MovieGenreDTO> genres) {
+    public void setGenres(Set<MovieGenreDTO> genres) {
         this.genres = genres;
     }
 
@@ -54,11 +55,11 @@ public class NewMovieDTO {
         this.id = id;
     }
 
-    public List<MovieActorDTO> getActors() {
+    public Set<MovieActorDTO> getActors() {
         return actors;
     }
 
-    public void setActors(List<MovieActorDTO> actors) {
+    public void setActors(Set<MovieActorDTO> actors) {
         this.actors = actors;
     }
 
