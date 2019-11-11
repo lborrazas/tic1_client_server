@@ -24,9 +24,11 @@ public class Movie {
     @Column
     private long duration;
 
+    @Column
     @ManyToMany(cascade = CascadeType.MERGE,  fetch = FetchType.EAGER)
     private Set<Genre> genres;
 
+    @Column
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Actor> actors;
 

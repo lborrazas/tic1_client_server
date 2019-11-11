@@ -98,7 +98,7 @@ Label {
 }
 
 .button{
-    -fx-font-family: "Material Design Icons";
+    -fx-font-family: "FontAwesome";
     -fx-text-fill: white;
     -fx-background-color: -fx-primary;
     -fx-border-color: -fx-secondary;
@@ -108,16 +108,15 @@ Label {
 }
 
 .button:hover {
-    -fx-font-family: "Material Design Icons";
+    -fx-font-family: "FontAwesome";
     -fx-border-color: -fx-secondary;
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
 }
 
 .button:hover .glyph-icon {
-    -fx-font-family: "Material Design Icons";
+    -fx-font-family: "FontAwesome";
     -fx-fill: -fx-primary;
-    -fx-font-size: 26;
 }
 
 .buy-button{
@@ -236,30 +235,64 @@ Label {
     -fx-background-color: transparent;
     -fx-font-size : 15;
     -fx-prompt-text-fill: white;
-    -fx-fill: white;
-}
-
-.combo-box .text {
-    -fx-fill: white;
+    -jfx-focus-color: -fx-secondary;
 }
 
 .combo-box > .arrow-button > .arrow {
     -fx-background-color: white;
 }
 
+.combo-box .list-view .list-cell {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.combo-box .list-view .list-cell .text {
+    -fx-fill: white;
+    -fx-prompt-text-fill: white;
+}
+
+.combo-box .list-view .list-cell:hover .text {
+    -fx-fill: -fx-primary;
+    -fx-prompt-text-fill: white;
+}
+
+.combo-box .list-view .list-cell:hover {
+    -fx-text-fill: -fx-primary;
+    -fx-background-color: -fx-secondary;
+    -fx-fill: -fx-primary;
+    -fx-prompt-text-fill: white;
+}
+
+/*.combo-box .cell:selected {*/
+/*    -fx-prompt-text-fill: white;*/
+/*    -fx-text-fill: -fx-secondary;*/
+/*}*/
+
+.combo-box-base .text {
+    -fx-fill: white;
+}
+
+.combo-box-base:focused .text {
+    -fx-fill: -fx-secondary;
+}
+
 .minus_button {
     -fx-border-width: 1px 0px 1px 1px;
     -fx-background-radius: 20px 0px 0px 20px;
     -fx-border-radius: 20px 0px 0px 20px;
+    -fx-font-family: "FontAwesome";
+    -fx-text-fill: transparent;
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+    -fx-font-size: 15;
 }
 
 .plus_button {
     -fx-border-width: 1px 1px 1px 0 px;
     -fx-background-radius: 0px 20px 20px 0px;
     -fx-border-radius: 0px 20px 20px 0px;
-}
-
-.minus_button, .plus_button {
     -fx-font-family: "FontAwesome";
     -fx-text-fill: transparent;
     -fx-background-color: transparent;
@@ -282,7 +315,7 @@ Label {
     -fx-text-fill: transparent;
     -fx-fill: white;
     -fx-font-size: 15;
-    -fx-border-color: -fx-secondary;
+    -fx-border-color: none;
     -fx-background-color: -fx-secondary;
 }
 
@@ -731,6 +764,74 @@ Label {
     -fx-background-color: derive(-fx-primary, -40%);
 }
 
-ScrollPane {
-    -fx-border-color: none;
+/*.actors-list .content {
+    -fx-background-color: transparent;
+    -fx-font-size: 11px;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.actors-list:disabled .content{
+    -fx-opacity: 1;
+    -fx-text-fill: white;
+    -fx-background-color: transparent;
+}*/
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.text-area .scroll-pane .viewport{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+
+.text-area .scroll-pane .content{
+    -fx-background-color: transparent;
+    -fx-font-size: 11px;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.text-area:disabled {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.text-area:disabled .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.text-area:disabled .scroll-pane .viewport{
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.text-area:disabled .scroll-pane .content{
+    -fx-background-color: transparent;
+    -fx-font-size: 11px;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.image-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: white;
+}
+
+#list:even {
+
 }
