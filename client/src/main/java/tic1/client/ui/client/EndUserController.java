@@ -120,6 +120,8 @@ public class EndUserController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        fileList.clear();
+
         header.setDirection(JFXDrawer.DrawerDirection.TOP);
         header.setSidePane(box);
         header.setDefaultDrawerSize(70);
@@ -198,7 +200,7 @@ public class EndUserController implements Initializable {
         if (!moviesAreLoaded) {
             String path = null;
             try {
-                path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
+                path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
@@ -297,6 +299,7 @@ public class EndUserController implements Initializable {
     @FXML
     void home(ActionEvent event) {
         drawer.close();
+        drawer.toBack();
         hamburgerTransition(hamburger);
         mainContent.getChildren().removeAll();
         mainContent.getChildren().setAll(homeContent);
@@ -322,14 +325,6 @@ public class EndUserController implements Initializable {
     @FXML
     void settings(ActionEvent event) {
 
-    }
-
-    public boolean isMoviesAreLoaded() {
-        return moviesAreLoaded;
-    }
-
-    public void setMoviesAreLoaded(boolean moviesAreLoaded) {
-        this.moviesAreLoaded = moviesAreLoaded;
     }
 
     private void hamburgerTransition(JFXHamburger hamburger) {

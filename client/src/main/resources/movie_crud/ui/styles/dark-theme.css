@@ -285,7 +285,7 @@ Label {
     -fx-font-family: "FontAwesome";
     -fx-text-fill: transparent;
     -fx-background-color: transparent;
-    -fx-border-color: white;
+    -fx-border-color: white !important;
     -fx-font-size: 15;
 }
 
@@ -296,7 +296,7 @@ Label {
     -fx-font-family: "FontAwesome";
     -fx-text-fill: transparent;
     -fx-background-color: transparent;
-    -fx-border-color: white;
+    -fx-border-color: white !important;
     -fx-font-size: 15;
 }
 

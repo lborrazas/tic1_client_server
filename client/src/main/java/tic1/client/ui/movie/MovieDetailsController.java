@@ -157,8 +157,6 @@ public class MovieDetailsController implements Initializable {
             stage.show();
         } else {
             Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
-            EndUserController endUserController = fxmlLoader.getController();
-            endUserController.setMoviesAreLoaded(true);
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
