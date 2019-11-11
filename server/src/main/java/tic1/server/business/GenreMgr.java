@@ -29,6 +29,12 @@ public class GenreMgr {
         genreRepository.save(existingGenre);
     }
 
+    public Genre getOne(long id) {
+        return   genreRepository.getOne(id);
+    }
+
+
+
     public void save(Genre genre) {
         genreRepository.save(genre);
     }

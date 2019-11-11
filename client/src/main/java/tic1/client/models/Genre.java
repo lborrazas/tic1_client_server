@@ -41,4 +41,6 @@ public class Genre {
         this.setId(temp.getId());
         this.setGenre(temp.getGenre());
     }
+
+
 }

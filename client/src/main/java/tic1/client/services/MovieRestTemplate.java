@@ -3,6 +3,7 @@ package tic1.client.services;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
+import tic1.client.models.Actor;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.commons.transfers.NewMovieDTO;
@@ -86,7 +87,21 @@ public class MovieRestTemplate { //todo try and catch for Templates
     public List<Movie> filterGenrePaged(Genre genre, int page){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<NewMovieDTO>> response = restTemplate.exchange(
-                "http://localhost:8080/movie/genre/"+page,
+                "http://localhost:8080/movie/genre/"+genre.getId()+'/'+page,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<NewMovieDTO>>(){});
+        List<NewMovieDTO> movies = response.getBody();
+        return movies.stream()
+                .map(Movie::new)
+                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
+    }
+
+    public List<Movie> filterActorPaged(Actor actor, int page){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<NewMovieDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/movie/actor/"+actor.getId()+'/'+page,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<NewMovieDTO>>(){});
