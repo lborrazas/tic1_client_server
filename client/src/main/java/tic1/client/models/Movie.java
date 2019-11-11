@@ -2,6 +2,7 @@ package tic1.client.models;
 
 import tic1.commons.transfers.NewMovieDTO; //TODO auqnue lo muestra no esta compliandolo :(
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -18,6 +19,7 @@ public class Movie {
     private Set<Actor> actors;
     private long duration;
     private Set<Genre> genres;
+    private String imagePath;
 
     public Movie() {
         this.name = null;
@@ -41,7 +43,25 @@ public class Movie {
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
         movieDTO.setGenres(this.genres.stream().map(Genre::toDTO).collect(Collectors.toSet()));
+        movieDTO.setImagePath(this.getImagePath());
         return movieDTO;
+    }
+
+
+    public Set<Genre> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(Set<Genre> genres) {
+        this.genres = genres;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
     }
 
     public long getId() {

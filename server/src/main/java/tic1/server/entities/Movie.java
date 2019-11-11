@@ -16,15 +16,18 @@ public class Movie {
     private long id;
 
     @Column(nullable = false)
-    private  String  name;
+    private String name;
 
     @Column
     private String description;
 
     @Column
+    private String imagePath;
+
+    @Column
     private long duration;
 
-    @ManyToMany(cascade = CascadeType.MERGE,  fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Genre> genres;
 
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
@@ -35,17 +38,24 @@ public class Movie {
     }
 
 
-    public Movie(NewMovieDTO temp)  {
-
+    public Movie(NewMovieDTO temp) {
         this.actors = temp.getActors().stream().map(Actor::new).collect(Collectors.toSet());
         this.description = temp.getDescription();
         this.duration = temp.getDuration();
         this.id = temp.getId();
         this.name = temp.getName();
         this.genres = temp.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
-
+        this.imagePath = temp.getImagePath();
     }
 
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public long getId() {
         return id;
@@ -79,6 +89,7 @@ public class Movie {
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
         movieDTO.setGenres(this.genres.stream().map(Genre::toDTO).collect(Collectors.toSet()));
+        movieDTO.setImagePath(this.imagePath);
         return movieDTO;
     }
 
@@ -105,7 +116,7 @@ public class Movie {
     public void addActor(Actor actor) {
         //prevent endless loop
         if (this.actors.contains(actor))
-            return ;
+            return;
         //add new follower
         actors.add(actor);
     }
@@ -113,17 +124,17 @@ public class Movie {
     public void removeActor(Actor actor) {
         //prevent endless loop
         if (!actors.contains(actor))
-            return ;
+            return;
         //remove the follower
         actors.remove(actor);
         //remove myself from the follower
-      //  follower.stopFollowingTwitter(this);
+        //  follower.stopFollowingTwitter(this);
     }
 
     public void addGenre(Genre genre) {
         //prevent endless loop
         if (this.actors.contains(genre))
-            return ;
+            return;
         //add new follower
         genres.add(genre);
     }
@@ -131,7 +142,7 @@ public class Movie {
     public void removeActor(Genre genre) {
         //prevent endless loop
         if (!actors.contains(genre))
-            return ;
+            return;
         //remove the follower
         genres.remove(genre);
         //remove myself from the follower
