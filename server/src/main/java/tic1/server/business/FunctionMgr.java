@@ -74,4 +74,8 @@ public class FunctionMgr {
     };//cuando se llame la funcion usar now()
 
 
+    List<Funcion> getByMovieAndDate(Movie movie, LocalDateTime today){
+        return  funcionRepository.findAllByMovieAndIdDate(movie, today);//cuando se llame la funcion usar now()
+    };//cuando se llame la funcion usar now()
+
 }
