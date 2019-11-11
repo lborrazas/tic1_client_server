@@ -313,12 +313,6 @@ public class EndUserController implements Initializable {
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(MovieListController.class.getResourceAsStream("/movie_crud/ui/client/MovieList.fxml"));
         MovieListController movieListController = fxmlLoader.getController();
-        /*Movie movie = new Movie();
-        movie.setName("Star Wars");
-        movie.setDescription("Descjsldfiuoipwfhjfhujbhuifhjd");
-        movie.setDuration("1h 50m");
-        movie.setActors("Luk Skywalker");
-        movieListController.addMovie(movie);*/
         drawer.close();
         hamburgerTransition(hamburger);
         mainContent.getChildren().removeAll();

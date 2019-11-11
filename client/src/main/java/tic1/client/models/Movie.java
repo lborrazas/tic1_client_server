@@ -99,6 +99,24 @@ public class Movie {
         //remove myself from the follower
         //  follower.stopFollowingTwitter(this);
     }
+    public void addGenre(Genre genre) {
+        //prevent endless loop
+        if (this.genre.contains(genre))
+            return ;
+        //add new follower
+        this.genre.add(genre);
+    }
+
+
+    public void removeGenre(Genre genre) {
+        //prevent endless loop
+        if (!this.genre.contains(genre))
+            return ;
+        //remove the follower
+        this.genre.remove(genre);
+        //remove myself from the follower
+        //  follower.stopFollowingTwitter(this);
+    }
 
     public void addGenre(Genre genre) {
         //prevent endless loop

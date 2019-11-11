@@ -19,25 +19,41 @@
                   <FontAwesomeIconView fill="WHITE" glyphName="VIDEO_CAMERA" size="100" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutX="392.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+            <VBox alignment="CENTER" layoutY="120.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
                <children>
-                  <JFXComboBox fx:id="genreFilter" focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="190.0" promptText="Todas las categorias" unFocusColor="WHITE">
-                     <HBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </HBox.margin>
-                  </JFXComboBox>
-                  <JFXComboBox focusColor="WHITE" labelFloat="true" layoutX="452.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" promptText="Idioma" unFocusColor="WHITE">
-                     <HBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </HBox.margin>
-                  </JFXComboBox>
-                  <JFXComboBox fx:id="actorFilter" focusColor="WHITE" labelFloat="true" layoutX="480.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" promptText="Actor" unFocusColor="WHITE">
-                     <HBox.margin>
-                        <Insets left="30.0" right="30.0" />
-                     </HBox.margin>
-                  </JFXComboBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="1000.0">
+                     <children>
+                        <JFXComboBox fx:id="genreFilter" focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="190.0" promptText="Todas las categorias" unFocusColor="WHITE">
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                        <JFXComboBox focusColor="WHITE" labelFloat="true" layoutX="452.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" promptText="Idioma" unFocusColor="WHITE">
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                        <JFXComboBox fx:id="actorFilter" focusColor="WHITE" labelFloat="true" layoutX="480.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" promptText="Actor" unFocusColor="WHITE">
+                           <HBox.margin>
+                              <Insets left="30.0" right="30.0" />
+                           </HBox.margin>
+                        </JFXComboBox>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
+                     <children>
+                        <JFXButton onAction="#filter" prefHeight="35.0" text="Filtrar" textFill="WHITE">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="16" />
+                           </graphic>
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
+            </VBox>
              <JFXButton onAction="#goToMain" styleClass="button-back" text="Volver" textFill="WHITE">
                 <graphic>
                     <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="26" />

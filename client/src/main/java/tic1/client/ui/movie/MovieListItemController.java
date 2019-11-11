@@ -1,10 +1,12 @@
 package tic1.client.ui.movie;
 
+import com.sun.prism.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.scene.text.Text;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.Actor;
@@ -37,12 +39,15 @@ public class MovieListItemController implements Initializable {
     @FXML
     private AnchorPane root;
 
+    private boolean evenRow = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
     }
 
     public void populate(Movie movie) {
+        if (evenRow) root.getStyleClass().add("dark-row");
         movieName.setText(movie.getName());
         movieDuration.setText(Long.toString(movie.getDuration()));
         movieDescription.setText(movie.getDescription());
@@ -64,5 +69,13 @@ public class MovieListItemController implements Initializable {
 
     public void setRoot(AnchorPane root) {
         this.root = root;
+    }
+
+    public boolean isEvenRow() {
+        return evenRow;
+    }
+
+    public void setEvenRow(boolean evenRow) {
+        this.evenRow = evenRow;
     }
 }

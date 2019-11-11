@@ -12,9 +12,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.MovieListItemController">
+<AnchorPane fx:id="root" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" stylesheets="/movie_crud/ui/styles/dark-theme.css" fx:controller="tic1.client.ui.movie.MovieListItemController">
    <children>
-      <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/dark-theme.css">
+      <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="1000.0">
          <children>
             <ImageView fitHeight="220.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
@@ -116,6 +116,5 @@
             </VBox>
          </children>
       </HBox>
-      <Line endX="658.5" layoutX="380.0" layoutY="248.0" startX="-100.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="120.0" />
    </children>
 </AnchorPane>
