@@ -56,25 +56,25 @@ public class FunctionMgr {
         existingFuncion.setSecondId(tempFuncion.getSecondId());
         funcionRepository.save(existingFuncion);
     }
-    List<Funcion> getByIdSala(Sala sala){
+   public List<Funcion> getByIdSala(Sala sala){
         return funcionRepository.findAllByIdSala(sala);
     };
 
 
-    List<Funcion> fetchByIdSalaId(long salaid){
+    public List<Funcion> fetchByIdSalaId(long salaid){
         return funcionRepository.findAllByIdSalaId(salaid);
     }
 
-    List<Funcion> fetchByMovieAndIdDateAfter(Movie movie, LocalDateTime today){
+    public List<Funcion> fetchByMovieAndIdDateAfter(Movie movie, LocalDateTime today){
         return funcionRepository.findAllByMovieAndIdDateAfter(movie,today);
     };//cuando se llame la funcion usar now()
 
-    List<Funcion> getByDateAfter(LocalDateTime today){
+    public List<Funcion> getByDateAfter(LocalDateTime today){
         return funcionRepository.findAllByIdDateAfter(today);
     };//cuando se llame la funcion usar now()
 
 
-    List<Funcion> getByMovieAndDate(Movie movie, LocalDateTime today){
+    public List<Funcion> getByMovieAndDate(Movie movie, LocalDateTime today){
         return  funcionRepository.findAllByMovieAndIdDate(movie, today);//cuando se llame la funcion usar now()
     };//cuando se llame la funcion usar now()
 
