@@ -35,7 +35,6 @@ public class MovieRestController {
 
     @PostMapping("/movie")
     public void save(@RequestBody NewMovieDTO movie) {
-        Movie move = new Movie(movie);
         movieMgr.addMovie(new Movie(movie));
     }
 
