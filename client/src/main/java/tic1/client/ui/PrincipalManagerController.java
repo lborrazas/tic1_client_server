@@ -1,13 +1,24 @@
 package tic1.client.ui;
+
 import com.jfoenix.controls.JFXTextField;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.util.Callback;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import org.springframework.beans.factory.annotation.Autowired;
 import tic1.client.ClientApplication;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
@@ -16,21 +27,6 @@ import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.movie.AddFunctionController;
 import tic1.client.ui.movie.MovieController;
 import tic1.client.ui.movie.MovieDetailsController;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-
 
 import java.io.IOException;
 import java.net.URL;
@@ -39,14 +35,13 @@ import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Controller
-public class Principal2 implements Initializable {
+public class PrincipalManagerController implements Initializable {
 
     @Autowired
     private MovieRestTemplate movieRestTemplate; //todo all movimgr references to controller
 
     @FXML
-    private TableView<Movie> movieTable;
+    private TableView<Movie> functionTable;
 
     @FXML
     public TableColumn<Movie, String> colName;
@@ -64,7 +59,7 @@ public class Principal2 implements Initializable {
     private AnchorPane mainContainer;
 
     @FXML
-    private Tab movieTab;
+    private Tab functionTab;
 
     @FXML
     private MenuItem edit;
@@ -78,37 +73,23 @@ public class Principal2 implements Initializable {
     private JFXTextField filter;
 
     @Autowired
-    public Principal2(ClientApplication clientApplication) {
+    public PrincipalManagerController(ClientApplication clientApplication) {
         this.clientApplication = clientApplication;
     }
 
 
-    private ObservableList<Movie> movieList = FXCollections.observableArrayList();
+    private ObservableList<Movie> functionList = FXCollections.observableArrayList();
 
-    @FXML
-    void addMovie(ActionEvent event) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+    private void loadFunction() {
+        functionList.clear();
+        functionList.addAll(movieRestTemplate.findAllPaged(0));
 
-        Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("/movie_crud/ui/movie/AddMovie.fxml"));
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-    private void loadMovies() {
-        movieList.clear();
-        movieList.addAll(movieRestTemplate.findAllPaged(0));
-
-        movieTable.setItems(movieList);
+        functionTable.setItems(functionList);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        movieTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -125,9 +106,9 @@ public class Principal2 implements Initializable {
                 }
             }
         });
-        loadMovies();
+        loadFunction();
 
-        FilteredList<Movie> filteredData = new FilteredList<>(movieList, e -> true);
+        FilteredList<Movie> filteredData = new FilteredList<>(functionList, e -> true);
 
         filter.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(movie -> {
@@ -146,62 +127,22 @@ public class Principal2 implements Initializable {
             });
         });
         SortedList<Movie> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().bind(movieTable.comparatorProperty());
-        movieTable.setItems(sortedData);
+        sortedData.comparatorProperty().bind(functionTable.comparatorProperty());
+        functionTable.setItems(sortedData);
     }
 
     public void refreshTable() {
-        movieList.clear();
-        movieList.addAll(movieRestTemplate.findAllPaged(0));
+        functionList.clear();
+        functionList.addAll(movieRestTemplate.findAllPaged(0));
 
-        movieTable.setItems(movieList);
+        functionTable.setItems(functionList);
 
-    }
-
-
-    private void loadMovieDetails() {
-        try {
-            //Load second scene
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-
-            Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
-
-            //Get controller of scene2
-            MovieDetailsController movieDetailsController = fxmlLoader.getController();
-            //Pass whatever data you want. You can have multiple method calls here
-//            movieDetailsController.loadData();
-
-            //Show scene 2 in new window
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException ex) {
-            System.err.println(ex);
-        }
-    }
-
-    public void viewDetails(ActionEvent event) throws IOException {
-        Movie selectedForPreview = movieTable.getSelectionModel().getSelectedItem();
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
-
-        MovieDetailsController movieDetailsController = fxmlLoader.getController();
-        movieDetailsController.loadData(selectedForPreview);
-        movieDetailsController.setParent("Principal2");
-
-        Scene scene = new Scene(root,800,600);
-        Stage stage =  (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
-        stage.setScene(scene);
-        stage.show();
     }
 
     @FXML
-    public void deleteMovie(ActionEvent event) {
+    public void deleteFunction(ActionEvent event) {
         //Fetch the selected row
-       Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
+        Movie selectedForDeletion = functionTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
@@ -213,9 +154,9 @@ public class Principal2 implements Initializable {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         if (answer.get() == ButtonType.OK) {
             movieRestTemplate.deleteMovie(selectedForDeletion.getId());
-           // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
+            // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
             alert1.setContentText("Pelicula " +  selectedForDeletion.getName() + " borrada con exito.");
-            movieList.remove(selectedForDeletion);
+            functionList.remove(selectedForDeletion);
 
         } else {
             alert1.setContentText("Borrado cancelado.");
@@ -223,9 +164,9 @@ public class Principal2 implements Initializable {
     }
 
     @FXML
-    public void editMovie(ActionEvent event) {
+    public void editFunction(ActionEvent event) {
         //Fetch the selected row
-       Movie selectedForEdit = movieTable.getSelectionModel().getSelectedItem();
+        Movie selectedForEdit = functionTable.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
@@ -246,5 +187,26 @@ public class Principal2 implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    public void createFunction(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/movie/AddFunction.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

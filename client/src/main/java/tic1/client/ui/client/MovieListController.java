@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -132,7 +133,7 @@ public class MovieListController implements Initializable {
 
     @FXML
     public void filter() {
-        list.getChildren().removeAll();
+        list.getChildren().clear();
 
         Actor actor = actorFilter.getSelectionModel().getSelectedItem();
         Genre genre = genreFilter.getSelectionModel().getSelectedItem();
@@ -152,6 +153,14 @@ public class MovieListController implements Initializable {
 
         boolean evenRow = false;
 
+        if (filteredList.isEmpty()) {
+
+            Label label = new Label();
+            label.setText("No se encontraron resultados.");
+
+
+
+        }
 
         for (Movie movie : filteredList) {
             try {

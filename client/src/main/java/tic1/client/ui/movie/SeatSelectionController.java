@@ -8,18 +8,22 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 @Controller
-public class SeatSelectionController {
+public class SeatSelectionController implements Initializable {
 
     @FXML
     private AnchorPane rootContainer;
@@ -29,6 +33,9 @@ public class SeatSelectionController {
 
     @FXML
     private JFXButton backButton;
+
+    @FXML
+    private GridPane grid;
 
     @FXML
     public void goToDetails(ActionEvent actionEvent) throws IOException {
@@ -56,5 +63,17 @@ public class SeatSelectionController {
         timeline2.getKeyFrames().add(kf2);
         timeline1.play();
         timeline2.play();
+    }
+
+    /*public void populateSala(Seat seat) {
+
+        grid.add(seat, seat.getRow, seat.getColumn);
+    }*/
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+       /* for (:) {
+            populateSala();
+        }*/
     }
 }
