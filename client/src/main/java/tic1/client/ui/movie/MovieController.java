@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.MultipartFile;
 import tic1.client.models.Actor;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
@@ -28,6 +29,7 @@ import tic1.client.services.ActorRestTemplate;
 import tic1.client.services.GenreRestTemplate;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
+import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.commons.transfers.MovieActorDTO;
 
@@ -221,8 +223,9 @@ public class MovieController implements Initializable {
         String relativePath = null;
 
         if (selectedFile != null) {
-            
-            imageId.setText(selectedFile.getName());
+            /*ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+            imageRestTemplate.createImage(selectedFile);
+            imageId.setText(selectedFile.getName());*/
 
         }
     }
