@@ -221,7 +221,9 @@ public class MovieController implements Initializable {
         String relativePath = null;
 
         if (selectedFile != null) {
+            
             imageId.setText(selectedFile.getName());
+
         }
     }
 
