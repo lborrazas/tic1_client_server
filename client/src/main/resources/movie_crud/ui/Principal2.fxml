@@ -39,15 +39,15 @@
                         </HBox>
                         <VBox layoutY="94.0" prefHeight="406.0" prefWidth="250.0" styleClass="toolbar-container" AnchorPane.leftAnchor="0.0">
                             <children>
-                                <JFXTextField fx:id="filter" focusColor="WHITE" labelFloat="true" promptText="Filtrar" unFocusColor="WHITE">
-                                    <font>
-                                        <Font name="Arial" size="16.0" />
-                                    </font>
-                                    <VBox.margin>
-                                        <Insets left="25.0" right="25.0" top="10.0" />
-                                    </VBox.margin>
-                                </JFXTextField>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#addMovie" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Pelicula">
+                        <JFXTextField fx:id="filter" focusColor="WHITE" labelFloat="true" promptText="Filtrar" unFocusColor="WHITE">
+                           <font>
+                              <Font name="Arial" size="16.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="25.0" right="25.0" top="10.0" />
+                           </VBox.margin>
+                        </JFXTextField>
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#addMovie" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Pelicula">
                                     <VBox.margin>
                                         <Insets top="2.0" />
                                     </VBox.margin>
@@ -61,7 +61,7 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Teatro">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Teatro">
                                     <VBox.margin>
                                         <Insets top="20.0" />
                                     </VBox.margin>
@@ -75,7 +75,7 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Configuracion">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Configuracion">
                                     <VBox.margin>
                                         <Insets top="20.0" />
                                     </VBox.margin>
@@ -136,7 +136,6 @@
                                                                         <MenuItem fx:id="view" mnemonicParsing="false" onAction="#viewDetails" text="Ver" />
                                                                         <MenuItem fx:id="edit" mnemonicParsing="false" onAction="#editMovie" text="Editar" />
                                                                         <MenuItem fx:id="delete" mnemonicParsing="false" onAction="#deleteMovie" text="Eliminar" />
-                                                      <MenuItem mnemonicParsing="false" onAction="#createFunction" text="Crear Funcion" />
                                                                     </items>
                                                                 </ContextMenu>
                                                             </contextMenu>

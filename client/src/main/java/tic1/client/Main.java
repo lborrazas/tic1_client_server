@@ -25,7 +25,7 @@ public class Main {
         actors.add(actor);
         ArrayList<Genre> genres = new ArrayList<>();
         genres.add(genre);
-        movie.setName("movie1");
+        movie.setName("Dunkirk");
         movie.setDescription("descripcion");
         movie.setActors(actors);
         movie.setGenre(genres);
@@ -38,7 +38,7 @@ public class Main {
         System.out.println(genres1.get(0).getGenre());
 
 
-       // movieRestTemplate.createMovie(movie);
+        movieRestTemplate.createMovie(movie);
        // List<Movie> movies = movieRestTemplate.findAllPaged(1);
        // List<Movie> movies = movieRestTemplate.filterGenrePaged("dramatica", 0);
        // List<Movie> movies = movieRestTemplate.filterTitlePaged("NOMBRE", 0);
