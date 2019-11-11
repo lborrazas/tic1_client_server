@@ -21,4 +21,5 @@ private SeatPk id;
         this.id = id;
 
     }
+
 }

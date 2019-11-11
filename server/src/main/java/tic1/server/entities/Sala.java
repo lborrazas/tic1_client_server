@@ -42,4 +42,5 @@ public class Sala {
     public void setCinema(Cinema cinema) {
         this.cinema = cinema;
     }
+
 }

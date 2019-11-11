@@ -1,18 +1,8 @@
-package tic1.server.entities;
+package tic1.commons.transfers;
 
-import javax.persistence.*;
-
-@Entity
-@Table
-public class Provider {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @Column
+public class ProviderDTO {
     private String name;
-
-    public Provider() {
-    }
+    private long id;
 
     public long getId() {
         return id;
@@ -29,5 +19,4 @@ public class Provider {
     public void setName(String name) {
         this.name = name;
     }
-
 }

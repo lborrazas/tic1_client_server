@@ -3,8 +3,11 @@ package tic1.server.business;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
+import tic1.server.entities.Cinema;
 import tic1.server.entities.Sala;
 import tic1.server.persistence.SalaRepository;
+
+import java.util.List;
 
 @Service
 public class SalaMgr {
@@ -29,6 +32,13 @@ public class SalaMgr {
         existingSala.setCinema(sala.getCinema());
         salaRepository.save(existingSala);
 
+    }
+
+    List<Sala> getByName(String name){
+        return salaRepository.findAllByName(name);
+    };
+    List<Sala> findAllByCinema(Cinema cinema){
+        return salaRepository.findAllByCinema(cinema);
     }
 
 

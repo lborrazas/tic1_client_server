@@ -14,4 +14,5 @@ public interface GenreRepository extends JpaRepository<Genre,Long> {
     List<Genre> findAllById(Long id);
 
     List<Genre> findByGenre(String genre); //todo cambiar por la de juan
+    List<Genre> findByGenreContaining(String genre);
 }

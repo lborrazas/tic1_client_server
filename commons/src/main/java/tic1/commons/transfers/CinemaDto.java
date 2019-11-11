@@ -1,26 +1,10 @@
-package tic1.server.entities;
+package tic1.commons.transfers;
 
-import javax.persistence.*;
-
-@Entity
-@Table
-public class Cinema {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+public class CinemaDto {
     private long id;
-    @Column
     private String name;
-    @Column
     private String location;
-
-    @ManyToOne
-    @JoinColumn(name = "id_provider")
-    private Provider provider;
-
-
-    public Cinema() {
-    }
+    private long provider_id;
 
     public long getId() {
         return id;
@@ -46,14 +30,11 @@ public class Cinema {
         this.location = location;
     }
 
-    public Provider getProvider() {
-        return provider;
+    public long getProviderId() {
+        return provider_id;
     }
 
-    public void setProvider(Provider provider) {
-        this.provider = provider;
+    public void setProvider(long provider_id) {
+        this.provider_id = provider_id;
     }
 }
-
-
-

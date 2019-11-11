@@ -54,5 +54,6 @@ public class Transaccion {
     public void setPrecioTotal(int precioTotal) {
         this.precioTotal = precioTotal;
     }
+
 }
 
