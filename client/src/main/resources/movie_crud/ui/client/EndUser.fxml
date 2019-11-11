@@ -20,14 +20,14 @@
     <children>
         <JFXDrawer fx:id="header" prefHeight="70.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <HBox fx:id="box" prefHeight="70.0" prefWidth="1000.0">
+                <HBox fx:id="box" alignment="CENTER" prefHeight="70.0" prefWidth="1000.0">
                     <children>
                         <JFXHamburger fx:id="hamburger" prefHeight="110.0" prefWidth="110.0">
                             <HBox.margin>
                                 <Insets />
                             </HBox.margin>
                         </JFXHamburger>
-                        <Pane prefHeight="110.0" prefWidth="662.0" HBox.hgrow="ALWAYS" />
+                        <Pane prefHeight="110.0" prefWidth="600.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                             <children>
                                 <MenuButton graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
@@ -48,7 +48,24 @@
                 </HBox>
             </children>
         </JFXDrawer>
-        <JFXDrawer fx:id="drawer" stylesheets="/movie_crud/ui/styles/dark-theme.css" defaultDrawerSize="200.0" maxHeight="1.7976931348623157E308" prefWidth="300.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
+        <AnchorPane fx:id="mainContent" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+            <children>
+                <AnchorPane fx:id="homeContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <ScrollPane fx:id="pane" hbarPolicy="NEVER" prefHeight="625.0" prefWidth="1000.0" styleClass="edge-to-edge">
+                            <content>
+                                <AnchorPane prefHeight="1200.0" prefWidth="1000.0">
+                                    <children>
+                                        <GridPane fx:id="grid" layoutY="69.0" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: #2A2E37" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </ScrollPane>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0" maxHeight="1.7976931348623157E308" prefWidth="300.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
             <children>
                 <VBox fx:id="toolbarContent" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="300.0" styleClass="header">
                     <children>
@@ -102,22 +119,5 @@
                 </VBox>
             </children>
         </JFXDrawer>
-        <AnchorPane fx:id="mainContent" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-            <children>
-                <AnchorPane fx:id="homeContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <ScrollPane fx:id="pane" styleClass="edge-to-edge" hbarPolicy="NEVER" prefHeight="625.0" prefWidth="1000.0">
-                            <content>
-                                <AnchorPane prefHeight="1200.0" prefWidth="1000.0">
-                                    <children>
-                                        <GridPane fx:id="grid" layoutY="69.0" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: #2A2E37" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                    </children>
-                                </AnchorPane>
-                            </content>
-                        </ScrollPane>
-                    </children>
-                </AnchorPane>
-            </children>
-        </AnchorPane>
     </children>
 </AnchorPane>

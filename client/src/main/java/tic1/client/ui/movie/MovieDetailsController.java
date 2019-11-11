@@ -23,6 +23,8 @@ import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
+import tic1.client.models.Actor;
+import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.ui.Principal2;
@@ -30,7 +32,10 @@ import tic1.client.ui.client.EndUserController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 @Controller
 public class MovieDetailsController implements Initializable {
@@ -61,10 +66,10 @@ public class MovieDetailsController implements Initializable {
     private Button buy_btn;
 
     @FXML
-    private JFXComboBox<?> movie_date;
+    private JFXComboBox<LocalDate> movie_date;
 
     @FXML
-    private JFXComboBox<?> movie_time;
+    private JFXComboBox<LocalTime> movie_time;
 
     @FXML
     private JFXButton minus_button;
@@ -78,15 +83,25 @@ public class MovieDetailsController implements Initializable {
     @FXML
     private AnchorPane anchorRoot;
 
+    @FXML
+    private Label movie_genres;
+
     private int numberOfEntrances = 0;
+
+    private String parent;
+
+    private Movie movieDetails;
 
     @FXML
     public void loadData(Movie movie) {
 
         movie_name.setText(movie.getName());
         movie_description.setText(movie.getDescription());
-      //  movie_actors.setText(movie.getActors());
-      //  movie_duration.setText(movie.getDuration());
+        movie_actors.setText(movie.getActors().stream().map(Actor::getName)
+                .collect(Collectors.joining(", ")));
+        movie_duration.setText(Long.toString(movie.getDuration()));
+        movie_genres.setText(movie.getGenre().stream().map(Genre::getGenre)
+                .collect(Collectors.joining(", ")));
 
     }
 
@@ -106,7 +121,7 @@ public class MovieDetailsController implements Initializable {
 
         Timeline timeline1 = new Timeline();
         KeyValue kv1 = new KeyValue(anchorRoot.translateXProperty(), -scene.getWidth(), Interpolator.EASE_OUT);
-        KeyFrame kf1 = new KeyFrame(Duration.seconds(1), kv1);
+        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.7), kv1);
         timeline1.getKeyFrames().add(kf1);
         timeline1.setOnFinished(t -> {
             rootContainer.getChildren().remove(anchorRoot);
@@ -114,7 +129,7 @@ public class MovieDetailsController implements Initializable {
 
         Timeline timeline2 = new Timeline();
         KeyValue kv2 = new KeyValue(root.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame kf2 = new KeyFrame(Duration.seconds(1), kv2);
+        KeyFrame kf2 = new KeyFrame(Duration.seconds(0.7), kv2);
         timeline2.getKeyFrames().add(kf2);
         timeline1.play();
         timeline2.play();
@@ -134,7 +149,7 @@ public class MovieDetailsController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-        if (actionEvent.getSource() instanceof MenuItem) {
+        if (parent != null && parent.equals("Principal2")) {
             Parent root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
             Scene scene = new Scene(root, 800, 500);
             Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
@@ -142,9 +157,29 @@ public class MovieDetailsController implements Initializable {
             stage.show();
         } else {
             Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
-            EndUserController euc = fxmlLoader.getController();
-            euc.goBack();
+            EndUserController endUserController = fxmlLoader.getController();
+            endUserController.setMoviesAreLoaded(true);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
         }
 
+    }
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
+
+    public Movie getMovieDetails() {
+        return movieDetails;
+    }
+
+    public void setMovieDetails(Movie movieDetails) {
+        this.movieDetails = movieDetails;
     }
 }

@@ -1,10 +1,15 @@
 package tic1.client.ui;
 import com.jfoenix.controls.JFXTextField;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.util.Callback;
 import tic1.client.ClientApplication;
+import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
@@ -31,6 +36,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Controller
 public class Principal2 implements Initializable {
@@ -48,7 +55,7 @@ public class Principal2 implements Initializable {
     public TableColumn<Movie, String> colDuration;
 
     @FXML
-    public TableColumn<Movie, String> colGenre;
+    public TableColumn<Movie, Set<Genre>> colGenre;
 
     @FXML
     private StackPane rootPane;
@@ -77,7 +84,6 @@ public class Principal2 implements Initializable {
 
 
     private ObservableList<Movie> movieList = FXCollections.observableArrayList();
-    private ObservableList<String> genres = FXCollections.observableArrayList("Accion", "Drama", "Suspenso");
 
     @FXML
     void addMovie(ActionEvent event) throws Exception {
@@ -95,7 +101,7 @@ public class Principal2 implements Initializable {
 
     private void loadMovies() {
         movieList.clear();
-        movieList.addAll(movieRestTemplate.findAll());
+        movieList.addAll(movieRestTemplate.findAllPaged(0));
 
         movieTable.setItems(movieList);
     }
@@ -107,6 +113,18 @@ public class Principal2 implements Initializable {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
         colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        colGenre.setCellFactory(col -> new TableCell<Movie, Set<Genre>>() {
+            @Override
+            public void updateItem(Set<Genre> genres, boolean empty) {
+                super.updateItem(genres, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    setText(genres.stream().map(Genre::getGenre)
+                            .collect(Collectors.joining(", ")));
+                }
+            }
+        });
         loadMovies();
 
         FilteredList<Movie> filteredData = new FilteredList<>(movieList, e -> true);
@@ -134,7 +152,7 @@ public class Principal2 implements Initializable {
 
     public void refreshTable() {
         movieList.clear();
-        movieList.addAll(movieRestTemplate.findAll());
+        movieList.addAll(movieRestTemplate.findAllPaged(0));
 
         movieTable.setItems(movieList);
 
@@ -172,6 +190,7 @@ public class Principal2 implements Initializable {
 
         MovieDetailsController movieDetailsController = fxmlLoader.getController();
         movieDetailsController.loadData(selectedForPreview);
+        movieDetailsController.setParent("Principal2");
 
         Scene scene = new Scene(root,800,600);
         Stage stage =  (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
@@ -213,7 +232,6 @@ public class Principal2 implements Initializable {
 
             Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("/movie_crud/ui/movie/AddMovie.fxml"));
 
-            //Get controller of scene2
             MovieController movieController = fxmlLoader.getController();
             //Pass whatever data you want. You can have multiple method calls here
             movieController.loadMovieData(selectedForEdit);
