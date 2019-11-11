@@ -1,4 +1,5 @@
-package tic1.server.services;
+package tic1.server;
+
 import java.io.IOException;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import tic1.server.storage.FileSystemStorageService;
 import tic1.server.storage.StorageFileNotFoundException;
 import tic1.server.storage.StorageService;
 
@@ -53,11 +55,11 @@ public class FileUploadController {
 
     @PostMapping("/")
     public String handleFileUpload(@RequestParam("file") MultipartFile file,
-                                   RedirectAttributes redirectAttributes) {
+            RedirectAttributes redirectAttributes) {
 
         storageService.store(file);
         redirectAttributes.addFlashAttribute("message",
-                "You successfully uploaded " + file.getOriginalFilename() + "!");
+                "You successfully uploaded " + file.getOriginalFilename()+  "!");
 
         return "redirect:/";
     }
