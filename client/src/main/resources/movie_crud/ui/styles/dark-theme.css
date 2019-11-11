@@ -832,6 +832,6 @@ Label {
     -fx-border-color: white;
 }
 
-#list:even {
-
+.dark-row {
+    -fx-background-color: derive(-fx-primary, 25%);
 }

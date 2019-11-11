@@ -37,6 +37,7 @@ import tic1.client.ui.movie.MovieListItemController;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -94,123 +95,31 @@ public class MovieListController implements Initializable {
         ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
         MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
         List<Movie> movies = movieRestTemplate.findAllPaged(0);
+        boolean evenRow = false;
         for (Movie movie : movies) {
             try {
-                addMovie(movie);
+                if (evenRow) {
+                    addMovie(movie, true);
+                    evenRow = false;
+                } else {
+                    addMovie(movie, false);
+                    evenRow = true;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         actorFilter.setItems(FXCollections.observableArrayList(actorRestTemplate.findAll()));
         genreFilter.setItems(FXCollections.observableArrayList(genreRestTemplate.findAll()));
-
-        /*Movie movie = new Movie();
-        movie.setName("Star Wars");
-        movie.setDescription("Descjsldfiuoipwfhjfhujbhuifhjd");
-     //   movie.setDuration("1h 50m");
-     //   movie.setActors("Luk Skywalker");
-        addMovie(movie);
-        addMovie(movie);
-        addMovie(movie);*/
     }
 
-    /*<AnchorPane layoutX="236.0" prefHeight="250.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                           <children>
-                              <ImageView fitHeight="220.0" fitWidth="160.0" layoutX="14.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true" />
-                              <Text layoutX="174.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre Pelicula">
-                                 <font>
-                                    <Font name="Arial" size="26.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="174.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-" wrappingWidth="700.0">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="174.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Actores:">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="391.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Text>
-                              <Text layoutX="253.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
-                                 <font>
-                                    <Font name="Arial" size="16.0" />
-                                 </font>
-                              </Text>
-                              <JFXButton layoutX="890.0" layoutY="199.0" text="Comprar">
-                                 <font>
-                                    <Font size="16.0" />
-                                 </font>
-                              </JFXButton>
-                              <MenuButton layoutX="942.0" layoutY="16.0" mnemonicParsing="false">
-                                <items>
-                                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                                  <MenuItem mnemonicParsing="false" text="Action 2" />
-                                </items>
-                              </MenuButton>
-                           </children>
-                        </AnchorPane>*/
-
     @FXML
-    private void addMovie(Movie movie) throws IOException {
-        /*AnchorPane box = new AnchorPane();
-        box.setMinWidth(list.getWidth());
-        box.setPrefHeight(250);
-        ImageView pic;
-        Image image;
-        Text nombre = new Text("nombre");
-        nombre.getStyleClass().add("texts");
-        nombre.setText(movie.getName());
-        Text desc = new Text("desc");
-        desc.getStyleClass().add("texts");
-        desc.setText(movie.getDescription());
-        Text duration = new Text("duration");
-        duration.getStyleClass().add("texts");
-        duration.setText(Long.toString(movie.getDuration()));
-        Text actors = new Text("actors");
-        actors.getStyleClass().add("texts");
-         actors.setText(movie.getActors().stream().map(Actor::getName)
-                 .collect(Collectors.joining(", ")));
-        JFXButton comprar = new JFXButton("Comprar");*/
-
-       /* image = new Image(movie.getImageID());
-        pic = new ImageView();
-        pic.setFitWidth(160);
-        pic.setFitHeight(220);
-        pic.setImage(image);
-        box.getChildren().add(pic);
-        pic.setLayoutX(15);
-        pic.setLayoutY(15);
-        pic.getStyleClass().add("pics");*//*
-        box.getChildren().add(nombre);
-        nombre.setLayoutX(175);
-        nombre.setLayoutY(40);
-        box.getChildren().add(duration);
-        duration.setLayoutX(391);
-        duration.setLayoutY(40);
-        box.getChildren().add(desc);
-        desc.setLayoutY(75);
-        desc.setLayoutX(175);
-        desc.setWrappingWidth(700);
-        box.getChildren().add(actors);
-        actors.setLayoutY(140);
-        actors.setLayoutX(175);
-        box.getChildren().add(comprar);
-        comprar.setLayoutX(890);
-        comprar.setLayoutY(200);
-        box.getStyleClass().add("movie-list");
-*/
-
+    private void addMovie(Movie movie, boolean evenRow) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         Parent root = fxmlLoader.load(MovieListItemController.class.getResourceAsStream("/movie_crud/ui/movie/MovieListItem.fxml"));
         MovieListItemController movieListItemController = fxmlLoader.getController();
+        movieListItemController.setEvenRow(evenRow);
         movieListItemController.populate(movie);
-//        box.getStylesheets().add("/com/example/movie_crud/ui/styles/dark-theme.css");
         list.getChildren().add(root);
     }
 
@@ -220,5 +129,42 @@ public class MovieListController implements Initializable {
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
     }
-}
 
+    @FXML
+    public void filter() {
+        list.getChildren().removeAll();
+
+        Actor actor = actorFilter.getSelectionModel().getSelectedItem();
+        Genre genre = genreFilter.getSelectionModel().getSelectedItem();
+
+        List<Movie> filteredList = new ArrayList<>();
+
+        MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
+
+        if (actor != null) {
+            filteredList = movieRestTemplate.filterActorPaged(actor, 0);
+            System.out.println();
+        }
+
+        if (genre != null) {
+            movieRestTemplate.filterGenrePaged(genre, 0);
+        }
+
+        boolean evenRow = false;
+
+
+        for (Movie movie : filteredList) {
+            try {
+                if (evenRow) {
+                    addMovie(movie, true);
+                    evenRow = false;
+                } else {
+                    addMovie(movie, false);
+                    evenRow = true;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
