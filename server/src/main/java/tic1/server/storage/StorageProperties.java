@@ -8,7 +8,7 @@ public class StorageProperties {
     /**
      * Folder location for storing files
      */
-    private String location = "C:\\Users\\telematica\\Desktop\\Laboratorio(No Borrar)\\tic1_client_server\\server\\upload-dir";
+    private String location = "upload-dir";
 
     public String getLocation() {
         return location;

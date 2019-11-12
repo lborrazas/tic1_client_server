@@ -48,16 +48,8 @@ public class UserMgr {
     }
 
 
-<<<<<<< HEAD
    // public List<User> getByType(String type){
      //   return userRepository.findByPreference(type);
    // }
-
-=======
-   /* public List<User> getByType(String type){
-        return userRepository.findByPreference(type);
-    }
-*/
->>>>>>> 2c974d09be1dd37498235e3737f2dc272cb7979d
 
 }
