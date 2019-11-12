@@ -3,6 +3,7 @@ package tic1.server.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 import tic1.commons.transfers.FunctionDTO;
 import tic1.commons.transfers.NewMovieDTO;
 import tic1.server.business.FunctionMgr;
@@ -14,8 +15,8 @@ import tic1.server.entities.Sala;
 
 import java.time.LocalDateTime;
 import java.util.List;
-
-public class FunctionRestController {
+@RestController
+public class FuncionRestController {
 
     @Autowired
     FunctionMgr functionMgr;
@@ -24,7 +25,7 @@ public class FunctionRestController {
     @Autowired
     MovieMgr movieMgr;
 
-    @GetMapping("/function/{sala_id}/{date}")
+    /*@GetMapping("/function/{sala_id}/{date}")
     public FunctionDTO getFunctionDto(@PathVariable("sala_id") long sala_id, @PathVariable("date")LocalDateTime localDateTime){
         FunctionDTO functionDTO = new FunctionDTO();
         Sala sala = salaMgr.getSalaById(sala_id);
@@ -38,7 +39,7 @@ public class FunctionRestController {
         functionDTO.setMovie(function.getMovie().toDTO());
         return functionDTO;
     }
-
+*/
     @GetMapping("/function/{movie_id}/{date}")
     public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") long movie_id, @PathVariable("date")LocalDateTime localDateTime){
         ;

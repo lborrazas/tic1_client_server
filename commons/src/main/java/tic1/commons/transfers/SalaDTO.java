@@ -6,7 +6,8 @@ public class SalaDTO {
 
     private long id;
     private String cinemaName;
-    private List<SeatDTO> seats;
+    private String name;
+
 
     public SalaDTO() {
     }
@@ -27,11 +28,11 @@ public class SalaDTO {
         this.cinemaName = cinemaName;
     }
 
-    public List<SeatDTO> getSeats() {
-        return seats;
+    public String getName() {
+        return name;
     }
 
-    public void setSeats(List<SeatDTO> seats) {
-        this.seats = seats;
+    public void setName(String name) {
+        this.name = name;
     }
 }

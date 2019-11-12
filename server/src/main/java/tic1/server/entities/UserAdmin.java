@@ -7,6 +7,7 @@ import java.util.List;
 @DiscriminatorValue("Admin")
 public class UserAdmin extends User{
 
+
 }
 
 

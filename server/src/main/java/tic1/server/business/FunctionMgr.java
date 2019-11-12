@@ -75,7 +75,7 @@ public class FunctionMgr {
 
 
     public List<Funcion> getByMovieAndDate(Movie movie, LocalDateTime today){
-        return  funcionRepository.findAllByMovieAndIdDate(movie, today);//cuando se llame la funcion usar now()
+        return  funcionRepository.findAllByMovieAndIdDateAfter(movie, today);//cuando se llame la funcion usar now()
     };//cuando se llame la funcion usar now()
 
 }

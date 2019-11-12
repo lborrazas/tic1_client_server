@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="User")
+@Table(name="Users")
 @DiscriminatorColumn(name="Type", discriminatorType =DiscriminatorType.STRING)
 public class User {
     @Id
