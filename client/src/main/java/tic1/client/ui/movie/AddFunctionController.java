@@ -15,6 +15,9 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import tic1.client.models.Actor;
+import tic1.client.models.Genre;
+import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
 
 import java.net.URL;
@@ -27,7 +30,7 @@ import java.util.ResourceBundle;
 
 @Controller
 public class AddFunctionController implements Initializable {
-
+/*
     @Autowired
     private MovieRestTemplate movieRestTemplate;
 
@@ -38,12 +41,18 @@ public class AddFunctionController implements Initializable {
     private JFXComboBox<String> salaName;
 
     @FXML
+    private JFXComboBox<String> movieName;
+
+    @FXML
     private DatePicker datePicker;
 
     @FXML
     private JFXComboBox<LocalTime> timePicker;
 
     private ObservableList<LocalDate> selectedDates = FXCollections.observableArrayList();
+
+    private boolean isEditing;
+    private Funcion funcionForEdit;
 
     @FXML
     void addFunction(ActionEvent event) {
@@ -58,11 +67,12 @@ public class AddFunctionController implements Initializable {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
-
+*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*cinemaName.setItems();
-        sala.setItems();*/
+/*cinemaName.setItems();
+        sala.setItems();
+
         datePicker.setOnAction(event -> selectedDates.add(datePicker.getValue()));
 
         datePicker.setDayCellFactory(new Callback<DatePicker, DateCell>() {
@@ -78,6 +88,20 @@ public class AddFunctionController implements Initializable {
                     }
                 };
             }
-        });
-    }
+        });*/
+    }/*
+
+    public void loadMovieData(Funcion funcion) {
+        try {
+
+            cinemaName.getSelectionModel().select(funcion.getName());
+            salaName.getSelectionModel().select(funcion.getDescription());
+
+            isEditing = true;
+            funcionForEdit = funcion;
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+    }*/
 }

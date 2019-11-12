@@ -22,33 +22,40 @@ public class Movie {
     private String description;
 
     @Column
-    private long duration;
+    private String imagePath;
 
+    @Column
+    private long duration;
 
     @ManyToMany(cascade = CascadeType.MERGE,  fetch = FetchType.EAGER)
     private Set<Genre> genres;
 
-
     @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Actor> actors;
-
 
 
     public Movie() {
     }
 
 
-    public Movie(NewMovieDTO temp)  {
-
+    public Movie(NewMovieDTO temp) {
         this.actors = temp.getActors().stream().map(Actor::new).collect(Collectors.toSet());
         this.description = temp.getDescription();
         this.duration = temp.getDuration();
         this.id = temp.getId();
         this.name = temp.getName();
         this.genres = temp.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
-
+        this.imagePath = temp.getImagePath();
     }
 
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public long getId() {
         return id;

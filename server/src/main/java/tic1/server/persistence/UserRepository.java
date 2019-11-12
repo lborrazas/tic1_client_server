@@ -13,11 +13,19 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User,Long>{
 
     List<User> findAllByUsername(String name);
+<<<<<<< HEAD
 
     ////public final String Type  = "SELECT * FROM  User  WHERE  type = :product";
 
  //   @Query(Type)
   //  List<User> findByPreference(@Param("product") String prouduct);
+=======
+/*
+    public final String Type  = "SELECT * FROM  User  WHERE  type = :product";
+
+    @Query(Type)
+    List<User> findByPreference(@Param("product") String prouduct);*/
+>>>>>>> 2c974d09be1dd37498235e3737f2dc272cb7979d
 
     //List<User> findAllByCreditCard(String  creditCards);
    // List<User> findAllByRoleContaining(String role);

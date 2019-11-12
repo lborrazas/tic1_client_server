@@ -1,5 +1,7 @@
 package tic1.commons.transfers;
 
+
+import java.io.File;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +12,15 @@ public class NewMovieDTO {
     private Set<MovieActorDTO> actors;
     private String name;
     private Set<MovieGenreDTO> genres;
+    private String imagePath;
 
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
 
     public NewMovieDTO() {
     }

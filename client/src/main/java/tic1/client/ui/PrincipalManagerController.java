@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tic1.client.ClientApplication;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
+import tic1.client.services.FuncionRestTemplate;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.movie.AddFunctionController;
@@ -36,21 +37,21 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PrincipalManagerController implements Initializable {
-
+/*
     @Autowired
-    private MovieRestTemplate movieRestTemplate; //todo all movimgr references to controller
+    private FuncionRestTemplate funcionRestTemplate; //todo all movimgr references to controller
 
     @FXML
-    private TableView<Movie> functionTable;
+    private TableView<Funcion> functionTable;
 
     @FXML
-    public TableColumn<Movie, String> colName;
+    public TableColumn<Funcion, String> colName;
 
     @FXML
-    public TableColumn<Movie, String> colDuration;
+    public TableColumn<Funcion, String> colDuration;
 
     @FXML
-    public TableColumn<Movie, Set<Genre>> colGenre;
+    public TableColumn<Funcion, Set<Genre>> colGenre;
 
     @FXML
     private StackPane rootPane;
@@ -78,18 +79,18 @@ public class PrincipalManagerController implements Initializable {
     }
 
 
-    private ObservableList<Movie> functionList = FXCollections.observableArrayList();
+    private ObservableList<Funcion> functionList = FXCollections.observableArrayList();
 
     private void loadFunction() {
         functionList.clear();
-        functionList.addAll(movieRestTemplate.findAllPaged(0));
+        functionList.addAll(funcionRestTemplate.findAllPaged(0));
 
         functionTable.setItems(functionList);
     }
-
+*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        /*functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -108,32 +109,32 @@ public class PrincipalManagerController implements Initializable {
         });
         loadFunction();
 
-        FilteredList<Movie> filteredData = new FilteredList<>(functionList, e -> true);
+        FilteredList<Funcion> filteredData = new FilteredList<>(functionList, e -> true);
 
         filter.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(movie -> {
+            filteredData.setPredicate(function -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (movie.getName().toLowerCase().contains(lowerCaseFilter)) {
+                if (function.getName().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } /*else if () {
+                } else if () {
 
-            }*/
+            }
                 return false;
             });
         });
-        SortedList<Movie> sortedData = new SortedList<>(filteredData);
+        SortedList<Funcion> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(functionTable.comparatorProperty());
-        functionTable.setItems(sortedData);
-    }
+        functionTable.setItems(sortedData);*/
+    }/*
 
     public void refreshTable() {
         functionList.clear();
-        functionList.addAll(movieRestTemplate.findAllPaged(0));
+        functionList.addAll(funcionRestTemplate.findAllPaged(0));
 
         functionTable.setItems(functionList);
 
@@ -142,18 +143,18 @@ public class PrincipalManagerController implements Initializable {
     @FXML
     public void deleteFunction(ActionEvent event) {
         //Fetch the selected row
-        Movie selectedForDeletion = functionTable.getSelectionModel().getSelectedItem();
+        Funcion selectedForDeletion = functionTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
-        alert.setTitle("Eliminando Pelicula...");
+        alert.setTitle("Eliminando Funcion...");
         alert.setContentText("Seguro quieres eliminar " + selectedForDeletion.getName() + " de manera permanente?");
         AlertMaker.styleAlert(alert);
         Optional<ButtonType> answer = alert.showAndWait();
 
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         if (answer.get() == ButtonType.OK) {
-            movieRestTemplate.deleteMovie(selectedForDeletion.getId());
+            funcionRestTemplate.deleteFuncion(selectedForDeletion.getId());
             // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
             alert1.setContentText("Pelicula " +  selectedForDeletion.getName() + " borrada con exito.");
             functionList.remove(selectedForDeletion);
@@ -166,19 +167,19 @@ public class PrincipalManagerController implements Initializable {
     @FXML
     public void editFunction(ActionEvent event) {
         //Fetch the selected row
-        Movie selectedForEdit = functionTable.getSelectionModel().getSelectedItem();
+        Funcion selectedForEdit = functionTable.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-            Parent root = fxmlLoader.load(MovieController.class.getResourceAsStream("/movie_crud/ui/movie/AddMovie.fxml"));
+            Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/movie/AddFunction.fxml"));
 
-            MovieController movieController = fxmlLoader.getController();
+            AddFunctionController addFunctionController = fxmlLoader.getController();
             //Pass whatever data you want. You can have multiple method calls here
-            movieController.loadMovieData(selectedForEdit);
+            addFunctionController.loadFuncionData(selectedForEdit);
 
             Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("Editar Pelicula");
+            stage.setTitle("Editar Funcion");
             Scene scene = new Scene(root);
             scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
             stage.setScene(scene);
@@ -208,5 +209,5 @@ public class PrincipalManagerController implements Initializable {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
-    }
+    }*/
 }
