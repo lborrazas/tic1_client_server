@@ -5,7 +5,7 @@ import java.util.List;
 public class SalaDTO {
 
     private long id;
-    private String cinemaName;
+    private long cinemaid;
     private String name;
 
 
@@ -20,12 +20,12 @@ public class SalaDTO {
         this.id = id;
     }
 
-    public String getCinemaName() {
-        return cinemaName;
+    public long getCinemaid() {
+        return cinemaid;
     }
 
-    public void setCinemaName(String cinemaName) {
-        this.cinemaName = cinemaName;
+    public void setCinemaid(long cinemaid) {
+        this.cinemaid = cinemaid;
     }
 
     public String getName() {

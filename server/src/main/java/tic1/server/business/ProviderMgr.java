@@ -13,6 +13,14 @@ public class ProviderMgr {
 @Autowired
     ProviderRepository providerRepository;
 
+    public void  save(Provider s){
+        providerRepository.save(s);
+    }
+
+    public  void dalete(long id){
+        providerRepository.deleteById(id);
+    }
+
 
     public Provider getById(long id){
         return providerRepository.getOne(id);

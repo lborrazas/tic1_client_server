@@ -40,7 +40,9 @@ public class SalaMgr {
     List<Sala> findAllByCinema(Cinema cinema){
         return salaRepository.findAllByCinema(cinema);
     }
-
+    public void delateById(long id){
+        salaRepository.deleteById(id);
+    }
 
 
 }

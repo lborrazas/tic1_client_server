@@ -10,6 +10,22 @@ public class TicketDTO {
     private float price;
     private long transaccion_id;
 
+    public FunctionDTO getFuncion_id() {
+        return funcion_id;
+    }
+
+    public void setFuncion_id(FunctionDTO funcion_id) {
+        this.funcion_id = funcion_id;
+    }
+
+    public long getTransaccion_id() {
+        return transaccion_id;
+    }
+
+    public void setTransaccion_id(long transaccion_id) {
+        this.transaccion_id = transaccion_id;
+    }
+
     public FunctionDTO getFuncionId() {
         return funcion_id;
     }
