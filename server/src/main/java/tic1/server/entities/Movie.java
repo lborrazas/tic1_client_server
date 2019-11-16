@@ -27,7 +27,6 @@ public class Movie {
     @Column
     private long duration;
 
-
     @ManyToMany(cascade = CascadeType.MERGE,  fetch = FetchType.EAGER)
     private Set<Genre> genres;
 
@@ -43,7 +42,7 @@ public class Movie {
         this.actors = temp.getActors().stream().map(Actor::new).collect(Collectors.toSet());
         this.description = temp.getDescription();
         this.duration = temp.getDuration();
-        this.id = temp.getId();
+       // this.id = temp.getId();
         this.name = temp.getName();
         this.genres = temp.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
         this.imagePath = temp.getImagePath();

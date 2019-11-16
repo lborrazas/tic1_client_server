@@ -19,6 +19,7 @@ public class UserMgr {
     UserRepository userRepository;
     public List<User> findAll(){ return userRepository.findAll(); }
 
+
     public  void save(User user){
         userRepository.save(user);
 
@@ -33,7 +34,7 @@ public class UserMgr {
         userRepository.save(existingUser);
     }
 
-    public ResponseEntity<?> deleteMovie(@PathVariable("id") Long id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
@@ -48,9 +49,8 @@ public class UserMgr {
     }
 
 
-    public List<User> getByType(String type){
-        return userRepository.findByPreference(type);
-    }
-
+   // public List<User> getByType(String type){
+     //   return userRepository.findByPreference(type);
+   // }
 
 }

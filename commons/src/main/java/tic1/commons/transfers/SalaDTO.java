@@ -5,8 +5,9 @@ import java.util.List;
 public class SalaDTO {
 
     private long id;
-    private String cinemaName;
-    private List<SeatDTO> seats;
+    private long cinemaid;
+    private String name;
+
 
     public SalaDTO() {
     }
@@ -19,19 +20,19 @@ public class SalaDTO {
         this.id = id;
     }
 
-    public String getCinemaName() {
-        return cinemaName;
+    public long getCinemaid() {
+        return cinemaid;
     }
 
-    public void setCinemaName(String cinemaName) {
-        this.cinemaName = cinemaName;
+    public void setCinemaid(long cinemaid) {
+        this.cinemaid = cinemaid;
     }
 
-    public List<SeatDTO> getSeats() {
-        return seats;
+    public String getName() {
+        return name;
     }
 
-    public void setSeats(List<SeatDTO> seats) {
-        this.seats = seats;
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -10,7 +10,18 @@ public class FunctionDTO {
     private String local;
     private String providerName;
     private LocalDateTime startTime;
+    private long secondId;
 
+    public FunctionDTO() {
+    }
+
+    public long getSecondId() {
+        return secondId;
+    }
+
+    public void setSecondId(long secondId) {
+        this.secondId = secondId;
+    }
 
     public NewMovieDTO getMovie() {
         return movie;

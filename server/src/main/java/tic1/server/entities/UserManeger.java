@@ -1,5 +1,7 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.UserDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -26,5 +28,17 @@ public class UserManeger extends User {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    @Override
+    public UserDTO toDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setPassword(super.getPassword());
+        userDTO.setUsername(super.getUsername());
+        userDTO.setId(super.getId());
+        userDTO.setType("Manager");
+        userDTO.setRole(this.role);
+        userDTO.setProvider(this.provider.getId());
+        return  userDTO;
     }
 }

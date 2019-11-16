@@ -1,21 +1,22 @@
 package tic1.server.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import tic1.commons.transfers.FunctionDTO;
 import tic1.commons.transfers.NewMovieDTO;
 import tic1.server.business.FunctionMgr;
 import tic1.server.business.MovieMgr;
 import tic1.server.business.SalaMgr;
 import tic1.server.entities.Funcion;
+import tic1.server.entities.FunctionPK;
 import tic1.server.entities.Movie;
 import tic1.server.entities.Sala;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-
-public class FunctionRestController {
+@RestController
+public class FuncionRestController {
 
     @Autowired
     FunctionMgr functionMgr;
@@ -24,7 +25,22 @@ public class FunctionRestController {
     @Autowired
     MovieMgr movieMgr;
 
-    @GetMapping("/function/{sala_id}/{date}")
+
+
+    @PostMapping("/function/{function}")
+    public void save(@RequestBody FunctionDTO function){
+        FunctionPK functionPK= new FunctionPK();
+        functionPK.setSala(salaMgr.getSalaById(function.getSala()));
+        functionPK.setDate(function.getStartTime());
+        Funcion funcion= new Funcion();
+        funcion.setId(functionPK);
+        funcion.setMovie(movieMgr.getOne(function.getMovie().getId()));
+        functionMgr.save(funcion);
+
+    }
+
+
+    /*@GetMapping("/function/{sala_id}/{date}")
     public FunctionDTO getFunctionDto(@PathVariable("sala_id") long sala_id, @PathVariable("date")LocalDateTime localDateTime){
         FunctionDTO functionDTO = new FunctionDTO();
         Sala sala = salaMgr.getSalaById(sala_id);
@@ -38,37 +54,49 @@ public class FunctionRestController {
         functionDTO.setMovie(function.getMovie().toDTO());
         return functionDTO;
     }
-
+*/
     @GetMapping("/function/{movie_id}/{date}")
     public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") long movie_id, @PathVariable("date")LocalDateTime localDateTime){
         ;
 
         Movie tempMovie = movieMgr.getOne(movie_id);
         List<Funcion> funtions = functionMgr.getByMovieAndDate(tempMovie, localDateTime);
-        List<FunctionDTO> functionDTOs = null;
+        List<FunctionDTO> functionDTOs = new ArrayList<>();
+
         for (Funcion tempFuntion:funtions){
             FunctionDTO functionDTO = new FunctionDTO();
-            functionDTO.setSala(tempFuntion.getId().getSala().getId());
-            functionDTO.setCinemaName(tempFuntion.getId().getSala().getCinema().getName());
-            functionDTO.setLocal(tempFuntion.getId().getSala().getCinema().getLocation());
-            functionDTO.setProviderName(tempFuntion.getId().getSala().getCinema().getProvider().getName());
-            functionDTO.setStartTime(tempFuntion.getId().getDate());
-            functionDTO.setMovie(tempFuntion.getMovie().toDTO());
-            functionDTOs.add(functionDTO);
+
+            functionDTOs.add(tempFuntion.toDTO());
+        }
+        return functionDTOs;
+    }
+    @GetMapping("/function/{movie_id}")
+    public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") long movie_id){
+        LocalDateTime localDateTime= null;
+        localDateTime = LocalDateTime.now();
+        Movie tempMovie = movieMgr.getOne(movie_id);
+        List<Funcion> funtions = functionMgr.getByMovieAndDate(tempMovie, localDateTime);
+        List<FunctionDTO> functionDTOs = new ArrayList<>();
+
+        for (Funcion tempFuntion:funtions){
+
+
+            functionDTOs.add(tempFuntion.toDTO());
         }
         return functionDTOs;
     }
 
 
 
-    @GetMapping("/function/{sala_id}/{date}")
-    public void delateFunctionDtos(@PathVariable("movie_id") long movie_id, @PathVariable("date")LocalDateTime localDateTime) {
 
+    @DeleteMapping("/function/{function}")
+    public void delateFunctionDtos(@PathVariable("function") FunctionDTO functionDTO){
 
+        FunctionPK functionPK= new FunctionPK();
 
-
-
-
+        functionPK.setSala(salaMgr.getSalaById(functionDTO.getSala()));
+        functionPK.setDate(functionDTO.getStartTime());
+        functionMgr.deleteFunction(functionPK);
 
     }
     //TODO crear funcion;

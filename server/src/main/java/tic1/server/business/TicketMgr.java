@@ -10,7 +10,9 @@ import tic1.server.entities.*;
 import tic1.server.persistence.TicketRepository;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -61,19 +63,23 @@ public     List<Ticket> getByFuncionAfterDate(LocalDateTime today){
    public List<Ticket> getByTransaccion(Transaccion transaccion){
     return    ticketRepository.findAllByTransaccion(transaccion);
    }
-    public List<Transaccion> getByClient(User client){
+    public List<Ticket> getByClient(User client){
     return  ticketRepository.findAllByTransaccionClient(client);
     }
 
-    public List<Transaccion> getByClientId(long id){
+    public List<Ticket> getByClientId(long id){
        return  ticketRepository.findAllByTransaccionClientId(id);
     }
-    public List<Transaccion> getByClientUsername(String username){
+    public List<Ticket> getByClientUsername(String username){
        return  ticketRepository.findAllByTransaccionClientUsername(username);
     }
 
-    public List<Ticket> getByDateAfter(LocalDateTime today){
-       return ticketRepository.findAllByIdFuncionIdDateAfter(today);
+    public List<Ticket> getByOnDate(LocalDate today){
+
+        LocalDate fecha = today;
+        LocalTime dawn =  LocalTime.MAX;//23:59:999999
+        LocalTime night =  LocalTime.MIN;//00:00
+       return ticketRepository.findAllByIdFuncionIdDateBetween(LocalDateTime.of( fecha,  night),LocalDateTime.of( fecha,  dawn));
     };
 
 }

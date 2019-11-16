@@ -1,5 +1,7 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.FunctionDTO;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -45,5 +47,16 @@ public class Funcion {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public FunctionDTO toDTO() {
+        FunctionDTO functionDTO = new FunctionDTO();
+        functionDTO.setSala(this.getId().getSala().getId());
+        functionDTO.setCinemaName(this.getId().getSala().getCinema().getName());
+        functionDTO.setLocal(this.getId().getSala().getCinema().getLocation());
+        functionDTO.setProviderName(this.getId().getSala().getCinema().getProvider().getName());
+        functionDTO.setStartTime(this.getId().getDate());
+        functionDTO.setMovie(this.getMovie().toDTO());
+        return functionDTO;
     }
 }

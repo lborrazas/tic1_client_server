@@ -1,5 +1,7 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.CinemaDto;
+
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +19,8 @@ public class Cinema {
     @ManyToOne
     @JoinColumn(name = "id_provider")
     private Provider provider;
+
+
 
 
     public Cinema() {
@@ -52,6 +56,15 @@ public class Cinema {
 
     public void setProvider(Provider provider) {
         this.provider = provider;
+    }
+
+    public CinemaDto toDTO() {
+        CinemaDto cinemaDto = new CinemaDto();
+        cinemaDto.setId(this.id);
+        cinemaDto.setLocation(this.location);
+        cinemaDto.setName(this.name);
+        cinemaDto.setProvider(this.provider.getId());
+        return cinemaDto;
     }
 }
 

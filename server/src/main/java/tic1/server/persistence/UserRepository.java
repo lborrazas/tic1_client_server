@@ -14,11 +14,6 @@ public interface UserRepository extends JpaRepository<User,Long>{
 
     List<User> findAllByUsername(String name);
 
-    public final String Type  = "SELECT * FROM  User  WHERE  type = :product";
-
-    @Query(Type)
-    List<User> findByPreference(@Param("product") String prouduct);
-
     //List<User> findAllByCreditCard(String  creditCards);
    // List<User> findAllByRoleContaining(String role);
     //List<User> findAllByProviderId(long  idProvider);

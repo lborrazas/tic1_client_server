@@ -34,13 +34,15 @@ public class SalaMgr {
 
     }
 
-    List<Sala> getByName(String name){
+    public  List<Sala> getByName(String name){
         return salaRepository.findAllByName(name);
     };
-    List<Sala> findAllByCinema(Cinema cinema){
+    public  List<Sala> findAllByCinema(Cinema cinema){
         return salaRepository.findAllByCinema(cinema);
     }
-
+    public void delateById(long id){
+        salaRepository.deleteById(id);
+    }
 
 
 }

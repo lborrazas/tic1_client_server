@@ -37,7 +37,7 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <VBox layoutY="94.0" prefHeight="406.0" prefWidth="250.0" styleClass="toolbar-container" AnchorPane.leftAnchor="0.0">
+                        <VBox layoutY="60.0" prefHeight="440.0" prefWidth="250.0" styleClass="toolbar-container" AnchorPane.leftAnchor="0.0">
                             <children>
                         <JFXTextField fx:id="filter" focusColor="WHITE" labelFloat="true" promptText="Filtrar" unFocusColor="WHITE">
                            <font>
@@ -49,7 +49,7 @@
                         </JFXTextField>
                                 <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#addMovie" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Pelicula">
                                     <VBox.margin>
-                                        <Insets top="2.0" />
+                                        <Insets top="10.0" />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Arial" size="18.0" />
@@ -63,31 +63,64 @@
                                 </JFXButton>
                                 <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Teatro">
                                     <VBox.margin>
-                                        <Insets top="20.0" />
+                                        <Insets />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Arial" size="18.0" />
                                     </font>
                                     <graphic>
-                                        <FontAwesomeIconView fill="WHITE" glyphName="BOOK" size="22" />
+                                        <FontAwesomeIconView fill="WHITE" glyphName="STAR" size="22" />
                                     </graphic>
                                     <padding>
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Configuracion">
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="214.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Actor">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="USER_PLUS" size="22" text="" />
+                           </graphic>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="274.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Genero">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="22" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="334.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Proveedor">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_SQUARE" size="22" />
+                           </graphic>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                        </JFXButton>
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Admin">
                                     <VBox.margin>
-                                        <Insets top="20.0" />
+                                        <Insets />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Arial" size="18.0" />
                                     </font>
-                                    <graphic>
-                                        <FontAwesomeIconView fill="WHITE" glyphName="COG" size="22" />
-                                    </graphic>
                                     <padding>
                                         <Insets left="25.0" />
                                     </padding>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="USER_PLUS" size="22" />
+                           </graphic>
                                 </JFXButton>
                             </children>
                         </VBox>

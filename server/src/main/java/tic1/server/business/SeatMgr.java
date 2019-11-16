@@ -44,10 +44,10 @@ public class SeatMgr {
         return ResponseEntity.ok().build();
     }
 
-    List<Seat> getBySala(Sala sala){
+    public  List<Seat> getBySala(Sala sala){
         return seatRepository.findAllByIdSala(sala);
     }
-    List<Seat> getBySalaId(Long salaid){
+    public  List<Seat> getBySalaId(Long salaid){
     return seatRepository.findAllByIdSalaId(salaid);
     }
 

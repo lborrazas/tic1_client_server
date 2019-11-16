@@ -1,11 +1,13 @@
 package tic1.server.entities;
 
 
+import tic1.commons.transfers.UserDTO;
+
 import javax.persistence.*;
 
 
 @Entity
-@Table(name="User")
+@Table(name="Users")
 @DiscriminatorColumn(name="Type", discriminatorType =DiscriminatorType.STRING)
 public class User {
     @Id
@@ -41,5 +43,13 @@ public class User {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public  UserDTO toDTO() {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setPassword(this.password);
+        userDTO.setUsername(this.username);
+        userDTO.setId(this.id);
+        return  userDTO;
     }
 }
