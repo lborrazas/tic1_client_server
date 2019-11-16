@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -86,6 +87,9 @@ public class MovieDetailsController implements Initializable {
     @FXML
     private Label movie_genres;
 
+    @FXML
+    private ImageView movieImage;
+
     private int numberOfEntrances = 0;
 
     private String parent;
@@ -102,7 +106,7 @@ public class MovieDetailsController implements Initializable {
         movie_duration.setText(Long.toString(movie.getDuration()));
         movie_genres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
-
+//        movieImage.setImage(movie.getImagePath());
     }
 
     @Override
