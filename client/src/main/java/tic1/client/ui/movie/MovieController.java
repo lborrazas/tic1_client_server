@@ -98,6 +98,8 @@ public class MovieController implements Initializable {
     @FXML
     private TextArea genresList;
 
+    private File file;
+
     @FXML
     void close(ActionEvent actionEvent) {
         Node source = (Node) actionEvent.getSource();
@@ -164,6 +166,12 @@ public class MovieController implements Initializable {
                     movie.setActors(this.actors);
                     movie.setGenre(this.genres);
 
+                    ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+
+                    imageRestTemplate.createImage(this.file);
+
+                    movie.setImagePath(file.getName());
+
                     movieRestTemplate.createMovie(movie);
 
                     showAlert("Pelicula agregada", "Se agrego con exito la pelicula!");
@@ -224,8 +232,8 @@ public class MovieController implements Initializable {
 
         if (selectedFile != null) {
             imageId.setText(selectedFile.getName());
-            ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
-            imageRestTemplate.createImage(selectedFile);
+
+            file = selectedFile;
 
 
         }
