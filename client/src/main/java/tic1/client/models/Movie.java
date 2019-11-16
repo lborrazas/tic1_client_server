@@ -37,6 +37,7 @@ public class Movie {
         this.actors = movie.getActors().stream().map(Actor::new).collect(Collectors.toSet());
         this.duration = movie.getDuration();
         this.genres = movie.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
+        this.imagePath = movie.getImagePath();
         //this.genres = movie.getGenres().stream().map(Genre::new).distinct().collect(Collectors.toList());
     }
 
