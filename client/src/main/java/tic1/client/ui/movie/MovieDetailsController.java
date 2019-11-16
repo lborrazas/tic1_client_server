@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -28,9 +29,12 @@ import tic1.client.models.Actor;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.client.ui.client.EndUserController;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -97,7 +101,9 @@ public class MovieDetailsController implements Initializable {
     private Movie movieDetails;
 
     @FXML
-    public void loadData(Movie movie) {
+    public void loadData(Movie movie) throws FileNotFoundException {
+
+        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
 
         movie_name.setText(movie.getName());
         movie_description.setText(movie.getDescription());
@@ -106,7 +112,8 @@ public class MovieDetailsController implements Initializable {
         movie_duration.setText(Long.toString(movie.getDuration()));
         movie_genres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
-//        movieImage.setImage(movie.getImagePath());
+        /*Image image = new Image(new FileInputStream(imageRestTemplate.showImage(movie.getImagePath())));
+        movieImage.setImage(image);*/
     }
 
     @Override
