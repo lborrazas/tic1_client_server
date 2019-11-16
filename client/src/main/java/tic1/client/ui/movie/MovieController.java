@@ -224,9 +224,9 @@ public class MovieController implements Initializable {
 
         if (selectedFile != null) {
             imageId.setText(selectedFile.getName());
-            /*ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+            ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
             imageRestTemplate.createImage(selectedFile);
-            imageId.setText(selectedFile.getName());*/
+
 
         }
     }

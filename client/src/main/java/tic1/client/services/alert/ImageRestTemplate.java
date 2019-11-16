@@ -1,10 +1,10 @@
 package tic1.client.services.alert;
 
 import org.springframework.core.io.ClassPathResource;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,17 +12,57 @@ import java.io.File;
 
 public class ImageRestTemplate {
 
-
-
-    public void createImage(File image) {
-        LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-        map.add("file", new ClassPathResource(""));
+    public void createImage(File file) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+        FileSystemResource value = new FileSystemResource(file);
+        MultiValueMap<String, Object> body
+                = new LinkedMultiValueMap<>();
+        body.add("file", value);
         RestTemplate restTemplate =
                 new RestTemplate();
-        HttpEntity<LinkedMultiValueMap<String, Object>> body = new HttpEntity<>(
-                map);
+        HttpEntity<MultiValueMap> ent = new HttpEntity<>(
+                body, headers);
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/", HttpMethod.POST, body, String.class);
+                restTemplate.postForEntity("http://localhost:8080/", ent, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
+
+
+
+//    public void createImage(File file) {
+//        LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
+//        map.add("file", new ClassPathResource(""));
+//        RestTemplate restTemplate =
+//                new RestTemplate();
+//        HttpEntity<LinkedMultiValueMap<String, Object>> body = new HttpEntity<>(
+//                map);
+//        ResponseEntity<String> response =
+//                restTemplate.exchange("http://localhost:8080/", HttpMethod.POST, body, String.class);
+//        System.out.println("RestTemplate response : " + response.getBody());
+//    }
+
+
+//    public void createImage(File file) {
+//        HttpHeaders headers = new HttpHeaders();
+//        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
+//        MultiValueMap<String, Object> body
+//                = new LinkedMultiValueMap<>();
+//        body.add("file", file);
+//
+//        HttpEntity<MultiValueMap<String, Object>> requestEntity
+//                = new HttpEntity<>(body, headers);
+//
+//        String serverUrl = "http://localhost:8080/";
+//
+//        RestTemplate restTemplate = new RestTemplate();
+//        ResponseEntity<String> response = restTemplate
+//                .exchange("http://localhost:8080/", HttpMethod.POST, requestEntity, String.class);
+//
+//        System.out.println("RestTemplate response : " + response.getBody());
+//    }
+
+
+
+
 }

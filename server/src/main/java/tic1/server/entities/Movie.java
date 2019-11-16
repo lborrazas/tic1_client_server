@@ -85,6 +85,7 @@ public class Movie {
         NewMovieDTO movieDTO = new NewMovieDTO();
         movieDTO.setActors(this.actors.stream().map(Actor::toDTO).collect(Collectors.toSet()));
         movieDTO.setDescription(this.description);
+        movieDTO.setImagePath(this.imagePath);
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
