@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import tic1.client.ClientApplication;
+import tic1.client.models.Funcion;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.FuncionRestTemplate;
@@ -37,7 +38,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class PrincipalManagerController implements Initializable {
-/*
     @Autowired
     private FuncionRestTemplate funcionRestTemplate; //todo all movimgr references to controller
 
@@ -83,14 +83,13 @@ public class PrincipalManagerController implements Initializable {
 
     private void loadFunction() {
         functionList.clear();
-        functionList.addAll(funcionRestTemplate.findAllPaged(0));
+//        functionList.addAll(funcionRestTemplate.);
 
         functionTable.setItems(functionList);
     }
-*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        /*functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+       /* functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
@@ -130,11 +129,11 @@ public class PrincipalManagerController implements Initializable {
         SortedList<Funcion> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(functionTable.comparatorProperty());
         functionTable.setItems(sortedData);*/
-    }/*
+    }
 
     public void refreshTable() {
         functionList.clear();
-        functionList.addAll(funcionRestTemplate.findAllPaged(0));
+//        functionList.addAll(funcionRestTemplate.findAllPaged(0));
 
         functionTable.setItems(functionList);
 
@@ -142,7 +141,7 @@ public class PrincipalManagerController implements Initializable {
 
     @FXML
     public void deleteFunction(ActionEvent event) {
-        //Fetch the selected row
+       /* //Fetch the selected row
         Funcion selectedForDeletion = functionTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -161,7 +160,7 @@ public class PrincipalManagerController implements Initializable {
 
         } else {
             alert1.setContentText("Borrado cancelado.");
-        }
+        }*/
     }
 
     @FXML
@@ -209,5 +208,13 @@ public class PrincipalManagerController implements Initializable {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
-    }*/
+    }
+
+    @FXML
+    public void createSala(ActionEvent event) {
+    }
+
+    @FXML
+    public void createCinema(ActionEvent event) {
+    }
 }

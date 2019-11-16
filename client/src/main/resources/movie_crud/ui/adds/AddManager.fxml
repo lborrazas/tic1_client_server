@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="movie_crud.ui.adds.AddManager"
+            fx:controller="tic1.client.ui.adds.AddManagerController"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>
