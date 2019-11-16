@@ -30,7 +30,7 @@ public class GenreMgr {
     }
 
     public Genre getOne(long id) {
-        return   genreRepository.getOne(id);
+        return   genreRepository.findById(id).get();
     }
 
 

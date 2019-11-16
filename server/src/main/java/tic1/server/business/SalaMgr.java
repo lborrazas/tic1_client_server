@@ -1,7 +1,9 @@
 package tic1.server.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
 import tic1.server.entities.Cinema;
 import tic1.server.entities.Sala;
@@ -15,7 +17,7 @@ public class SalaMgr {
     private SalaRepository salaRepository;
 
     public Sala getSalaById(long id){
-        return salaRepository.getOne(id);
+        return salaRepository.findById(id).get();
     }
 
     public void addSala(Sala sala){
@@ -40,8 +42,16 @@ public class SalaMgr {
     public  List<Sala> findAllByCinema(Cinema cinema){
         return salaRepository.findAllByCinema(cinema);
     }
-    public void delateById(long id){
-        salaRepository.deleteById(id);
+
+
+    public ResponseEntity<?> delateById(@PathVariable("id") Long id) {
+
+        Sala user = salaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+
+        salaRepository.delete(user);
+
+        return ResponseEntity.ok().build();
     }
 
 

@@ -16,7 +16,7 @@ public class Cinema {
     @Column
     private String location;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "id_provider")
     private Provider provider;
 

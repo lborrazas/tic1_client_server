@@ -23,7 +23,7 @@ public class ActorRestController {
     }
 
     @GetMapping("/actor/{id}")
-    public MovieActorDTO actor(@PathVariable long id) {
+    public MovieActorDTO actor(@PathVariable("id") long id) {
         Actor actor = actorsMgr.findById(id).get(0);
         return actor.toDTO();
     }
@@ -36,7 +36,7 @@ public class ActorRestController {
     }
 
     @DeleteMapping("/actor/{id}")
-    public void delete(@PathVariable long id){
+    public void delete(@PathVariable("id") long id){
         actorsMgr.deleteById(id);
     }
 }

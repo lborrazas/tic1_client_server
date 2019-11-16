@@ -39,17 +39,17 @@ public class SeatRestController {
     }
 
     @DeleteMapping("/seat/{seatDTO}")
-    public void delete(@PathVariable SeatDTO seatDTO){
+    public void delete(@PathVariable("seatDTO") SeatDTO seatDTO){
     seatMgr.deleteSeat(seatFromDto(seatDTO).getId());
     }
 
     @GetMapping("/seat/{seatDTO}")
-    public SeatDTO getOne(@RequestBody  SeatDTO seatDTO){
+    public SeatDTO getOne(@PathVariable("seatDTO")  SeatDTO seatDTO){
         Seat a = seatFromDto(seatDTO);
          return seatMgr.getOne(a.getId()).toDTO();
     }
     @GetMapping("/seat/{sala_id}")
-    public List<SeatDTO> getBySalaId(@RequestBody long sala_id){
+    public List<SeatDTO> getBySalaId(@PathVariable("sala_id") long sala_id){
         List<SeatDTO> seatDTOS = new ArrayList<>();
         for (Seat seat:seatMgr.getBySalaId(sala_id)){
             seatDTOS.add(seat.toDTO());

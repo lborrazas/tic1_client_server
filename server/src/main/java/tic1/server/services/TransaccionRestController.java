@@ -30,16 +30,16 @@ public class TransaccionRestController {
 
     }
     @DeleteMapping("/transaccion/{id}")
-    public void delate(@RequestBody long id){
+    public void delate(@PathVariable("id") long id){
         transaccionMgr.deleteTransaccion(id);
     }
 
     @GetMapping("/transaccion/{id}")
-    public TransaccionDTO getOne(@RequestBody long id){
+    public TransaccionDTO getOne(@PathVariable("id") long id){
         return transaccionMgr.getOne(id).toDTO();
     }
     @GetMapping("/transaccion/{name}")
-    public List<TransaccionDTO> getByClientName(@RequestBody String name ){
+    public List<TransaccionDTO> getByClientName(@PathVariable("name") String name ){
         List<TransaccionDTO> transaccionDTOS= new ArrayList<>();
         for(Transaccion transaccion:transaccionMgr.getByClintUsername(name)){
             transaccionDTOS.add(transaccion.toDTO());
