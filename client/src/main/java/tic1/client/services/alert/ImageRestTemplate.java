@@ -28,39 +28,13 @@ public class ImageRestTemplate {
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-
-
-//    public void createImage(File file) {
-//        LinkedMultiValueMap<String, Object> map = new LinkedMultiValueMap<>();
-//        map.add("file", new ClassPathResource(""));
-//        RestTemplate restTemplate =
-//                new RestTemplate();
-//        HttpEntity<LinkedMultiValueMap<String, Object>> body = new HttpEntity<>(
-//                map);
-//        ResponseEntity<String> response =
-//                restTemplate.exchange("http://localhost:8080/", HttpMethod.POST, body, String.class);
-//        System.out.println("RestTemplate response : " + response.getBody());
-//    }
-
-
-//    public void createImage(File file) {
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.MULTIPART_FORM_DATA);
-//        MultiValueMap<String, Object> body
-//                = new LinkedMultiValueMap<>();
-//        body.add("file", file);
-//
-//        HttpEntity<MultiValueMap<String, Object>> requestEntity
-//                = new HttpEntity<>(body, headers);
-//
-//        String serverUrl = "http://localhost:8080/";
-//
-//        RestTemplate restTemplate = new RestTemplate();
-//        ResponseEntity<String> response = restTemplate
-//                .exchange("http://localhost:8080/", HttpMethod.POST, requestEntity, String.class);
-//
-//        System.out.println("RestTemplate response : " + response.getBody());
-//    }
+    public File showImage(String path){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<File> response = restTemplate.exchange(
+                "http://localhost:8080/files/" + path, HttpMethod.GET, null, File.class);
+        File file = response.getBody();
+        return file;
+    }
 
 
 
