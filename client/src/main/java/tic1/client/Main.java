@@ -24,14 +24,17 @@ public class Main {
         Genre genre2 = genreRestTemplate.showGenre(9);
         Actor actor = actorRestTemplate.showActor(1);
         Actor actor2 = actorRestTemplate.showActor(3);
+        System.out.println(actor2.getId());
+        System.out.println(genre2.getId());
         Movie movie = new Movie();
         Set<Actor> actors = new HashSet<>();
         actors.add(actor);
         actors.add(actor2);
         Set<Genre> genres = new HashSet<>();
+        System.out.println(genre.getGenre());
         genres.add(genre);
         genres.add(genre2);
-        movie.setName("PasteStorm");
+        movie.setName("Salsa");
         movie.setDescription("lo ke");
         movie.setActors(actors);
         movie.setGenre(genres);
@@ -39,9 +42,9 @@ public class Main {
 
 
        // movieRestTemplate.createMovie(movie);
+
         List<Movie> moviesFilter =  movieRestTemplate.filterActorPaged(actor2,0);
         System.out.println(moviesFilter.get(0).getName());
-
 
 
        // Movie movieForEdit = movies.get(0);
