@@ -47,11 +47,11 @@ public class GenreRestTemplate {
     }
 
 
-    public void createGenre(Genre actor) {
+    public void createGenre(Genre genre) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<MovieGenreDTO> body = new HttpEntity<>(
-                actor.toDTO());
+                genre.toDTO());
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/genre", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());

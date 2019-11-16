@@ -4,6 +4,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tic1.client.models.Actor;
 import tic1.commons.transfers.MovieActorDTO;
@@ -11,6 +12,7 @@ import tic1.commons.transfers.MovieActorDTO;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ActorRestTemplate {
     public Actor showActor(long id){
         RestTemplate restTemplate = new RestTemplate();

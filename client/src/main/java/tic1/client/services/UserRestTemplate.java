@@ -1,5 +1,8 @@
 package tic1.client.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class UserRestTemplate {
     public User showActor(long id){
         RestTemplate restTemplate = new RestTemplate();

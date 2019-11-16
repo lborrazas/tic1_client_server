@@ -136,7 +136,6 @@
                                                                         <MenuItem fx:id="view" mnemonicParsing="false" onAction="#viewDetails" text="Ver" />
                                                                         <MenuItem fx:id="edit" mnemonicParsing="false" onAction="#editMovie" text="Editar" />
                                                                         <MenuItem fx:id="delete" mnemonicParsing="false" onAction="#deleteMovie" text="Eliminar" />
-                                                      <MenuItem mnemonicParsing="false" onAction="#createFunction" text="Crear Funcion" />
                                                                     </items>
                                                                 </ContextMenu>
                                                             </contextMenu>

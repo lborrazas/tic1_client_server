@@ -1,4 +1,4 @@
-package tic1.client.ui.movie;
+package tic1.client.ui.adds;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -16,6 +16,7 @@ import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.Actor;
+import tic1.client.models.Funcion;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
@@ -30,7 +31,6 @@ import java.util.ResourceBundle;
 
 @Controller
 public class AddFunctionController implements Initializable {
-/*
     @Autowired
     private MovieRestTemplate movieRestTemplate;
 
@@ -67,11 +67,11 @@ public class AddFunctionController implements Initializable {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
-*/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-/*cinemaName.setItems();
-        sala.setItems();
+        selectedDates.clear();
+       /* cinemaName.setItems();
+        salaName.setItems();*/
 
         datePicker.setOnAction(event -> selectedDates.add(datePicker.getValue()));
 
@@ -88,14 +88,15 @@ public class AddFunctionController implements Initializable {
                     }
                 };
             }
-        });*/
-    }/*
+        });
+    }
 
-    public void loadMovieData(Funcion funcion) {
+
+    public void loadFuncionData(Funcion funcion) {
         try {
 
-            cinemaName.getSelectionModel().select(funcion.getName());
-            salaName.getSelectionModel().select(funcion.getDescription());
+            cinemaName.getSelectionModel().select(funcion.getMovie().getName());
+            salaName.getSelectionModel().select(funcion.getSalaId());
 
             isEditing = true;
             funcionForEdit = funcion;
@@ -103,5 +104,5 @@ public class AddFunctionController implements Initializable {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }

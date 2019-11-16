@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -8,24 +9,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movie_crud.ui.adds.AddAdmin">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddAdminController">
    <children>
-      <VBox layoutX="41.0" layoutY="32.0" prefHeight="200.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox layoutX="41.0" layoutY="32.0" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTextField fx:id="userName" prefHeight="35.0" promptText="Nombre de Usuario">
-               <font>
-                  <Font name="Arial" size="14.0" />
-               </font>
-            </JFXTextField>
-            <JFXPasswordField fx:id="userPassword" labelFloat="true" prefHeight="35.0" promptText="Contraseña">
+            <JFXTextField fx:id="userName" focusColor="WHITE" prefHeight="35.0" promptText="Nombre de Usuario" unFocusColor="WHITE">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXPasswordField fx:id="userPassword" focusColor="WHITE" labelFloat="true" prefHeight="35.0" promptText="Contraseña" unFocusColor="WHITE">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
                </VBox.margin>
             </JFXPasswordField>
+            <JFXTextField fx:id="userRole" focusColor="WHITE" layoutX="30.0" layoutY="30.0" prefHeight="35.0" promptText="Nombre de Usuario" text="Rol" unFocusColor="WHITE">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </JFXTextField>
+            <JFXComboBox fx:id="providerName" focusColor="WHITE" labelFloat="true" prefHeight="35.0" prefWidth="360.0" promptText="Proveedor" unFocusColor="WHITE">
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </JFXComboBox>
             <JFXButton onAction="#addAdmin" prefHeight="35.0" prefWidth="360.0" text="Agregar" VBox.vgrow="ALWAYS">
                <VBox.margin>
                   <Insets top="20.0" />

@@ -9,9 +9,9 @@ public class Funcion {
 
     private Movie movie;
 
-   private long secondId;
+    private long secondId;
 
-   private String salaId;
+    private String salaId;
 
     private LocalDateTime date;
 
