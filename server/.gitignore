@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+# exclude everything
+upload-dir/*
+
+# exception to the rule
+!upload-dir/AAA.png

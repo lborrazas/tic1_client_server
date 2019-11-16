@@ -32,6 +32,6 @@ out/
 .vscode/
 
 # exclude everything
-/upload-dir/*
+upload-dir/*
 
 
