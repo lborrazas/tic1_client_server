@@ -41,7 +41,7 @@
                         <Insets bottom="15.0" left="20.0" right="20.0" />
                      </VBox.margin>
                      <children>
-                        <JFXComboBox fx:id="txtActors" editable="true" focusColor="WHITE" labelFloat="true" prefHeight="26.0" prefWidth="250.0" promptText="Actores" unFocusColor="WHITE" />
+                        <JFXComboBox fx:id="txtActors" focusColor="WHITE" labelFloat="true" prefHeight="26.0" prefWidth="250.0" promptText="Actores" unFocusColor="WHITE" />
                         <JFXButton contentDisplay="CENTER" graphicTextGap="0.0" onAction="#addActor" prefHeight="35.0" prefWidth="35.0" textFill="#87515100">
                            <HBox.margin>
                               <Insets left="15.0" />
