@@ -47,7 +47,7 @@
                                         <Insets left="25.0" right="25.0" top="10.0" />
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#createFunction" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Funcion">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#createFunction" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Funcion">
                                     <VBox.margin>
                                         <Insets top="10.0" />
                                     </VBox.margin>
@@ -61,7 +61,7 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="54.0" onAction="#createCinema" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Sucursal">
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="54.0" onAction="#createCinema" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Sucursal">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
@@ -72,7 +72,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="194.0" onAction="#createSala" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Sala">
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="194.0" onAction="#createSala" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Sala">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
@@ -83,7 +83,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="182.0" onAction="#createSala" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Admin">
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="182.0" onAction="#createAdmin" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Admin">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
@@ -94,7 +94,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="USER_PLUS" size="22" />
                            </graphic>
                         </JFXButton>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Configuracion">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Configuracion">
                                     <VBox.margin>
                                         <Insets />
                                     </VBox.margin>
@@ -145,9 +145,9 @@
                                                     <children>
                                                         <TableView fx:id="functionTable" layoutX="55.0" layoutY="46.0" prefHeight="363.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                             <columns>
-                                                                <TableColumn fx:id="colName" prefWidth="175.0" text="Nombre" />
-                                                                <TableColumn fx:id="colDuration" prefWidth="175.0" text="Duracion" />
-                                                                <TableColumn fx:id="colGenre" prefWidth="175.0" text="Genero" />
+                                                                <TableColumn fx:id="colMovie" prefWidth="175.0" text="Pelicula" />
+                                                                <TableColumn fx:id="colSalaID" prefWidth="175.0" text="Sala" />
+                                                                <TableColumn fx:id="colDate" prefWidth="175.0" text="Fecha" />
                                                             </columns>
                                                             <contextMenu>
                                                                 <ContextMenu>

@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import org.springframework.stereotype.Controller;
+import tic1.client.models.Actor;
+import tic1.client.services.ActorRestTemplate;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +22,16 @@ public class AddActorController implements Initializable {
 
     @FXML
     void addActor(ActionEvent event) {
+
+        ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
+
+        Actor actor = new Actor();
+
+        actor.setName(actorName.getText());
+
+        actor.setYear(Integer.parseInt(actorYear.getText()));
+
+        actorRestTemplate.createActor(actor);
 
     }
 

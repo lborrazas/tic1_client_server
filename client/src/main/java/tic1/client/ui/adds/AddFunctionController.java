@@ -1,4 +1,4 @@
-package tic1.client.ui.movie;
+package tic1.client.ui.adds;
 
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXDatePicker;
@@ -69,6 +69,7 @@ public class AddFunctionController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        selectedDates.clear();
        /* cinemaName.setItems();
         salaName.setItems();*/
 

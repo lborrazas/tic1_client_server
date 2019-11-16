@@ -19,39 +19,35 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 import tic1.client.models.Funcion;
-import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.FuncionRestTemplate;
-import tic1.client.services.MovieRestTemplate;
-import tic1.client.services.alert.AlertMaker;
-import tic1.client.ui.movie.AddFunctionController;
-import tic1.client.ui.movie.MovieController;
-import tic1.client.ui.movie.MovieDetailsController;
+import tic1.client.ui.adds.AddFunctionController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.stream.Collectors;
 
+@Controller
 public class PrincipalManagerController implements Initializable {
+
     @Autowired
-    private FuncionRestTemplate funcionRestTemplate; //todo all movimgr references to controller
+    private FuncionRestTemplate funcionRestTemplate;
 
     @FXML
     private TableView<Funcion> functionTable;
 
     @FXML
-    public TableColumn<Funcion, String> colName;
+    public TableColumn<Funcion, Movie> colMovie;
 
     @FXML
-    public TableColumn<Funcion, String> colDuration;
+    public TableColumn<Funcion, Long> colSalaID;
 
     @FXML
-    public TableColumn<Funcion, Set<Genre>> colGenre;
+    public TableColumn<Funcion, LocalDateTime> colDate;
 
     @FXML
     private StackPane rootPane;
@@ -89,20 +85,19 @@ public class PrincipalManagerController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       /* functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+       functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        colName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colDuration.setCellValueFactory(new PropertyValueFactory<>("duration"));
-        colGenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        colGenre.setCellFactory(col -> new TableCell<Movie, Set<Genre>>() {
+        colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
+        colSalaID.setCellValueFactory(new PropertyValueFactory<>("salaId"));
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        colMovie.setCellFactory(col -> new TableCell<Funcion, Movie>() {
             @Override
-            public void updateItem(Set<Genre> genres, boolean empty) {
-                super.updateItem(genres, empty);
+            public void updateItem(Movie movie, boolean empty) {
+                super.updateItem(movie, empty);
                 if (empty) {
                     setText(null);
                 } else {
-                    setText(genres.stream().map(Genre::getGenre)
-                            .collect(Collectors.joining(", ")));
+                    setText(movie.getName());
                 }
             }
         });
@@ -118,17 +113,17 @@ public class PrincipalManagerController implements Initializable {
 
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (function.getName().toLowerCase().contains(lowerCaseFilter)) {
+                if (function.getMovie().getName().toLowerCase().contains(lowerCaseFilter)) {
                     return true;
-                } else if () {
+                } /*else if () {
 
-            }
+            }*/
                 return false;
             });
         });
         SortedList<Funcion> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(functionTable.comparatorProperty());
-        functionTable.setItems(sortedData);*/
+        functionTable.setItems(sortedData);
     }
 
     public void refreshTable() {
@@ -171,7 +166,7 @@ public class PrincipalManagerController implements Initializable {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-            Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/movie/AddFunction.fxml"));
+            Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddFunction.fxml"));
 
             AddFunctionController addFunctionController = fxmlLoader.getController();
             //Pass whatever data you want. You can have multiple method calls here
@@ -194,7 +189,7 @@ public class PrincipalManagerController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/movie/AddFunction.fxml"));
+        Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddFunction.fxml"));
 
         Stage stage = new Stage();
         Scene scene = new Scene(root);
@@ -216,5 +211,21 @@ public class PrincipalManagerController implements Initializable {
 
     @FXML
     public void createCinema(ActionEvent event) {
+    }
+
+    @FXML
+    public void createAdmin(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddAdmin.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+        stage.setScene(scene);
+        stage.show();
+
     }
 }

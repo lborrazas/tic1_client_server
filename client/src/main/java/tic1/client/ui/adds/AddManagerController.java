@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 @Controller
 public class AddManagerController implements Initializable {
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

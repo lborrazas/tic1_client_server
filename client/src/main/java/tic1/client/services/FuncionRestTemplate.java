@@ -3,6 +3,7 @@ package tic1.client.services;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class FuncionRestTemplate {
     public Funcion show(long id){ // esto esta mal
 
