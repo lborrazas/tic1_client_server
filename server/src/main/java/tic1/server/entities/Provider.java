@@ -1,5 +1,7 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.ProviderDTO;
+
 import javax.persistence.*;
 
 @Entity
@@ -30,4 +32,10 @@ public class Provider {
         this.name = name;
     }
 
+    public ProviderDTO toDTO() {
+        ProviderDTO providerDTO = new ProviderDTO();
+        providerDTO.setId(this.id);
+        providerDTO.setName(this.name);
+        return  providerDTO;
+    }
 }

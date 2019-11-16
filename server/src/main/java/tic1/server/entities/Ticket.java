@@ -1,5 +1,7 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.TicketDTO;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -73,5 +75,16 @@ public class Ticket {
 
     public void setTransaccion(Transaccion transaccion) {
         this.transaccion = transaccion;
+    }
+
+    public TicketDTO toDTO() {
+        TicketDTO ticketDTO = new TicketDTO();
+        ticketDTO.setBought(this.isBought());
+        ticketDTO.setDiscount(this.getDiscount());
+        ticketDTO.setFuncion_id(this.id.getFuncion().toDTO());
+        ticketDTO.setLock(this.isLock());
+        ticketDTO.setPrice(this.getPrice());
+        ticketDTO.setTransaccionId(this.getTransaccion().getId());
+    return ticketDTO;
     }
 }

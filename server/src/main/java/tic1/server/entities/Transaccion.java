@@ -1,5 +1,7 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.TransaccionDTO;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -55,5 +57,12 @@ public class Transaccion {
         this.precioTotal = precioTotal;
     }
 
+    public TransaccionDTO toDTO() {
+        TransaccionDTO transaccionDTO = new TransaccionDTO();
+        transaccionDTO.setClient(this.getClient().getId());
+        transaccionDTO.setId(this.id);
+        transaccionDTO.setPrecioTotal(this.precioTotal);
+        return  transaccionDTO;
+    }
 }
 

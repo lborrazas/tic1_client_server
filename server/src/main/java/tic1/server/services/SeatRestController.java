@@ -2,13 +2,14 @@ package tic1.server.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tic1.commons.transfers.SalaDTO;
 import tic1.commons.transfers.SeatDTO;
 import tic1.server.business.SalaMgr;
 import tic1.server.business.SeatMgr;
-import tic1.server.entities.Sala;
 import tic1.server.entities.Seat;
 import tic1.server.entities.SeatPk;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class SeatRestController {
@@ -37,11 +38,24 @@ public class SeatRestController {
         seatMgr.save(seat);
     }
 
-    @DeleteMapping("/sala/{id}")
+    @DeleteMapping("/seat/{seatDTO}")
     public void delete(@PathVariable SeatDTO seatDTO){
     seatMgr.deleteSeat(seatFromDto(seatDTO).getId());
     }
 
+    @GetMapping("/seat/{seatDTO}")
+    public SeatDTO getOne(@RequestBody  SeatDTO seatDTO){
+        Seat a = seatFromDto(seatDTO);
+         return seatMgr.getOne(a.getId()).toDTO();
+    }
+    @GetMapping("/seat/{sala_id}")
+    public List<SeatDTO> getBySalaId(@RequestBody long sala_id){
+        List<SeatDTO> seatDTOS = new ArrayList<>();
+        for (Seat seat:seatMgr.getBySalaId(sala_id)){
+            seatDTOS.add(seat.toDTO());
+        }
+        return seatDTOS;
+    }
 
 
 

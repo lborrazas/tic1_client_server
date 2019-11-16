@@ -7,14 +7,14 @@ public class Sala {
 
     private String name;
 
-    private String cinemaName;
+    private long cinemaId;
 
     public Sala() {
     }
 
 
     public Sala(SalaDTO dto) {
-        this.setCinemaName(dto.getCinemaName());
+        this.setCinemaId(dto.getCinemaid());
         this.setId(dto.getId());
         this.setName(dto.getName());
     }
@@ -36,11 +36,11 @@ public class Sala {
         this.name = name;
     }
 
-    public String getCinemaName() {
-        return cinemaName;
+    public long getCinemaId() {
+        return cinemaId;
     }
 
-    public void setCinemaName(String cinemaName) {
-        this.cinemaName = cinemaName;
+    public void setCinemaId(long cinemaId) {
+        this.cinemaId = cinemaId;
     }
 }

@@ -49,22 +49,22 @@ public class CinemaMgr {
 
 
 
-    List<Cinema> getByName(String name){
+    public List<Cinema> getByName(String name){
         return  cinemaRepository.findByName(name);
     };
 
-    List<Cinema> findAllByProvider(Provider provider) {
+    public  List<Cinema> findAllByProvider(Provider provider) {
         return cinemaRepository.findAllByProvider(provider);
     }
 
 
 
-    List<Cinema> getByProviderId(long providerId){
+    public List<Cinema> getByProviderId(long providerId){
         return cinemaRepository.findAllByProviderId(providerId);
     }
 
 
-    List<Cinema> getByProviderName(String  providerName){
+    public List<Cinema> getByProviderName(String  providerName){
      return cinemaRepository.findAllByProviderName(providerName);
     }
 }

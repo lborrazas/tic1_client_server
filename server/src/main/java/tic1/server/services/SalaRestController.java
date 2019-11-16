@@ -7,6 +7,9 @@ import tic1.server.business.CinemaMgr;
 import tic1.server.business.SalaMgr;
 import tic1.server.entities.Sala;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RestController
 public class SalaRestController {
 
@@ -35,5 +38,24 @@ public class SalaRestController {
         salaMgr.delateById(id);
     }
 
-
+    @GetMapping("/sala/{id}")
+    public  SalaDTO getOne(@RequestBody long id){
+        return  salaMgr.getSalaById(id).toDTO();
+    }
+    @GetMapping("/sala/{name}")
+    public List<SalaDTO> getByName(@RequestBody String name){
+        List<SalaDTO> salaDTOS = new ArrayList<>();
+        for (Sala sala: salaMgr.getByName(name)){
+            salaDTOS.add(sala.toDTO());
+        }
+        return  salaDTOS;
+    }
+    @GetMapping("/sala/{cinema_id}")
+    public List<SalaDTO> getByCinemaName(@RequestBody long cinema_id ) {
+        List<SalaDTO> salaDTOS = new ArrayList<>();
+        for( Sala salatemp:salaMgr.findAllByCinema(cinemaMgr.getOne(cinema_id))){
+            salaDTOS.add(salatemp.toDTO())   ;
+        }
+        return  salaDTOS;
+    }
 }

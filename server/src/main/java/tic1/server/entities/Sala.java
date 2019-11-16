@@ -1,10 +1,13 @@
 package tic1.server.entities;
 
+import tic1.commons.transfers.SalaDTO;
+
 import javax.persistence.*;
 
 @Entity
 @Table
 public class Sala {
+
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name = "id", nullable = false)
@@ -43,4 +46,12 @@ public class Sala {
         this.cinema = cinema;
     }
 
+    public SalaDTO toDTO() {
+        SalaDTO  salaDTO= new SalaDTO();
+        salaDTO.setCinemaid(this.cinema.getId());
+        salaDTO.setId(this.id);
+        salaDTO.setName(this.name);
+
+        return salaDTO;
+    }
 }

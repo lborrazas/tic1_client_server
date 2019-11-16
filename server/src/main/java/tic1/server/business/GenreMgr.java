@@ -47,19 +47,19 @@ public class GenreMgr {
       return  genreRepository.findByGenre(genreName);
     }
 
-    List<Genre> getAllByGenre(String genre){
+    public  List<Genre> getAllByGenre(String genre){
         return genreRepository.findAllByGenre(genre);
     }
 
-    List<Genre> findAllById(Long id){
+    public  List<Genre> findAllById(Long id){
         return genreRepository.findAllById(id);
     }
 
-    List<Genre> getByGenre(String genre){
+    public  List<Genre> getByGenre(String genre){
         return  genreRepository.findByGenre(genre);
     }
 
-    List<Genre> findByGenreContaining(String genre){
+    public   List<Genre> findByGenreContaining(String genre){
         return genreRepository.findByGenreContaining(genre);
     }
 

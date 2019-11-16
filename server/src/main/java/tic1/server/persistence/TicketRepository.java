@@ -13,11 +13,11 @@ import java.util.List;
 public interface TicketRepository extends JpaRepository<Ticket, TicketPk>{
 
     List<Ticket> findAllByIdFuncionIdDate(LocalDateTime today);
-    List<Ticket> findAllByIdFuncionIdDateAfter(LocalDateTime today);
+    List<Ticket> findAllByIdFuncionIdDateBetween(LocalDateTime todaydawn,LocalDateTime todaynigth);
     List<Ticket> findAllByIdFuncionIdSala(Sala sala);
     List<Ticket> findAllByIdFuncionIdSalaId(Long id);
     List<Ticket> findAllByTransaccion(Transaccion transaccion);
-    List<Transaccion> findAllByTransaccionClient(User client);
-    List<Transaccion> findAllByTransaccionClientId(long id);
-    List<Transaccion> findAllByTransaccionClientUsername(String username);
+    List<Ticket> findAllByTransaccionClient(User client);
+    List<Ticket> findAllByTransaccionClientId(long id);
+    List<Ticket> findAllByTransaccionClientUsername(String username);
 }

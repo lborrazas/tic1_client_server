@@ -26,13 +26,6 @@ public class TicketDTO {
         this.transaccion_id = transaccion_id;
     }
 
-    public FunctionDTO getFuncionId() {
-        return funcion_id;
-    }
-
-    public void setFuncion(FunctionDTO funcion_id) {
-        this.funcion_id = funcion_id;
-    }
 
     public SeatDTO getSeat() {
         return seat;

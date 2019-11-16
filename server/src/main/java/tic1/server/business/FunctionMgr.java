@@ -25,6 +25,10 @@ public class FunctionMgr {
    // @Autowired
    // private MovieRepository movieRepository;
 
+    public void save(Funcion funcion){
+        funcionRepository.save(funcion);
+    }
+
 
     public Funcion getFunctionByPk(Sala sala, LocalDateTime localDateTime){
         FunctionPK functionPK = new FunctionPK(sala, localDateTime);
