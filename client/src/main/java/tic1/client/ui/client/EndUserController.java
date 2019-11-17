@@ -200,7 +200,7 @@ public class EndUserController implements Initializable {
         if (!moviesAreLoaded) {
             String path = null;
             try {
-                path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
+                path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

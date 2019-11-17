@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserRestTemplate {
-    public User showActor(long id){
+    /*public  User showActor(long id){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<MovieActorDTO> response = restTemplate.exchange(
                 "http://localhost:8080/actor/" + id, HttpMethod.GET, null, MovieActorDTO.class);
@@ -46,5 +46,5 @@ public class UserRestTemplate {
                 restTemplate.exchange("http://localhost:8080/actor", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
-
+*/
 }

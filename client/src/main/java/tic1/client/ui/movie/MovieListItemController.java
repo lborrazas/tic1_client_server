@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.text.Text;
@@ -20,6 +22,9 @@ import java.util.stream.Collectors;
 @Controller
 public class MovieListItemController implements Initializable {
 
+
+    @FXML
+    public ImageView movie_image;
 
     @FXML
     private Label movieName;
@@ -55,6 +60,9 @@ public class MovieListItemController implements Initializable {
                 .collect(Collectors.joining(", ")));
         movieGenres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
+        System.out.println(movie.getImagePath());
+        movie_image.setImage(new Image(movie.getImagePath()));
+
     }
 
     @FXML

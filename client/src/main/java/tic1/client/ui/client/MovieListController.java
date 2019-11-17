@@ -12,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -39,6 +41,7 @@ import tic1.client.ui.movie.MovieListItemController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -63,6 +66,8 @@ public class MovieListController implements Initializable {
 
     @FXML
     private JFXComboBox<Actor> actorFilter;
+
+    private ArrayList<Movie> filteredList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -134,22 +139,30 @@ public class MovieListController implements Initializable {
     @FXML
     public void filter() {
         list.getChildren().clear();
+        filteredList.clear();
 
         Actor actor = actorFilter.getSelectionModel().getSelectedItem();
         Genre genre = genreFilter.getSelectionModel().getSelectedItem();
 
-        List<Movie> filteredList = new ArrayList<>();
-
         MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
 
         if (actor != null) {
-            filteredList = movieRestTemplate.filterActorPaged(actor, 0);
-            System.out.println();
+            filteredList.addAll(movieRestTemplate.filterActorPaged(actor, 0));
+            System.out.println(filteredList);
         }
 
         if (genre != null) {
-            movieRestTemplate.filterGenrePaged(genre, 0);
+
+            List<Movie> filter = movieRestTemplate.filterGenrePaged(genre, 0);
+
+            for (Movie movie: filter) {
+                if (!filteredList.contains(movie)) filteredList.add(movie);
+            }
         }
+
+
+
+        if (genre == null && actor == null) filteredList.addAll(movieRestTemplate.findAllPaged(0));
 
         boolean evenRow = false;
 
@@ -158,6 +171,8 @@ public class MovieListController implements Initializable {
             Label label = new Label();
             label.setText("No se encontraron resultados.");
 
+            list.setAlignment(Pos.TOP_CENTER);
+            list.getChildren().add(label);
 
 
         }
@@ -175,5 +190,8 @@ public class MovieListController implements Initializable {
                 e.printStackTrace();
             }
         }
+
+        actorFilter.getSelectionModel().clearSelection();
+        genreFilter.getSelectionModel().clearSelection();
     }
 }
