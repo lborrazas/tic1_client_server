@@ -206,7 +206,7 @@ public class EndUserController implements Initializable {
             }
 
             File folder = new File(path);
-            fileList.addAll(Arrays.asList(folder.listFiles()));
+         //   fileList.addAll(Arrays.asList(folder.listFiles()));
 
             grid.setPadding(new Insets(7, 7, 7, 7));
             grid.setHgap(10);

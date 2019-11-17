@@ -15,6 +15,21 @@ public class Sala {
     public Sala() {
     }
 
+    public long getMaxcolum() {
+        return maxcolum;
+    }
+
+    public void setMaxcolum(long maxcolum) {
+        this.maxcolum = maxcolum;
+    }
+
+    public long getMaxfila() {
+        return maxfila;
+    }
+
+    public void setMaxfila(long maxfila) {
+        this.maxfila = maxfila;
+    }
 
     public Sala(SalaDTO dto) {
         this.setCinemaId(dto.getCinemaid());

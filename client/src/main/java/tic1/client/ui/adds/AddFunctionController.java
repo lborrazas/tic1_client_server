@@ -38,7 +38,7 @@ public class AddFunctionController implements Initializable {
     private JFXComboBox<String> cinemaName;
 
     @FXML
-    private JFXComboBox<String> salaName;
+    private JFXComboBox<Long> salaName;
 
     @FXML
     private JFXComboBox<String> movieName;
@@ -57,7 +57,7 @@ public class AddFunctionController implements Initializable {
     @FXML
     void addFunction(ActionEvent event) {
         String cinema = cinemaName.getSelectionModel().getSelectedItem();
-        String sala = salaName.getSelectionModel().getSelectedItem();
+        Long sala = salaName.getSelectionModel().getSelectedItem();
         List<LocalDate> dates = selectedDates;
     }
 

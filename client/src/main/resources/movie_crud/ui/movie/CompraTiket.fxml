@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicket">
+   <children>
+      <Pane prefHeight="400.0" prefWidth="659.0" style="-fx-background-color: black; -fx-background-image: url('movie_crud/ui/images/movieImages/exit.png');">
+         <children>
+            <Pane layoutX="135.0" layoutY="367.0" prefHeight="19.0" prefWidth="389.0" style="-fx-background-color: grey;" />
+            <Pane id="butacas" layoutX="41.0" layoutY="7.0" prefHeight="285.0" prefWidth="577.0" style="-fx-background-color: black; -fx-border-radius: 2;" styleClass="SeatContainer">
+               <children>
+                  <Pane id="fila1" fx:id="fila1" layoutY="1.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button id="f1c1" fx:id="f1c1" layoutX="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button id="f1c2" fx:id="f1c2" layoutX="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" style="-fx-opacity: 0.6; -fx-background-color: red;" styleClass="seatButton" />
+                        <Button id="f1c2" fx:id="f1c3" layoutX="53.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c2" fx:id="f1c4" layoutX="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" style="-fx-background-color: #3ED715; -fx-opacity: 0.8;" styleClass="seatButton" />
+                        <Button id="f1c5" fx:id="f1c5" layoutX="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f1c6" id="f1c6"  layoutX="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f1c7" id="f1c7" layoutX="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c8" fx:id="f1c8" layoutX="173.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c9" fx:id="f1c9" layoutX="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c10" fx:id="f1c10" layoutX="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c11" fx:id="f1c11" layoutX="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c12" fx:id="f1c12" layoutX="269.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c13" fx:id="f1c13" layoutX="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button id="f1c14" fx:id="f1c14" layoutX="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c15" fx:id="f1c15" layoutX="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button  id="f1c16" fx:id="f1c16" layoutX="364.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c17" fx:id="f1c17" layoutX="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c18" fx:id="f1c18" layoutX="412.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c19" fx:id="f1c19" layoutX="436.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c20" fx:id="f1c20" layoutX="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c21" fx:id="f1c21" layoutX="484.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c22" fx:id="f1c22" layoutX="508.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c23" fx:id="f1c23" layoutX="532.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button id="f1c24" fx:id="f1c24" layoutX="556.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila2" fx:id="fila2" layoutY="27.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f2c1" id="f2c1" layoutX="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton"  />
+                        <Button fx:id="f2c2" id="f2c2" layoutX="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f2c3" id="f2c3" layoutX="53.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c4"  id="f2c4" layoutX="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c5" id="f2c5" layoutX="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c6" id="f2c6"  layoutX="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c7" id="f2c7" layoutX="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c8" id="f2c8" layoutX="173.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c9" id="f2c9" layoutX="197.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c10" id="f2c10" layoutX="221.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c11" id="f2c11" layoutX="245.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c12" id="f2c12" layoutX="269.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c13" id="f2c13" layoutX="292.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f2c14" id="f2c14" layoutX="316.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c15" id="f2c15" layoutX="340.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c16" id="f2c16" layoutX="364.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c17" id="f2c17" layoutX="388.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c18" id="f2c18" layoutX="412.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c19" id="f2c19" layoutX="436.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c20" id="f2c20" layoutX="460.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c21" id="f2c21" layoutX="484.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c22" id="f2c22" layoutX="508.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c23" id="f2c23" layoutX="532.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f2c24" id="f2c24" layoutX="556.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila3" fx:id="fila3" layoutY="53.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f3c1" id="f3c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f3c2" id="f3c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f3c3" id="f3c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c4" id="f3c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c5" id="f3c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c6" id="f3c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c7" id="f3c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c8" id="f3c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c9" id="f3c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c10" id="f3c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c11" id="f3c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c12" id="f3c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c13" id="f3c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f3c14" id="f3c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c15" id="f3c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c16" id="f3c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c17" id="f3c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c18" id="f3c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c19" id="f3c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c20" id="f3c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c21" id="f3c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c22" id="f3c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c23" id="f3c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f3c24" id="f3c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila4" fx:id="fila4" layoutY="79.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f4c1" id="f4c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f4c2" id="f4c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f4c3" id="f4c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c4" id="f4c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c5" id="f4c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c6" id="f4c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c7" id="f4c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c8" id="f4c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c9" id="f4c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c10" id="f4c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c11" id="f4c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c12" id="f4c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c13" id="f4c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f4c14" id="f4c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c15" id="f4c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c16" id="f4c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c17" id="f4c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c18" id="f4c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c19" id="f4c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c20" id="f4c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c21"  id="f4c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c22" id="f4c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c23" id="f4c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f4c24" id="f4c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila5" fx:id="fila5" layoutY="105.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f5c1"  id="f5c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f5c2" id="f5c2"  layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f5c3" id="f5c3"  layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c4" id="f5c4"  layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c5" id="f5c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c6" id="f5c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c7" id="f5c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c8" id="f5c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c9" id="f5c9"  layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c10" id="f5c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c11" id="f5c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c12" id="f5c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c13" id="f5c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f5c14" id="f5c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c15" id="f5c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c16" id="f5c16"  layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c17" id="f5c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c18" id="f5c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c19" id="f5c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c20" id="f5c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c21" id="f5c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c22" id="f5c22"  layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c23" id="f5c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f5c24" id="f5c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila6" fx:id="fila6" layoutY="130.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f6c1" id="f6c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f6c2" id="f6c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f6c3" id="f6c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c4" id="f6c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c5" id="f6c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c6" id="f6c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c7" id="f6c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c8" id="f6c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c9" id="f6c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c10" id="f6c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c11" id="f6c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c12" id="f6c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c13" id="f6c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f6c14" id="f6c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c15" id="f6c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c16" id="f6c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c17" id="f6c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c18" id="f6c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c19" id="f6c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c20" id="f6c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c21" id="f6c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c22" id="f6c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c23" id="f6c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f6c24" id="f6c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila7" fx:id="fila7" layoutY="156.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f7c1" id="f7c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f7c2" id="f7c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f7c3" id="f7c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c4" id="f7c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c5" id="f7c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c6" id="f7c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c7" id="f7c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c8" id="f7c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c9" id="f7c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c10" id="f7c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c11" id="f7c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c12" id="f7c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c13" id="f7c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f7c14" id="f7c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c15" id="f7c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c16" id="f7c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c17" id="f7c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c18" id="f7c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c19" id="f7c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c20" id="f7c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c21" id="f7c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c22" id="f7c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c23" id="f7c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f7c24" id="f7c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila8" fx:id="fila8" layoutY="182.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f8c1" id="f8c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f8c2" id="f8c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f8c3" id="f7c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c4" id="f8c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c5" id="f8c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c6" id="f8c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c7" id="f8c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c8" id="f8c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c9" id="f8c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c10" id="f8c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c11" id="f8c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c12" id="f8c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c13" id="f8c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f8c14" id="f8c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c15" id="f8c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c16" id="f8c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c17" id="f8c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c18" id="f8c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c19" id="f8c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c20" id="f8c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c21" id="f8c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c22" id="f8c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c23" id="f8c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f8c24" id="f8c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila9" fx:id="fila9" layoutY="208.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f9c1" id="f9c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f9c2" id="f9c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f9c3" id="f9c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c4" id="f9c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c5" id="f9c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c6" id="f9c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c7" id="f9c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c8" id="f9c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c9" id="f9c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c10" id="f9c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c11" id="f9c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c12" id="f9c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c13" id="f9c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f9c14" id="f9c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c15" id="f9c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c16" id="f9c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c17" id="f9c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c18" id="f9c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c19" id="f9c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c20" id="f9c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c21" id="f9c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c22" id="f9c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c23" id="f9c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f9c24" id="f9c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila10" fx:id="fila10" layoutY="234.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f10c1" id="f10c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f10c2" id="f10c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f10c3" id="f10c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c4" id="f10c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c5" id="f10c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c6" id="f10c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c7" id="f10c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c8" id="f10c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c9" id="f10c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c10" id="f10c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c11" id="f10c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c12" id="f10c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c13" id="f10c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f10c14" id="f10c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c15" id="f10c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c16" id="f10c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c17" id="f10c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c18" id="f10c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c19" id="f10c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c20" id="f10c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c21" id="f10c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c22" id="f10c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c23" id="f10c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f10c24" id="f10c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+                  <Pane id="fila11" fx:id="fila11" layoutY="260.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                     <children>
+                        <Button fx:id="f11c1"  id="f11c1"  layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f11c2" id="f11c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f11c3" id="f11c3" layoutX="53.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c4" id="f11c4" layoutX="77.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c5" id="f11c5" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c6" id="f11c6" layoutX="125.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c7" id="f11c7" layoutX="149.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c8" id="f11c8" layoutX="173.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c9" id="f11c9" layoutX="197.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c10" id="f11c10" layoutX="221.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c11" id="f11c11" layoutX="245.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c12" id="f11c12" layoutX="269.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c13" id="f11c13" layoutX="292.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
+                        <Button fx:id="f11c14" id="f11c14" layoutX="316.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c15" id="f11c15" layoutX="340.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c16" id="f11c16" layoutX="364.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c17" id="f11c17" layoutX="388.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c18" id="f11c18" layoutX="412.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c19" id="f11c19" layoutX="436.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c20" id="f11c20" layoutX="460.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c21" id="f11c21" layoutX="484.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c22" id="f11c22" layoutX="508.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c23" id="f11c23" layoutX="532.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                        <Button fx:id="f11c24" id="f11c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
+                     </children>
+                  </Pane>
+               </children></Pane>
+            <TextField id="salaName" layoutX="14.0" layoutY="324.0" prefHeight="33.0" prefWidth="149.0" promptText="Nombre Sala" style="-fx-background-color: balck;" styleClass="nombreSala">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </TextField>
+            <Button layoutX="562.0" layoutY="328.0" lineSpacing="1.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="83.0" style="-fx-background-color: black;" text="Next" textAlignment="CENTER" textFill="#dfd8d8" textOverrun="LEADING_WORD_ELLIPSIS">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+               <effect>
+                  <Bloom threshold="0.0" />
+               </effect>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <TextField layoutX="132.0" layoutY="-96.0" />
+      <TextField layoutX="373.0" layoutY="-96.0" />
+   </children>
+</AnchorPane>
