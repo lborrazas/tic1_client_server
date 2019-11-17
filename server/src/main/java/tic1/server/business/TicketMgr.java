@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
 import tic1.server.entities.*;
+import tic1.server.persistence.SalaRepository;
 import tic1.server.persistence.TicketRepository;
 
 import javax.validation.Valid;
@@ -19,6 +20,8 @@ import java.util.List;
 public class TicketMgr {
     @Autowired
     TicketRepository ticketRepository;
+    @Autowired
+    SalaRepository salaRepository;
 
     public List<Ticket> findAll(){ return ticketRepository.findAll(); }
 
@@ -59,6 +62,16 @@ public     List<Ticket> getByFuncionAfterDate(LocalDateTime today){
     public List<Ticket> findAllByIdFuncionIdSalaId(Long idsala){
         return  ticketRepository.findAllByIdFuncionIdSalaId(idsala);
     };
+
+    public List<Ticket> findAllByFuncionId(LocalDateTime fecha,long sala_id){
+        FunctionPK functionPK =new FunctionPK();
+        functionPK.setSala(salaRepository.findById(sala_id).get());
+        functionPK.setDate(fecha);
+
+
+        return ticketRepository.findAllByIdFuncionId(functionPK);
+
+    }
 
    public List<Ticket> getByTransaccion(Transaccion transaccion){
     return    ticketRepository.findAllByTransaccion(transaccion);

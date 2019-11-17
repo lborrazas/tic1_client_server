@@ -7,39 +7,58 @@ import org.springframework.web.bind.annotation.PathVariable;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
 import tic1.server.entities.Cinema;
 import tic1.server.entities.Sala;
+import tic1.server.entities.Seat;
+import tic1.server.entities.SeatPk;
 import tic1.server.persistence.SalaRepository;
+import tic1.server.persistence.SeatRepository;
 
 import java.util.List;
 
 @Service
 public class SalaMgr {
-@Autowired
+    @Autowired
     private SalaRepository salaRepository;
-
-    public Sala getSalaById(long id){
+    @Autowired
+    private SeatRepository seatRepository;
+    public Sala getSalaById(long id) {
         return salaRepository.findById(id).get();
     }
 
-    public void addSala(Sala sala){
+    public void addSala(Sala sala) {
         salaRepository.save(sala);
+        for (int n=0;n< sala.getMaxcolum(); n++) {
+            for (int m=0; m < sala.getMaxcolum(); m++) {
+                SeatPk seatPk = new SeatPk();
+                seatPk.setColumna(m);
+                seatPk.setFila(n);
+                seatPk.setSala(sala);
+                Seat seat = new Seat();
+                seat.setId(seatPk);
+                seatRepository.save(seat);
+            }
+        }
     }
 
-    public void deleteSala(Sala sala){
+
+    public void deleteSala(Sala sala) {
         salaRepository.delete(sala);
     }
 
-    public void updateSala(Long id, Sala sala){
-        Sala  existingSala = salaRepository.findById(id)
+    public void updateSala(Long id, Sala sala) {
+        Sala existingSala = salaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Sala", "id", id));
         existingSala.setCinema(sala.getCinema());
         salaRepository.save(existingSala);
 
     }
 
-    public  List<Sala> getByName(String name){
+    public List<Sala> getByName(String name) {
         return salaRepository.findAllByName(name);
-    };
-    public  List<Sala> findAllByCinema(Cinema cinema){
+    }
+
+    ;
+
+    public List<Sala> findAllByCinema(Cinema cinema) {
         return salaRepository.findAllByCinema(cinema);
     }
 

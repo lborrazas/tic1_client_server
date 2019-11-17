@@ -7,7 +7,24 @@ public class SalaDTO {
     private long id;
     private long cinemaid;
     private String name;
+    private long maxcolum;
+    private long maxfila;
 
+    public long getMaxcolum() {
+        return maxcolum;
+    }
+
+    public void setMaxcolum(long maxcolum) {
+        this.maxcolum = maxcolum;
+    }
+
+    public long getMaxfila() {
+        return maxfila;
+    }
+
+    public void setMaxfila(long maxfila) {
+        this.maxfila = maxfila;
+    }
 
     public SalaDTO() {
     }
