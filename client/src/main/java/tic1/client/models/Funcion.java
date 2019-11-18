@@ -11,11 +11,18 @@ public class Funcion {
 
     private long secondId;
 
-    private String salaId;
+    private long salaId;
 
     private LocalDateTime date;
 
-    public Funcion() {
+    private long cinemaId;
+
+    public long getCinemaId() {
+        return cinemaId;
+    }
+
+    public void setCinemaId(long cinemaId) {
+        this.cinemaId = cinemaId;
     }
 
     public Funcion(FunctionDTO dto) {
@@ -23,6 +30,7 @@ public class Funcion {
         this.setMovie(new Movie(dto.getMovie()));
         this.setSecondId(dto.getSala());
         this.setSecondId(dto.getSecondId());
+        this.setCinemaId(dto.getCinemaId());
     }
 
 
@@ -42,11 +50,11 @@ public class Funcion {
         this.secondId = secondId;
     }
 
-    public String getSalaId() {
+    public long getSalaId() {
         return salaId;
     }
 
-    public void setSalaId(String salaId) {
+    public void setSalaId(long salaId) {
         this.salaId = salaId;
     }
 
@@ -56,5 +64,18 @@ public class Funcion {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public FunctionDTO toDTO() {
+        FunctionDTO functionDTO = new FunctionDTO();
+        functionDTO.setSala(this.salaId);
+        //   functionDTO.setCinemaName(this.cinemaName);
+        //  functionDTO.setLocal(this.);
+        // functionDTO.setProviderName(this.getId().getSala().getCinema().getProvider().getName());
+        // functionDTO.setStartTime(this.getId().getDate());
+        functionDTO.setMovie(this.getMovie().toDTO());
+        functionDTO.setCinemaId(this.cinemaId);
+
+        return functionDTO;
     }
 }

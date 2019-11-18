@@ -1,28 +1,23 @@
-package tic1.server.entities;
+package tic1.client.models;
 
 import tic1.commons.transfers.TransaccionDTO;
 
-import javax.persistence.*;
-import java.util.List;
 
-@Entity
-@Table
 public class Transaccion {
-@Id
 
     private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client",foreignKey = @ForeignKey(name = "fkcliente_transaccion"))
-    private User client;
+    private long client;
 
     //  @Column
-   // private List<String> consumibles;
+    // private List<String> consumibles;
 
-    @Column
-    private  int precioTotal;
+    private int precioTotal;
 
-    public Transaccion() {
+    public Transaccion(TransaccionDTO transaccionDTO) {
+        this.client = transaccionDTO.getClient();
+        this.id = transaccionDTO.getId();
+        this.precioTotal = transaccionDTO.getPrecioTotal();
     }
 
     public long getId() {
@@ -33,15 +28,15 @@ public class Transaccion {
         this.id = id;
     }
 
-    public User getClient() {
+    public long getClient() {
         return client;
     }
 
-    public void setClient(User client) {
+    public void setClient(long client) {
         this.client = client;
     }
 
-   // public List<String> getConsumibles() {
+    // public List<String> getConsumibles() {
     //   return consumibles;
     //}
 
@@ -59,10 +54,10 @@ public class Transaccion {
 
     public TransaccionDTO toDTO() {
         TransaccionDTO transaccionDTO = new TransaccionDTO();
-        transaccionDTO.setClient(this.getClient().getId());
+        transaccionDTO.setClient(this.getClient());
         transaccionDTO.setId(this.id);
         transaccionDTO.setPrecioTotal(this.precioTotal);
-        return  transaccionDTO;
+        return transaccionDTO;
     }
 }
 

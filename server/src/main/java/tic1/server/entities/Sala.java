@@ -26,6 +26,10 @@ public class Sala {
     @ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;
+    @Column
+    private long Maxcolum;
+    @Column
+    private long Maxfila;
 
     public Sala() {
     }
@@ -46,12 +50,29 @@ public class Sala {
         this.cinema = cinema;
     }
 
+    public long getMaxcolum() {
+        return Maxcolum;
+    }
+
+    public void setMaxcolum(long maxcolum) {
+        Maxcolum = maxcolum;
+    }
+
+    public long getMaxfila() {
+        return Maxfila;
+    }
+
+    public void setMaxfila(long maxfila) {
+        Maxfila = maxfila;
+    }
+
     public SalaDTO toDTO() {
         SalaDTO  salaDTO= new SalaDTO();
         salaDTO.setCinemaid(this.cinema.getId());
         salaDTO.setId(this.id);
         salaDTO.setName(this.name);
-
+        salaDTO.setMaxcolum(this.Maxcolum);
+        salaDTO.setMaxfila(this.Maxfila);
         return salaDTO;
     }
 }
