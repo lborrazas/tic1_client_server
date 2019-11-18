@@ -40,5 +40,4 @@ public class Seat implements Serializable {
     }
 
 
-
 }
