@@ -1,5 +1,6 @@
 package tic1.client.services.alert;
 
+import javafx.scene.image.Image;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
@@ -9,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.net.MalformedURLException;
 
 public class ImageRestTemplate {
 
@@ -28,12 +30,13 @@ public class ImageRestTemplate {
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public File showImage(String path){
+    public Image showImage(String path) throws MalformedURLException {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<File> response = restTemplate.exchange(
                 "http://localhost:8080/files/" + path, HttpMethod.GET, null, File.class);
         File file = response.getBody();
-        return file;
+        Image image = new Image(file.toURI().toURL().toExternalForm());
+        return image;
     }
 
 
