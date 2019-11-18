@@ -7,8 +7,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import tic1.client.models.Actor;
+import tic1.client.models.Ticket;
 import tic1.client.models.Transaccion;
 import tic1.commons.transfers.MovieActorDTO;
+import tic1.commons.transfers.TicketDTO;
 import tic1.commons.transfers.TransaccionDTO;
 
 import java.util.List;
@@ -74,11 +76,11 @@ public class TransaccionRestTemplate {
                 .collect(Collectors.toList());
     }
 
-    public void create(Transaccion transaccion) { // aca mate
+    public void create(TransaccionDTO transaccion, List<Ticket> ticketDTOS) { // aca mate
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<TransaccionDTO> body = new HttpEntity<>(
-                transaccion.toDTO());
+                transaccion);
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/transaccion", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
