@@ -25,8 +25,6 @@ public class Funcion {
         this.cinemaId = cinemaId;
     }
 
-
-
     public Funcion(FunctionDTO dto) {
         this.setDate(dto.getStartTime());
         this.setMovie(new Movie(dto.getMovie()));
@@ -71,10 +69,10 @@ public class Funcion {
     public FunctionDTO toDTO() {
         FunctionDTO functionDTO = new FunctionDTO();
         functionDTO.setSala(this.salaId);
-     //   functionDTO.setCinemaName(this.cinemaName);
-      //  functionDTO.setLocal(this.);
-       // functionDTO.setProviderName(this.getId().getSala().getCinema().getProvider().getName());
-       // functionDTO.setStartTime(this.getId().getDate());
+        //   functionDTO.setCinemaName(this.cinemaName);
+        //  functionDTO.setLocal(this.);
+        // functionDTO.setProviderName(this.getId().getSala().getCinema().getProvider().getName());
+        // functionDTO.setStartTime(this.getId().getDate());
         functionDTO.setMovie(this.getMovie().toDTO());
         functionDTO.setCinemaId(this.cinemaId);
 

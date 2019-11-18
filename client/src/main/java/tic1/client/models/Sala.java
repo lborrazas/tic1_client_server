@@ -12,6 +12,7 @@ public class Sala {
     private long maxcolum;
 
     private long maxfila;
+
     public Sala() {
     }
 
@@ -65,13 +66,13 @@ public class Sala {
     }
 
     public SalaDTO toDTO() {
-            SalaDTO  salaDTO= new SalaDTO();
-            salaDTO.setCinemaid(this.cinemaId);
-            salaDTO.setId(this.id);
-            salaDTO.setName(this.name);
-            salaDTO.setMaxcolum(this.maxcolum);
-            salaDTO.setMaxfila(this.maxfila);
-            return salaDTO;
-        }
+        SalaDTO salaDTO = new SalaDTO();
+        salaDTO.setCinemaid(this.cinemaId);
+        salaDTO.setId(this.id);
+        salaDTO.setName(this.name);
+        salaDTO.setMaxcolum(this.maxcolum);
+        salaDTO.setMaxfila(this.maxfila);
+        return salaDTO;
+    }
 
 }

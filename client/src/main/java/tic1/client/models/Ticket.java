@@ -9,7 +9,6 @@ public class Ticket {
 
     private Seat seat;
 
-
     private boolean isBought;
 
     private boolean isLock;
@@ -17,16 +16,16 @@ public class Ticket {
     private float discount;
 
     private float price;
-  private long transaccionId;
 
+    private long transaccionId;
 
     public Ticket(TicketDTO dto) {
-        this.isBought=dto.isBought();
-        this.discount=dto.getDiscount();
-        this.isLock=dto.isLock();
-        this.price=dto.getPrice();
-        this.funcion=new Funcion(dto.getFuncion_id());
-        this.transaccionId=dto.getTransaccionId();
+        this.isBought = dto.isBought();
+        this.discount = dto.getDiscount();
+        this.isLock = dto.isLock();
+        this.price = dto.getPrice();
+        this.funcion = new Funcion(dto.getFuncion_id());
+        this.transaccionId = dto.getTransaccionId();
 
     }
 
@@ -94,6 +93,6 @@ public class Ticket {
         ticketDTO.setLock(this.isLock());
         ticketDTO.setPrice(this.getPrice());
         ticketDTO.setTransaccionId(this.getTransaccion());
-    return ticketDTO;
+        return ticketDTO;
     }
 }

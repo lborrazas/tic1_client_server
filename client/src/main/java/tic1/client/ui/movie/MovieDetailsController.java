@@ -114,6 +114,8 @@ public class MovieDetailsController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(SeatSelectionController.class.getResourceAsStream("/movie_crud/ui/movie/SeatSelection.fxml"));
+        SeatSelectionController seatSelectionController = fxmlLoader.getController();
+
         Scene scene = buy_btn.getScene();
         root.translateXProperty().set(scene.getWidth());
 

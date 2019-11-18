@@ -7,7 +7,6 @@ public class Cinema {
 
     private String location;
 
-
     private Provider provider;
 
     public long getId() {
