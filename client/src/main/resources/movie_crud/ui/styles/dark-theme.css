@@ -194,10 +194,13 @@ Label {
 
 .search-button {
     -fx-font-family: "FontAwesome";
-    -fx-text-fill: -fx-primary;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-font-size: 12pt;
+    -fx-background-color: transparent !important;
+    -fx-border-color: transparent !important;
+    -fx-font-size: 14px;
+}
+
+.search-button .glyph-icon {
+    -fx-font-size: 25;
 }
 
 .search-button:hover {
@@ -212,6 +215,7 @@ Label {
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
+    -fx-font-size: 25;
 }
 
 .text-field {
