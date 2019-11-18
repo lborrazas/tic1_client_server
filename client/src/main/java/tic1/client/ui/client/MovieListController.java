@@ -16,6 +16,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -27,6 +28,7 @@ import javafx.scene.layout.*;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
@@ -67,10 +69,22 @@ public class MovieListController implements Initializable {
     @FXML
     private JFXComboBox<Actor> actorFilter;
 
+    @FXML
+    private JFXButton deleteFilterButton;
+
+    @FXML
+    private Text filters;
+
+    private Label noMatches = new Label("No se encontraron resultados.");
+
+    private ArrayList<String> filtersList = new ArrayList<>();
+
     private ArrayList<Movie> filteredList = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        deleteFilterButton.setVisible(false);
+        noMatches.setVisible(false);
         Callback<ListView<Actor>, ListCell<Actor>> factory1 = lv1 -> new ListCell<Actor>() {
 
             @Override
@@ -134,6 +148,10 @@ public class MovieListController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -148,18 +166,17 @@ public class MovieListController implements Initializable {
 
         if (actor != null) {
             filteredList.addAll(movieRestTemplate.filterActorPaged(actor, 0));
-            System.out.println(filteredList);
+            filtersList.add(actor.getName());
         }
 
         if (genre != null) {
 
             List<Movie> filter = movieRestTemplate.filterGenrePaged(genre, 0);
-
-            for (Movie movie: filter) {
+            filtersList.add(genre.getGenre());
+            for (Movie movie : filter) {
                 if (!filteredList.contains(movie)) filteredList.add(movie);
             }
         }
-
 
 
         if (genre == null && actor == null) filteredList.addAll(movieRestTemplate.findAllPaged(0));
@@ -167,14 +184,9 @@ public class MovieListController implements Initializable {
         boolean evenRow = false;
 
         if (filteredList.isEmpty()) {
-
-            Label label = new Label();
-            label.setText("No se encontraron resultados.");
-
+            noMatches.setVisible(true);
             list.setAlignment(Pos.TOP_CENTER);
-            list.getChildren().add(label);
-
-
+            list.getChildren().add(noMatches);
         }
 
         for (Movie movie : filteredList) {
@@ -191,7 +203,38 @@ public class MovieListController implements Initializable {
             }
         }
 
+        filters.setText(String.join(", ", filtersList));
+
         actorFilter.getSelectionModel().clearSelection();
         genreFilter.getSelectionModel().clearSelection();
+        deleteFilterButton.setVisible(true);
+    }
+
+    @FXML
+    private void removeFilter(ActionEvent event) {
+        list.getChildren().clear();
+        filtersList.clear();
+        actorFilter.getSelectionModel().clearSelection();
+        genreFilter.getSelectionModel().clearSelection();
+        MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
+        filteredList.clear();
+        filteredList.addAll(movieRestTemplate.findAllPaged(0));
+        boolean evenRow = false;
+        for (Movie movie : filteredList) {
+            try {
+                if (evenRow) {
+                    addMovie(movie, true);
+                    evenRow = false;
+                } else {
+                    addMovie(movie, false);
+                    evenRow = true;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        deleteFilterButton.setVisible(false);
+        noMatches.setVisible(false);
+        filters.setText(null);
     }
 }

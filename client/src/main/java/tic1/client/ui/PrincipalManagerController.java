@@ -41,13 +41,13 @@ public class PrincipalManagerController implements Initializable {
     private TableView<Funcion> functionTable;
 
     @FXML
-    public TableColumn<Funcion, Movie> colMovie;
+    private TableColumn<Funcion, Movie> colMovie;
 
     @FXML
-    public TableColumn<Funcion, Long> colSalaID;
+    private TableColumn<Funcion, Long> colSalaID;
 
     @FXML
-    public TableColumn<Funcion, LocalDateTime> colDate;
+    private TableColumn<Funcion, LocalDateTime> colDate;
 
     @FXML
     private StackPane rootPane;
@@ -87,7 +87,7 @@ public class PrincipalManagerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
        functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
+        /*colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
         colSalaID.setCellValueFactory(new PropertyValueFactory<>("salaId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colMovie.setCellFactory(col -> new TableCell<Funcion, Movie>() {
@@ -100,7 +100,7 @@ public class PrincipalManagerController implements Initializable {
                     setText(movie.getName());
                 }
             }
-        });
+        });*/
         loadFunction();
 
         FilteredList<Funcion> filteredData = new FilteredList<>(functionList, e -> true);

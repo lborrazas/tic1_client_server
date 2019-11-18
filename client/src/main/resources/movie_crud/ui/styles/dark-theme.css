@@ -204,7 +204,7 @@ Label {
 
 .search-button {
     -fx-font-family: "FontAwesome";
-    -fx-background-color: transparent !important;
+    -fx-background-color: derive(-fx-primary, -40%) !important;
     -fx-border-color: none !important;
     -fx-font-size: 14px;
 }

@@ -30,14 +30,19 @@
                         </JFXHamburger>
                         <Pane prefHeight="110.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <JFXTextField fx:id="filterByName" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="18.0" onAction="#filter" prefHeight="35.0" prefWidth="200.0" promptText="Buscar..." unFocusColor="WHITE">
+                        <JFXTextField fx:id="filterByName" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="18.0" onAction="#filter" onKeyPressed="#removeFilters" prefHeight="35.0" prefWidth="200.0" promptText="Buscar..." unFocusColor="WHITE">
                            <font>
                               <Font name="Arial" size="14.0" />
                            </font>
                         </JFXTextField>
-                        <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="214.0" layoutY="21.0" onAction="#filter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
+                        <JFXButton fx:id="filterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="214.0" layoutY="21.0" onAction="#filter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" styleClass="search-button" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="deleteFilterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="260.0" layoutY="21.0" onAction="#removeFilter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="25" styleClass="search-button" />
                            </graphic>
                         </JFXButton>
                      </children></Pane>

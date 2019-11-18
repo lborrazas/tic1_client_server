@@ -25,11 +25,14 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -125,6 +128,12 @@ public class EndUserController implements Initializable {
     @FXML
     private JFXTextField filterByName;
 
+    @FXML
+    private JFXButton filterButton;
+
+    @FXML
+    private JFXButton deleteFilterButton;
+
     private ObservableList<File> fileList = FXCollections.observableArrayList();
 
     private ObservableList<File> allMovies = FXCollections.observableArrayList();
@@ -133,6 +142,9 @@ public class EndUserController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         allMovies.clear();
         fileList.clear();
+        filterByName.setVisible(true);
+        filterButton.setVisible(true);
+        deleteFilterButton.setVisible(false);
         header.setDirection(JFXDrawer.DrawerDirection.TOP);
         header.setSidePane(box);
         header.setDefaultDrawerSize(70);
@@ -274,6 +286,8 @@ public class EndUserController implements Initializable {
                 MovieDetailsController movieDetailsController = fxmlLoader.getController();
                 movieDetailsController.setMovieDetails(selectedForPreview);
                 movieDetailsController.loadData(selectedForPreview);
+                filterByName.setVisible(false);
+                filterButton.setVisible(false);
 
                 mainContent.getChildren().removeAll();
                 mainContent.getChildren().setAll(root);
@@ -331,6 +345,9 @@ public class EndUserController implements Initializable {
         Parent root = fxmlLoader.load(MovieListController.class.getResourceAsStream("/movie_crud/ui/client/MovieList.fxml"));
         MovieListController movieListController = fxmlLoader.getController();
         drawer.close();
+        drawer.toBack();
+        filterByName.setVisible(false);
+        filterButton.setVisible(false);
         hamburgerTransition(hamburger);
         mainContent.getChildren().removeAll();
         mainContent.getChildren().setAll(root);
@@ -358,12 +375,19 @@ public class EndUserController implements Initializable {
         columns = 1000 / 160;
         rows = (int) ((fileList.size() / columns) + 1);
         int imageIndex = 0;
+        if (movies.isEmpty()) {
+            Label label = new Label();
+            label.setText("No se encontraron resultados.");
 
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                if (imageIndex < fileList.size()) {
-                    addImage(imageIndex, j, i);
-                    imageIndex++;
+            grid.setAlignment(Pos.TOP_CENTER);
+            grid.getChildren().add(label);
+        } else {
+            for (int i = 0; i < rows; i++) {
+                for (int j = 0; j < columns; j++) {
+                    if (imageIndex < fileList.size()) {
+                        addImage(imageIndex, j, i);
+                        imageIndex++;
+                    }
                 }
             }
         }
@@ -373,11 +397,28 @@ public class EndUserController implements Initializable {
     private void filter(ActionEvent event) {
 
         String movie = filterByName.getText().toLowerCase();
-        filterByName.clear();
+        deleteFilterButton.setVisible(true);
 
         List<File> filteredList = new ArrayList<>(allMovies);
         filteredList.removeIf(s -> !s.getName().toLowerCase().contains(movie));
 
         loadMovies(filteredList);
     }
+
+    @FXML
+    private void removeFilter(ActionEvent event) {
+        filterByName.clear();
+        loadMovies(allMovies);
+        deleteFilterButton.setVisible(false);
+    }
+
+    @FXML
+    void removeFilters(KeyEvent event) {
+        if (event.getCode() == KeyCode.ESCAPE) {
+            filterByName.clear();
+            loadMovies(allMovies);
+            deleteFilterButton.setVisible(false);
+        }
+    }
+
 }

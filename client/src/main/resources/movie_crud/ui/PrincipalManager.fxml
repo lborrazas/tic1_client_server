@@ -47,7 +47,7 @@
                                         <Insets left="25.0" right="25.0" top="10.0" />
                                     </VBox.margin>
                                 </JFXTextField>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#createFunction" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Agregar Funcion">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#createFunction" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Funcion">
                                     <VBox.margin>
                                         <Insets top="2.0" />
                                     </VBox.margin>
@@ -61,7 +61,7 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button" text="Configuracion">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Configuracion">
                                     <VBox.margin>
                                         <Insets top="20.0" />
                                     </VBox.margin>
