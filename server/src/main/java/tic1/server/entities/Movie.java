@@ -21,12 +21,12 @@ public class Movie {
     @Column
     private String description;
 
-    @Column
+    @Column(name = "image_path")
     private String imagePath;
 
     @Column
     private long duration;
-//CASCADETYPE MERGE
+
     @ManyToMany(cascade = CascadeType.MERGE,  fetch = FetchType.EAGER)
     private Set<Genre> genres;
 
