@@ -5,12 +5,21 @@ import java.time.LocalDateTime;
 
 public class FunctionDTO {
     private NewMovieDTO movie;
-    private String cinemaName;
+    //private String cinemaName;
     private long sala;
-    private String local;
-    private String providerName;
+    //private String local;
+    //private String providerName;
     private LocalDateTime startTime;
     private long secondId;
+    private long cinemaId;
+
+    public long getCinemaId() {
+        return cinemaId;
+    }
+
+    public void setCinemaId(long cinemaId) {
+        this.cinemaId = cinemaId;
+    }
 
     public FunctionDTO() {
     }
@@ -31,13 +40,13 @@ public class FunctionDTO {
         this.movie = movie;
     }
 
-    public String getCinemaName() {
-        return cinemaName;
-    }
+   // public String getCinemaName() {
+  //      return cinemaName;
+   // }
 
-    public void setCinemaName(String cinemaName) {
-        this.cinemaName = cinemaName;
-    }
+   // public void setCinemaName(String cinemaName) {
+        //this.cinemaName = cinemaName;
+   // }
 
     public long getSala() {
         return sala;
@@ -47,7 +56,7 @@ public class FunctionDTO {
         this.sala = sala;
     }
 
-    public String getLocal() {
+   /* public String getLocal() {
         return local;
     }
 
@@ -62,7 +71,7 @@ public class FunctionDTO {
     public void setProviderName(String providerName) {
         this.providerName = providerName;
     }
-
+*/
     public LocalDateTime getStartTime() {
         return startTime;
     }

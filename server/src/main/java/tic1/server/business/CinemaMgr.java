@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
 import tic1.server.entities.Cinema;
 import tic1.server.entities.Provider;
+import tic1.server.entities.Sala;
 import tic1.server.persistence.CinemaRepository;
 
 import javax.validation.Valid;
@@ -17,6 +18,8 @@ import java.util.List;
 public class CinemaMgr {
     @Autowired
     CinemaRepository cinemaRepository;
+    @Autowired
+    SalaMgr salaMgr;
 
 
     public List<Cinema> findAll(){ return cinemaRepository.findAll(); }
@@ -41,6 +44,9 @@ public class CinemaMgr {
          Cinema cinema= cinemaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
 
+         for (Sala sala:salaMgr.findAllByCinema(cinema)){
+             salaMgr.deleteSala(sala);
+         }
         cinemaRepository.delete(cinema);
 
         return ResponseEntity.ok().build();

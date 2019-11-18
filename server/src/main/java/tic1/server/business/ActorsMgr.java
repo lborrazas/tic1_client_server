@@ -65,6 +65,6 @@ public class ActorsMgr {
     }
 
     public Actor getOne(Long actorId) {
-        return actorsRepository.getOne(actorId);
+        return actorsRepository.findById(actorId).get();
     }
 }

@@ -16,7 +16,7 @@
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="250.0" prefWidth="1000.0">
          <children>
-            <ImageView fitHeight="220.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="movie_image" fitHeight="220.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="15.0" />
                </HBox.margin>

@@ -1,8 +1,11 @@
 package tic1.server.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
+import tic1.server.entities.Cinema;
 import tic1.server.entities.Provider;
 import tic1.server.persistence.ProviderRepository;
 
@@ -12,26 +15,40 @@ import java.util.List;
 public class ProviderMgr {
 @Autowired
     ProviderRepository providerRepository;
+@Autowired
+    CinemaMgr cinemaMgr;
 
     public void  save(Provider s){
         providerRepository.save(s);
     }
 
-    public  void dalete(long id){
-        providerRepository.deleteById(id);
-    }
+
 
 
     public Provider getById(long id){
-        return providerRepository.getOne(id);
+        return providerRepository.findById(id).get();
     }
 
     public void addProvider(Provider provider){
         providerRepository.save(provider);
     }
 
-    public void deleteProvider(Provider provider){
+    public ResponseEntity<?> dalete(@PathVariable("id") Long id) {
+
+        Provider provider = providerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+
+
+
+        for (Cinema cine :cinemaMgr.getByProviderId(provider.getId())){
+            cinemaMgr.deleteCinema(cine.getId());
+        }
         providerRepository.delete(provider);
+
+
+
+
+        return ResponseEntity.ok().build();
     }
 
     public void updateProvidr(Long id, Provider provider){

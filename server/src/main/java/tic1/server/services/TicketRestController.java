@@ -27,7 +27,7 @@ public class TicketRestController {
     @Autowired
     TransaccionMgr transaccionMgr;
 
-    private Funcion funtionFromDto(FunctionDTO functionDTO) {
+    public Funcion funtionFromDto(FunctionDTO functionDTO) {
         Funcion funcion = new Funcion();
         FunctionPK functionPK = new FunctionPK();
 
@@ -40,7 +40,7 @@ public class TicketRestController {
         return funcion;
     }
 
-    private Seat seatFromDto(SeatDTO seatDTO) {
+    public Seat seatFromDto(SeatDTO seatDTO) {
         SeatPk seatPk = new SeatPk();
         seatPk.setColumna(seatDTO.getColumn());
         seatPk.setFila(seatDTO.getRow());
@@ -83,12 +83,12 @@ public class TicketRestController {
     }
 
     @GetMapping("/ticket/{id}")
-    public TicketDTO getOne(@RequestBody TicketPk ticketPk) {
+    public TicketDTO getOne(@PathVariable TicketPk ticketPk) {
         return ticketMgr.getOne(ticketPk).toDTO();
     }
 
     @GetMapping("/ticket/after/{date}")
-    List<TicketDTO> getAfterToday(@RequestBody LocalDateTime date) {
+    List<TicketDTO> getAfterToday(@PathVariable LocalDateTime date) {
 
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getByFuncionAfterDate(date)) {
@@ -98,8 +98,17 @@ public class TicketRestController {
 
     }
 
+    @GetMapping("/ticket/{sala_id}/{fecha}")
+    public List<TicketDTO> getByFuncionId(@PathVariable("sala_id") long sala_id, @PathVariable("fecha") LocalDateTime fecha) {
+        List<TicketDTO> ticketDTOS = new ArrayList<>();
+        for (Ticket ticket : ticketMgr.findAllByFuncionId(fecha, sala_id)) {
+            ticketDTOS.add(ticket.toDTO());
+        }
+        return ticketDTOS;
+    }
+
     @GetMapping("/ticket/{sala_id}")
-    public List<TicketDTO> getBySala(@RequestBody long sala_id) {
+    public List<TicketDTO> getBySala(@PathVariable("sala_id") long sala_id) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getBySala(salaMgr.getSalaById(sala_id))) {
             ticketDTOS.add(ticket.toDTO());
@@ -107,9 +116,16 @@ public class TicketRestController {
         return ticketDTOS;
     }
 
+    @PostMapping("/ticket/posCompra")
+    public void updateFuncion(@RequestBody List<TicketDTO> ticketDTOs) {
+        for (TicketDTO ticketDTO:ticketDTOs) {
+            ticketMgr.updateTicket(ticketFromDto(ticketDTO).getId(),ticketFromDto(ticketDTO));
+        }
+    }
+
 
     @GetMapping("/ticket/{date}")
-    public List<TicketDTO> getBydate(@RequestBody LocalDate date) {
+    public List<TicketDTO> getBydate(@PathVariable LocalDate date) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getByOnDate(date)) {
             ticketDTOS.add(ticket.toDTO());
@@ -118,31 +134,30 @@ public class TicketRestController {
     }
 
 
-
     @GetMapping("/ticket/transaction/{transacionid}")
-    public List<TicketDTO> getByTransacion(@RequestBody long transacionid) {
+    public List<TicketDTO> getByTransacion(@PathVariable long transacionid) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getByTransaccion(transaccionMgr.getOne(transacionid))) {
             ticketDTOS.add(ticket.toDTO());
         }
-        return  ticketDTOS;
+        return ticketDTOS;
     }
 
     @GetMapping("/ticket/client/{clientid}")
-    public List<TicketDTO> getByClientId(@RequestBody long clientid) {
+    public List<TicketDTO> getByClientId(@PathVariable long clientid) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
-        for (Ticket ticket:ticketMgr.getByClientId(clientid)){
+        for (Ticket ticket : ticketMgr.getByClientId(clientid)) {
             ticketDTOS.add(ticket.toDTO());
         }
-        return  ticketDTOS;
+        return ticketDTOS;
     }
 
     @GetMapping("/ticket/client/{clientname}")
-    public List<TicketDTO> getBySala(@RequestBody String clientname) {
+    public List<TicketDTO> getBySala(@PathVariable String clientname) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
-        for (Ticket ticket:ticketMgr.getByClientUsername(clientname)){
+        for (Ticket ticket : ticketMgr.getByClientUsername(clientname)) {
             ticketDTOS.add(ticket.toDTO());
         }
-        return  ticketDTOS;
+        return ticketDTOS;
     }
 }

@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.text.Text;
@@ -12,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import tic1.client.models.Actor;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
+import tic1.client.services.alert.ImageRestTemplate;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -20,6 +24,9 @@ import java.util.stream.Collectors;
 @Controller
 public class MovieListItemController implements Initializable {
 
+
+    @FXML
+    public ImageView movie_image;
 
     @FXML
     private Label movieName;
@@ -55,6 +62,13 @@ public class MovieListItemController implements Initializable {
                 .collect(Collectors.joining(", ")));
         movieGenres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
+        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+        try {
+            movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML

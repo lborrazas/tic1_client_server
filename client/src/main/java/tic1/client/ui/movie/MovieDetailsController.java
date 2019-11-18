@@ -12,10 +12,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -23,14 +21,14 @@ import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
-import tic1.client.models.Actor;
-import tic1.client.models.Genre;
-import tic1.client.models.Movie;
+import tic1.client.models.*;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.client.ui.client.EndUserController;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -61,6 +59,21 @@ public class MovieDetailsController implements Initializable {
 
     @FXML
     private Label movie_actors;
+
+    @FXML
+    private ImageView movie_image;
+
+    @FXML
+    private ComboBox<Cinema> cinema;
+
+    @FXML
+    private ComboBox<Sala> sala;
+
+    @FXML
+    private ComboBox<LocalDate> fecha;
+
+    @FXML
+    private ComboBox<LocalTime> hora;
 
     @FXML
     private Button buy_btn;
@@ -102,6 +115,13 @@ public class MovieDetailsController implements Initializable {
         movie_duration.setText(Long.toString(movie.getDuration()));
         movie_genres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
+        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+
+        try {
+            movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -114,6 +134,8 @@ public class MovieDetailsController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(SeatSelectionController.class.getResourceAsStream("/movie_crud/ui/movie/SeatSelection.fxml"));
+        SeatSelectionController seatSelectionController = fxmlLoader.getController();
+
         Scene scene = buy_btn.getScene();
         root.translateXProperty().set(scene.getWidth());
 

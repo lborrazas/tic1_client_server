@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
@@ -27,13 +28,30 @@
                                 <Insets />
                             </HBox.margin>
                         </JFXHamburger>
-                        <Pane prefHeight="110.0" prefWidth="600.0" HBox.hgrow="ALWAYS" />
+                        <Pane prefHeight="110.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <JFXTextField fx:id="filterByName" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="18.0" onAction="#filter" onKeyPressed="#removeFilters" prefHeight="35.0" prefWidth="200.0" promptText="Buscar..." unFocusColor="WHITE">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                        </JFXTextField>
+                        <JFXButton fx:id="filterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="214.0" layoutY="21.0" onAction="#filter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" styleClass="search-button" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="deleteFilterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="260.0" layoutY="21.0" onAction="#removeFilter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="25" styleClass="search-button" />
+                           </graphic>
+                        </JFXButton>
+                     </children></Pane>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                             <children>
                                 <MenuButton graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                        <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
+                                        <MenuItem mnemonicParsing="false" text="Configuracion" />
                                     </items>
                                     <font>
                                         <Font name="Arial" size="15.0" />
@@ -52,7 +70,7 @@
             <children>
                 <AnchorPane fx:id="homeContent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <ScrollPane fx:id="pane" hbarPolicy="NEVER" prefHeight="625.0" prefWidth="1000.0" styleClass="edge-to-edge">
+                        <ScrollPane fx:id="pane" hbarPolicy="NEVER" prefHeight="625.0" prefWidth="1000.0" styleClass="edge-to-edge" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <content>
                                 <AnchorPane prefHeight="1200.0" prefWidth="1000.0">
                                     <children>

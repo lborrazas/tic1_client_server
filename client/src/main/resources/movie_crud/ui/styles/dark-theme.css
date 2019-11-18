@@ -1,10 +1,10 @@
 * {
-    -fx-primary : #2A2E37;
-    -fx-secondary : #FFFF8D;
-    -fx-primarytext : #B2B2B2;
+    -fx-primary: #2A2E37;
+    -fx-secondary: #FFFF8D;
+    -fx-primarytext: #B2B2B2;
     -fx-blue: #1976D2;
     -fx-red: #FF0000;
-    -fx-color-1:#1976D2;
+    -fx-color-1: #1976D2;
 }
 
 .texts {
@@ -29,6 +29,7 @@
 .menu-button > .label {
     -fx-text-fill: white;
 }
+
 .menu-button > .arrow-button > .arrow {
     -fx-background-color: white;
 }
@@ -37,11 +38,12 @@
     -fx-text-fill: white;
 }
 
-.menu-item:hover, .menu-item:focused{
+.menu-item:hover, .menu-item:focused {
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
 }
-.menu-item:hover, .menu-item:focused > .label{
+
+.menu-item:hover, .menu-item:focused > .label {
     -fx-text-fill: -fx-primary;
 }
 
@@ -83,12 +85,11 @@ Label {
 }
 
 
-.root{
+.root {
     -fx-background-color: -fx-primary;
 }
 
-.glyph-icon-carousel
-{
+.glyph-icon-carousel {
     -fx-fill: white;
     -fx-font-size: 26;
 }
@@ -97,7 +98,7 @@ Label {
     -fx-text-fill: -fx-primarytext;
 }
 
-.button{
+.button {
     -fx-font-family: "FontAwesome";
     -fx-text-fill: white;
     -fx-background-color: -fx-primary;
@@ -119,7 +120,7 @@ Label {
     -fx-fill: -fx-primary;
 }
 
-.buy-button{
+.buy-button {
     -fx-font-family: "FontAwesome";
     -fx-text-fill: white;
     -fx-background-color: -fx-primary;
@@ -150,6 +151,12 @@ Label {
     -fx-font-family: "FontAwesome";
     -fx-background-color: transparent;
     -fx-border-color: none;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-font-size: 18;
+}
+
+.button-back .glyph-icon {
+    -fx-font-size: 22;
 }
 
 .button-back:hover, .button-back:pressed {
@@ -159,14 +166,18 @@ Label {
     -fx-text-fill: -fx-secondary;
     -fx-fill: -fx-secondary;
     -fx-effect: null;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-font-size: 18;
 }
 
-.button-back:hover .glyph-icon, .button-back:pressed {
+.button-back:hover .glyph-icon, .button-back:pressed .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-border-color: none;
     -fx-background-color: transparent;
     -fx-fill: -fx-secondary;
     -fx-effect: null;
+    -fx-font-size: 22;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .carousel-button {
@@ -177,16 +188,14 @@ Label {
     -fx-font-size: 12pt;
 }
 
-.carousel-button:hover
-{
+.carousel-button:hover {
     -fx-font-family: "Material Design Icons";
     -fx-text-fill: -fx-secondary;
     -fx-background-color: none;
     -fx-border-color: none;
 }
 
-.carousel-button:hover .glyph-icon, .carousel-button:hover .glyph-icon
-{
+.carousel-button:hover .glyph-icon, .carousel-button:hover .glyph-icon {
     -fx-font-family: "Material Design Icons";
     -fx-fill: -fx-secondary;
     -fx-background-color: none;
@@ -195,31 +204,34 @@ Label {
 
 .search-button {
     -fx-font-family: "FontAwesome";
-    -fx-text-fill: -fx-primary;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-font-size: 12pt;
+    -fx-background-color: derive(-fx-primary, -40%) !important;
+    -fx-border-color: none !important;
+    -fx-font-size: 14px;
+}
+
+.search-button .glyph-icon {
+    -fx-font-size: 25;
 }
 
 .search-button:hover {
     -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
-    -fx-background-color: none;
-    -fx-border-color: none;
+    -fx-background-color: none !important;
+    -fx-border-color: none !important;
 }
 
 .search-button:hover .glyph-icon {
     -fx-font-family: "FontAwesome";
-    -fx-fill: -fx-secondary;
-    -fx-background-color: none;
-    -fx-border-color: none;
+    -fx-fill: -fx-secondary !important;
+    -fx-background-color: none !important;
+    -fx-border-color: none !important;
+    -fx-font-size: 25;
 }
 
-.text-field
-{
+.text-field {
     -fx-text-fill: -fx-primarytext;
     -fx-prompt-text-fill: white;
-    -fx-font-size : 12pt;
+    -fx-font-size: 12pt;
     -jfx-focus-color: -fx-secondary;
     -fx-text-fill: derive(-fx-secondary, 20%);
 }
@@ -233,7 +245,7 @@ Label {
 .combo-box {
     -fx-text-fill: white;
     -fx-background-color: transparent;
-    -fx-font-size : 15;
+    -fx-font-size: 15;
     -fx-prompt-text-fill: white;
     -jfx-focus-color: -fx-secondary;
 }
@@ -287,10 +299,11 @@ Label {
     -fx-background-color: transparent;
     -fx-border-color: white !important;
     -fx-font-size: 15;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .plus_button {
-    -fx-border-width: 1px 1px 1px 0 px;
+    -fx-border-width: 1px 1px 1px 0px;
     -fx-background-radius: 0px 20px 20px 0px;
     -fx-border-radius: 0px 20px 20px 0px;
     -fx-font-family: "FontAwesome";
@@ -298,15 +311,17 @@ Label {
     -fx-background-color: transparent;
     -fx-border-color: white !important;
     -fx-font-size: 15;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
-.minus_button .glyph-icon, .plus_button .glyph-icon{
+.minus_button .glyph-icon, .plus_button .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-text-fill: transparent;
     -fx-background-color: transparent;
     -fx-border-color: white;
     -fx-font-size: 15;
     -fx-fill: white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .minus_button:hover .glyph-icon, .plus_button:hover .glyph-icon,
@@ -317,6 +332,7 @@ Label {
     -fx-font-size: 15;
     -fx-border-color: none;
     -fx-background-color: -fx-secondary;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .admin {
@@ -333,11 +349,11 @@ Label {
     -fx-font-size: 13px;
     -fx-underline: true;
 }
+
 /*Login Screen Specific*/
 
 
-.wrong-credentials
-{
+.wrong-credentials {
     -jfx-unfocus-color: #ef5350;
     -jfx-focus-color: #ef5350;
 }
@@ -345,52 +361,52 @@ Label {
 /*Main Screen CSS Styling starts here*/
 
 /*TablPane styling*/
-.tab{
+.tab {
     -fx-background-color: -fx-primary;
 }
 
-.tab-header-background{
+.tab-header-background {
     -fx-background-color: -fx-primary;
 }
 
-.tab-label{
+.tab-label {
     -fx-text-fill: -fx-secondary;
     -fx-font-size: 10pt;
 }
 
 
-.tab-main{
-    -fx-pref-height : 40;
-    -fx-max-height : 40;
+.tab-main {
+    -fx-pref-height: 40;
+    -fx-max-height: 40;
 }
 
-.settings-tab{
+.settings-tab {
     -fx-background-color: derive(-fx-primary, 10%);
     -fx-padding: 5px 20px 5px 20px;
 }
 
-.settings-tab:selected{
+.settings-tab:selected {
     -fx-background-color: -fx-secondary;
 }
 
-.settings-tab:selected .tab-label{
+.settings-tab:selected .tab-label {
     -fx-text-fill: -fx-primary;
 }
 
-.settings-tab .tab-header-background{
+.settings-tab .tab-header-background {
     -fx-background-color: derive(-fx-primary, -50%);
 }
+
 /*Menu bar Styling*/
-.menu-bar{
+.menu-bar {
     -fx-font-size: 14;
-    -fx-base : -fx-primary;
+    -fx-base: -fx-primary;
     -fx-background-color: -fx-primary;
 }
 
-.context-menu
-{
+.context-menu {
     -fx-font-family: Arial;
-    -fx-background-color:  derive(-fx-primary, 20%);
+    -fx-background-color: derive(-fx-primary, 20%);
     -fx-font-size: 15px;
 }
 
@@ -407,20 +423,18 @@ Label {
     -fx-background-radius: 5px;
 }
 
-.jfx-hamburger-icon{
+.jfx-hamburger-icon {
     -fx-spacing: 7;
 }
 
-.jfx-hamburger-icon StackPane
-{
+.jfx-hamburger-icon StackPane {
     -fx-background-color: white;
     -fx-background-radius: 5px;
 }
 
 /*Toolbar buttons*/
 
-.toolbar-button
-{
+.toolbar-button {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-color: derive(-fx-primary, -40%);
@@ -430,8 +444,7 @@ Label {
     -fx-font-size: 21px;
 }
 
-.toolbar-button .glyph-icon
-{
+.toolbar-button .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-color: derive(-fx-primary, -40%);
@@ -441,8 +454,7 @@ Label {
     -fx-font-size: 26;
 }
 
-.toolbar-button:hover
-{
+.toolbar-button:hover {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-radius: 30 0 0 30;
@@ -453,16 +465,14 @@ Label {
 
 }
 
-.toolbar-button:hover .glyph-icon
-{
+.toolbar-button:hover .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
     -fx-effect: null;
     -fx-font-size: 26;
 }
 
-.toolbar-button-admin
-{
+.toolbar-button-admin {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-color: -fx-primary;
@@ -472,8 +482,7 @@ Label {
     -fx-font-size: 16px;
 }
 
-.toolbar-button-admin .glyph-icon
-{
+.toolbar-button-admin .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-color: -fx-primary;
@@ -483,8 +492,7 @@ Label {
     -fx-font-size: 26;
 }
 
-.toolbar-button-admin:hover
-{
+.toolbar-button-admin:hover {
     -fx-font-family: "FontAwesome";
     -fx-border-color: transparent;
     -fx-background-radius: 30 0 0 30;
@@ -495,8 +503,7 @@ Label {
 
 }
 
-.toolbar-button-admin:hover .glyph-icon
-{
+.toolbar-button-admin:hover .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
     -fx-effect: null;
@@ -504,114 +511,127 @@ Label {
 }
 
 /*Text styling*/
-.main-text
-{
+.main-text {
     -fx-fill: -fx-secondary;
     -fx-font-size: 14pt;
     -fx-text-alignment: center;
 }
 
-.submission-container{
+.submission-container {
     -fx-background-color: derive(-fx-primary, 10%);
 }
 
 /*Dialog styling*/
-.dialog-button{
+.dialog-button {
     -fx-border-color: -fx-color-1;
     -fx-text-fill: white;
     -fx-border-radius: 1px;
     -fx-background-radius: 3px;
 }
 
-.dialog-button:hover{
+.dialog-button:hover {
     -fx-background-color: -fx-color-1;
     -fx-border-color: derive(-fx-color-1, -20%);
     -fx-text-fill: white;
 }
 
-.jfx-layout-actions
-{
-    -fx-hgap:8;
+.jfx-layout-actions {
+    -fx-hgap: 8;
 }
 
 /*Chart Styling*/
-.data0.chart-pie{
+.data0.chart-pie {
     -fx-pie-color: -fx-secondary;
     -fx-border-color: derive(-fx-secondary, -30%);
 }
-.data1.chart-pie{
+
+.data1.chart-pie {
     -fx-pie-color: derive(-fx-primary, 30%);
     -fx-border-color: derive(-fx-primary, 30%);
 }
-.chart-pie-label
-{
-    -fx-fill : derive(-fx-secondary, -5%);
+
+.chart-pie-label {
+    -fx-fill: derive(-fx-secondary, -5%);
 }
 
 /*About window*/
-.about-text{
+.about-text {
     -fx-fill: -fx-secondary;
 }
 
-.about-button{
+.about-button {
     -fx-border-color: transparent;
 }
 
 /*Custom window background*/
-.custom-pane{
+.custom-pane {
     -fx-background-color: derive(-fx-primary, 5%);
 }
 
 /*TableView Default*/
-.table-view{
+.table-view {
     -fx-background-color: derive(-fx-primary, 10%);
     -fx-font-size: 16px;
     -fx-border-color: derive(-fx-secondary, -60%);
 }
-.table-view:focused{
+
+.table-view:focused {
     -fx-background-color: derive(-fx-primary, 20%);
 }
+
 .table-row-cell {
     -fx-cell-size: 40px;
 }
-.table-view .column-header-background{
+
+.table-view .column-header-background {
     -fx-background-color: -fx-primary;
 }
-.table-view .column-header-background .label{
+
+.table-view .column-header-background .label {
     -fx-background-color: transparent;
     -fx-text-fill: white;
 }
+
 .table-view .column-header {
     -fx-background-color: transparent;
 }
-.table-view .table-cell{
+
+.table-view .table-cell {
     -fx-text-fill: white;
 }
-.table-row-cell:focused, .table-cell:focused{
+
+.table-row-cell:focused, .table-cell:focused {
     -fx-text-fill: -fx-primary;
 }
-.table-row-cell{
+
+.table-row-cell {
     -fx-background-color: -fx-primary;
     -fx-border-color: transparent;
     -fx-table-cell-border-color: transparent;
 }
-.table-column{
+
+.table-column {
     -fx-alignment: CENTER;
 }
-.table-row-cell:even{
+
+.table-row-cell:even {
     -fx-background-color: derive(-fx-primary, 10%);
 }
+
 .table-row-cell:selected {
     -fx-background-color: -fx-secondary;
     -fx-text-fill: -fx-primary;
     -fx-background-insets: 0;
 }
-.table-row-cell:selected .table-cell{
+
+.table-row-cell:selected .table-cell {
     -fx-text-fill: -fx-primary;
 }
-.placeholder .label{
+
+.placeholder .label {
     -fx-text-fill: white;
 }
+
 .table-view > .virtual-flow > .scroll-bar:vertical,
 .table-view > .virtual-flow > .scroll-bar:vertical > .track,
 .table-view > .virtual-flow > .scroll-bar:vertical > .track-background,
@@ -620,49 +640,51 @@ Label {
 .table-view > .virtual-flow > .scroll-bar:horizontal > .track-background {
     -fx-background-color: transparent;
 }
+
 .table-view > .virtual-flow > .scroll-bar > .increment-button,
 .table-view > .virtual-flow > .scroll-bar > .decrement-button {
     -fx-text-fill: white;
 }
+
 .scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb{
+.scroll-bar:vertical .thumb {
     -fx-background-color: derive(-fx-primary, 60%);
     -fx-border-color: transparent;
     -fx-background-radius: 5em;
 }
-.table-view .filler{
+
+.table-view .filler {
     -fx-fill: -fx-primary;
     -fx-background-color: -fx-primary;
 }
-.table-context
-{
+
+.table-context {
     -fx-base: -fx-primary;
 }
 
 
 /*JFXDialog styling*/
-.jfx-layout-heading
-{
+.jfx-layout-heading {
     -fx-background-color: -fx-color-1;
 }
-.jfx-layout-heading .label
-{
+
+.jfx-layout-heading .label {
     -fx-text-fill: white;
     -fx-font-size: 12pt;
 }
-.jfx-layout-body, .jfx-layout-actions{
+
+.jfx-layout-body, .jfx-layout-actions {
     -fx-background-color: -fx-primary;
 }
-.jfx-layout-body .label
-{
+
+.jfx-layout-body .label {
     -fx-text-fill: white;
     -fx-padding: 20px 0 0 0;
 }
 
 
 /*Dashboard label*/
-.not-available
-{
+.not-available {
     -fx-background-radius: 5px;
     -fx-fill: derive(blue, 80%);
     -fx-cursor: hand;
@@ -670,7 +692,7 @@ Label {
 
 /*Checkbox*/
 
-.checkbox-main{
+.checkbox-main {
     -fx-text-fill: -fx-secondary;
     -jfx-checked-color: -fx-primary;
     -fx-font-size: 10pt;
@@ -678,15 +700,16 @@ Label {
 
 /*Progrss bar*/
 
-.progress-bar-main .track{
+.progress-bar-main .track {
     -fx-background-color: -fx-primary;
 }
-.progress-bar-main .bar{
+
+.progress-bar-main .bar {
     -fx-background-color: -fx-secondary;
     -fx-padding: 5px;
 }
 
-.common-label{
+.common-label {
     -fx-background-color: transparent;
     -fx-text-fill: -fx-secondary;
     -fx-font-size: 12pt;
@@ -726,26 +749,31 @@ Label {
 
 /*Alert Dialog*/
 
-.custom-alert{
+.custom-alert {
     -fx-background-color: -fx-primary;
     -fx-text-fill: white;
 }
-.custom-alert > *.button-bar > *.container{
+
+.custom-alert > *.button-bar > *.container {
     -fx-background-color: -fx-primary;
 }
-.custom-alert > *.label.content{
+
+.custom-alert > *.label.content {
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
 }
-.custom-alert:header *.header-panel{
+
+.custom-alert:header *.header-panel {
     -fx-background-color: -fx-blue;
 }
-.custom-alert:header  .header-panel .label {
+
+.custom-alert:header .header-panel .label {
     -fx-font-style: normal;
     -fx-text-fill: white;
 }
-.custom-alert:header *.header-panel *.label{
+
+.custom-alert:header *.header-panel *.label {
     -fx-font-size: 18px;
     -fx-font-style: italic;
     -fx-fill: -fx-primary;
@@ -787,13 +815,13 @@ Label {
     -fx-text-fill: white;
 }
 
-.text-area .scroll-pane .viewport{
+.text-area .scroll-pane .viewport {
     -fx-background-color: transparent;
     -fx-text-fill: white;
 }
 
 
-.text-area .scroll-pane .content{
+.text-area .scroll-pane .content {
     -fx-background-color: transparent;
     -fx-font-size: 11px;
     -fx-text-fill: white;
@@ -812,13 +840,13 @@ Label {
     -fx-opacity: 1;
 }
 
-.text-area:disabled .scroll-pane .viewport{
+.text-area:disabled .scroll-pane .viewport {
     -fx-background-color: transparent;
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
-.text-area:disabled .scroll-pane .content{
+.text-area:disabled .scroll-pane .content {
     -fx-background-color: transparent;
     -fx-font-size: 11px;
     -fx-text-fill: white;
@@ -834,4 +862,67 @@ Label {
 
 .dark-row {
     -fx-background-color: derive(-fx-primary, 25%);
+}
+
+.date-picker > .arrow-button {
+    -fx-background-color: -fx-primary;
+    -fx-background-insets: 1 1 1 0, 1, 2;
+    -fx-background-radius: 0 3 3 0, 0 2 2 0, 0 1 1 0;
+}
+
+.date-picker:focused {
+    -fx-background-color: -fx-secondary;
+    -fx-background-insets: -0.2;
+    -fx-background-radius: 3;
+}
+
+.date-picker > .text-field {
+    -fx-background-color: -fx-primary;
+}
+
+.date-picker-popup > .month-year-pane {
+    -fx-background-color: -fx-primary;
+}
+
+.date-picker-popup > .calendar-grid {
+    -fx-background-color: -fx-primary;
+}
+
+.date-picker-popup > * > .date-cell {
+    -fx-background-color: -fx-primary;
+}
+
+.date-picker-popup > * > .week-number-cell {
+    -fx-background-color: -fx-primary;
+
+}
+
+.date-picker-popup > * > .day-cell {
+    -fx-background-color: -fx-primary;
+    -fx-border-color: derive(-fx-primary, 30%);
+    -fx-text-fill: white;
+}
+
+.date-picker-popup > * > .day-cell:hover > .secondary-text {
+    -fx-fill: black;
+}
+
+.date-picker-popup > * > .day-cell:hover > .secondary-text,
+.date-picker-popup > * > .previous-month > .secondary-text,
+.date-picker-popup > * > .next-month > .secondary-text,
+.date-picker-popup > * > .selected > .secondary-text {
+    -fx-fill: -fx-primary;
+}
+
+.date-picker-popup > * > .day-cell:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-text-fill: -fx-primary;
+}
+
+.date-picker-popup > * > .spinner > .button > .left-arrow,
+.date-picker-popup > * > .spinner > .button > .right-arrow {
+    -fx-background-color: -fx-secondary;
+    -fx-background-insets: 1 0 -1 0, 0;
+    -fx-padding: 0.333333em 0.166667em 0.333333em 0.166667em; /* 4 2 4 2 */
+    -fx-effect: dropshadow(two-pass-box, -fx-shadow-highlight-color, 1, 0.0, 0, 1.4);
 }

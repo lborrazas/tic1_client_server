@@ -52,9 +52,10 @@ public class Funcion {
     public FunctionDTO toDTO() {
         FunctionDTO functionDTO = new FunctionDTO();
         functionDTO.setSala(this.getId().getSala().getId());
-        functionDTO.setCinemaName(this.getId().getSala().getCinema().getName());
-        functionDTO.setLocal(this.getId().getSala().getCinema().getLocation());
-        functionDTO.setProviderName(this.getId().getSala().getCinema().getProvider().getName());
+       /// functionDTO.setCinemaName(this.getId().getSala().getCinema().getName());
+        //functionDTO.setLocal(this.getId().getSala().getCinema().getLocation());
+       // functionDTO.setProviderName(this.getId().getSala().getCinema().getProvider().getName());
+        functionDTO.setCinemaId(this.getId().getSala().getCinema().getId());
         functionDTO.setStartTime(this.getId().getDate());
         functionDTO.setMovie(this.getMovie().toDTO());
         return functionDTO;
