@@ -119,7 +119,7 @@ public class MovieDetailsController implements Initializable {
 
         try {
             movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
-        } catch (MalformedURLException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 

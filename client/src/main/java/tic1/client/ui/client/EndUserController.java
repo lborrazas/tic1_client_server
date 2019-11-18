@@ -131,9 +131,8 @@ public class EndUserController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        allMovies.clear();
         fileList.clear();
-
         header.setDirection(JFXDrawer.DrawerDirection.TOP);
         header.setSidePane(box);
         header.setDefaultDrawerSize(70);
@@ -298,6 +297,7 @@ public class EndUserController implements Initializable {
         drawer.toBack();
         hamburgerTransition(hamburger);
         FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
         Scene scene = new Scene(root);
         Stage stage = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
@@ -315,7 +315,6 @@ public class EndUserController implements Initializable {
         stage.setScene(scene);
         stage.show();
         close(event);
-
     }
 
     @FXML

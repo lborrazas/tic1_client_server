@@ -151,6 +151,12 @@ Label {
     -fx-font-family: "FontAwesome";
     -fx-background-color: transparent;
     -fx-border-color: none;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-font-size: 18;
+}
+
+.button-back .glyph-icon {
+    -fx-font-size: 22;
 }
 
 .button-back:hover, .button-back:pressed {
@@ -160,14 +166,18 @@ Label {
     -fx-text-fill: -fx-secondary;
     -fx-fill: -fx-secondary;
     -fx-effect: null;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-font-size: 18;
 }
 
-.button-back:hover .glyph-icon, .button-back:pressed {
+.button-back:hover .glyph-icon, .button-back:pressed .glyph-icon {
     -fx-font-family: "FontAwesome";
     -fx-border-color: none;
     -fx-background-color: transparent;
     -fx-fill: -fx-secondary;
     -fx-effect: null;
+    -fx-font-size: 22;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .carousel-button {
@@ -195,7 +205,7 @@ Label {
 .search-button {
     -fx-font-family: "FontAwesome";
     -fx-background-color: transparent !important;
-    -fx-border-color: transparent !important;
+    -fx-border-color: none !important;
     -fx-font-size: 14px;
 }
 
@@ -206,15 +216,15 @@ Label {
 .search-button:hover {
     -fx-font-family: "FontAwesome";
     -fx-fill: -fx-secondary;
-    -fx-background-color: none;
-    -fx-border-color: none;
+    -fx-background-color: none !important;
+    -fx-border-color: none !important;
 }
 
 .search-button:hover .glyph-icon {
     -fx-font-family: "FontAwesome";
-    -fx-fill: -fx-secondary;
-    -fx-background-color: none;
-    -fx-border-color: none;
+    -fx-fill: -fx-secondary !important;
+    -fx-background-color: none !important;
+    -fx-border-color: none !important;
     -fx-font-size: 25;
 }
 
@@ -289,6 +299,7 @@ Label {
     -fx-background-color: transparent;
     -fx-border-color: white !important;
     -fx-font-size: 15;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .plus_button {
@@ -300,6 +311,7 @@ Label {
     -fx-background-color: transparent;
     -fx-border-color: white !important;
     -fx-font-size: 15;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .minus_button .glyph-icon, .plus_button .glyph-icon {
@@ -309,6 +321,7 @@ Label {
     -fx-border-color: white;
     -fx-font-size: 15;
     -fx-fill: white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .minus_button:hover .glyph-icon, .plus_button:hover .glyph-icon,
@@ -319,6 +332,7 @@ Label {
     -fx-font-size: 15;
     -fx-border-color: none;
     -fx-background-color: -fx-secondary;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
 }
 
 .admin {

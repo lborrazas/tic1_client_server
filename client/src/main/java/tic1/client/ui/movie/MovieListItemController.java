@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import tic1.client.models.Actor;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
+import tic1.client.services.alert.ImageRestTemplate;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -60,8 +62,12 @@ public class MovieListItemController implements Initializable {
                 .collect(Collectors.joining(", ")));
         movieGenres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
-        System.out.println(movie.getImagePath());
-        movie_image.setImage(new Image(movie.getImagePath()));
+        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+        try {
+            movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

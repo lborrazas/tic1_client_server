@@ -35,7 +35,7 @@
                               <Font name="Arial" size="14.0" />
                            </font>
                         </JFXTextField>
-                        <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="214.0" layoutY="21.0" onAction="#filter" prefHeight="35.0" prefWidth="39.0">
+                        <JFXButton contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="214.0" layoutY="21.0" onAction="#filter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
                            <graphic>
                               <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" styleClass="search-button" />
                            </graphic>

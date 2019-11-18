@@ -53,14 +53,6 @@
                                     </HBox>
                                  </children>
                               </HBox>
-                              <Label style="-fx-text-fill: white;" text="Descripción">
-                                 <font>
-                                    <Font name="Arial Bold" size="20.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" />
-                                 </VBox.margin>
-                              </Label>
                               <Label fx:id="movie_description" prefHeight="56.0" prefWidth="600.0" style="-fx-text-fill: white;" text="desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-desc-" wrapText="true">
                                  <font>
                                     <Font name="Arial" size="14.0" />
@@ -86,7 +78,7 @@
                                     <Insets />
                                  </opaqueInsets>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" top="10.0" />
+                                    <Insets bottom="10.0" top="30.0" />
                                  </VBox.margin>
                               </HBox>
                               <HBox alignment="CENTER_LEFT">
@@ -106,7 +98,7 @@
                                     </Label>
                                  </children>
                                  <VBox.margin>
-                                    <Insets bottom="10.0" />
+                                    <Insets bottom="10.0" top="20.0" />
                                  </VBox.margin>
                               </HBox>
                            </children>
