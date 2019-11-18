@@ -22,6 +22,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
@@ -41,6 +42,7 @@ import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.ui.login.LoginController;
 import tic1.client.ui.movie.MovieDetailsController;
 
 import java.io.File;
@@ -209,7 +211,7 @@ public class EndUserController implements Initializable {
         });
         String path = null;
         try {
-            path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
+            path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -304,8 +306,23 @@ public class EndUserController implements Initializable {
     }
 
     @FXML
-    void logOut(ActionEvent event) {
+    void logOut(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        close(event);
 
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 
     @FXML

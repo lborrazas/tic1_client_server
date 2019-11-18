@@ -45,8 +45,8 @@
                             <children>
                                 <MenuButton graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Action 1" />
-                                        <MenuItem mnemonicParsing="false" text="Action 2" />
+                                        <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
+                                        <MenuItem mnemonicParsing="false" text="Configuracion" />
                                     </items>
                                     <font>
                                         <Font name="Arial" size="15.0" />
