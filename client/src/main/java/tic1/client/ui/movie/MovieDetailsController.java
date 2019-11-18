@@ -23,10 +23,12 @@ import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 import tic1.client.models.*;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.client.ui.client.EndUserController;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -113,6 +115,13 @@ public class MovieDetailsController implements Initializable {
         movie_duration.setText(Long.toString(movie.getDuration()));
         movie_genres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
+        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+
+        try {
+            movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
 
     }
 

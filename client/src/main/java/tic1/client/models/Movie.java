@@ -50,7 +50,7 @@ public class Movie {
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);
         movieDTO.setGenres(this.genres.stream().map(Genre::toDTO).collect(Collectors.toSet()));
-        movieDTO.setImagePath(this.getImagePath());
+        movieDTO.setImagePath(this.imagePath);
         return movieDTO;
     }
 
