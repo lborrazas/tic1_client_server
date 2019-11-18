@@ -3,10 +3,15 @@ package tic1.client.ui.client;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.events.JFXDrawerEvent;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -18,6 +23,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
@@ -29,6 +35,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
@@ -41,9 +48,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.ResourceBundle;
+import java.util.*;
 
 @Controller
 public class EndUserController implements Initializable {
@@ -94,7 +99,7 @@ public class EndUserController implements Initializable {
     @FXML
     String id;
 
-    private ArrayList<File> fileList = new ArrayList<>();
+//    private ArrayList<File> fileList = new ArrayList<>();
 
     private HBox hb = new HBox();
 
@@ -113,9 +118,14 @@ public class EndUserController implements Initializable {
     @FXML
     private JFXButton logOutButton;
 
-    private boolean moviesAreLoaded = false;
-
     private HamburgerBackArrowBasicTransition transition;
+
+    @FXML
+    private JFXTextField filterByName;
+
+    private ObservableList<File> fileList = FXCollections.observableArrayList();
+
+    private ObservableList<File> allMovies = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -197,40 +207,24 @@ public class EndUserController implements Initializable {
                 drawer.toFront();
             }
         });
-        if (!moviesAreLoaded) {
-            String path = null;
-            try {
-                path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-
-            File folder = new File(path);
-            fileList.addAll(Arrays.asList(folder.listFiles()));
-
-            grid.setPadding(new Insets(7, 7, 7, 7));
-            grid.setHgap(10);
-            grid.setVgap(10);
-
-            columns = 1000 / 160;
-            rows = (int) ((fileList.size() / columns) + 1);
-            int imageIndex = 0;
-
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < columns; j++) {
-                    if (imageIndex < fileList.size()) {
-                        addImage(imageIndex, j, i);
-                        imageIndex++;
-                    }
-                }
-            }
+        String path = null;
+        try {
+            path = URLDecoder.decode("C:/Users/jpalg/Desktop/TIC1/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
+
+        File folder = new File(path);
+
+        allMovies.addAll(Arrays.asList(folder.listFiles()));
+
+        loadMovies(allMovies);
+
     }
 
     private void addImage(int index, int colIndex, int rowIndex) {
 
         hb.setAlignment(Pos.CENTER);
-
 
         /*Label name = new Label(id);
         name.setFont(Font.font("Arial"));
@@ -297,12 +291,16 @@ public class EndUserController implements Initializable {
     }
 
     @FXML
-    void home(ActionEvent event) {
+    void home(ActionEvent event) throws IOException {
         drawer.close();
         drawer.toBack();
         hamburgerTransition(hamburger);
-        mainContent.getChildren().removeAll();
-        mainContent.getChildren().setAll(homeContent);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
@@ -330,5 +328,40 @@ public class EndUserController implements Initializable {
     private void hamburgerTransition(JFXHamburger hamburger) {
         transition.setRate(transition.getRate() * -1);
         transition.play();
+    }
+
+    private void loadMovies(List<File> movies) {
+        fileList.clear();
+        grid.getChildren().clear();
+        fileList.addAll(movies);
+
+        grid.setPadding(new Insets(7, 7, 7, 7));
+        grid.setHgap(10);
+        grid.setVgap(10);
+
+        columns = 1000 / 160;
+        rows = (int) ((fileList.size() / columns) + 1);
+        int imageIndex = 0;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                if (imageIndex < fileList.size()) {
+                    addImage(imageIndex, j, i);
+                    imageIndex++;
+                }
+            }
+        }
+    }
+
+    @FXML
+    private void filter(ActionEvent event) {
+
+        String movie = filterByName.getText().toLowerCase();
+        filterByName.clear();
+
+        List<File> filteredList = new ArrayList<>(allMovies);
+        filteredList.removeIf(s -> !s.getName().toLowerCase().contains(movie));
+
+        loadMovies(filteredList);
     }
 }

@@ -24,13 +24,14 @@ public class Movie {
     private long duration;
 
     private Set<Genre> genres;
+
     private String imagePath;
 
     public Movie() {
         this.name = null;
     }
 
-    public Movie(NewMovieDTO movie){
+    public Movie(NewMovieDTO movie) {
         this.id = movie.getId();
         this.name = movie.getName();
         this.description = movie.getDescription();
@@ -105,7 +106,7 @@ public class Movie {
     public void addActor(Actor actor) {
         //prevent endless loop
         if (this.actors.contains(actor))
-            return ;
+            return;
         //add new follower
         actors.add(actor);
     }
@@ -114,16 +115,17 @@ public class Movie {
     public void removeActor(Actor actor) {
         //prevent endless loop
         if (!actors.contains(actor))
-            return ;
+            return;
         //remove the follower
         actors.remove(actor);
         //remove myself from the follower
         //  follower.stopFollowingTwitter(this);
     }
+
     public void addGenre(Genre genre) {
         //prevent endless loop
         if (this.genres.contains(genre))
-            return ;
+            return;
         //add new follower
         this.genres.add(genre);
     }
@@ -132,7 +134,7 @@ public class Movie {
     public void removeGenre(Genre genre) {
         //prevent endless loop
         if (!this.genres.contains(genre))
-            return ;
+            return;
         //remove the follower
         this.genres.remove(genre);
         //remove myself from the follower
@@ -153,5 +155,15 @@ public class Movie {
 
     public void setGenre(Set<Genre> genres) {
         this.genres = genres;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Movie) {
+            Movie movie = (Movie) o;
+            return getId() == movie.getId();
+        } else {
+            return false;
+        }
     }
 }

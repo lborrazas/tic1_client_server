@@ -225,7 +225,8 @@ public class MovieController implements Initializable {
     }
 
     @FXML
-    public void chooseFile(ActionEvent event) throws IOException {
+    public void chooseFile(ActionEvent event) {
+        file = null;
         FileChooser fc = new FileChooser();
         File selectedFile = fc.showOpenDialog(null);
         String relativePath = null;

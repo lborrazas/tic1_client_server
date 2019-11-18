@@ -83,12 +83,12 @@ public class TicketRestController {
     }
 
     @GetMapping("/ticket/{id}")
-    public TicketDTO getOne(@RequestBody TicketPk ticketPk) {
+    public TicketDTO getOne(@PathVariable TicketPk ticketPk) {
         return ticketMgr.getOne(ticketPk).toDTO();
     }
 
     @GetMapping("/ticket/after/{date}")
-    List<TicketDTO> getAfterToday(@RequestBody LocalDateTime date) {
+    List<TicketDTO> getAfterToday(@PathVariable LocalDateTime date) {
 
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getByFuncionAfterDate(date)) {
@@ -99,7 +99,7 @@ public class TicketRestController {
     }
 
     @GetMapping("/ticket/{sala_id}")
-    public List<TicketDTO> getBySala(@RequestBody long sala_id) {
+    public List<TicketDTO> getBySala(@PathVariable long sala_id) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getBySala(salaMgr.getSalaById(sala_id))) {
             ticketDTOS.add(ticket.toDTO());
@@ -109,7 +109,7 @@ public class TicketRestController {
 
 
     @GetMapping("/ticket/{date}")
-    public List<TicketDTO> getBydate(@RequestBody LocalDate date) {
+    public List<TicketDTO> getBydate(@PathVariable LocalDate date) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getByOnDate(date)) {
             ticketDTOS.add(ticket.toDTO());
@@ -120,7 +120,7 @@ public class TicketRestController {
 
 
     @GetMapping("/ticket/transaction/{transacionid}")
-    public List<TicketDTO> getByTransacion(@RequestBody long transacionid) {
+    public List<TicketDTO> getByTransacion(@PathVariable long transacionid) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket : ticketMgr.getByTransaccion(transaccionMgr.getOne(transacionid))) {
             ticketDTOS.add(ticket.toDTO());
@@ -129,7 +129,7 @@ public class TicketRestController {
     }
 
     @GetMapping("/ticket/client/{clientid}")
-    public List<TicketDTO> getByClientId(@RequestBody long clientid) {
+    public List<TicketDTO> getByClientId(@PathVariable long clientid) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket:ticketMgr.getByClientId(clientid)){
             ticketDTOS.add(ticket.toDTO());
@@ -138,7 +138,7 @@ public class TicketRestController {
     }
 
     @GetMapping("/ticket/client/{clientname}")
-    public List<TicketDTO> getBySala(@RequestBody String clientname) {
+    public List<TicketDTO> getBySala(@PathVariable String clientname) {
         List<TicketDTO> ticketDTOS = new ArrayList<>();
         for (Ticket ticket:ticketMgr.getByClientUsername(clientname)){
             ticketDTOS.add(ticket.toDTO());

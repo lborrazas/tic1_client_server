@@ -12,11 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
@@ -25,16 +21,11 @@ import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
-import tic1.client.models.Actor;
-import tic1.client.models.Genre;
-import tic1.client.models.Movie;
+import tic1.client.models.*;
 import tic1.client.services.MovieRestTemplate;
-import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.client.ui.client.EndUserController;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -68,6 +59,21 @@ public class MovieDetailsController implements Initializable {
     private Label movie_actors;
 
     @FXML
+    private ImageView movie_image;
+
+    @FXML
+    private ComboBox<Cinema> cinema;
+
+    @FXML
+    private ComboBox<Sala> sala;
+
+    @FXML
+    private ComboBox<LocalDate> fecha;
+
+    @FXML
+    private ComboBox<LocalTime> hora;
+
+    @FXML
     private Button buy_btn;
 
     @FXML
@@ -91,9 +97,6 @@ public class MovieDetailsController implements Initializable {
     @FXML
     private Label movie_genres;
 
-    @FXML
-    private ImageView movieImage;
-
     private int numberOfEntrances = 0;
 
     private String parent;
@@ -101,9 +104,7 @@ public class MovieDetailsController implements Initializable {
     private Movie movieDetails;
 
     @FXML
-    public void loadData(Movie movie) throws FileNotFoundException {
-
-        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+    public void loadData(Movie movie) {
 
         movie_name.setText(movie.getName());
         movie_description.setText(movie.getDescription());
@@ -112,8 +113,7 @@ public class MovieDetailsController implements Initializable {
         movie_duration.setText(Long.toString(movie.getDuration()));
         movie_genres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
-        /*Image image = new Image(new FileInputStream(imageRestTemplate.showImage(movie.getImagePath())));
-        movieImage.setImage(image);*/
+
     }
 
     @Override

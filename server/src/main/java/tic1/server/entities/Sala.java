@@ -23,7 +23,7 @@ public class Sala {
         this.name = name;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;
 

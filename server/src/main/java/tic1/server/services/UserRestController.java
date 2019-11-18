@@ -42,7 +42,7 @@ public class UserRestController {
             default:
                 user= new User();
         }
-
+        user.setId(userDTO.getId());
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
 
@@ -55,16 +55,16 @@ public class UserRestController {
     }
 
     @DeleteMapping("/user/{id}")
-    public void delate(@RequestBody long id){
+    public void delate(@PathVariable("id") long id){
         userMgr.delete(id);
     }
 
     @GetMapping("/user/{id}")
-    public UserDTO getOne(@RequestBody long id){
+    public UserDTO getOne(@PathVariable("id") long id){
         return userMgr.getOne(id).toDTO();
     }
     @GetMapping("/user/{name}")
-    public List<UserDTO> getBy(@RequestBody String name){
+    public List<UserDTO> getBy(@PathVariable("id") String name){
         List<UserDTO> userDTOS= new ArrayList<>();
         for(User user:userMgr.getByname(name)){
             userDTOS.add(user.toDTO());

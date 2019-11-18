@@ -32,7 +32,7 @@ public class FunctionMgr {
 
     public Funcion getFunctionByPk(Sala sala, LocalDateTime localDateTime){
         FunctionPK functionPK = new FunctionPK(sala, localDateTime);
-        return funcionRepository.getOne(functionPK);
+        return funcionRepository.findById(functionPK).get();
     }
     public List<Funcion> findAll() {
         return funcionRepository.findAll();

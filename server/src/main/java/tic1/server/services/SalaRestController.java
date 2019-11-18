@@ -39,11 +39,11 @@ public class SalaRestController {
     }
 
     @GetMapping("/sala/{id}")
-    public  SalaDTO getOne(@RequestBody long id){
+    public  SalaDTO getOne(@PathVariable long id){
         return  salaMgr.getSalaById(id).toDTO();
     }
     @GetMapping("/sala/{name}")
-    public List<SalaDTO> getByName(@RequestBody String name){
+    public List<SalaDTO> getByName(@PathVariable String name){
         List<SalaDTO> salaDTOS = new ArrayList<>();
         for (Sala sala: salaMgr.getByName(name)){
             salaDTOS.add(sala.toDTO());
@@ -51,7 +51,7 @@ public class SalaRestController {
         return  salaDTOS;
     }
     @GetMapping("/sala/{cinema_id}")
-    public List<SalaDTO> getByCinemaName(@RequestBody long cinema_id ) {
+    public List<SalaDTO> getByCinemaName(@PathVariable long cinema_id ) {
         List<SalaDTO> salaDTOS = new ArrayList<>();
         for( Sala salatemp:salaMgr.findAllByCinema(cinemaMgr.getOne(cinema_id))){
             salaDTOS.add(salatemp.toDTO())   ;
