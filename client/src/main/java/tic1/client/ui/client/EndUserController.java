@@ -200,13 +200,13 @@ public class EndUserController implements Initializable {
         if (!moviesAreLoaded) {
             String path = null;
             try {
-                path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
+                path = URLDecoder.decode("C:/Users/Usuario/Desktop/Tic1/proyeccto psota postaposta/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }
 
             File folder = new File(path);
-         //   fileList.addAll(Arrays.asList(folder.listFiles()));
+              fileList.addAll(Arrays.asList(folder.listFiles()));
 
             grid.setPadding(new Insets(7, 7, 7, 7));
             grid.setHgap(10);

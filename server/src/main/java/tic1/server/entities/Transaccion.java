@@ -9,7 +9,7 @@ import java.util.List;
 @Table
 public class Transaccion {
 @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private long id;
 
     @ManyToOne(cascade = CascadeType.ALL)

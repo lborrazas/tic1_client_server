@@ -74,13 +74,13 @@ public class TransaccionRestTemplate {
                 .collect(Collectors.toList());
     }
 
-    public void create(Transaccion transaccion) {
+    public void create(Transaccion transaccion) { // aca mate
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<TransaccionDTO> body = new HttpEntity<>(
                 transaccion.toDTO());
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/actor", HttpMethod.POST, body, String.class);
+                restTemplate.exchange("http://localhost:8080/transaccion", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 }

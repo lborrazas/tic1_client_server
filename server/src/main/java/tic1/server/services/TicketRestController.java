@@ -27,7 +27,7 @@ public class TicketRestController {
     @Autowired
     TransaccionMgr transaccionMgr;
 
-    private Funcion funtionFromDto(FunctionDTO functionDTO) {
+    public Funcion funtionFromDto(FunctionDTO functionDTO) {
         Funcion funcion = new Funcion();
         FunctionPK functionPK = new FunctionPK();
 
@@ -40,7 +40,7 @@ public class TicketRestController {
         return funcion;
     }
 
-    private Seat seatFromDto(SeatDTO seatDTO) {
+    public Seat seatFromDto(SeatDTO seatDTO) {
         SeatPk seatPk = new SeatPk();
         seatPk.setColumna(seatDTO.getColumn());
         seatPk.setFila(seatDTO.getRow());
