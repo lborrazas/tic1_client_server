@@ -34,7 +34,6 @@ public class TicketRestController {
         functionPK.setDate(functionDTO.getStartTime());
         functionPK.setSala(salaMgr.getSalaById(functionDTO.getSala()));
 
-        funcion.setSecondId(functionDTO.getSecondId());
         funcion.setMovie(movieMgr.getOne(functionDTO.getMovie().getId()));
         funcion.setId(functionPK);
         return funcion;

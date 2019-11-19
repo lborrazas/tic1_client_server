@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Embeddable
 public class TicketPk implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "funcion",foreignKey = @ForeignKey(name = "fkfuncion_ticket"),referencedColumnName = "second_id")
+    @JoinColumns({@JoinColumn(foreignKey = @ForeignKey(name= "fksalaFuncion_ticket")),@JoinColumn(foreignKey = @ForeignKey(name= "fkdateFuncion_ticekt"))})
     private Funcion funcion;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumns({@JoinColumn(foreignKey = @ForeignKey(name = "FkRow_ticket")),@JoinColumn(foreignKey = @ForeignKey(name = "fkcolum_ticket")),@JoinColumn(foreignKey = @ForeignKey(name = "fksala_ticket"))})

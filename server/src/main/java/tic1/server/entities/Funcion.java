@@ -16,17 +16,6 @@ public class Funcion {
     @JoinColumn(name = "movieId",foreignKey = @ForeignKey(name = "fksala_function"))
     private Movie movie;
 
-    @Column(name = "second_id",unique = true,nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO )
-    private long secondId;
-
-    public long getSecondId() {
-        return secondId;
-    }
-
-    public void setSecondId(long secondId) {
-        this.secondId = secondId;
-    }
 
     public Funcion() {
 

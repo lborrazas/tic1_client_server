@@ -26,6 +26,16 @@ public class SalaRestController {
         sala.setName(salaDTO.getName());
         return sala;
     }
+    @GetMapping("/sala/")
+    public List<SalaDTO> All() {
+        List<SalaDTO> cinemasDtos = new ArrayList<>();
+        List<Sala> salas = salaMgr.findAll();
+        for (Sala room : salas) {
+            cinemasDtos.add(room.toDTO()); //
+        }
+        return cinemasDtos;
+
+    }
 
 
     @PostMapping("/sala/{columna}/{fila}")

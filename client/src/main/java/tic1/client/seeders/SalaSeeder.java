@@ -14,14 +14,18 @@ public class SalaSeeder {
         SalaRestTemplate salaRestTemplate = new SalaRestTemplate();
         CinemaRestTemplate cinemaRestTemplate = new CinemaRestTemplate();
         SalaDTO salaDTO = new SalaDTO();
-        salaDTO.setName("juanito El wuerfanito");
+
         salaDTO.setMaxcolum(3);
         salaDTO.setMaxfila(6);
-        int a= (int) (Math.random()*10);
-        Cinema delete = cinemaRestTemplate.get().get(a);
-        salaDTO.setCinemaid(cinemaRestTemplate.get().get(a).getId());
-        Sala sala = new Sala(salaDTO);
-        salaRestTemplate.createSala(sala);
+
+        for (int i = 0; i < 10; i++) {
+            salaDTO.setName("juanito El wuerfanito" + i);
+            int a= (int) (Math.random()*10);
+            Cinema delete = cinemaRestTemplate.get().get(a);
+            salaDTO.setCinemaid(cinemaRestTemplate.get().get(a).getId());
+            Sala sala = new Sala(salaDTO);
+            salaRestTemplate.createSala(sala);
+        }
     }
 
 }

@@ -33,32 +33,29 @@ public class Movie {
     public Movie(NewMovieDTO movie){
         this.id = movie.getId();
         this.name = movie.getName();
-       // this.description = movie.getDescription();
-        //this.actors = movie.getActors().stream().map(Actor::new).collect(Collectors.toSet());
-       // this.duration = movie.getDuration();
-    //    this.genres = movie.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
+       this.description = movie.getDescription();
+        this.actors = movie.getActors().stream().map(Actor::new).collect(Collectors.toSet());
+       this.duration = movie.getDuration();
+          this.genres = movie.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
         //this.genres = movie.getGenres().stream().map(Genre::new).distinct().collect(Collectors.toList());
+        this.imagePath= movie.getImagePath();
     }
 
     public NewMovieDTO toDTO() {
         NewMovieDTO movieDTO = new NewMovieDTO();
-        //movieDTO.setActors(this.actors.stream().map(Actor::toDTO).collect(Collectors.toSet()));
-        ///movieDTO.setDescription(this.description);
+        movieDTO.setActors(this.actors.stream().map(Actor::toDTO).collect(Collectors.toSet()));
+        movieDTO.setDescription(this.description);
         movieDTO.setDuration(this.duration);
-        //movieDTO.setName(this.name);
+        movieDTO.setName(this.name);
         movieDTO.setId(this.id);
-//        movieDTO.setGenres(this.genres.stream().map(Genre::toDTO).collect(Collectors.toSet()));
-       // movieDTO.setImagePath(this.getImagePath());
+        movieDTO.setGenres(this.genres.stream().map(Genre::toDTO).collect(Collectors.toSet()));
+        movieDTO.setImagePath(this.getImagePath());
         return movieDTO;
     }
 
 
     public Set<Genre> getGenres() {
         return genres;
-    }
-
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
     }
 
     public String getImagePath() {

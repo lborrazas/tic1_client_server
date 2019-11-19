@@ -65,6 +65,9 @@ public class SalaMgr {
     public List<Sala> findAllByCinema(Cinema cinema) {
         return salaRepository.findAllByCinema(cinema);
     }
+    public List<Sala> findAll() {
+        return salaRepository.findAll();
+    }
 
 
     public ResponseEntity<?> delateById(@PathVariable("id") Long id) {
