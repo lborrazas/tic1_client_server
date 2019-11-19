@@ -14,8 +14,10 @@ import java.util.List;
 public class SalaRestController {
 
     @Autowired
+    private
     SalaMgr salaMgr;
     @Autowired
+    private
     CinemaMgr cinemaMgr;
     private Sala salaFromDto(SalaDTO salaDTO){
     Sala sala= new Sala();
@@ -26,10 +28,13 @@ public class SalaRestController {
     }
 
 
-    @PostMapping("/sala")
-    public void save(@RequestBody SalaDTO salaDTO){
+    @PostMapping("/sala/{columna}/{fila}")
+    public void save(@RequestBody SalaDTO salaDTO,
+                     @PathVariable("columna") long maxColumn,@PathVariable("fila") long maxfil){
 
         Sala sala = salaFromDto(salaDTO);
+        sala.setMaxcolum(maxColumn);
+        sala.setMaxfila(maxfil);
         salaMgr.addSala(sala);
     }
 

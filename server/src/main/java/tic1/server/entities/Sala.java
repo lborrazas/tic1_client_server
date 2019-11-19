@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class Sala {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private long id;
     @Column
@@ -23,7 +23,7 @@ public class Sala {
         this.name = name;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.REMOVE,fetch=FetchType.EAGER)
     @JoinColumn(name = "id_cinema")
     private Cinema cinema;
     @Column

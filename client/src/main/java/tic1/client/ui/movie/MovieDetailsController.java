@@ -113,7 +113,7 @@ public class MovieDetailsController implements Initializable {
     public void buyAction(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(SeatSelectionController.class.getResourceAsStream("/movie_crud/ui/movie/SeatSelection.fxml"));
+        Parent root = fxmlLoader.load(BuyTicket.class.getResourceAsStream("movie_crud/ui/movie/CompraTiket.fxml"));
         SeatSelectionController seatSelectionController = fxmlLoader.getController();
 
         Scene scene = buy_btn.getScene();

@@ -1,6 +1,8 @@
 package tic1.client.models;
 
 
+import tic1.commons.transfers.SeatDTO;
+
 import java.io.Serializable;
 
 public class Seat implements Serializable {
@@ -37,6 +39,14 @@ public class Seat implements Serializable {
 
     public void setColumna(long columna) {
         this.columna = columna;
+    }
+
+    public SeatDTO toDTO(){
+        SeatDTO seatDTO= new SeatDTO();
+        seatDTO.setSala_id(this.sala.getId());
+        seatDTO.setRow(this.fila);
+        seatDTO.setColumn(this.columna);
+        return seatDTO;
     }
 
 

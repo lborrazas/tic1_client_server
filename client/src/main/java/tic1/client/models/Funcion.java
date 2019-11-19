@@ -72,7 +72,7 @@ public class Funcion {
         //   functionDTO.setCinemaName(this.cinemaName);
         //  functionDTO.setLocal(this.);
         // functionDTO.setProviderName(this.getId().getSala().getCinema().getProvider().getName());
-        // functionDTO.setStartTime(this.getId().getDate());
+        functionDTO.setStartTime(this.getDate());
         functionDTO.setMovie(this.getMovie().toDTO());
         functionDTO.setCinemaId(this.cinemaId);
 

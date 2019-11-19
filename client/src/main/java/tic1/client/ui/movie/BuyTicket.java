@@ -42,8 +42,8 @@ public class BuyTicket {
 
     public void initialize(URL location, ResourceBundle resources) {
         //cargo la sala
-        for (int n = 0; n < sala.getMaxfila(); n++) {
-            for (int m = 0; m < sala.getMaxcolum(); m++) {
+        for (int n = 1; n <= sala.getMaxfila(); n++) {
+            for (int m = 1; m <= sala.getMaxcolum(); m++) {
                 int a = 13 + ((m / 2) - (m % 2)) * (~m);
                 Pane filan = (Pane) butacas.getChildren().get(n);
 
@@ -104,11 +104,11 @@ public class BuyTicket {
     private void buy(MouseEvent event) {
         TransaccionDTO transaccionDTO = new TransaccionDTO();
         Transaccion transaccion = new Transaccion(transaccionDTO);
-
+        transaccion.setClient(client.getId());
         transaccionDTO.setClient(client.getId()); //si cambiamos a que el precio de un asiento este en la funcion y no en el ticekt?? IMprotante Mate jope habria que camvair la senteidades pero ahi pdoraimos mostrar el precio despues de realizar al compra sin tener que ir a la base de  datos
 
 
-        transaccionRestTemplate.create(transaccionDTO,seats);
+        transaccionRestTemplate.create(transaccion,seats);
     }
 
 

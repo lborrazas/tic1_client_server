@@ -89,11 +89,11 @@ public class UserRestTemplate {
     }
 
 
-    public void createActor(User user) {
+    public void createActor(UserDTO userDTO) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<UserDTO> body = new HttpEntity<>(
-                user.toDTO());
+                userDTO);
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/user", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());

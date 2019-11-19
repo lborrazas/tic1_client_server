@@ -13,4 +13,5 @@ public interface SalaRepository extends JpaRepository<Sala,Long> {
     List<Sala> findAllByName(String name);
     List<Sala> findAllByCinema(Cinema cinema);
 
+    List<Sala> findTopByOrderByIdDesc();
 }

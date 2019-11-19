@@ -16,7 +16,7 @@ import java.util.List;
 
 @Service
 public class TransaccionMgr {
-    public static long idtrans;
+
 
     @Autowired
     private  TransaccionRepository transaccionRepository;
@@ -28,8 +28,6 @@ public class TransaccionMgr {
 
     public void addTransaccion(Transaccion transaccion) {
 
-
-        idtrans= transaccionRepository.findTopByOrderByIdDesc().get(0).getId()+1;
 
         transaccionRepository.save(transaccion);
 

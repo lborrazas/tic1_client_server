@@ -27,7 +27,7 @@ public class FuncionRestController {
 
 
 
-    @PostMapping("/function/{function}")
+    @PostMapping("/funcion/")
     public void save(@RequestBody FunctionDTO function){
         FunctionPK functionPK= new FunctionPK();
         functionPK.setSala(salaMgr.getSalaById(function.getSala()));

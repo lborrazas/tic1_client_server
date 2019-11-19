@@ -41,8 +41,8 @@ public class AddCinemaController implements Initializable {
         CinemaRestTemplate cinemaRestTemplate = new CinemaRestTemplate();
 
         Cinema cinema = new Cinema();
-
-        cinema.setProvider(providerName.getValue());
+        
+        cinema.setProvider(providerName.getValue().getId());
 
         cinema.setName(cinemaName.getText());
 

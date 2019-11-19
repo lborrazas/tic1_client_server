@@ -2,10 +2,7 @@ package tic1.server.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tic1.commons.transfers.FunctionDTO;
-import tic1.commons.transfers.SeatDTO;
-import tic1.commons.transfers.TicketDTO;
-import tic1.commons.transfers.TransaccionDTO;
+import tic1.commons.transfers.*;
 import tic1.server.business.*;
 import tic1.server.entities.*;
 
@@ -78,11 +75,14 @@ MovieMgr movieMgr;
         return ticket;
     }
     @PostMapping("/transaccion")
-    public void save(@RequestBody TransaccionDTO transaccionDTO, @RequestBody List<TicketDTO>    tickets)
-    { transaccionDTO.setPrecioTotal(tickets.size());
+    public void save(@RequestBody Nodo skere)
+    { TransaccionDTO transaccionDTO = skere.getTransaccionDTO();
+    List<TicketDTO> tickets = skere.getTicketDTOS();
+        Transaccion transaccion=transaccionFromDTO(transaccionDTO);
+        transaccionDTO.setPrecioTotal(tickets.size());
         transaccionMgr.addTransaccion(transaccionFromDTO(transaccionDTO));
         for (TicketDTO ticketDTO:tickets){
-            ticketDTO.setTransaccionId(TransaccionMgr.idtrans);
+            ticketDTO.setTransaccionId(transaccion.getId());
             ticketMgr.updateTicket(ticketFromDto(ticketDTO).getId(),ticketFromDto(ticketDTO));
         }
     }
