@@ -17,9 +17,7 @@ public class Funcion {
 
     private long cinemaId;
 
-    public Funcion() {
 
-    }
 
     public long getCinemaId() {
         return cinemaId;
@@ -33,12 +31,14 @@ public class Funcion {
     public Funcion(FunctionDTO dto) {
         this.setDate(dto.getStartTime());
         this.setMovie(new Movie(dto.getMovie()));
-        this.setSecondId(dto.getSala());
+        this.setSalaId(dto.getSala());
 
         this.setCinemaId(dto.getCinemaId());
     }
 
+    public Funcion() {
 
+    }
     public Movie getMovie() {
         return movie;
     }

@@ -1,5 +1,6 @@
 package tic1.client.models;
 
+import tic1.commons.transfers.SeatDTO;
 import tic1.commons.transfers.TicketDTO;
 
 
@@ -20,6 +21,7 @@ public class Ticket {
     private long transaccionId;
 
     public Ticket(TicketDTO dto) {
+        this.seat= new Seat(dto.getSeat());
         this.isBought = dto.isBought();
         this.discount = dto.getDiscount();
         this.isLock = dto.isLock();
@@ -87,6 +89,7 @@ public class Ticket {
 
     public TicketDTO toDTO() {
         TicketDTO ticketDTO = new TicketDTO();
+        ticketDTO.setSeat(this.seat.toDTO());
         ticketDTO.setBought(this.isBought());
         ticketDTO.setDiscount(this.getDiscount());
         ticketDTO.setFuncion_id(this.funcion.toDTO());

@@ -12,6 +12,7 @@ public class UserClient extends User{
     private String creditCard;
 
 
+
     public String getCreditCard() {
         return creditCard;
     }
@@ -24,6 +25,8 @@ public class UserClient extends User{
         super(userDTO);
         this.creditCard=userDTO.getCreditCard();
     }
+
+
     @Override
     public UserDTO toDTO() {
         UserDTO userDTO = new UserDTO();

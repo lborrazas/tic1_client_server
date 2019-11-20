@@ -36,9 +36,17 @@ public class FuncionRestController {
         funcion.setId(functionPK);
         funcion.setMovie(movieMgr.getOne(function.getMovie().getId()));
         functionMgr.save(funcion);
-
     }
 
+    @GetMapping("/funcion")
+    public List<FunctionDTO> all(){
+        List<Funcion> funcions = functionMgr.findAll();
+        List<FunctionDTO> functionDTOS = new ArrayList<>();
+        for (Funcion funcion:funcions){
+            functionDTOS.add(funcion.toDTO());
+        }
+        return functionDTOS;
+    }
 
     /*@GetMapping("/function/{sala_id}/{date}")
     public FunctionDTO getFunctionDto(@PathVariable("sala_id") long sala_id, @PathVariable("date")LocalDateTime localDateTime){

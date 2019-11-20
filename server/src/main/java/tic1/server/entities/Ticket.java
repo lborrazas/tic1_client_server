@@ -20,7 +20,7 @@ public class Ticket {
     @Column
     private float price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "transaccion",foreignKey = @ForeignKey(name = "fktransaccion_ticket"))
     private Transaccion transaccion;
 
@@ -74,6 +74,7 @@ public class Ticket {
     }
 
     public void setTransaccion(Transaccion transaccion) {
+        this.setBought(true);
         this.transaccion = transaccion;
     }
 
@@ -84,7 +85,8 @@ public class Ticket {
         ticketDTO.setFuncion_id(this.id.getFuncion().toDTO());
         ticketDTO.setLock(this.isLock());
         ticketDTO.setPrice(this.getPrice());
-        ticketDTO.setTransaccionId(this.getTransaccion().getId());
+        ticketDTO.setSeat(this.id.getSeat().toDTO());
+        if (this.getTransaccion() != null)ticketDTO.setTransaccionId(this.getTransaccion().getId());
     return ticketDTO;
     }
 }

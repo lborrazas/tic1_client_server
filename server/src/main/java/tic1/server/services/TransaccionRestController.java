@@ -78,9 +78,10 @@ MovieMgr movieMgr;
     public void save(@RequestBody Nodo skere)
     { TransaccionDTO transaccionDTO = skere.getTransaccionDTO();
     List<TicketDTO> tickets = skere.getTicketDTOS();
-        Transaccion transaccion=transaccionFromDTO(transaccionDTO);
+
         transaccionDTO.setPrecioTotal(tickets.size());
-        transaccionMgr.addTransaccion(transaccionFromDTO(transaccionDTO));
+        Transaccion transaccion=transaccionFromDTO(transaccionDTO);
+        transaccionMgr.addTransaccion(transaccion);
         for (TicketDTO ticketDTO:tickets){
             ticketDTO.setTransaccionId(transaccion.getId());
             ticketMgr.updateTicket(ticketFromDto(ticketDTO).getId(),ticketFromDto(ticketDTO));

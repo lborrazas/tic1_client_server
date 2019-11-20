@@ -1,5 +1,6 @@
 package tic1.server.services;
 
+import org.apache.tomcat.util.buf.UEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tic1.commons.transfers.UserDTO;
@@ -12,6 +13,7 @@ import tic1.server.entities.UserManeger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserRestController {
@@ -51,6 +53,15 @@ public class UserRestController {
     @PostMapping("/user")
     public void save(@RequestBody UserDTO userDTO)
     { userMgr.save(userFromDto(userDTO));
+
+    }
+    @GetMapping("/user")
+    public  List<UserDTO> all(){
+
+        List<User> genres = userMgr.findAll(); //todo List must be pages not full
+        return genres.stream()
+                .map(User::toDTO)
+                .collect(Collectors.toList());
 
     }
 

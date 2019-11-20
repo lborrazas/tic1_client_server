@@ -11,6 +11,7 @@ import tic1.server.entities.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -98,9 +99,11 @@ public class TicketRestController {
     }
 
     @GetMapping("/ticket/{sala_id}/{fecha}")
-    public List<TicketDTO> getByFuncionId(@PathVariable("sala_id") long sala_id, @PathVariable("fecha") LocalDateTime fecha) {
+    public List<TicketDTO> getByFuncionId(@PathVariable("sala_id") long sala_id, @PathVariable("fecha")String fecha) {
+
+        LocalDateTime dateTime =LocalDateTime.parse(fecha);
         List<TicketDTO> ticketDTOS = new ArrayList<>();
-        for (Ticket ticket : ticketMgr.findAllByFuncionId(fecha, sala_id)) {
+        for (Ticket ticket : ticketMgr.findAllByFuncionId(dateTime, sala_id)) {
             ticketDTOS.add(ticket.toDTO());
         }
         return ticketDTOS;

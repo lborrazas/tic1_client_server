@@ -20,6 +20,10 @@ public class Transaccion {
         this.precioTotal = transaccionDTO.getPrecioTotal();
     }
 
+    public Transaccion() {
+
+    }
+
     public long getId() {
         return id;
     }
@@ -53,7 +57,9 @@ public class Transaccion {
     }
 
     public TransaccionDTO toDTO() {
+
         TransaccionDTO transaccionDTO = new TransaccionDTO();
+
         transaccionDTO.setClient(this.getClient());
         transaccionDTO.setId(this.id);
         transaccionDTO.setPrecioTotal(this.precioTotal);

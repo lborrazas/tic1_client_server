@@ -82,7 +82,7 @@ public class TransaccionRestTemplate {
     public void create(Transaccion transaccion, List<Ticket> tickets) { // aca mate
         ArrayList<TicketDTO> DTOS = new ArrayList<>();
         for (Ticket ticket:tickets){
-            DTOS.add(ticket.toDTO());
+            DTOS.add(ticket.toDTO()); // aca hay unr prolbe a von los tickets
         }
         Nodo skere = new Nodo();
 
@@ -92,7 +92,7 @@ public class TransaccionRestTemplate {
                 new RestTemplate();
         HttpEntity<Nodo> body = new HttpEntity<>(skere);
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/transaccion", HttpMethod.POST, body, String.class);
+                restTemplate.   exchange("http://localhost:8080/transaccion", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 }
