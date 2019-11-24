@@ -21,7 +21,7 @@ public class Movie {
     @Column
     private String description;
 
-    @Column
+    @Column(name = "image_path")
     private String imagePath;
 
     @Column
@@ -34,6 +34,7 @@ public class Movie {
     private Set<Actor> actors;
 
 
+
     public Movie() {
     }
 
@@ -42,7 +43,7 @@ public class Movie {
         this.actors = temp.getActors().stream().map(Actor::new).collect(Collectors.toSet());
         this.description = temp.getDescription();
         this.duration = temp.getDuration();
-        this.id = temp.getId();
+       // this.id = temp.getId();
         this.name = temp.getName();
         this.genres = temp.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
         this.imagePath = temp.getImagePath();
@@ -85,6 +86,7 @@ public class Movie {
         NewMovieDTO movieDTO = new NewMovieDTO();
         movieDTO.setActors(this.actors.stream().map(Actor::toDTO).collect(Collectors.toSet()));
         movieDTO.setDescription(this.description);
+        movieDTO.setImagePath(this.imagePath);
         movieDTO.setDuration(this.duration);
         movieDTO.setName(this.name);
         movieDTO.setId(this.id);

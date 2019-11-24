@@ -18,7 +18,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserRestTemplate {
-    public User showActor(long id) {
+
+   public User showActor(long id){
+
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> response = restTemplate.exchange(
                 "http://localhost:8080/user/" + id, HttpMethod.GET, null, UserDTO.class);
@@ -50,6 +52,7 @@ public class UserRestTemplate {
                 new ParameterizedTypeReference<List<UserDTO>>() {
                 });
         List<UserDTO> users = response.getBody();
+
         List<Object> usersMix = new ArrayList<>();
         for (UserDTO user : users) {
             switch (user.getType()) {
@@ -71,6 +74,8 @@ public class UserRestTemplate {
             }
         }
         return usersMix;
+
+
     }
 
 
@@ -109,6 +114,8 @@ public class UserRestTemplate {
                 .map(User::new)
                 .collect(Collectors.toList());
     }
+
+
 
 
 }

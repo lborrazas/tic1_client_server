@@ -18,7 +18,7 @@ public class Genre {
 
     public Genre(MovieGenreDTO tempDTO) {
         this.genre = tempDTO.getGenre();
-      this.id = tempDTO.getId();
+        this.id = tempDTO.getId();
     }
 
     public MovieGenreDTO toDTO() {

@@ -9,17 +9,18 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane fx:id="rootContainer" prefHeight="695.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.client.MovieListController">
     <children>
       <AnchorPane layoutY="70.0" prefHeight="230.0" prefWidth="1000.0" styleClass="header" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" layoutX="450.0" layoutY="14.285713195800781" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <HBox alignment="CENTER" layoutY="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <FontAwesomeIconView fill="WHITE" glyphName="VIDEO_CAMERA" size="100" />
                </children>
             </HBox>
-            <VBox alignment="CENTER" layoutY="120.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+            <VBox alignment="CENTER" layoutY="120.0" prefHeight="110.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="1000.0">
                      <children>
@@ -39,6 +40,9 @@
                            </HBox.margin>
                         </JFXComboBox>
                      </children>
+                     <VBox.margin>
+                        <Insets top="-30.0" />
+                     </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="40.0" prefWidth="200.0">
                      <children>
@@ -50,6 +54,23 @@
                               <Font name="Arial" size="14.0" />
                            </font>
                         </JFXButton>
+                         <JFXButton fx:id="deleteFilterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="260.0" layoutY="21.0" onAction="#removeFilter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
+                             <graphic>
+                                 <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="25" styleClass="search-button" />
+                             </graphic>
+                         </JFXButton>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Text fx:id="filters" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <font>
+                              <Font name="Arial" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Text>
                      </children>
                   </HBox>
                </children>

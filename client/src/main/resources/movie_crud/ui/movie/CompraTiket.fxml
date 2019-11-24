@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicket">
+<AnchorPane id="Root" fx:id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicket">
    <children>
       <Pane prefHeight="400.0" prefWidth="659.0" style="-fx-background-color: black; -fx-background-image: url('movie_crud/ui/images/movieImages/exit.png');">
          <children>
