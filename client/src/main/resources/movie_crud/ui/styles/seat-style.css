@@ -1,4 +1,21 @@
-.seatButton{
--fx-background-color: #000000;
+* {
+    -fx-primary: #2A2E37;
+    -fx-secondary: #FFFF8D;
+    -fx-primarytext: #B2B2B2;
+    -fx-blue: #1976D2;
+    -fx-red: #FF0000;
+    -fx-color-1: #1976D2;
 }
-jope aca
+
+.seatButton{
+    -fx-background-color: -fx-primary;
+    -fx-border-color: none;
+}
+
+.salaPane {
+    -fx-background-color: -fx-primary;
+    -fx-background-radius: 5px;
+    -fx-border-color: derive(-fx-primary, 40%);
+    -fx-border-width: 3px;
+    -fx-border-radius: 5px;
+}

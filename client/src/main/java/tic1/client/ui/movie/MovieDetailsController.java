@@ -34,7 +34,6 @@ import java.io.IOException;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -127,11 +126,11 @@ public class MovieDetailsController implements Initializable {
                 .collect(Collectors.joining(", ")));
         ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
 
-       /* try {
+        try {
             movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
 
     }
 
@@ -143,7 +142,7 @@ public class MovieDetailsController implements Initializable {
     public void buyAction(ActionEvent event) throws IOException {
 //        LocalDate fecha = movie_date.getSelectionModel().getSelectedItem();
   //      LocalTime hora = movie_time.getSelectionModel().getSelectedItem();
-        Funcion funciontemp = funcionRestTemplate.returnAll().get(1);
+        Funcion funciontemp = funcionRestTemplate.returnAll().get(0);
         Sala salatemp = salaRestTemplate.getById(funciontemp.getSalaId());
         List<Ticket> tickets = ticketRestTemplate.findByFunction_dateAndsalaid(funciontemp.getDate(),funciontemp.getSalaId());
         //funcionRestTemplate.getByMovieIdAndDate()
@@ -151,7 +150,7 @@ public class MovieDetailsController implements Initializable {
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(BuyTicket.class.getResourceAsStream("/movie_crud/ui/movie/CompraTiket.fxml"));
+        Parent root = fxmlLoader.load(BuyTicket.class.getResourceAsStream("/movie_crud/ui/movie/CompraTicket.fxml"));
         BuyTicket buyTicket = fxmlLoader.getController();
         buyTicket.setSala(salatemp);
         buyTicket.setFuncion(funciontemp);

@@ -146,7 +146,7 @@ public class BuyTicket {
     }
 
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("movie_crud/ui/movie/CompraTiket.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("movie_crud/ui/movie/CompraTicket.fxml"));
 
         Scene scene = new Scene(root, 300, 275);
 
@@ -219,7 +219,7 @@ public class BuyTicket {
                             for (int j = 0; j < filan.getChildren().size(); j++) {
                                 Button asientoa = (Button) filan.getChildren().get(j);
                                 if (asientoa.getId().equals("f" + (b) + "c" + a)) {
-                                    asientoa.setStyle("-fx-background-color: red");
+                                    asientoa.setStyle("-fx-background-color: red; -fx-border-color: #FFFF8D");
                                 }
                             }
                     }
@@ -277,7 +277,7 @@ public class BuyTicket {
                                 seats.remove(ticketTemp);
 
                             } else if(button.getStyle().contains("fx-background-color:white")){
-                                button.setStyle("fx-background-color:red"); //
+                                button.setStyle("fx-background-color:green"); //
                                 seats.add(ticketTemp);
                             }
                         }
