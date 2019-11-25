@@ -9,6 +9,7 @@ import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
+import tic1.client.ui.adds.AddSalaController;
 import tic1.client.ui.movie.MovieController;
 import tic1.client.ui.movie.MovieDetailsController;
 import javafx.collections.FXCollections;
@@ -241,5 +242,20 @@ public class Principal2 implements Initializable {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML
+    private void createSala() throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AddSalaController.class.getResourceAsStream("/movie_crud/ui/adds/AddSala.fxml"));
+
+        AddSalaController salaController = fxmlLoader.getController();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 }

@@ -61,9 +61,20 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="54.0" onAction="#createSala" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Sala">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
+                           </graphic>
+                        </JFXButton>
                                 <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Teatro">
                                     <VBox.margin>
-                                        <Insets top="20.0" />
+                                        <Insets />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Arial" size="18.0" />
@@ -77,7 +88,7 @@
                                 </JFXButton>
                                 <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Configuracion">
                                     <VBox.margin>
-                                        <Insets top="20.0" />
+                                        <Insets />
                                     </VBox.margin>
                                     <font>
                                         <Font name="Arial" size="18.0" />
