@@ -25,22 +25,9 @@ public class SalaMgr {
         return salaRepository.findById(id).get();
     }
 
-    public void addSala(Sala sala) {
-
-
-        salaRepository.save(sala);
-
-        for (int n = 1; n <= sala.getMaxFila(); n++) {
-            for (int m = 1; m <= sala.getMaxColumn(); m++) {
-                SeatPk seatPk = new SeatPk();
-                seatPk.setColumna(m);
-                seatPk.setFila(n);
-                seatPk.setSala(sala);
-                Seat seat = new Seat();
-                seat.setId(seatPk);
-                seatRepository.save(seat);
-            }
-        }
+    public Sala addSala(Sala sala) {
+       Sala sala2 = salaRepository.save(sala);
+       return sala2;
     }
 
 
