@@ -1,5 +1,7 @@
 package tic1.server.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import tic1.commons.transfers.FunctionDTO;
 
 import javax.persistence.*;
@@ -13,7 +15,8 @@ public class Funcion {
     private FunctionPK id;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "movieId",foreignKey = @ForeignKey(name = "fksala_function"))
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "movieId",foreignKey = @ForeignKey(name = "fk_sala_function"))
     private Movie movie;
 
 

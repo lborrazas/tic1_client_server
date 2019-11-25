@@ -9,10 +9,11 @@ import javax.persistence.*;
 public class Seat {
 @EmbeddedId
 private SeatPk id;
+@Column
+private boolean isLocked;
 
 
     public Seat() {
-
     }
 
     public SeatPk getId() {
@@ -21,7 +22,11 @@ private SeatPk id;
 
     public void setId(SeatPk id) {
         this.id = id;
-
+    }
+    public Seat(SeatDTO dto) {
+        id.setColumna(dto.getColumn());
+        id.setFila(dto.getRow());
+        this.isLocked = dto.isLocked();
     }
 
     public SeatDTO toDTO() {
@@ -29,6 +34,7 @@ private SeatPk id;
     seatDTO.setColumn(this.id.getColumna());
     seatDTO.setRow(this.id.getFila());
     seatDTO.setSala_id(this.id.getSala().getId());
+    seatDTO.setLocked(this.isLocked);
         return seatDTO;
     }
 }
