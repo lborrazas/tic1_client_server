@@ -16,6 +16,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Stream;
 
 @Service
@@ -43,10 +45,9 @@ public class FileSystemStorageService implements StorageService {
             }
             try (InputStream inputStream = file.getInputStream()) {
                 Files.copy(inputStream, this.rootLocation.resolve(new File(filename).getName()),
-                    StandardCopyOption.REPLACE_EXISTING);
+                        StandardCopyOption.REPLACE_EXISTING);
             }
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Failed to store file " + filename, e);
         }
     }
@@ -55,10 +56,9 @@ public class FileSystemStorageService implements StorageService {
     public Stream<Path> loadAll() {
         try {
             return Files.walk(this.rootLocation, 1)
-                .filter(path -> !path.equals(this.rootLocation))
-                .map(this.rootLocation::relativize);
-        }
-        catch (IOException e) {
+                    .filter(path -> !path.equals(this.rootLocation))
+                    .map(this.rootLocation::relativize);
+        } catch (IOException e) {
             throw new StorageException("Failed to read stored files", e);
         }
 
@@ -76,20 +76,19 @@ public class FileSystemStorageService implements StorageService {
             Resource resource = new UrlResource(file.toUri());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
-            }
-            else {
+            } else {
                 throw new StorageFileNotFoundException(
                         "Could not read file: " + filename);
 
             }
-        }
-        catch (MalformedURLException e) {
+        } catch (MalformedURLException e) {
             throw new StorageFileNotFoundException("Could not read file: " + filename, e);
         }
     }
 
     @Override
     public void deleteAll() {
+
         FileSystemUtils.deleteRecursively(rootLocation.toFile());
     }
 
@@ -97,9 +96,28 @@ public class FileSystemStorageService implements StorageService {
     public void init() {
         try {
             Files.createDirectories(rootLocation);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new StorageException("Could not initialize storage", e);
         }
+    }
+
+    public List<Resource> loadAllAsResource() {
+        List<Resource> list = new ArrayList<>();
+        Stream<Path> paths = this.loadAll();
+
+        paths.forEach((path -> {
+            Resource resource = null;
+            try {
+                Path patho = load(path.getFileName().toString());
+                System.out.println(patho.toUri());
+                resource = new UrlResource(patho.toUri());
+                list.add(resource);
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+        ));
+        return list;
     }
 }
