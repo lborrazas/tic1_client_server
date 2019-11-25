@@ -1,6 +1,7 @@
 package tic1.server.entities;
 
 import tic1.commons.transfers.SeatDTO;
+import tic1.server.business.SalaMgr;
 
 import javax.persistence.*;
 
@@ -24,8 +25,14 @@ private boolean isLocked;
         this.id = id;
     }
     public Seat(SeatDTO dto) {
-        id.setColumna(dto.getColumn());
-        id.setFila(dto.getRow());
+        SeatPk seatPk = new SeatPk();
+        SalaMgr sMgr = new SalaMgr();
+        seatPk.setColumna(dto.getColumn());
+        seatPk.setFila(dto.getRow());
+        seatPk.setSala(sMgr.getSalaById(dto.getSala_id()));
+
+        Seat seat = new Seat();
+        seat.setId(seatPk);
         this.isLocked = dto.isLocked();
     }
 
