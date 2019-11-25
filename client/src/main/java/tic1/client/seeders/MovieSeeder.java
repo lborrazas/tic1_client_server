@@ -33,7 +33,7 @@ public class MovieSeeder {
         peli.setGenre(b1);
         peli.setDescription("peurba de juan");
         peli.setDuration(420);
-        peli.setImagePath("C:/Users/Usuario/Desktop/Tic1/proyeccto psota postaposta/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages/Shutter Island.png");
+        peli.setImagePath("Shutter Island.png");
         peli.setName("Shutter Island");
         movieRestTemplate.createMovie(peli);
     }

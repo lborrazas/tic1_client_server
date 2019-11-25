@@ -39,15 +39,15 @@ public class TicketRestTemplate {
                 .collect(Collectors.toList());
     }
 
-    public List<Ticket> findByFunction_dateAndsalaid(LocalDateTime fecha,long salaid){
+    public List<Ticket> findByFunction_dateAndsalaid(LocalDateTime fecha, long salaid){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<TicketDTO>> response = restTemplate.exchange(
                 "http://localhost:8080/ticket/"+salaid+"/"+fecha,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<TicketDTO>>(){});
-        List<TicketDTO> movies = response.getBody();
-        return movies.stream()
+        List<TicketDTO> tickets = response.getBody();
+        return tickets.stream()
                 .map(Ticket::new)
                 .collect(Collectors.toList());
     }
