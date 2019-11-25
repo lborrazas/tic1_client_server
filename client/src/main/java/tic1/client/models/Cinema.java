@@ -1,5 +1,7 @@
 package tic1.client.models;
 
+import tic1.commons.transfers.CinemaDto;
+
 public class Cinema {
     private long id;
 
@@ -7,8 +9,19 @@ public class Cinema {
 
     private String location;
 
-    private Provider provider;
+    private long provider;
 
+    public  Cinema(CinemaDto cinemaDto){
+        this.name= cinemaDto.getName();
+        this.provider = cinemaDto.getProviderId();
+        this.location =cinemaDto.getLocation();
+        this.id =cinemaDto.getId();
+
+    }
+
+    public  Cinema(){
+
+    }
     public long getId() {
         return id;
     }
@@ -33,11 +46,20 @@ public class Cinema {
         this.location = location;
     }
 
-    public Provider getProvider() {
+    public long getProvider() {
         return provider;
     }
 
-    public void setProvider(Provider provider) {
+    public void setProvider(long provider) {
         this.provider = provider;
+    }
+
+    public CinemaDto toDTO() {
+        CinemaDto cinemaDto = new CinemaDto();
+        cinemaDto.setProvider(this.provider);
+        cinemaDto.setName(this.name);
+        cinemaDto.setLocation(this.location);
+        cinemaDto.setId(this.id);
+        return cinemaDto;
     }
 }

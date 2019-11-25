@@ -10,6 +10,9 @@ public class TicketDTO {
     private float price;
     private long transaccion_id;
 
+    public TicketDTO() {
+    }
+
     public FunctionDTO getFuncion_id() {
         return funcion_id;
     }
@@ -72,6 +75,7 @@ public class TicketDTO {
     }
 
     public void setTransaccionId(long transaccion_id) {
+        this.isBought=true;
         this.transaccion_id =transaccion_id;
     }
 }

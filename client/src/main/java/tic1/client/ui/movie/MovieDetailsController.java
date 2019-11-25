@@ -22,16 +22,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 import tic1.client.models.*;
+import tic1.client.services.FuncionRestTemplate;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.services.SalaRestTemplate;
+import tic1.client.services.TicketRestTemplate;
 import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.client.ui.client.EndUserController;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
+
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
@@ -39,14 +44,18 @@ import java.util.stream.Collectors;
 public class MovieDetailsController implements Initializable {
 
     @Autowired
+    private TicketRestTemplate ticketRestTemplate;
+    @Autowired
     private MovieRestTemplate movieRestTemplate;
-
-    private ClientApplication clientApplication;
-
+    @Autowired
+    private SalaRestTemplate salaRestTemplate;
+    private  ClientApplication clientApplication;
     @Autowired
     public MovieDetailsController(ClientApplication clientApplication) {
-        this.clientApplication = clientApplication;
+    this.clientApplication=clientApplication;
     }
+
+
 
     @FXML
     private Text movie_name;
@@ -104,7 +113,8 @@ public class MovieDetailsController implements Initializable {
     private String parent;
 
     private Movie movieDetails;
-
+    @Autowired
+    private FuncionRestTemplate funcionRestTemplate;
     @FXML
     public void loadData(Movie movie) {
 
@@ -117,11 +127,11 @@ public class MovieDetailsController implements Initializable {
                 .collect(Collectors.joining(", ")));
         ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
 
-        try {
+       /* try {
             movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
 
     }
 
@@ -129,13 +139,25 @@ public class MovieDetailsController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 //        loadData();
     }
-
+    @FXML
     public void buyAction(ActionEvent event) throws IOException {
+//        LocalDate fecha = movie_date.getSelectionModel().getSelectedItem();
+  //      LocalTime hora = movie_time.getSelectionModel().getSelectedItem();
+        Funcion funciontemp = funcionRestTemplate.returnAll().get(1);
+        Sala salatemp = salaRestTemplate.getById(funciontemp.getSalaId());
+        List<Ticket> tickets = ticketRestTemplate.findByFunction_dateAndsalaid(funciontemp.getDate(),funciontemp.getSalaId());
+        //funcionRestTemplate.getByMovieIdAndDate()
+
+
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(SeatSelectionController.class.getResourceAsStream("/movie_crud/ui/movie/SeatSelection.fxml"));
-        SeatSelectionController seatSelectionController = fxmlLoader.getController();
-
+        Parent root = fxmlLoader.load(BuyTicket.class.getResourceAsStream("/movie_crud/ui/movie/CompraTiket.fxml"));
+        BuyTicket buyTicket = fxmlLoader.getController();
+        buyTicket.setSala(salatemp);
+        buyTicket.setFuncion(funciontemp);
+        buyTicket.setTikets(tickets);
+//        buyTicket.setSala();
+        buyTicket.empezar();
         Scene scene = buy_btn.getScene();
         root.translateXProperty().set(scene.getWidth());
 

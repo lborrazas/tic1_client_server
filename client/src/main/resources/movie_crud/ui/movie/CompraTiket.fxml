@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicket">
+<AnchorPane id="AnchorRoot" fx:id="anchorRoot" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: black;" stylesheets="" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicket">
    <children>
-      <Pane prefHeight="400.0" prefWidth="659.0" style="-fx-background-color: black; -fx-background-image: url('movie_crud/ui/images/movieImages/exit.png');">
+      <AnchorPane fx:id="root" prefHeight="400.0" prefWidth="659.0" style="-fx-background-color: black');">
          <children>
             <Pane layoutX="135.0" layoutY="367.0" prefHeight="19.0" prefWidth="389.0" style="-fx-background-color: grey;" />
-            <Pane id="butacas" layoutX="41.0" layoutY="7.0" prefHeight="285.0" prefWidth="577.0" style="-fx-background-color: black; -fx-border-radius: 2;" styleClass="SeatContainer">
+            <Pane id="butacas" fx:id="butacas" layoutX="41.0" layoutY="7.0" prefHeight="285.0" prefWidth="577.0" style="-fx-background-color: black; -fx-border-radius: 2;" styleClass="SeatContainer">
                <children>
                   <Pane id="fila1" fx:id="fila1" layoutY="1.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
                      <children>
@@ -324,11 +324,6 @@
                      </children>
                   </Pane>
                </children></Pane>
-            <TextField id="salaName" layoutX="14.0" layoutY="324.0" prefHeight="33.0" prefWidth="149.0" promptText="Nombre Sala" style="-fx-background-color: balck;" styleClass="nombreSala">
-               <font>
-                  <Font size="19.0" />
-               </font>
-            </TextField>
             <Button id="buy" fx:id="buy" layoutX="562.0" layoutY="328.0" lineSpacing="1.0" mnemonicParsing="false" onMouseClicked="#buy" prefHeight="35.0" prefWidth="83.0" style="-fx-background-color: black;" text="Buy" textAlignment="CENTER" textFill="#dfd8d8" textOverrun="LEADING_WORD_ELLIPSIS">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
@@ -340,8 +335,19 @@
                   <Font size="18.0" />
                </font>
             </Button>
+            <Button id="buck" fx:id="backbutton" layoutX="26.0" layoutY="326.0" lineSpacing="1.0" mnemonicParsing="false" onMouseClicked="#back" prefHeight="35.0" prefWidth="83.0" style="-fx-background-color: black;" text="Back" textAlignment="CENTER" textFill="#dfd8d8" textOverrun="LEADING_WORD_ELLIPSIS">
+               <cursor>
+                  <Cursor fx:constant="CLOSED_HAND" />
+               </cursor>
+               <effect>
+                  <Bloom threshold="0.0" />
+               </effect>
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
          </children>
-      </Pane>
+      </AnchorPane>
       <TextField layoutX="132.0" layoutY="-96.0" />
       <TextField layoutX="373.0" layoutY="-96.0" />
    </children>

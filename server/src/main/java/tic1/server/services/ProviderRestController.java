@@ -18,6 +18,7 @@ public class ProviderRestController {
         Provider provider = new Provider();
         provider.setName(providerDTO.getName());
         provider.setId(providerDTO.getId());
+        provider.setId(providerDTO.getId());
         return provider;
     }
 
@@ -46,6 +47,15 @@ public class ProviderRestController {
     public List<ProviderDTO> getAllbyName(@PathVariable String name){
         List<ProviderDTO> providerDTOS = new ArrayList<>();
         for (Provider provider: providerMgr.getByName(name)){
+            providerDTOS.add(provider.toDTO());
+        }
+        return providerDTOS;
+    }
+
+    @GetMapping("/provider/")
+    public List<ProviderDTO> getAll(){
+        List<ProviderDTO> providerDTOS = new ArrayList<>();
+        for (Provider provider: providerMgr.returnAll()){
             providerDTOS.add(provider.toDTO());
         }
         return providerDTOS;

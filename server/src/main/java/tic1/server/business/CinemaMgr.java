@@ -29,7 +29,7 @@ public class CinemaMgr {
 
     }
     public Cinema getOne(@PathVariable("id") Long id){
-        return cinemaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+        return cinemaRepository.findById(id).orElseThrow(() ->  new ResourceNotFoundException("Note", "id", id));
     }
     public void updateCinema(@PathVariable("id") Long id, @Valid @RequestBody Cinema tempCinema){
         Cinema existingCinema= cinemaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));

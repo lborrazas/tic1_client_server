@@ -37,6 +37,16 @@ public class CinemaRestController {
 
 
 
+    @GetMapping("/cinema/")
+    public List<CinemaDto> All() {
+        List<CinemaDto> cinemasDtos = new ArrayList<>();
+        List<Cinema> cinemas = cinemaMgr.findAll();
+        for (Cinema cin : cinemas) {
+            cinemasDtos.add(cin.toDTO()); // mate hacete el dto
+        }
+        return cinemasDtos;
+
+    }
     @GetMapping("/cinema/{id}")
     public CinemaDto cine(@PathVariable long id){
         Cinema cinema = cinemaMgr.getOne(id);
@@ -73,8 +83,10 @@ public class CinemaRestController {
 
 
 
-    @PostMapping("/cinema")
-    public void save(@RequestBody CinemaDto cinemaDto){
+    @PostMapping("/cinema/{providerId}")
+    public void save(@RequestBody CinemaDto cinemaDto,@PathVariable("providerId") long providerID){
+        System.out.println(providerID);
+        cinemaDto.setProvider(providerID);
         Cinema cinema = cinemaFromDto(cinemaDto);
         cinemaMgr.save(cinema);
     }

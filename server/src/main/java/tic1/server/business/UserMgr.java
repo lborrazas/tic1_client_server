@@ -25,7 +25,7 @@ public class UserMgr {
 
     }
     public User getOne(@PathVariable("id") Long id){
-        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+        return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
     }
     public void updateUser(@PathVariable("id") Long id, @Valid @RequestBody User tempUser){
        User existingUser= userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));

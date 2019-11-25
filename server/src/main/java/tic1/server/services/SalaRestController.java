@@ -14,8 +14,10 @@ import java.util.List;
 public class SalaRestController {
 
     @Autowired
+    private
     SalaMgr salaMgr;
     @Autowired
+    private
     CinemaMgr cinemaMgr;
     private Sala salaFromDto(SalaDTO salaDTO){
     Sala sala= new Sala();
@@ -24,25 +26,44 @@ public class SalaRestController {
         sala.setName(salaDTO.getName());
         return sala;
     }
+    @GetMapping("/sala/")
+    public List<SalaDTO> All() {
+        List<SalaDTO> cinemasDtos = new ArrayList<>();
+        List<Sala> salas = salaMgr.findAll();
+        for (Sala room : salas) {
+            cinemasDtos.add(room.toDTO()); //
+        }
+        return cinemasDtos;
+
+    }
 
 
-    @PostMapping("/sala")
-    public void save(@RequestBody SalaDTO salaDTO){
+    @PostMapping("/sala/{columna}/{fila}")
+    public void save(@RequestBody SalaDTO salaDTO,
+                     @PathVariable("columna") long maxColumn,@PathVariable("fila") long maxfil){
 
         Sala sala = salaFromDto(salaDTO);
+        sala.setMaxcolum(maxColumn);
+        sala.setMaxfila(maxfil);
         salaMgr.addSala(sala);
     }
 
     @DeleteMapping("/sala/{id}")
-    public void delete(@PathVariable long id){
-        salaMgr.delateById(id);
+    public void delete(@PathVariable String id)
+    {
+        Integer idint = Integer.valueOf(id);
+        salaMgr.delateById((long) idint);
     }
 
     @GetMapping("/sala/{id}")
-    public  SalaDTO getOne(@PathVariable long id){
-        return  salaMgr.getSalaById(id).toDTO();
+    public  SalaDTO getOne(@PathVariable String id){
+
+        int idint = Integer.parseInt(id);
+
+
+        return salaMgr.getSalaById(idint).toDTO();
     }
-    @GetMapping("/sala/{name}")
+    @GetMapping("/sala/name/{name}")
     public List<SalaDTO> getByName(@PathVariable String name){
         List<SalaDTO> salaDTOS = new ArrayList<>();
         for (Sala sala: salaMgr.getByName(name)){
@@ -50,7 +71,7 @@ public class SalaRestController {
         }
         return  salaDTOS;
     }
-    @GetMapping("/sala/{cinema_id}")
+    @GetMapping("/sala/cinema/{cinema_id}")
     public List<SalaDTO> getByCinemaName(@PathVariable long cinema_id ) {
         List<SalaDTO> salaDTOS = new ArrayList<>();
         for( Sala salatemp:salaMgr.findAllByCinema(cinemaMgr.getOne(cinema_id))){

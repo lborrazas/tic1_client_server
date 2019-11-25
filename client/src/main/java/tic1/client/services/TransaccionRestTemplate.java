@@ -10,9 +10,12 @@ import tic1.client.models.Actor;
 import tic1.client.models.Ticket;
 import tic1.client.models.Transaccion;
 import tic1.commons.transfers.MovieActorDTO;
+import tic1.commons.transfers.Nodo;
 import tic1.commons.transfers.TicketDTO;
 import tic1.commons.transfers.TransaccionDTO;
 
+import java.security.interfaces.RSAKey;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,13 +79,20 @@ public class TransaccionRestTemplate {
                 .collect(Collectors.toList());
     }
 
-    public void create(TransaccionDTO transaccion, List<Ticket> ticketDTOS) { // aca mate
+    public void create(Transaccion transaccion, List<Ticket> tickets) { // aca mate
+        ArrayList<TicketDTO> DTOS = new ArrayList<>();
+        for (Ticket ticket:tickets){
+            DTOS.add(ticket.toDTO()); // aca hay unr prolbe a von los tickets
+        }
+        Nodo skere = new Nodo();
+
+        skere.setTransaccionDTO(transaccion.toDTO());
+        skere.setTicketDTOS( DTOS);
         RestTemplate restTemplate =
                 new RestTemplate();
-        HttpEntity<TransaccionDTO> body = new HttpEntity<>(
-                transaccion);
+        HttpEntity<Nodo> body = new HttpEntity<>(skere);
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/transaccion", HttpMethod.POST, body, String.class);
+                restTemplate.   exchange("http://localhost:8080/transaccion", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 }

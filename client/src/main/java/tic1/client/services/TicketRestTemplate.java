@@ -42,7 +42,7 @@ public class TicketRestTemplate {
     public List<Ticket> findByFunction_dateAndsalaid(LocalDateTime fecha,long salaid){
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<TicketDTO>> response = restTemplate.exchange(
-                "http://localhost:8080/ticket"+salaid+"/"+fecha,
+                "http://localhost:8080/ticket/"+salaid+"/"+fecha,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<TicketDTO>>(){});

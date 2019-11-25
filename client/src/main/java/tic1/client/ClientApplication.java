@@ -35,8 +35,8 @@ public class ClientApplication extends Application {
 		fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 //		root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
 //		root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/Principal2.fxml"));
-//		root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
-		root = fxmlLoader.load(PrincipalManagerController.class.getResourceAsStream("/movie_crud/ui/PrincipalManager.fxml"));
+	root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+		//root = fxmlLoader.load(PrincipalManagerController.class.getResourceAsStream("/movie_crud/ui/PrincipalManager.fxml"));
 
 		Scene scene= new Scene(root);
 //        scene.setFill(Color.TRANSPARENT);

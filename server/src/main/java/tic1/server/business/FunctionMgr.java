@@ -32,8 +32,8 @@ public class FunctionMgr {
 
         funcionRepository.save(funcion);
 
-        for (int n = 0; n < salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxcolum(); n++) {
-            for (int m = 0; m < salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxfila(); m++) {
+        for (int n = 1; n <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxcolum(); n++) {
+            for (int m = 1; m <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxfila(); m++) {
                 SeatPk seatPk = new SeatPk();
                 seatPk.setSala(salaRepository.findById(funcion.getId().getSala().getId()).get());
                 seatPk.setFila(m);
@@ -78,7 +78,6 @@ public class FunctionMgr {
     public void updatefuncion(@PathVariable("id") FunctionPK id, @Valid @RequestBody Funcion tempFuncion) {
         Funcion existingFuncion = funcionRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
         existingFuncion.setMovie(tempFuncion.getMovie());
-        existingFuncion.setSecondId(tempFuncion.getSecondId());
         funcionRepository.save(existingFuncion);
     }
 

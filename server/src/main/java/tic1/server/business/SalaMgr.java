@@ -16,6 +16,7 @@ import java.util.List;
 
 @Service
 public class SalaMgr {
+
     @Autowired
     private SalaRepository salaRepository;
     @Autowired
@@ -25,9 +26,12 @@ public class SalaMgr {
     }
 
     public void addSala(Sala sala) {
+
+
         salaRepository.save(sala);
-        for (int n=0;n< sala.getMaxcolum(); n++) {
-            for (int m=0; m < sala.getMaxcolum(); m++) {
+
+        for (int n=1;n <= sala.getMaxfila(); n++) {
+            for (int m=1; m <= sala.getMaxcolum(); m++) {
                 SeatPk seatPk = new SeatPk();
                 seatPk.setColumna(m);
                 seatPk.setFila(n);
@@ -60,6 +64,9 @@ public class SalaMgr {
 
     public List<Sala> findAllByCinema(Cinema cinema) {
         return salaRepository.findAllByCinema(cinema);
+    }
+    public List<Sala> findAll() {
+        return salaRepository.findAll();
     }
 
 

@@ -34,12 +34,15 @@ public class Movie {
     public Movie(NewMovieDTO movie) {
         this.id = movie.getId();
         this.name = movie.getName();
-        this.description = movie.getDescription();
+       this.description = movie.getDescription();
         this.actors = movie.getActors().stream().map(Actor::new).collect(Collectors.toSet());
+
         this.duration = movie.getDuration();
         this.genres = movie.getGenres().stream().map(Genre::new).collect(Collectors.toSet());
         this.imagePath = movie.getImagePath();
+
         //this.genres = movie.getGenres().stream().map(Genre::new).distinct().collect(Collectors.toList());
+        this.imagePath= movie.getImagePath();
     }
 
     public NewMovieDTO toDTO() {
@@ -57,10 +60,6 @@ public class Movie {
 
     public Set<Genre> getGenres() {
         return genres;
-    }
-
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
     }
 
     public String getImagePath() {

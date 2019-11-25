@@ -13,6 +13,14 @@ public class Sala {
 
     private long maxfila;
 
+
+    public Sala(SalaDTO dto) {
+        this.setCinemaId(dto.getCinemaid());
+        this.setId(dto.getId());
+        this.setName(dto.getName());
+        this.maxcolum = dto.getMaxcolum();
+        this.maxfila = dto.getMaxfila();
+    }
     public Sala() {
     }
 
@@ -32,13 +40,6 @@ public class Sala {
         this.maxfila = maxfila;
     }
 
-    public Sala(SalaDTO dto) {
-        this.setCinemaId(dto.getCinemaid());
-        this.setId(dto.getId());
-        this.setName(dto.getName());
-        this.maxcolum = dto.getMaxcolum();
-        this.maxfila = dto.getMaxfila();
-    }
 
 
     public long getId() {

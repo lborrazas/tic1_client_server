@@ -29,6 +29,10 @@ public class ProviderMgr {
         return providerRepository.findById(id).get();
     }
 
+    public  List<Provider> getByName(String name){
+        return providerRepository.findAllByName(name);
+
+    }
     public void addProvider(Provider provider){
         providerRepository.save(provider);
     }
@@ -56,10 +60,10 @@ public class ProviderMgr {
                 .orElseThrow(() -> new ResourceNotFoundException("Sala", "id", id));
         existingProvider.setName(provider.getName());
         providerRepository.save(existingProvider);
-
     }
-    public List<Provider> getByName(String name){
-        return  providerRepository.findAllByName(name);
-    };
+
+    public List<Provider> returnAll(){
+        return providerRepository.findAll();
+    }
 
 }
