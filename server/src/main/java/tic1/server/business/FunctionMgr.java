@@ -6,14 +6,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import tic1.commons.business.exceptions.ResourceNotFoundException;
-import tic1.commons.transfers.FunctionDTO;
-import tic1.commons.transfers.TicketDTO;
 import tic1.server.entities.*;
 import tic1.server.persistence.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -32,8 +29,8 @@ public class FunctionMgr {
 
         funcionRepository.save(funcion);
 
-        for (int n = 1; n <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxcolum(); n++) {
-            for (int m = 1; m <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxfila(); m++) {
+        for (int n = 1; n <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxColumn(); n++) {
+            for (int m = 1; m <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxFila(); m++) {
                 SeatPk seatPk = new SeatPk();
                 seatPk.setSala(salaRepository.findById(funcion.getId().getSala().getId()).get());
                 seatPk.setFila(m);

@@ -30,8 +30,8 @@ public class SalaMgr {
 
         salaRepository.save(sala);
 
-        for (int n=1;n <= sala.getMaxfila(); n++) {
-            for (int m=1; m <= sala.getMaxcolum(); m++) {
+        for (int n = 1; n <= sala.getMaxFila(); n++) {
+            for (int m = 1; m <= sala.getMaxColumn(); m++) {
                 SeatPk seatPk = new SeatPk();
                 seatPk.setColumna(m);
                 seatPk.setFila(n);

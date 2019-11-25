@@ -6,9 +6,11 @@ import tic1.commons.transfers.SalaDTO;
 import tic1.server.business.CinemaMgr;
 import tic1.server.business.SalaMgr;
 import tic1.server.entities.Sala;
+import tic1.server.entities.Seat;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class SalaRestController {
@@ -22,10 +24,13 @@ public class SalaRestController {
     private Sala salaFromDto(SalaDTO salaDTO){
     Sala sala= new Sala();
         sala.setCinema(cinemaMgr.getOne(salaDTO.getCinemaid()));
+        sala.setSeats(salaDTO.getSeats().stream().map(Seat::new).collect(Collectors.toList()));
         sala.setId(salaDTO.getId());
         sala.setName(salaDTO.getName());
         return sala;
     }
+
+
     @GetMapping("/sala/")
     public List<SalaDTO> All() {
         List<SalaDTO> cinemasDtos = new ArrayList<>();
@@ -40,11 +45,11 @@ public class SalaRestController {
 
     @PostMapping("/sala/{columna}/{fila}")
     public void save(@RequestBody SalaDTO salaDTO,
-                     @PathVariable("columna") long maxColumn,@PathVariable("fila") long maxfil){
+                     @PathVariable("columna") long maxColumn,@PathVariable("fila") long maxFila){
 
         Sala sala = salaFromDto(salaDTO);
-        sala.setMaxcolum(maxColumn);
-        sala.setMaxfila(maxfil);
+        sala.setMaxColumn(maxColumn);
+        sala.setMaxFila(maxFila);
         salaMgr.addSala(sala);
     }
 

@@ -1,7 +1,10 @@
 package tic1.server;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -68,5 +71,27 @@ public class FileUploadController {
     public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
         return ResponseEntity.notFound().build();
     }
+
+
+
+    @GetMapping("/all")
+    @ResponseBody
+    public ResponseEntity<Stream<Path>> listFiles() throws IOException {
+
+        Stream<Path> hi = storageService.loadAll();
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + "j" + "\"").body(hi);
+    }
+
+    @GetMapping("/all/resource")
+    @ResponseBody
+    public ResponseEntity<List<Resource>> listFilesAsResource() throws IOException {
+
+       List<Resource> hi =  storageService.loadAllAsResource();
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + "j" + "\"").body(hi);
+    }
+
+
 
 }
