@@ -3,8 +3,10 @@ package tic1.server.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tic1.commons.transfers.SalaDTO;
+import tic1.commons.transfers.SeatDTO;
 import tic1.server.business.CinemaMgr;
 import tic1.server.business.SalaMgr;
+import tic1.server.business.SeatMgr;
 import tic1.server.entities.Sala;
 import tic1.server.entities.Seat;
 
@@ -24,7 +26,7 @@ public class SalaRestController {
     private Sala salaFromDto(SalaDTO salaDTO){
     Sala sala= new Sala();
         sala.setCinema(cinemaMgr.getOne(salaDTO.getCinemaid()));
-        sala.setSeats(salaDTO.getSeats().stream().map(Seat::new).collect(Collectors.toList()));
+        //sala.setSeats(salaDTO.getSeats().stream().map(Seat::new).collect(Collectors.toList()));
         sala.setId(salaDTO.getId());
         sala.setName(salaDTO.getName());
         return sala;
@@ -50,7 +52,12 @@ public class SalaRestController {
         Sala sala = salaFromDto(salaDTO);
         sala.setMaxColumn(maxColumn);
         sala.setMaxFila(maxFila);
-        salaMgr.addSala(sala);
+        SeatMgr seatMgr = new SeatMgr();
+       Sala sala2 = salaMgr.addSala(sala);
+        for (SeatDTO seat:salaDTO.getSeats()) {
+            seat.setSala_id(sala2.getId());
+            seatMgr.save(new Seat(seat));
+        }
     }
 
     @DeleteMapping("/sala/{id}")
