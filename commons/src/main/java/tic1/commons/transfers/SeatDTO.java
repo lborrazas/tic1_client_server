@@ -4,9 +4,18 @@ public class SeatDTO {
     private long row;
     private long column;
     private long sala_id;
+    private boolean isLocked;
 
 
     public SeatDTO() {
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 
     public long getRow() {
@@ -32,4 +41,5 @@ public class SeatDTO {
     public void setSala_id(long sala_id) {
         this.sala_id = sala_id;
     }
+
 }

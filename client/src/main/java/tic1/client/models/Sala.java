@@ -2,6 +2,9 @@ package tic1.client.models;
 
 import tic1.commons.transfers.SalaDTO;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Sala {
     private long id;
 
@@ -13,6 +16,8 @@ public class Sala {
 
     private long maxfila;
 
+    private List<Seat> seats;
+
 
     public Sala(SalaDTO dto) {
         this.setCinemaId(dto.getCinemaid());
@@ -20,6 +25,7 @@ public class Sala {
         this.setName(dto.getName());
         this.maxcolum = dto.getMaxcolum();
         this.maxfila = dto.getMaxfila();
+        this.seats = dto.getSeats().stream().map(Seat::new).collect(Collectors.toList());
     }
     public Sala() {
     }
@@ -73,6 +79,7 @@ public class Sala {
         salaDTO.setName(this.name);
         salaDTO.setMaxcolum(this.maxcolum);
         salaDTO.setMaxfila(this.maxfila);
+        salaDTO.setSeats(this.seats.stream().map(Seat::toDTO).collect(Collectors.toList()));
         return salaDTO;
     }
 
