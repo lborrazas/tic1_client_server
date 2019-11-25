@@ -31,8 +31,7 @@ private boolean isLocked;
         seatPk.setFila(dto.getRow());
         seatPk.setSala(sMgr.getSalaById(dto.getSala_id()));
 
-        Seat seat = new Seat();
-        seat.setId(seatPk);
+        this.id = seatPk;
         this.isLocked = dto.isLocked();
     }
 
