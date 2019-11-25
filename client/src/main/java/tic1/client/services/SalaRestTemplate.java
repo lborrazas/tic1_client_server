@@ -48,7 +48,7 @@ public class SalaRestTemplate {
         RestTemplate restTemplate =
                 new RestTemplate();
         ResponseEntity<SalaDTO> response =
-                restTemplate.exchange("http://localhost:8080/cinema/"+id, HttpMethod.GET, null,new ParameterizedTypeReference<SalaDTO>(){});
+                restTemplate.exchange("http://localhost:8080/sala/"+id, HttpMethod.GET, null,new ParameterizedTypeReference<SalaDTO>(){});
         System.out.println("RestTemplate response : " + response.getBody());
 
 

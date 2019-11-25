@@ -31,6 +31,11 @@ public class Ticket {
 
     }
 
+    public Ticket() {
+
+    }
+
+
     public Funcion getFuncion() {
         return funcion;
     }

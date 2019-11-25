@@ -106,6 +106,7 @@ public class TicketRestController {
         for (Ticket ticket : ticketMgr.findAllByFuncionId(dateTime, sala_id)) {
             ticketDTOS.add(ticket.toDTO());
         }
+        System.out.println("debugeo");
         return ticketDTOS;
     }
 

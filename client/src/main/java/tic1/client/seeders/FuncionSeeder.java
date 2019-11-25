@@ -24,7 +24,7 @@ public class FuncionSeeder {
         CinemaRestTemplate cinemaRestTemplate = new CinemaRestTemplate();
         List<Cinema> cines = cinemaRestTemplate.get();
         funcion.setCinemaId(cines.get(a).getId());
-        funcion.setMovie(movieRestTemplate.showMovie(51));
+        funcion.setMovie(movieRestTemplate.showMovie(64));
         funcionRestTemplate.save(funcion);
 //        funcion.setSalaId();
     }

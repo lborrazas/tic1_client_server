@@ -49,15 +49,21 @@ public class SalaRestController {
     }
 
     @DeleteMapping("/sala/{id}")
-    public void delete(@PathVariable long id){
-        salaMgr.delateById(id);
+    public void delete(@PathVariable String id)
+    {
+        Integer idint = Integer.valueOf(id);
+        salaMgr.delateById((long) idint);
     }
 
     @GetMapping("/sala/{id}")
-    public  SalaDTO getOne(@PathVariable long id){
-        return  salaMgr.getSalaById(id).toDTO();
+    public  SalaDTO getOne(@PathVariable String id){
+
+        int idint = Integer.parseInt(id);
+
+
+        return salaMgr.getSalaById(idint).toDTO();
     }
-    @GetMapping("/sala/{name}")
+    @GetMapping("/sala/name/{name}")
     public List<SalaDTO> getByName(@PathVariable String name){
         List<SalaDTO> salaDTOS = new ArrayList<>();
         for (Sala sala: salaMgr.getByName(name)){
@@ -65,7 +71,7 @@ public class SalaRestController {
         }
         return  salaDTOS;
     }
-    @GetMapping("/sala/{cinema_id}")
+    @GetMapping("/sala/cinema/{cinema_id}")
     public List<SalaDTO> getByCinemaName(@PathVariable long cinema_id ) {
         List<SalaDTO> salaDTOS = new ArrayList<>();
         for( Sala salatemp:salaMgr.findAllByCinema(cinemaMgr.getOne(cinema_id))){
