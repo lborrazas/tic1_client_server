@@ -13,11 +13,14 @@ public class Seat implements Serializable {
 
     private long sala;
 
+    private boolean isLocked;
+
 
     public Seat(SeatDTO seat) {
         this.columna= seat.getColumn();
         this.fila = seat.getRow();
         this.sala= seat.getSala_id();
+        this.isLocked = seat.isLocked();
     }
  public Seat() {
     }
@@ -51,6 +54,7 @@ public class Seat implements Serializable {
         seatDTO.setSala_id(this.sala);
         seatDTO.setRow(this.fila);
         seatDTO.setColumn(this.columna);
+        seatDTO.setLocked(this.isLocked);
         return seatDTO;
     }
 

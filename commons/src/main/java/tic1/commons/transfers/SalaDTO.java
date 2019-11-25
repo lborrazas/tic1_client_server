@@ -9,6 +9,15 @@ public class SalaDTO {
     private String name;
     private long maxcolum;
     private long maxfila;
+    private List<SeatDTO> seats;
+
+    public List<SeatDTO> getSeats() {
+        return seats;
+    }
+
+    public void setSeats(List<SeatDTO> seats) {
+        this.seats = seats;
+    }
 
     public long getMaxcolum() {
         return maxcolum;
