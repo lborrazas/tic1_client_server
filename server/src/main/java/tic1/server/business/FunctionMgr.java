@@ -30,7 +30,9 @@ public class FunctionMgr {
 
         funcionRepository.save(funcion);
 
-      List<Seat> seats = funcion.getId().getSala().getSeats();
+      long salaId = funcion.getId().getSala().getId();
+      Sala sala = salaRepository.findById(salaId).get();
+      List<Seat> seats = sala.getSeats();
       List<Ticket> tickets = seats.stream().map(seat -> {
         Ticket ticket = new Ticket();
         TicketPk pk = new TicketPk();
