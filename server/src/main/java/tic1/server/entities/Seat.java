@@ -24,16 +24,6 @@ private boolean isLocked;
     public void setId(SeatPk id) {
         this.id = id;
     }
-    public Seat(SeatDTO dto) {
-        SeatPk seatPk = new SeatPk();
-        SalaMgr sMgr = new SalaMgr();
-        seatPk.setColumna(dto.getColumn());
-        seatPk.setFila(dto.getRow());
-        seatPk.setSala(sMgr.getSalaById(dto.getSala_id()));
-
-        this.id = seatPk;
-        this.isLocked = dto.isLocked();
-    }
 
     public SeatDTO toDTO() {
     SeatDTO seatDTO= new SeatDTO();
@@ -42,5 +32,13 @@ private boolean isLocked;
     seatDTO.setSala_id(this.id.getSala().getId());
     seatDTO.setLocked(this.isLocked);
         return seatDTO;
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 }

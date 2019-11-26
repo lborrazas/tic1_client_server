@@ -9,6 +9,7 @@ import tic1.server.business.SalaMgr;
 import tic1.server.business.SeatMgr;
 import tic1.server.entities.Sala;
 import tic1.server.entities.Seat;
+import tic1.server.entities.SeatPk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,16 +21,32 @@ public class SalaRestController {
     @Autowired
     private
     SalaMgr salaMgr;
+
+    @Autowired
+    private
+    SeatMgr seatMgr;
+
     @Autowired
     private
     CinemaMgr cinemaMgr;
     private Sala salaFromDto(SalaDTO salaDTO){
     Sala sala= new Sala();
         sala.setCinema(cinemaMgr.getOne(salaDTO.getCinemaid()));
-        //sala.setSeats(salaDTO.getSeats().stream().map(Seat::new).collect(Collectors.toList()));
         sala.setId(salaDTO.getId());
         sala.setName(salaDTO.getName());
         return sala;
+    }
+
+    private Seat seatFromDTO(SeatDTO seatDTO, Sala sala){
+        SeatPk seatPk = new SeatPk();
+        seatPk.setColumna(seatDTO.getColumn());
+        seatPk.setFila(seatDTO.getRow());
+        seatPk.setSala(sala);
+
+        Seat seat = new Seat();
+        seat.setId(seatPk);
+        seat.setLocked(seatDTO.isLocked());
+        return seat;
     }
 
 
@@ -41,7 +58,6 @@ public class SalaRestController {
             cinemasDtos.add(room.toDTO()); //
         }
         return cinemasDtos;
-
     }
 
 
@@ -52,11 +68,10 @@ public class SalaRestController {
         Sala sala = salaFromDto(salaDTO);
         sala.setMaxColumn(maxColumn);
         sala.setMaxFila(maxFila);
-        SeatMgr seatMgr = new SeatMgr();
        Sala sala2 = salaMgr.addSala(sala);
         for (SeatDTO seat:salaDTO.getSeats()) {
-            seat.setSala_id(sala2.getId());
-            seatMgr.save(new Seat(seat));
+            Seat seat2 = this.seatFromDTO(seat, sala2);
+            seatMgr.save(seat2);
         }
     }
 

@@ -27,7 +27,7 @@ public class Sala {
     @Column
     private long maxFila;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER ,mappedBy = "id.sala")
     private List<Seat> seats;
 
     public Sala() {
