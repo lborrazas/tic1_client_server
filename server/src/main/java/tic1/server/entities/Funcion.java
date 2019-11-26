@@ -6,6 +6,7 @@ import tic1.commons.transfers.FunctionDTO;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table
@@ -20,6 +21,8 @@ public class Funcion {
     private Movie movie;
 
 
+
+
     public Funcion() {
 
     }
@@ -32,6 +35,8 @@ public class Funcion {
         this.id = id;
 
     }
+
+
 
     public Movie getMovie() {
         return movie;
@@ -52,4 +57,6 @@ public class Funcion {
         functionDTO.setMovie(this.getMovie().toDTO());
         return functionDTO;
     }
+
+
 }

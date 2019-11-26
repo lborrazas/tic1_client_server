@@ -1,20 +1,9 @@
 package tic1.client;
 
-import org.apache.tomcat.util.net.jsse.JSSEImplementation;
-import tic1.client.models.Actor;
-import tic1.client.models.Genre;
-import tic1.client.models.Movie;
-import tic1.client.services.ActorRestTemplate;
-import tic1.client.services.GenreRestTemplate;
-import tic1.client.services.MovieRestTemplate;
-import tic1.client.services.alert.ImageRestTemplate;
+import tic1.client.models.*;
+import tic1.client.services.*;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 
 public class Main {
@@ -22,6 +11,8 @@ public class Main {
 //        MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
 //        GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
 //        ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
+        UserRestTemplate uRT = new UserRestTemplate();
+        ProviderRestTemplate pRT = new ProviderRestTemplate();
 //        Genre genre = genreRestTemplate.showGenre(6);
 //        Genre genre2 = genreRestTemplate.showGenre(9);
 //        Actor actor = actorRestTemplate.showActor(1);
@@ -44,8 +35,8 @@ public class Main {
 
 
        // movieRestTemplate.createMovie(movie);
-        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
-        imageRestTemplate.showImage("AAA.png");
+      //  ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+      //  imageRestTemplate.showImage("AAA.png");
         //List<Movie> moviesFilter =  movieRestTemplate.filterActorPaged(actor2,0);
        // System.out.println(moviesFilter.get(0).getName());
 
@@ -64,5 +55,23 @@ public class Main {
      //   movieRestTemplate.updateMovie(movieForEdit.getId(),movieForEdit);
        // movieRestTemplate.deleteMovie(3);
        // movieRestTemplate.createMovie(movie);
+
+
+
+//        Provider provider = pRT.getByName("juanitos0").get(0);
+//        UserManager userManager = new UserManager();
+//        userManager.setProvider(provider.getId());
+//        userManager.setRole("Gerente");
+//        userManager.setUsername("Mate");
+//        userManager.setPassword("password");
+//        uRT.createUser(userManager);
+
+        UserAdmin userAdmin = new UserAdmin();
+        userAdmin.setPassword("password");
+        userAdmin.setUsername("juan");
+        uRT.createUser(userAdmin);
+
+
+
     }
 }

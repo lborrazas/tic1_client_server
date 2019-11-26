@@ -8,6 +8,11 @@ public class UserAdmin extends User{
     public UserAdmin(UserDTO userDTO){
         super(userDTO);
     }
+
+    public UserAdmin() {
+
+    }
+
     @Override
 
     public UserDTO toDTO() {

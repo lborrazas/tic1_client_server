@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class TicketRestController {
@@ -102,12 +103,8 @@ public class TicketRestController {
     public List<TicketDTO> getByFuncionId(@PathVariable("sala_id") long sala_id, @PathVariable("fecha")String fecha) {
 
         LocalDateTime dateTime =LocalDateTime.parse(fecha);
-        List<TicketDTO> ticketDTOS = new ArrayList<>();
-        for (Ticket ticket : ticketMgr.findAllByFuncionId(dateTime, sala_id)) {
-            ticketDTOS.add(ticket.toDTO());
-        }
-        System.out.println("debugeo");
-        return ticketDTOS;
+        List<Ticket> tickets = ticketMgr.findAllByFuncionId(dateTime, sala_id);
+        return tickets.stream().map(Ticket::toDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/ticket/{sala_id}")

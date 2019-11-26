@@ -9,17 +9,13 @@ import javafx.stage.StageStyle;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import tic1.client.models.User;
 import tic1.client.models.UserAdmin;
 import tic1.client.models.UserClient;
-import tic1.client.models.UserManeger;
-import tic1.client.ui.Principal2;
+import tic1.client.models.UserManager;
 
 import java.io.IOException;
 
 import javafx.application.Application;
-import tic1.client.ui.PrincipalManagerController;
-import tic1.client.ui.client.EndUserController;
 import tic1.client.ui.login.LoginController;
 
 @SpringBootApplication
@@ -33,7 +29,7 @@ public class ClientApplication extends Application {
 
     public static UserAdmin userAdmin;
 
-    public static UserManeger userManeger;
+    public static UserManager userManager;
 
     public void init() throws Exception {
         ClientApplication.context = SpringApplication.run(ClientApplication.class);

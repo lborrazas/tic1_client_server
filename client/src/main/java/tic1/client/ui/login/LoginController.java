@@ -17,16 +17,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.User;
 import tic1.client.models.UserAdmin;
 import tic1.client.models.UserClient;
-import tic1.client.models.UserManeger;
+import tic1.client.models.UserManager;
 import tic1.client.services.UserRestTemplate;
 import tic1.client.services.alert.AlertMaker;
 import tic1.client.ui.Principal2;
@@ -206,9 +203,9 @@ public class LoginController {
 
                     }
 
-                    if (user instanceof UserManeger) {
+                    if (user instanceof UserManager) {
 
-                        ClientApplication.userManeger = (UserManeger) user;
+                        ClientApplication.userManager = (UserManager) user;
 
                         Parent root = fxmlLoader.load(PrincipalManagerController.class.getResourceAsStream("/movie_crud/ui/PrincipalManager.fxml"));
                         Stage stage = new Stage();
@@ -220,6 +217,9 @@ public class LoginController {
 
                     }
                 }
+            }else {
+                AlertMaker.showMaterialDialog(rootPane, mainContainer, new ArrayList<>(), "Usuario no existe", "Dani ponenos 12");
+
             }
         }
     }
@@ -249,7 +249,7 @@ public class LoginController {
 
                 newUser.setCreditCard("0");
 
-                userRestTemplate.createUser(newUser.toDTO());
+                userRestTemplate.createUser(newUser);
 
                 AlertMaker.showMaterialDialog(rootPane, mainContainer, new ArrayList<>(), "Bienvenido!", "Usuario creado con exito.");
 

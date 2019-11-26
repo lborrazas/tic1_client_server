@@ -9,12 +9,11 @@ import org.springframework.web.client.RestTemplate;
 import tic1.client.models.User;
 import tic1.client.models.UserAdmin;
 import tic1.client.models.UserClient;
-import tic1.client.models.UserManeger;
+import tic1.client.models.UserManager;
 import tic1.commons.transfers.UserDTO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class UserRestTemplate {
@@ -30,7 +29,7 @@ public class UserRestTemplate {
                 return new UserAdmin(userDTO);
 
             case "Manager":
-                return new UserManeger(userDTO);
+                return new UserManager(userDTO);
 
             case "Client":
                 return new UserClient(userDTO);
@@ -62,7 +61,7 @@ public class UserRestTemplate {
 
                     break;
                 case "Manager":
-                    usersMix.add(new UserManeger(user));
+                    usersMix.add(new UserManager(user));
 
                     break;
                 case "Client":
@@ -88,7 +87,8 @@ public class UserRestTemplate {
     }
 
 
-    public void createUser(UserDTO userDTO) {
+    public void createUser(User user) {
+        UserDTO userDTO = user.toDTO();
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<UserDTO> body = new HttpEntity<>(
@@ -112,7 +112,7 @@ public class UserRestTemplate {
             case "Admin":
                 return new UserAdmin(user);
             case "Manager":
-                return new UserManeger(user);
+                return new UserManager(user);
             case "Client":
                 return new UserClient(user);
             default:

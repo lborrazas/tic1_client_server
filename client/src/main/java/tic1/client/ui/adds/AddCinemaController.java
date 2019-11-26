@@ -50,7 +50,7 @@ public class AddCinemaController implements Initializable {
 
         cinema.setLocation(location.getText());
 
-//        cinemaRestTemplate.createCinema(cinema);
+        cinemaRestTemplate.createCinema(cinema);
 
         close(event);
 
@@ -74,6 +74,11 @@ public class AddCinemaController implements Initializable {
         providerName.setButtonCell(factory.call(null));
 
         ProviderRestTemplate providerRestTemplate = new ProviderRestTemplate();
+
+        ObservableList<Provider> providers =
+                FXCollections.observableArrayList(providerRestTemplate.get());
+
+        this.providerName.setItems(providers);
 
         /*ObservableList<Provider> providers = FXCollections.observableArrayList(providerRestTemplate.findAll());
 

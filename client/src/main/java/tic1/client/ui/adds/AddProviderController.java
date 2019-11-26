@@ -28,7 +28,7 @@ public class AddProviderController implements Initializable {
 
         provider.setName(providerName.getText());
 
-//        providerRestTemplate.createProvider(provider);
+        providerRestTemplate.createProvider(provider);
 
         close(event);
 
