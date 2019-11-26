@@ -48,8 +48,8 @@ public class CinemaRestController {
 
     }
 
-    @GetMapping("/cinema/{id}")
-    public CinemaDto cine(@PathVariable long id) {
+    @GetMapping("/cinema/id/{id}")
+    public CinemaDto cine(@PathVariable("id") long id) {
         Cinema cinema = cinemaMgr.getOne(id);
         return cinema.toDTO(); // mate hacete el dto
     }

@@ -189,7 +189,7 @@ public class Principal2 implements Initializable {
         Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
 
         MovieDetailsController movieDetailsController = fxmlLoader.getController();
-        movieDetailsController.loadData(selectedForPreview);
+//        movieDetailsController.loadData(selectedForPreview);
         movieDetailsController.setParent("Principal2");
 
         Scene scene = new Scene(root,800,600);

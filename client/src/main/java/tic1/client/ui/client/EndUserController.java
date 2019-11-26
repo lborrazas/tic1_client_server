@@ -43,7 +43,9 @@ import javafx.stage.Stage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
+import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
+import tic1.client.services.FuncionRestTemplate;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.ui.login.LoginController;
 import tic1.client.ui.movie.MovieDetailsController;
@@ -60,6 +62,9 @@ public class EndUserController implements Initializable {
 
     @Autowired
     private MovieRestTemplate movieMgr;
+
+    @Autowired
+    private FuncionRestTemplate funcionRestTemplate;
 
     @FXML
     private AnchorPane rootContainer;
@@ -277,16 +282,17 @@ public class EndUserController implements Initializable {
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
             try {
-                List<Movie> a = movieMgr.filterTitlePaged(id, 0);
-                Movie selectedForPreview = movieMgr.filterTitlePaged(id, 0).get(0); // Manera de asociar la foto con la pelicula.
+                Movie selectedForPreview = movieMgr.filterTitlePaged(id, 0).get(0);
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
                 Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
                 movieDetails = root;
                 MovieDetailsController movieDetailsController = fxmlLoader.getController();
                 movieDetailsController.setMovieDetails(selectedForPreview);
-                movieDetailsController.loadData(selectedForPreview);
+                List<Funcion> funciones = funcionRestTemplate.getByMovieId(selectedForPreview);
+                movieDetailsController.loadData(selectedForPreview, funciones);
                 filterByName.setVisible(false);
                 filterButton.setVisible(false);
 

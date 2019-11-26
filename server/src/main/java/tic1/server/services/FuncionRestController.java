@@ -15,6 +15,7 @@ import tic1.server.entities.Sala;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+
 @RestController
 public class FuncionRestController {
 
@@ -26,23 +27,22 @@ public class FuncionRestController {
     MovieMgr movieMgr;
 
 
-
     @PostMapping("/funcion/")
-    public void save(@RequestBody FunctionDTO function){
-        FunctionPK functionPK= new FunctionPK();
+    public void save(@RequestBody FunctionDTO function) {
+        FunctionPK functionPK = new FunctionPK();
         functionPK.setSala(salaMgr.getSalaById(function.getSala()));
         functionPK.setDate(function.getStartTime());
-        Funcion funcion= new Funcion();
+        Funcion funcion = new Funcion();
         funcion.setId(functionPK);
         funcion.setMovie(movieMgr.getOne(function.getMovie().getId()));
         functionMgr.save(funcion);
     }
 
     @GetMapping("/funcion")
-    public List<FunctionDTO> all(){
+    public List<FunctionDTO> all() {
         List<Funcion> funcions = functionMgr.findAll();
         List<FunctionDTO> functionDTOS = new ArrayList<>();
-        for (Funcion funcion:funcions){
+        for (Funcion funcion : funcions) {
             functionDTOS.add(funcion.toDTO());
         }
         return functionDTOS;
@@ -64,43 +64,38 @@ public class FuncionRestController {
     }
 */
     @GetMapping("/function/{movie_id}/{date}")
-    public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") long movie_id, @PathVariable("date")LocalDateTime localDateTime){
+    public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") long movie_id, @PathVariable("date") LocalDateTime localDateTime) {
         ;
 
         Movie tempMovie = movieMgr.getOne(movie_id);
         List<Funcion> funtions = functionMgr.getByMovieAndDate(tempMovie, localDateTime);
         List<FunctionDTO> functionDTOs = new ArrayList<>();
 
-        for (Funcion tempFuntion:funtions){
+        for (Funcion tempFuntion : funtions) {
             FunctionDTO functionDTO = new FunctionDTO();
 
             functionDTOs.add(tempFuntion.toDTO());
         }
         return functionDTOs;
     }
-    @GetMapping("/function/{movie_id}")
-    public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") long movie_id){
-        LocalDateTime localDateTime= null;
-        localDateTime = LocalDateTime.now();
-        Movie tempMovie = movieMgr.getOne(movie_id);
-        List<Funcion> funtions = functionMgr.getByMovieAndDate(tempMovie, localDateTime);
+
+    @GetMapping("/function/movie/{movie_id}")
+    public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") String movie_id) {
+        long id = Long.parseLong(movie_id);
+        Movie tempMovie = movieMgr.getOne(id);
+        List<Funcion> funtions = functionMgr.getByMovie(tempMovie);
         List<FunctionDTO> functionDTOs = new ArrayList<>();
 
-        for (Funcion tempFuntion:funtions){
-
-
+        for (Funcion tempFuntion : funtions) {
             functionDTOs.add(tempFuntion.toDTO());
         }
         return functionDTOs;
     }
 
-
-
-
     @DeleteMapping("/function/{function}")
-    public void delateFunctionDtos(@PathVariable("function") FunctionDTO functionDTO){
+    public void delateFunctionDtos(@PathVariable("function") FunctionDTO functionDTO) {
 
-        FunctionPK functionPK= new FunctionPK();
+        FunctionPK functionPK = new FunctionPK();
 
         functionPK.setSala(salaMgr.getSalaById(functionDTO.getSala()));
         functionPK.setDate(functionDTO.getStartTime());

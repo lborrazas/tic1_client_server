@@ -70,5 +70,17 @@ public class FuncionRestTemplate {
 
     }
 
+    public List<Funcion> getByMovieId(Movie movie) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<FunctionDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/function/movie/" + movie.getId(), HttpMethod.GET, null, new ParameterizedTypeReference<List<FunctionDTO>>() {
+                });
+        List<FunctionDTO> functionDTOS = response.getBody();
+        return functionDTOS.stream()
+                .map(Funcion::new)
+                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
+    }
+
 
 }

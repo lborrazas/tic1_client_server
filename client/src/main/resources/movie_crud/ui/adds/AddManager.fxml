@@ -1,45 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="255.0" prefWidth="400.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddManagerController">
+<StackPane fx:id="rootPane" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddManagerController">
    <children>
-      <VBox layoutX="159.0" layoutY="58.0" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="mainContainer" prefHeight="255.0" prefWidth="400.0">
          <children>
-            <JFXTextField focusColor="WHITE" labelFloat="true" prefHeight="35.0" unFocusColor="WHITE">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="10.0" layoutY="10.0" prefHeight="35.0" unFocusColor="WHITE">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="10.0" layoutY="45.0" prefHeight="35.0" unFocusColor="WHITE">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="10.0" layoutY="80.0" prefHeight="35.0" unFocusColor="WHITE">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-            </JFXTextField>
-            <JFXButton buttonType="RAISED" prefHeight="35.0" prefWidth="360.0" text="Agregar">
-               <font>
-                  <Font name="Arial" size="14.0" />
-               </font>
-            </JFXButton>
+            <VBox layoutX="159.0" layoutY="58.0" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <JFXTextField fx:id="usernameField" focusColor="WHITE" labelFloat="true" prefHeight="35.0" promptText="Nombre de Usuario" unFocusColor="WHITE">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="passwordField" focusColor="WHITE" labelFloat="true" prefHeight="35.0" promptText="Contraseña" unFocusColor="WHITE">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </JFXPasswordField>
+                  <JFXPasswordField fx:id="rePasswordField" focusColor="WHITE" labelFloat="true" prefHeight="35.0" promptText="Repetir contraseña" unFocusColor="WHITE">
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </JFXPasswordField>
+                  <JFXButton buttonType="RAISED" onAction="#addManager" prefHeight="35.0" prefWidth="360.0" text="Agregar">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </JFXButton>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+         <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </padding>
+      </AnchorPane>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</AnchorPane>
+</StackPane>
