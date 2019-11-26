@@ -61,17 +61,6 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="54.0" onAction="#createSala" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Sala">
-                           <font>
-                              <Font name="Arial" size="18.0" />
-                           </font>
-                           <padding>
-                              <Insets left="25.0" />
-                           </padding>
-                           <graphic>
-                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
-                           </graphic>
-                        </JFXButton>
                                 <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Teatro">
                                     <VBox.margin>
                                         <Insets />
@@ -86,6 +75,39 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#createProvider" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Proveedor">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#createCinema" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Cine">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#addAdmin" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Admin">
+                           <font>
+                              <Font name="Arial" size="18.0" />
+                           </font>
+                           <padding>
+                              <Insets left="25.0" />
+                           </padding>
+                           <graphic>
+                              <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
+                           </graphic>
+                        </JFXButton>
                                 <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Configuracion">
                                     <VBox.margin>
                                         <Insets />

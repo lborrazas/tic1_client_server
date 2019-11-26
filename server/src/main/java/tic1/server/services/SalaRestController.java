@@ -18,13 +18,16 @@ import java.util.stream.Collectors;
 public class SalaRestController {
 
     @Autowired
-    private
-    SalaMgr salaMgr;
+    private SalaMgr salaMgr;
+
     @Autowired
-    private
-    CinemaMgr cinemaMgr;
-    private Sala salaFromDto(SalaDTO salaDTO){
-    Sala sala= new Sala();
+    private CinemaMgr cinemaMgr;
+
+    @Autowired
+    private SeatMgr seatMgr;
+
+    private Sala salaFromDto(SalaDTO salaDTO) {
+        Sala sala = new Sala();
         sala.setCinema(cinemaMgr.getOne(salaDTO.getCinemaid()));
         //sala.setSeats(salaDTO.getSeats().stream().map(Seat::new).collect(Collectors.toList()));
         sala.setId(salaDTO.getId());
@@ -47,48 +50,49 @@ public class SalaRestController {
 
     @PostMapping("/sala/{columna}/{fila}")
     public void save(@RequestBody SalaDTO salaDTO,
-                     @PathVariable("columna") long maxColumn,@PathVariable("fila") long maxFila){
+                     @PathVariable("columna") long maxColumn, @PathVariable("fila") long maxFila) {
 
         Sala sala = salaFromDto(salaDTO);
         sala.setMaxColumn(maxColumn);
         sala.setMaxFila(maxFila);
-        SeatMgr seatMgr = new SeatMgr();
-       Sala sala2 = salaMgr.addSala(sala);
-        for (SeatDTO seat:salaDTO.getSeats()) {
+//        SeatMgr seatMgr = new SeatMgr();
+        Sala sala2 = salaMgr.addSala(sala);
+        for (SeatDTO seat : salaDTO.getSeats()) {
             seat.setSala_id(sala2.getId());
             seatMgr.save(new Seat(seat));
         }
     }
 
     @DeleteMapping("/sala/{id}")
-    public void delete(@PathVariable String id)
-    {
+    public void delete(@PathVariable String id) {
         Integer idint = Integer.valueOf(id);
         salaMgr.delateById((long) idint);
     }
 
     @GetMapping("/sala/{id}")
-    public  SalaDTO getOne(@PathVariable String id){
+    public SalaDTO getOne(@PathVariable String id) {
 
         int idint = Integer.parseInt(id);
 
 
         return salaMgr.getSalaById(idint).toDTO();
     }
+
     @GetMapping("/sala/name/{name}")
-    public List<SalaDTO> getByName(@PathVariable String name){
+    public List<SalaDTO> getByName(@PathVariable String name) {
         List<SalaDTO> salaDTOS = new ArrayList<>();
-        for (Sala sala: salaMgr.getByName(name)){
+        for (Sala sala : salaMgr.getByName(name)) {
             salaDTOS.add(sala.toDTO());
         }
-        return  salaDTOS;
+        return salaDTOS;
     }
+
     @GetMapping("/sala/cinema/{cinema_id}")
-    public List<SalaDTO> getByCinemaName(@PathVariable long cinema_id ) {
+    public List<SalaDTO> getByCinemaName(@PathVariable long cinema_id) {
         List<SalaDTO> salaDTOS = new ArrayList<>();
-        for( Sala salatemp:salaMgr.findAllByCinema(cinemaMgr.getOne(cinema_id))){
-            salaDTOS.add(salatemp.toDTO())   ;
+        for (Sala salatemp : salaMgr.findAllByCinema(cinemaMgr.getOne(cinema_id))) {
+            salaDTOS.add(salatemp.toDTO());
         }
-        return  salaDTOS;
+        return salaDTOS;
     }
 }

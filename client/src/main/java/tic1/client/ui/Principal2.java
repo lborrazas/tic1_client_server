@@ -2,6 +2,7 @@ package tic1.client.ui;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import tic1.client.ClientApplication;
@@ -9,6 +10,9 @@ import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
+import tic1.client.ui.adds.AddAdminController;
+import tic1.client.ui.adds.AddCinemaController;
+import tic1.client.ui.adds.AddProviderController;
 import tic1.client.ui.adds.AddSalaController;
 import tic1.client.ui.movie.MovieController;
 import tic1.client.ui.movie.MovieDetailsController;
@@ -245,17 +249,46 @@ public class Principal2 implements Initializable {
     }
 
     @FXML
-    private void createSala() throws IOException {
-
+    void addAdmin(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
-        Parent root = fxmlLoader.load(AddSalaController.class.getResourceAsStream("/movie_crud/ui/adds/AddSala.fxml"));
-
-        AddSalaController salaController = fxmlLoader.getController();
+        Parent root = fxmlLoader.load(AddAdminController.class.getResourceAsStream("/movie_crud/ui/adds/AddAdmin.fxml"));
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.show();
+    }
+
+    @FXML
+    void createCinema(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AddCinemaController.class.getResourceAsStream("/movie_crud/ui/adds/AddCinema.fxml"));
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    void createProvider(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AddProviderController.class.getResourceAsStream("/movie_crud/ui/adds/AddProvider.fxml"));
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

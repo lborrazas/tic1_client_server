@@ -934,4 +934,9 @@ Label {
     -fx-border-color: -fx-secondary;
 }
 
+.occupiedSeat {
+    -fx-border-color: -fx-secondary;
+    -fx-opacity: 0.5;
+}
+
 /*End Sala*/

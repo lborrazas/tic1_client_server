@@ -19,10 +19,12 @@ public class SalaMgr {
 
     @Autowired
     private SalaRepository salaRepository;
+
     @Autowired
     private SeatRepository seatRepository;
+
     public Sala getSalaById(long id) {
-        return salaRepository.getOne(id);
+        return salaRepository.findById(id).get();
     }
 
     public Sala addSala(Sala sala) {
