@@ -37,3 +37,33 @@
 .forget-password-btn:pressed {
     -fx-effect: null;
 }
+.button-back {
+    -fx-font-family: "FontAwesome";
+    -fx-background-color: transparent;
+    -fx-border-color: none !important;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-font-size: 18;
+}
+
+.button-back .glyph-icon {
+    -fx-font-size: 22;
+    -fx-border-color: none !important;
+}
+
+.button-back:hover, .button-back:pressed {
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: none !important;
+    -fx-background-color: transparent;
+    -fx-effect: null;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-font-size: 18;
+}
+
+.button-back:hover .glyph-icon, .button-back:pressed .glyph-icon {
+    -fx-font-family: "FontAwesome";
+    -fx-border-color: none !important;
+    -fx-background-color: transparent;
+    -fx-effect: null;
+    -fx-font-size: 22;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+}

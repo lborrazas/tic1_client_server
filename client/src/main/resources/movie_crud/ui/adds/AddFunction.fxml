@@ -2,13 +2,17 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddFunctionController">
+<AnchorPane prefHeight="500.0" prefWidth="600.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddFunctionController">
    <children>
       <VBox layoutX="30.0" layoutY="14.0" prefHeight="291.0" prefWidth="570.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -32,19 +36,59 @@
                   <Insets bottom="30.0" />
                </VBox.margin>
             </DatePicker>
-            <HBox>
+            <HBox alignment="CENTER_LEFT">
                <VBox.margin>
                   <Insets bottom="30.0" />
                </VBox.margin>
                <children>
-                  <JFXComboBox fx:id="timePicker" focusColor="WHITE" prefHeight="35.0" prefWidth="250.0" promptText="Hora" unFocusColor="WHITE" />
-                  <JFXButton prefHeight="35.0" prefWidth="80.0" text="Agregar">
+                  <JFXComboBox fx:id="hours" focusColor="WHITE" prefHeight="35.0" prefWidth="80.0" promptText="Hora" unFocusColor="WHITE">
                      <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets right="10.0" />
+                     </HBox.margin></JFXComboBox>
+                  <Label alignment="CENTER" prefHeight="35.0" text=":" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
+                  <JFXComboBox fx:id="minutes" focusColor="WHITE" layoutX="10.0" layoutY="10.0" prefHeight="35.0" prefWidth="90.0" promptText="Minutos" unFocusColor="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXComboBox fx:id="amPm" focusColor="WHITE" layoutX="90.0" layoutY="10.0" prefHeight="35.0" prefWidth="80.0" unFocusColor="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXComboBox>
+                  <JFXButton contentDisplay="CENTER" graphicTextGap="0.0" onAction="#addTime" prefHeight="35.0" prefWidth="35.0" textFill="#87515100">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="20" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton contentDisplay="CENTER" graphicTextGap="0.0" onAction="#removeTime" prefHeight="35.0" prefWidth="35.0" textFill="#87515100">
+                     <font>
+                        <Font name="Arial" size="13.0" />
+                     </font>
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" size="20" />
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="10.0" />
                      </HBox.margin>
                   </JFXButton>
                </children>
             </HBox>
+            <TextArea fx:id="hoursList" prefHeight="35.0" prefWidth="200.0" styleClass="actors_list" wrapText="true">
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
+            </TextArea>
             <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="200.0">
                <children>
                   <JFXButton buttonType="RAISED" onAction="#close" prefHeight="35.0" text="Cancelar">
@@ -58,6 +102,9 @@
                      </HBox.margin>
                   </JFXButton>
                </children>
+               <VBox.margin>
+                  <Insets top="34.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>

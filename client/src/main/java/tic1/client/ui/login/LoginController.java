@@ -4,10 +4,15 @@ package tic1.client.ui.login;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.animation.TranslateTransition;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Paint;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import tic1.client.ClientApplication;
@@ -33,6 +38,7 @@ import tic1.client.ui.Principal2;
 import tic1.client.ui.PrincipalManagerController;
 import tic1.client.ui.client.EndUserController;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 @Controller
@@ -87,12 +93,16 @@ public class LoginController {
     private JFXButton forgetPassword;
 
     @FXML
+    private FontAwesomeIconView closeButton;
+
+    @FXML
     void initialize() {
         signIn.setVisible(false);
         a2.setVisible(false);
         signUpPassword.setVisible(false);
         reSignUpPassword.setVisible(false);
         signupButton.setVisible(false);
+        closeButton.setFill(Paint.valueOf("#2a2e37"));
 
     }
 
@@ -116,6 +126,8 @@ public class LoginController {
         forgetPassword.setVisible(false);
         passwordField.setVisible(false);
         loginButton.setVisible(false);
+
+        closeButton.setFill(Paint.valueOf("white"));
 
         slide.setOnFinished(e -> {
 
@@ -144,6 +156,8 @@ public class LoginController {
         passwordField.setVisible(true);
         loginButton.setVisible(true);
 
+        closeButton.setFill(Paint.valueOf("#2a2e37"));
+
         slide.setOnFinished(e -> {
 
         });
@@ -152,7 +166,6 @@ public class LoginController {
 
     @FXML
     public void login(ActionEvent event) throws Exception {
-
         String username = usernameField.getText();
 
         String password = passwordField.getText();
@@ -189,7 +202,6 @@ public class LoginController {
                         stage.setScene(scene);
                         stage.show();
                         close(event);
-
                     }
 
                     if (user instanceof UserAdmin) {
@@ -203,7 +215,6 @@ public class LoginController {
                         stage.setScene(scene);
                         stage.show();
                         close(event);
-
                     }
 
                     if (user instanceof UserManeger) {
@@ -217,7 +228,6 @@ public class LoginController {
                         stage.setScene(scene);
                         stage.show();
                         close(event);
-
                     }
                 }
             }
@@ -226,7 +236,6 @@ public class LoginController {
 
     @FXML
     private void signup(ActionEvent event) {
-
         String username = usernameField.getText();
 
         String password = signUpPassword.getText();
@@ -295,6 +304,15 @@ public class LoginController {
         slide.setOnFinished(e -> {
 
         });
+    }
 
+    @FXML
+    void signUpWithEnter(ActionEvent event) {
+            signup(event);
+    }
+
+    @FXML
+    void loginWithEnter(ActionEvent event) throws Exception {
+            login(event);
     }
 }

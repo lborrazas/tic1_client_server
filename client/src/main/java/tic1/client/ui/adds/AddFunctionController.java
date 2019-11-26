@@ -27,8 +27,10 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 @Controller
 public class AddFunctionController implements Initializable {
@@ -67,43 +69,53 @@ public class AddFunctionController implements Initializable {
     private DatePicker datePicker;
 
     @FXML
-    private JFXComboBox<LocalTime> timePicker;
+    private JFXComboBox<Integer> hours;
 
-    private ObservableList<LocalDate> selectedDates = FXCollections.observableArrayList();
+    @FXML
+    private JFXComboBox<Integer> minutes;
+
+    @FXML
+    private JFXComboBox<String> amPm;
+
+    @FXML
+    private TextArea hoursList;
+
+    private Set<LocalDate> selectedDates = new HashSet<>();
+    private Set<LocalTime> selectedTimes = new HashSet<>();
 
     private boolean isEditing;
 
     private Funcion funcionForEdit;
+
 
     @FXML
     void addFunction(ActionEvent event) {
         Cinema cinema = cinemaName.getSelectionModel().getSelectedItem();
         long salaId = salaName.getSelectionModel().getSelectedItem().getId();
         Movie movie = movieName.getSelectionModel().getSelectedItem();
-        List<LocalDate> dates = selectedDates;
-        LocalTime time = LocalTime.now();
+        HashSet<LocalDate> dates = (HashSet<LocalDate>) selectedDates;
+        HashSet<LocalTime> times = (HashSet<LocalTime>) selectedTimes;
 
-        LocalDateTime dateAndTime = LocalDateTime.of(dates.get(0), time);
+        for (LocalDate localDate : dates) {
+            for (LocalTime localTime : times) {
 
-        Funcion newFunction = new Funcion();
+                LocalDateTime dateAndTime = LocalDateTime.of(localDate, localTime);
 
-        newFunction.setMovie(movie);
-        newFunction.setCinemaId(cinema.getId());
-        newFunction.setSalaId(salaId);
-        newFunction.setDate(dateAndTime);
+                Funcion newFunction = new Funcion();
 
-        funcionRestTemplate.save(newFunction);
+                newFunction.setMovie(movie);
 
+                newFunction.setCinemaId(cinema.getId());
+
+                newFunction.setSalaId(salaId);
+
+                newFunction.setDate(dateAndTime);
+
+                funcionRestTemplate.save(newFunction);
+            }
+        }
         principal.refreshTable();
-
         close(event);
-    }
-
-    @FXML
-    void close(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
     }
 
     @Override
@@ -114,9 +126,9 @@ public class AddFunctionController implements Initializable {
 
         datePicker.setDisable(true);
 
-        timePicker.setDisable(true);
-
         selectedDates.clear();
+
+        selectedTimes.clear();
 
         Callback<ListView<Cinema>, ListCell<Cinema>> factory1 = lv1 -> new ListCell<Cinema>() {
 
@@ -166,6 +178,11 @@ public class AddFunctionController implements Initializable {
                 FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(userManeger.getProvider()));
 
         cinemaName.setItems(cinemas);
+
+        hours.setItems(FXCollections.observableArrayList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11));
+        minutes.setItems(FXCollections.observableArrayList(0, 15, 30, 45));
+        amPm.setItems(FXCollections.observableArrayList("AM", "PM"));
+        amPm.getSelectionModel().selectFirst();
 
         datePicker.setOnAction(event -> selectedDates.add(datePicker.getValue()));
 
@@ -224,10 +241,55 @@ public class AddFunctionController implements Initializable {
         if (!salaName.getSelectionModel().isEmpty()) {
 
             datePicker.setDisable(false);
-            timePicker.setDisable(false);
 
         }
 
     }
 
+    @FXML
+    void removeTime(ActionEvent event) {
+        int hours = this.hours.getSelectionModel().getSelectedItem();
+        int minutes = this.minutes.getSelectionModel().getSelectedItem();
+        String amPm = this.amPm.getSelectionModel().getSelectedItem();
+
+        if (!this.hours.getSelectionModel().isEmpty() && !this.minutes.getSelectionModel().isEmpty()) {
+
+            if (amPm.equals("PM")) hours = (hours + 12) % 24;
+            LocalTime time = LocalTime.of(hours, minutes);
+
+            selectedTimes.remove(time);
+            StringBuilder times = new StringBuilder();
+            for (LocalTime time1 : selectedTimes) {
+                times.append(time1.getHour()).append(" : ").append(String.format("%02d", time1.getMinute())).append("  |  ");
+            }
+            hoursList.setText(times.toString());
+        }
+    }
+
+    @FXML
+    void addTime(ActionEvent event) {
+        int hours = this.hours.getSelectionModel().getSelectedItem();
+        int minutes = this.minutes.getSelectionModel().getSelectedItem();
+        String amPm = this.amPm.getSelectionModel().getSelectedItem();
+
+        if (!this.hours.getSelectionModel().isEmpty() && !this.minutes.getSelectionModel().isEmpty()) {
+
+            if (amPm.equals("PM")) hours = (hours + 12) % 24;
+            LocalTime time = LocalTime.of(hours, minutes);
+
+            selectedTimes.add(time);
+            StringBuilder times = new StringBuilder();
+            for (LocalTime time1 : selectedTimes) {
+                times.append(time1.getHour()).append(" : ").append(String.format("%02d", time1.getMinute())).append("  |  ");
+            }
+            hoursList.setText(times.toString());
+        }
+    }
+
+    @FXML
+    void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 }
