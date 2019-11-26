@@ -160,6 +160,7 @@ public class LoginController {
         });
 
     }
+
     @FXML
     public void login2(ActionEvent event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -172,7 +173,8 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
         close(event);
-        ClientApplication.userClient=null;
+        ClientApplication.userClient = null;
+    }
 
     @FXML
     public void login(ActionEvent event) throws Exception {
@@ -240,7 +242,7 @@ public class LoginController {
                         close(event);
                     }
                 }
-            }else {
+            } else {
                 AlertMaker.showMaterialDialog(rootPane, mainContainer, new ArrayList<>(), "Usuario no existe", "Dani ponenos 12");
 
             }
@@ -321,11 +323,11 @@ public class LoginController {
 
     @FXML
     void signUpWithEnter(ActionEvent event) {
-            signup(event);
+        signup(event);
     }
 
     @FXML
     void loginWithEnter(ActionEvent event) throws Exception {
-            login(event);
+        login(event);
     }
 }

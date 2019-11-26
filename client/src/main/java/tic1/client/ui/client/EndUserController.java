@@ -26,6 +26,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.effect.DropShadow;
@@ -139,12 +140,16 @@ public class EndUserController implements Initializable {
     @FXML
     private JFXButton deleteFilterButton;
 
+    @FXML
+    private MenuButton dropdownMenu;
+
     private ObservableList<File> fileList = FXCollections.observableArrayList();
 
     private ObservableList<File> allMovies = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        dropdownMenu.setText("Hola, " + ClientApplication.userClient.getUsername());
         allMovies.clear();
         fileList.clear();
         filterByName.setVisible(true);

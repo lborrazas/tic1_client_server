@@ -929,16 +929,6 @@ Label {
 
 /*Sala*/
 
-.buttonSelected {
-    -fx-background-color: green;
-    -fx-border-color: -fx-secondary;
-}
-
-.occupiedSeat {
-    -fx-border-color: -fx-secondary;
-    -fx-opacity: 0.5;
-}
-
 .seatsDisabled {
     -fx-opacity: 0;
 }
@@ -949,11 +939,12 @@ Label {
 }
 
 .seatsOccupied {
-    -fx-opacity: 0.6;
-
+    -fx-opacity: 0.3;
+    -fx-background-color: -fx-primary;
 }
 
 .seatsSelected {
+    -fx-opacity: 1;
     -fx-background-color: green;
 }
 /*End Sala*/

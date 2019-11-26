@@ -25,6 +25,7 @@ import tic1.client.models.Sala;
 import tic1.client.models.Seat;
 import tic1.client.models.Ticket;
 import tic1.client.services.FuncionRestTemplate;
+import tic1.client.services.TicketRestTemplate;
 import tic1.client.services.TransaccionRestTemplate;
 
 import java.io.IOException;
@@ -41,6 +42,9 @@ public class BuyTicketController implements Initializable {
 
     @Autowired
     private FuncionRestTemplate funcionRestTemplate;
+
+    @Autowired
+    private TicketRestTemplate ticketRestTemplate;
 
     @FXML
     private GridPane grid;
@@ -63,7 +67,6 @@ public class BuyTicketController implements Initializable {
         ticketsSelected.clear();
         ObservableList<Node> seats = grid.getChildren();
         for (Node seat : seats) {
-            System.out.println("Asiento");
             seat.setDisable(true);
         }
 
@@ -74,11 +77,13 @@ public class BuyTicketController implements Initializable {
         for (Ticket ticket : tickets) {
             Node seat = getNodeByRowColumnIndex(ticket.getSeat().getFila(), ticket.getSeat().getColumna());
             seat.setDisable(false);
+            seat.getStyleClass().remove("seatsDisabled");
             if (ticket.isBought()) {
-                seat.getStyleClass().clear();
+                seat.getStyleClass().remove("seatsAvailable");
                 seat.getStyleClass().add("seatsOccupied");
+                seat.setDisable(true);
             } else {
-                seat.getStyleClass().clear();
+                seat.getStyleClass().remove("seatsOccupied");
                 seat.getStyleClass().add("seatsAvailable");
             }
         }
@@ -97,18 +102,28 @@ public class BuyTicketController implements Initializable {
         Node seat = getNodeByRowColumnIndex(row, column);
         Ticket ticket = find(row, column);
         if (!seat.getStyleClass().contains("seatsSelected")) {
-            seat.getStyleClass().clear();
+
+            seat.getStyleClass().remove("seatsAvailable");
             seat.getStyleClass().add("seatsSelected");
+
             ticketsSelected.add(ticket);
         } else {
-            seat.getStyleClass().clear();
+
+            seat.getStyleClass().remove("seatsSelected");
             seat.getStyleClass().add("seatsAvailable");
+
             ticketsSelected.remove(ticket);
+
         }
     }
 
     @FXML
     private void buyAction(ActionEvent event) {
+
+        for (Ticket ticket : ticketsSelected) {
+            ticket.setBought(true);
+        }
+        ticketRestTemplate.update(ticketsSelected);
 
     }
 

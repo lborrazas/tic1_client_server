@@ -13,8 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="625.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" stylesheets="/movie_crud/ui/styles/dark-theme.css" fx:controller="tic1.client.ui.movie.BuyTicketController">
+<AnchorPane prefHeight="625.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicketController">
    <children>
       <AnchorPane layoutX="200.0" layoutY="113.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -240,7 +239,7 @@
                   </JFXButton>
                </children>
             </HBox>
-            <JFXButton layoutX="917.0" layoutY="571.0" prefHeight="35.0" prefWidth="120.0" text="Comprar" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <JFXButton layoutX="917.0" layoutY="571.0" onAction="#buyAction" prefHeight="35.0" prefWidth="120.0" text="Comprar" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
                <graphic>
                   <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="22" />
                </graphic>

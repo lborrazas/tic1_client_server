@@ -34,7 +34,7 @@ public class FuncionRestTemplate {
     public List<Funcion> getByMovieIdAndDate(LocalDateTime fecha, Movie Movie) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<FunctionDTO>> response = restTemplate.exchange(
-                " http://localhost:8080/function/" + fecha + '/' + Movie.getId(), HttpMethod.GET, null, new ParameterizedTypeReference<List<FunctionDTO>>() {
+                "http://localhost:8080/function/" + fecha + '/' + Movie.getId(), HttpMethod.GET, null, new ParameterizedTypeReference<List<FunctionDTO>>() {
                 });
         List<FunctionDTO> functionDTOS = response.getBody();
         return functionDTOS.stream()

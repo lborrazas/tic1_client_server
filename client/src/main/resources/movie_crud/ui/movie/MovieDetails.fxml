@@ -222,12 +222,12 @@
                                     <Insets bottom="30.0" />
                                  </VBox.margin>
                               </HBox>
-                              <JFXButton fx:id="buy_btn" alignment="CENTER" mnemonicParsing="false" onAction="#buyAction" prefHeight="40.0" prefWidth="115.0" styleClass="buy-button" text="Comprar" textFill="WHITE">
+                              <JFXButton fx:id="buy_btn" alignment="CENTER" mnemonicParsing="false" onAction="#buyAction" prefHeight="40.0" prefWidth="115.0" styleClass="buy-button" text="Siguiente" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
                                  <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="TAG" size="22" />
+                                    <FontAwesomeIconView fill="WHITE" glyphName="PAPER_PLANE" size="22" />
                                  </graphic>
                               </JFXButton>
                            </children>

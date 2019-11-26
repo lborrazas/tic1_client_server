@@ -42,5 +42,5 @@ public interface FunctionRepository extends JpaRepository<Funcion, FunctionPK> {
   List<Funcion> findAllByMovieAndIdDate(Movie movie, LocalDateTime today);//cuando se llame la funcion usar now()
   List<Funcion> findAllByIdDateAfter(LocalDateTime today);//cuando se llame la funcion usar now()
 
-  //  List<Funcion> findAllByMovie(Movie movie, Pageable pageable);
+  List<Funcion> findAllByMovie(Movie movie);
 }
