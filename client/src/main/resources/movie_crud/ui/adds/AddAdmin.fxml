@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddAdminController">
+<AnchorPane prefHeight="300.0" prefWidth="400.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddAdminController">
    <children>
       <VBox layoutX="41.0" layoutY="32.0" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTextField fx:id="userName" focusColor="WHITE" prefHeight="35.0" promptText="Nombre de Usuario" unFocusColor="WHITE">
+            <JFXTextField fx:id="userName" focusColor="WHITE" labelFloat="true" prefHeight="35.0" promptText="Nombre de Usuario" unFocusColor="WHITE">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>
@@ -29,7 +29,7 @@
                   <Insets bottom="20.0" />
                </VBox.margin>
             </JFXPasswordField>
-            <JFXTextField fx:id="userRole" focusColor="WHITE" layoutX="30.0" layoutY="30.0" prefHeight="35.0" promptText="Nombre de Usuario" text="Rol" unFocusColor="WHITE">
+            <JFXTextField fx:id="userRole" focusColor="WHITE" labelFloat="true" layoutX="30.0" layoutY="30.0" prefHeight="35.0" promptText="Rol" unFocusColor="WHITE">
                <font>
                   <Font name="Arial" size="14.0" />
                </font>

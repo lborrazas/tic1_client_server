@@ -926,3 +926,17 @@ Label {
     -fx-padding: 0.333333em 0.166667em 0.333333em 0.166667em; /* 4 2 4 2 */
     -fx-effect: dropshadow(two-pass-box, -fx-shadow-highlight-color, 1, 0.0, 0, 1.4);
 }
+
+/*Sala*/
+
+.buttonSelected {
+    -fx-background-color: green;
+    -fx-border-color: -fx-secondary;
+}
+
+.occupiedSeat {
+    -fx-border-color: -fx-secondary;
+    -fx-opacity: 0.5;
+}
+
+/*End Sala*/

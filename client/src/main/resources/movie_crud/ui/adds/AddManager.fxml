@@ -7,26 +7,26 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="255.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddManagerController">
+<AnchorPane prefHeight="255.0" prefWidth="400.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.adds.AddManagerController">
    <children>
       <VBox layoutX="159.0" layoutY="58.0" prefHeight="400.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXTextField prefHeight="35.0">
+            <JFXTextField focusColor="WHITE" labelFloat="true" prefHeight="35.0" unFocusColor="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField layoutX="10.0" layoutY="10.0" prefHeight="35.0">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="10.0" layoutY="10.0" prefHeight="35.0" unFocusColor="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField layoutX="10.0" layoutY="45.0" prefHeight="35.0">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="10.0" layoutY="45.0" prefHeight="35.0" unFocusColor="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </JFXTextField>
-            <JFXTextField layoutX="10.0" layoutY="80.0" prefHeight="35.0">
+            <JFXTextField focusColor="WHITE" labelFloat="true" layoutX="10.0" layoutY="80.0" prefHeight="35.0" unFocusColor="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>

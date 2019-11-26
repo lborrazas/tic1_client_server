@@ -24,7 +24,10 @@ import tic1.client.ClientApplication;
 import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
 import tic1.client.services.FuncionRestTemplate;
+import tic1.client.ui.adds.AddAdminController;
 import tic1.client.ui.adds.AddFunctionController;
+import tic1.client.ui.adds.AddManagerController;
+import tic1.client.ui.adds.AddSalaController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -135,6 +138,33 @@ public class PrincipalManagerController implements Initializable {
     }
 
     @FXML
+    private void createSala(ActionEvent event) throws IOException {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AddSalaController.class.getResourceAsStream("/movie_crud/ui/adds/AddSala.fxml"));
+
+        AddSalaController salaController = fxmlLoader.getController();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
+    private void addManager(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(AddManagerController.class.getResourceAsStream("/movie_crud/ui/adds/AddManager.fxml"));
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    @FXML
     public void deleteFunction(ActionEvent event) {
        /* //Fetch the selected row
         Funcion selectedForDeletion = functionTable.getSelectionModel().getSelectedItem();
@@ -203,29 +233,5 @@ public class PrincipalManagerController implements Initializable {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
-    }
-
-    @FXML
-    public void createSala(ActionEvent event) {
-    }
-
-    @FXML
-    public void createCinema(ActionEvent event) {
-    }
-
-    @FXML
-    public void createAdmin(ActionEvent event) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-
-        Parent root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddAdmin.fxml"));
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
-        stage.setScene(scene);
-        stage.show();
-
     }
 }

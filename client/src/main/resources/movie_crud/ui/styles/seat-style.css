@@ -12,10 +12,30 @@
     -fx-border-color: none;
 }
 
+.seatButton:hover {
+    -fx-background-color: -fx-secondary;
+    -fx-border-color: -fx-secondary;
+}
+
+.seatSelected {
+    -fx-background-color: green;
+    -fx-border-color: -fx-secondary;
+}
+
+.seatOccupied {
+    -fx-background-color: red;
+    -fx-border-color: -fx-secondary;
+}
+
 .salaPane {
-    -fx-background-color: -fx-primary;
-    -fx-background-radius: 5px;
-    -fx-border-color: derive(-fx-primary, 40%);
+    -fx-border-color: derive(-fx-primary, 60%);
     -fx-border-width: 3px;
     -fx-border-radius: 5px;
+    -fx-background-radius: 8px;
+    -fx-background-color: -fx-primary;
+}
+
+.buttonSelected {
+    -fx-background-color: green;
+    -fx-border-color: -fx-secondary;
 }

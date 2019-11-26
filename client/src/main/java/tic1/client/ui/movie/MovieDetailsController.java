@@ -154,7 +154,7 @@ public class MovieDetailsController implements Initializable {
         BuyTicket buyTicket = fxmlLoader.getController();
         buyTicket.setSala(salatemp);
         buyTicket.setFuncion(funciontemp);
-        buyTicket.setTikets(tickets);
+        buyTicket.setTickets(tickets);
 //        buyTicket.setSala();
         buyTicket.empezar();
         Scene scene = buy_btn.getScene();

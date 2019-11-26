@@ -9,27 +9,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/seat-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicket">
+<AnchorPane fx:id="rootContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="625.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/seat-style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.movie.BuyTicket">
    <children>
-      <AnchorPane fx:id="root" layoutX="171.0" layoutY="113.0" prefHeight="400.0" prefWidth="659.0" styleClass="salaPane">
+      <AnchorPane fx:id="root" layoutX="175.0" layoutY="113.0" prefHeight="400.0" prefWidth="650.0" styleClass="salaPane">
          <children>
-            <Pane layoutX="135.0" layoutY="367.0" prefHeight="19.0" prefWidth="389.0" style="-fx-background-color: grey;">
-               <children>
-                  <Label layoutX="165.0" layoutY="2.0" text="SCREEN" textFill="WHITE">
-                     <font>
-                        <Font name="Arial" size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane id="butacas" fx:id="butacas" layoutX="41.0" layoutY="7.0" prefHeight="285.0" prefWidth="577.0" style="-fx-border-radius: 2;" styleClass="SeatContainer">
                <children>
                   <Pane id="fila1" fx:id="fila1" layoutY="1.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
                      <children>
                         <Button id="f1c1" fx:id="f1c1" layoutX="5.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
-                        <Button id="f1c2" fx:id="f1c2" layoutX="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" style="-fx-opacity: 0.6; -fx-background-color: red;" styleClass="seatButton" />
+                        <Button id="f1c2" fx:id="f1c2" layoutX="29.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
                         <Button id="f1c2" fx:id="f1c3" layoutX="53.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
-                        <Button id="f1c2" fx:id="f1c4" layoutX="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" style="-fx-background-color: #3ED715; -fx-opacity: 0.8;" styleClass="seatButton" />
+                        <Button id="f1c2" fx:id="f1c4" layoutX="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
                         <Button id="f1c5" fx:id="f1c5" layoutX="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
                         <Button id="f1c6" fx:id="f1c6" layoutX="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
                         <Button id="f1c7" fx:id="f1c7" layoutX="149.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
@@ -80,7 +71,7 @@
                         <Button id="f2c24" fx:id="f2c24" layoutX="556.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
                      </children>
                   </Pane>
-                  <Pane id="fila3" fx:id="fila3" layoutY="53.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                  <Pane id="fila3" fx:id="fila3" layoutY="52.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
                      <children>
                         <Button id="f3c1" fx:id="f3c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
                         <Button id="f3c2" fx:id="f3c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
@@ -108,7 +99,7 @@
                         <Button id="f3c24" fx:id="f3c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
                      </children>
                   </Pane>
-                  <Pane id="fila4" fx:id="fila4" layoutY="79.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                  <Pane id="fila4" fx:id="fila4" layoutY="78.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
                      <children>
                         <Button id="f4c1" fx:id="f4c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
                         <Button id="f4c2" fx:id="f4c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
@@ -136,7 +127,7 @@
                         <Button id="f4c24" fx:id="f4c24" layoutX="556.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="7.0" styleClass="seatButton" />
                      </children>
                   </Pane>
-                  <Pane id="fila5" fx:id="fila5" layoutY="105.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
+                  <Pane id="fila5" fx:id="fila5" layoutY="104.0" prefHeight="26.0" prefWidth="577.0" styleClass="fila">
                      <children>
                         <Button id="f5c1" fx:id="f5c1" layoutX="5.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
                         <Button id="f5c2" fx:id="f5c2" layoutX="29.0" layoutY="1.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="16.0" styleClass="seatButton" />
@@ -334,9 +325,18 @@
                   </Pane>
                </children>
             </Pane>
+            <Pane layoutX="155.0" layoutY="361.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" prefWidth="350.0" style="-fx-background-color: #1976D2; -fx-background-radius: 5px;">
+               <children>
+                  <Label alignment="CENTER" layoutX="146.0" layoutY="5.0" text="SCREEN" textFill="WHITE">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </AnchorPane>
-      <JFXButton fx:id="backButton" layoutX="10.0" layoutY="10.0" styleClass="button-back" text="Volver" textFill="WHITE">
+      <JFXButton fx:id="backButton" layoutX="10.0" layoutY="10.0" onAction="#goToDetails" styleClass="button-back" text="Volver" textFill="WHITE">
          <graphic>
             <FontAwesomeIconView fill="WHITE" glyphName="CHEVRON_LEFT" size="26" />
          </graphic>
@@ -349,7 +349,7 @@
             <Font name="Arial" size="14.0" />
          </font>
          <graphic>
-            <FontAwesomeIconView glyphName="TAGS" size="22" />
+            <FontAwesomeIconView fill="WHITE" glyphName="TAGS" size="22" />
          </graphic>
       </JFXButton>
    </children>

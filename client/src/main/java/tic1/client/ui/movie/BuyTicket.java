@@ -70,80 +70,26 @@ import static com.sun.org.apache.xalan.internal.lib.ExsltStrings.split;
 @Controller
 public class BuyTicket {
 
-    public static boolean isNumeric(String string) {
-        try {
-            Double.parseDouble(string);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
     @Autowired
     private TransaccionRestTemplate transaccionRestTemplate;
 
     @FXML
-    public AnchorPane anchorRoot;
-    @FXML
-    public Button backbutton;
+    private AnchorPane rootContainer;
 
+    @FXML
+    private JFXButton backButton;
 
     @FXML
     private AnchorPane root;
 
-
-    @FXML
-    public Button buy;
     @FXML
     private Pane butacas;
-
 
     private UserClient client;
     private Funcion funcion;
     private Sala sala;// la sala de la funcion
     private List<Ticket> tickets; // estos serian todos los tickets de la funcion
     private List<Ticket> seats = new ArrayList<>();// esto es lo que va en el post
-
-    public void setFuncion(Funcion funcion) {
-        this.funcion = funcion;
-
-    }
-
-    public void setSala(Sala sala) {
-        this.sala = sala;
-    }
-
-    public void setTikets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
-    @FXML
-    public void goToDetails(ActionEvent actionEvent) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
-        MovieDetailsController movieDetailsController = fxmlLoader.getController();
-        movieDetailsController.loadData(movieDetailsController.getMovieDetails());
-        Scene scene = backbutton.getScene();
-        root.translateXProperty().set(-scene.getWidth());
-
-        //rootContainer.getChildren().add(root);
-
-        //Timeline timeline1 = new Timeline();
-        //   KeyValue kv1 = new KeyValue(this.root.translateXProperty(), (2 * scene.getWidth()), Interpolator.EASE_OUT);
-        //KeyFrame kf1 = new KeyFrame(Duration.seconds(0.7), kv1);
-        //timeline1.getKeyFrames().add(kf1);
-        //  timeline1.setOnFinished(t -> {
-        //    rootContainer.getChildren().remove(this.root);
-        //});
-
-        //Timeline timeline2 = new Timeline();
-        //KeyValue kv2 = new KeyValue(rootContainer.translateXProperty(), scene.getWidth(), Interpolator.EASE_IN);
-        // KeyFrame kf2 = new KeyFrame(Duration.seconds(0.7), kv2);
-        // timeline2.getKeyFrames().add(kf2);
-        // timeline1.play();
-        // timeline2.play();
-    }
 
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("movie_crud/ui/movie/CompraTicket.fxml"));
@@ -159,6 +105,7 @@ public class BuyTicket {
         Scene scene = root.getScene();
         FXMLLoader drawerContentLoader = new FXMLLoader(getClass().getResource("movie_crud/ui/movie/CompraTicket"));
     }
+
     //cargo la sala
     public void empezar() {
 
@@ -178,6 +125,7 @@ public class BuyTicket {
                                 Button asientoa = (Button) filan.getChildren().get(l);
                                 if (asientoa.getId().equals("f" + b + "c" + a)) {
                                     asientoa.setStyle("-fx-background-color:white");
+
                                     asientoa.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                                         @Override
 
@@ -190,9 +138,15 @@ public class BuyTicket {
                                         }
                                     });
 
+                                }else {
+                                    // asientoa.setDisable(true);
+                                    asientoa.setStyle("-fx-border-color:000");
                                 }
 
                             }
+                        }else {
+                            //filan.setDisable(true);
+                            filan.setStyle("-fx-border-color:000");
                         }
                     }
                 }
@@ -206,6 +160,7 @@ public class BuyTicket {
 
 
             //cargo los asientos rojos
+            int ocupados =0;
             for (Ticket ticket : tickets) {
                 if (ticket.isBought()) {
                     int n = (int) ticket.getSeat().getFila();
@@ -219,12 +174,15 @@ public class BuyTicket {
                             for (int j = 0; j < filan.getChildren().size(); j++) {
                                 Button asientoa = (Button) filan.getChildren().get(j);
                                 if (asientoa.getId().equals("f" + (b) + "c" + a)) {
-                                    asientoa.setStyle("-fx-background-color: red; -fx-border-color: #FFFF8D");
+//                                    asientoa.setStyle("-fx-background-color: red; -fx-border-color: #FFFF8D");
+                                    ocupados++;
+                                    asientoa.getStyleClass().add("seatOccupied");
                                 }
                             }
                     }
                 }
             }
+           System.out.println( "debugueo"); /// BORREN TODO YA FUE
         }
     }
 
@@ -234,8 +192,8 @@ public class BuyTicket {
         String fila = null;
         switch (idArray.length) {
             case 4:
-                fila = idArray[2];
-                columna = idArray[4];
+                fila = idArray[1];
+                columna = idArray[2];
                 break;
             case 5:
                 if (isNumeric(idArray[2])) {
@@ -256,7 +214,7 @@ public class BuyTicket {
         long columnanm = returnColum(Long.parseLong(columna));
 
 
-      //  fila=filanm+"";
+        //  fila=filanm+"";
         //columna=columnanm+"";
         Ticket ticketTemp = new Ticket();
         for (Ticket ticket : tickets) {
@@ -276,7 +234,7 @@ public class BuyTicket {
                                 button.setStyle("fx-background-color:white");
                                 seats.remove(ticketTemp);
 
-                            } else if(button.getStyle().contains("fx-background-color:white")){
+                            } else if (button.getStyle().contains("fx-background-color:white")) {
                                 button.setStyle("fx-background-color:green"); //
                                 seats.add(ticketTemp);
                             }
@@ -289,79 +247,79 @@ public class BuyTicket {
     }
 
     private long returnColum(long a) {
-        int m =0;
+        int m = 0;
         switch ((int) a) {
             case 12:
-                m=1;
+                m = 1;
                 break;
             case 13:
-                m=2;
+                m = 2;
                 break;
             case 11:
-                m=3;
+                m = 3;
                 break;
             case 14:
-                m=4;
+                m = 4;
                 break;
             case 10:
-                m=5;
+                m = 5;
                 break;
             case 15:
-                m=6;
+                m = 6;
                 break;
             case 9:
-                m=7;
+                m = 7;
                 break;
             case 16:
-                m=8;
+                m = 8;
                 break;
             case 8:
-                m=9;
+                m = 9;
                 break;
             case 17:
-                m=10;
+                m = 10;
                 break;
             case 7:
-                m=11;
+                m = 11;
                 break;
             case 18:
-                m=12;
+                m = 12;
                 break;
             case 6:
-                m=13;
+                m = 13;
                 break;
             case 19:
-                m=14;
+                m = 14;
                 break;
             case 5:
-                m=15;
+                m = 15;
                 break;
             case 20:
-                m=16;
+                m = 16;
                 break;
             case 4:
-                m=17;
+                m = 17;
                 break;
             case 21:
-                m=18;
+                m = 18;
                 break;
             case 3:
-                m=19;
+                m = 19;
                 break;
             case 22:
-                m=20;
+                m = 20;
                 break;
             case 2:
-                m=21;
+                m = 21;
                 break;
             case 23:
-                m=22;
+                m = 22;
                 break;
             case 1:
-                m=23;
+                m = 23;
                 break;
             case 24:
-                m=24;
+                m = 24;
                 break;
         }
         return m; // nooo se si esto anda bien puede que este mal
@@ -376,23 +334,62 @@ public class BuyTicket {
     private void buy(MouseEvent event) {
         Transaccion transaccion = new Transaccion();
         //transaccion.setClient(client.getId());
-       // transaccion.setClient(client.getId()); //si cambiamos a que el precio de un asiento este en la funcion y no en el ticekt?? IMprotante Mate jope habria que camvair la senteidades pero ahi pdoraimos mostrar el precio despues de realizar al compra sin tener que ir a la base de  datos
+        // transaccion.setClient(client.getId()); //si cambiamos a que el precio de un asiento este en la funcion y no en el ticekt?? IMprotante Mate jope habria que camvair la senteidades pero ahi pdoraimos mostrar el precio despues de realizar al compra sin tener que ir a la base de  datos
         transaccion.setClient(2); //si cambiamos a que el precio de un asiento este en la funcion y no en el ticekt?? IMprotante Mate jope habria que camvair la senteidades pero ahi pdoraimos mostrar el precio despues de realizar al compra sin tener que ir a la base de  datos
 
-        for (int j=0;j<seats.size();j++){
+        for (int j = 0; j < seats.size(); j++) {
             seats.get(j).setBought(true);
         }
         transaccionRestTemplate.create(transaccion, seats);
-        backear();
     }
 
+    @FXML
+    public void goToDetails(ActionEvent actionEvent) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
+        MovieDetailsController movieDetailsController = fxmlLoader.getController();
+        movieDetailsController.loadData(movieDetailsController.getMovieDetails());
+        Scene scene = backButton.getScene();
+        root.translateXProperty().set(-scene.getWidth());
 
-    public void back(MouseEvent mouseEvent) {
-        backear();
+        rootContainer.getChildren().add(root);
+
+        Timeline timeline1 = new Timeline();
+        KeyValue kv1 = new KeyValue(this.root.translateXProperty(), (2 * scene.getWidth()), Interpolator.EASE_OUT);
+        KeyFrame kf1 = new KeyFrame(Duration.seconds(0.7), kv1);
+        timeline1.getKeyFrames().add(kf1);
+        timeline1.setOnFinished(t -> {
+            rootContainer.getChildren().remove(this.root);
+        });
+
+        Timeline timeline2 = new Timeline();
+        KeyValue kv2 = new KeyValue(rootContainer.translateXProperty(), scene.getWidth(), Interpolator.EASE_IN);
+        KeyFrame kf2 = new KeyFrame(Duration.seconds(0.7), kv2);
+        timeline2.getKeyFrames().add(kf2);
+        timeline1.play();
+        timeline2.play();
     }
 
-    private void backear() {
+    private static boolean isNumeric(String string) {
+        try {
+            Double.parseDouble(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    public void setFuncion(Funcion funcion) {
+        this.funcion = funcion;
 
     }
 
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 }
