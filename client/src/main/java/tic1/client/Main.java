@@ -98,7 +98,7 @@ public class Main {
 //           ticket1.setBought(true);
 //           return ticket1;
 //       })
-//      tRT.update(tickets2);
+      tRT.update(tickets2);
 
 
 

@@ -172,7 +172,8 @@ public class LoginController {
         stage.setScene(scene);
         stage.show();
         close(event);
-        ClientApplication.userClient=null;
+        ClientApplication.userClient = null;
+    }
 
     @FXML
     public void login(ActionEvent event) throws Exception {
