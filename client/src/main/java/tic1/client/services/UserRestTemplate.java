@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 @Service
 public class UserRestTemplate {
 
-   public User showActor(long id){
+    public User showUser(long id) {
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> response = restTemplate.exchange(
@@ -79,8 +79,6 @@ public class UserRestTemplate {
     }
 
 
-
-
     public void deleteUser(long id) {
         RestTemplate restTemplate =
                 new RestTemplate();
@@ -90,7 +88,7 @@ public class UserRestTemplate {
     }
 
 
-    public void createActor(UserDTO userDTO) {
+    public void createUser(UserDTO userDTO) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<UserDTO> body = new HttpEntity<>(
@@ -100,22 +98,39 @@ public class UserRestTemplate {
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public List<User> findByName(String name) {
+    public Object findByName(String name) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<UserDTO>> response = restTemplate.exchange(
-                "http://localhost:8080/user/" + name,
+        ResponseEntity<UserDTO> response = restTemplate.exchange(
+                "http://localhost:8080/user/name/" + name,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<UserDTO>>() {
+                new ParameterizedTypeReference<UserDTO>() {
                 });
-        List<UserDTO> users = response.getBody();
+        UserDTO user = response.getBody();
+        switch (user.getType()) {
 
-        return users.stream()
-                .map(User::new)
-                .collect(Collectors.toList());
+            case "Admin":
+                return new UserAdmin(user);
+            case "Manager":
+                return new UserManeger(user);
+            case "Client":
+                return new UserClient(user);
+            default:
+                return new User(user);
+        }
     }
 
+    public Boolean userExists(String name) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Boolean> response = restTemplate.exchange(
+                "http://localhost:8080/user/exist/" + name,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<Boolean>() {
+                });
 
+        return response.getBody();
+    }
 
 
 }

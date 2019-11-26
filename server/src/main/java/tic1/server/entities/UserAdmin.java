@@ -7,7 +7,8 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Admin")
-public class UserAdmin extends User{
+public class UserAdmin extends User {
+
     @Override
     public UserDTO toDTO() {
         UserDTO userDTO = new UserDTO();
@@ -15,7 +16,7 @@ public class UserAdmin extends User{
         userDTO.setUsername(super.getUsername());
         userDTO.setId(super.getId());
         userDTO.setType("Admin");
-        return  userDTO;
+        return userDTO;
     }
 
 

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
+import tic1.client.models.Sala;
 import tic1.client.services.FuncionRestTemplate;
 import tic1.client.ui.adds.AddAdminController;
 import tic1.client.ui.adds.AddFunctionController;
@@ -47,7 +48,7 @@ public class PrincipalManagerController implements Initializable {
     private TableColumn<Funcion, Movie> colMovie;
 
     @FXML
-    private TableColumn<Funcion, Long> colSalaID;
+    private TableColumn<Funcion, Long> colSalaId;
 
     @FXML
     private TableColumn<Funcion, LocalDateTime> colDate;
@@ -82,7 +83,7 @@ public class PrincipalManagerController implements Initializable {
 
     private void loadFunction() {
         functionList.clear();
-//        functionList.addAll(funcionRestTemplate.);
+        functionList.addAll(funcionRestTemplate.returnAll());
 
         functionTable.setItems(functionList);
     }
@@ -90,8 +91,8 @@ public class PrincipalManagerController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
        functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        /*colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
-        colSalaID.setCellValueFactory(new PropertyValueFactory<>("salaId"));
+        colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
+        colSalaId.setCellValueFactory(new PropertyValueFactory<>("salaId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colMovie.setCellFactory(col -> new TableCell<Funcion, Movie>() {
             @Override
@@ -103,7 +104,8 @@ public class PrincipalManagerController implements Initializable {
                     setText(movie.getName());
                 }
             }
-        });*/
+        });
+
         loadFunction();
 
         FilteredList<Funcion> filteredData = new FilteredList<>(functionList, e -> true);
@@ -131,7 +133,7 @@ public class PrincipalManagerController implements Initializable {
 
     public void refreshTable() {
         functionList.clear();
-//        functionList.addAll(funcionRestTemplate.findAllPaged(0));
+        functionList.addAll(funcionRestTemplate.returnAll());
 
         functionTable.setItems(functionList);
 
@@ -226,6 +228,7 @@ public class PrincipalManagerController implements Initializable {
         scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
         stage.show();
+        refreshTable();
     }
 
     @FXML

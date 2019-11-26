@@ -10,13 +10,17 @@ import java.util.List;
 
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Long>{
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findAllByUsername(String name);
+    User findByUsername(String username);
 
-    //List<User> findAllByCreditCard(String  creditCards);
-   // List<User> findAllByRoleContaining(String role);
-    //List<User> findAllByProviderId(long  idProvider);
-    //List<User> findAllByProviderName(String nameProvider);
-   // List<User> findAllByType(String name);
+//    List<User> findAllByCreditCard(String creditCards);
+
+//    List<User> findAllByRoleContaining(String role);
+
+//    List<User> findAllByProviderId(long idProvider);
+
+//    List<User> findAllByProviderName(String nameProvider);
+
+//    List<User> findAllByType(String name);
 }

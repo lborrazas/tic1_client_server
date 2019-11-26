@@ -22,17 +22,21 @@ public class CinemaMgr {
     SalaMgr salaMgr;
 
 
-    public List<Cinema> findAll(){ return cinemaRepository.findAll(); }
+    public List<Cinema> findAll() {
+        return cinemaRepository.findAll();
+    }
 
-    public  void save(Cinema cinema){
+    public void save(Cinema cinema) {
         cinemaRepository.save(cinema);
 
     }
-    public Cinema getOne(@PathVariable("id") Long id){
-        return cinemaRepository.findById(id).orElseThrow(() ->  new ResourceNotFoundException("Note", "id", id));
+
+    public Cinema getOne(@PathVariable("id") Long id) {
+        return cinemaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
     }
-    public void updateCinema(@PathVariable("id") Long id, @Valid @RequestBody Cinema tempCinema){
-        Cinema existingCinema= cinemaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+
+    public void updateCinema(@PathVariable("id") Long id, @Valid @RequestBody Cinema tempCinema) {
+        Cinema existingCinema = cinemaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
         existingCinema.setLocation(tempCinema.getLocation());
         existingCinema.setName(tempCinema.getName());
         existingCinema.setProvider(tempCinema.getProvider());
@@ -41,36 +45,35 @@ public class CinemaMgr {
 
     public ResponseEntity<?> deleteCinema(@PathVariable("id") Long id) {
 
-         Cinema cinema= cinemaRepository.findById(id)
+        Cinema cinema = cinemaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
 
-         for (Sala sala:salaMgr.findAllByCinema(cinema)){
-             salaMgr.deleteSala(sala);
-         }
+        for (Sala sala : salaMgr.findAllByCinema(cinema)) {
+            salaMgr.deleteSala(sala);
+        }
         cinemaRepository.delete(cinema);
 
         return ResponseEntity.ok().build();
     }
 
 
+    public List<Cinema> getByName(String name) {
+        return cinemaRepository.findByName(name);
+    }
 
+    ;
 
-    public List<Cinema> getByName(String name){
-        return  cinemaRepository.findByName(name);
-    };
-
-    public  List<Cinema> findAllByProvider(Provider provider) {
+    public List<Cinema> findAllByProvider(Provider provider) {
         return cinemaRepository.findAllByProvider(provider);
     }
 
 
-
-    public List<Cinema> getByProviderId(long providerId){
+    public List<Cinema> getByProviderId(long providerId) {
         return cinemaRepository.findAllByProviderId(providerId);
     }
 
 
-    public List<Cinema> getByProviderName(String  providerName){
-     return cinemaRepository.findAllByProviderName(providerName);
+    public List<Cinema> getByProviderName(String providerName) {
+        return cinemaRepository.findAllByProviderName(providerName);
     }
 }

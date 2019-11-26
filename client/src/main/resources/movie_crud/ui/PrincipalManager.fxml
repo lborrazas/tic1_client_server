@@ -134,9 +134,9 @@
                                                     <children>
                                                         <TableView fx:id="functionTable" layoutX="55.0" layoutY="46.0" prefHeight="363.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                             <columns>
-                                                                <TableColumn fx:id="colName" prefWidth="175.0" text="Nombre" />
-                                                                <TableColumn fx:id="colDuration" prefWidth="175.0" text="Duracion" />
-                                                                <TableColumn fx:id="colGenre" prefWidth="175.0" text="Genero" />
+                                                                <TableColumn fx:id="colMovie" prefWidth="175.0" text="Pelicula" />
+                                                                <TableColumn fx:id="colSalaId" prefWidth="175.0" text="ID Sala" />
+                                                                <TableColumn fx:id="colDate" prefWidth="175.0" text="Fecha" />
                                                             </columns>
                                                             <contextMenu>
                                                                 <ContextMenu>

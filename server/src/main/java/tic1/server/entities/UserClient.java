@@ -7,13 +7,10 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Client")
-public class UserClient  extends User{
-
-
+public class UserClient extends User {
 
     @Column
     private String creditCard;
-
 
     public String getCreditCard() {
         return creditCard;
@@ -31,6 +28,6 @@ public class UserClient  extends User{
         userDTO.setId(super.getId());
         userDTO.setType("Client");
         userDTO.setCreditCard(this.creditCard);
-        return  userDTO;
+        return userDTO;
     }
 }

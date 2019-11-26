@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.Actor;
 import tic1.client.services.ActorRestTemplate;
@@ -33,10 +35,19 @@ public class AddActorController implements Initializable {
 
         actorRestTemplate.createActor(actor);
 
+        close(event);
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

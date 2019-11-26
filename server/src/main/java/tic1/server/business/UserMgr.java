@@ -15,20 +15,26 @@ import java.util.List;
 
 @Service
 public class UserMgr {
+
     @Autowired
     UserRepository userRepository;
-    public List<User> findAll(){ return userRepository.findAll(); }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
 
 
-    public  void save(User user){
+    public void save(User user) {
         userRepository.save(user);
 
     }
-    public User getOne(@PathVariable("id") Long id){
+
+    public User getOne(@PathVariable("id") Long id) {
         return userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
     }
-    public void updateUser(@PathVariable("id") Long id, @Valid @RequestBody User tempUser){
-       User existingUser= userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
+
+    public void updateUser(@PathVariable("id") Long id, @Valid @RequestBody User tempUser) {
+        User existingUser = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
         existingUser.setPassword(tempUser.getPassword());
         existingUser.setUsername(tempUser.getUsername());//falta el catcheo de exepciones ("SKERE")
         userRepository.save(existingUser);
@@ -44,13 +50,17 @@ public class UserMgr {
         return ResponseEntity.ok().build();
     }
 
-    public List<User> getByname(String username){
-        return userRepository.findAllByUsername(username);
+    public User getByname(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public boolean userExists(String username) {
+        return userRepository.findByUsername(username) != null;
     }
 
 
-   // public List<User> getByType(String type){
-     //   return userRepository.findByPreference(type);
-   // }
+    // public List<User> getByType(String type){
+    //   return userRepository.findByPreference(type);
+    // }
 
 }

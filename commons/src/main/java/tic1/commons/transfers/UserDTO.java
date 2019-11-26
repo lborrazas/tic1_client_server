@@ -70,7 +70,7 @@ public class UserDTO {
         return provider_id;
     }
 
-    public void setProvider(long provider) {
+    public void setProvider(long provider_id) {
         this.provider_id = provider_id;
     }
 

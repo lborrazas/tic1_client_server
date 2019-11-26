@@ -44,6 +44,19 @@ public class SalaRestTemplate {
                 .collect(Collectors.toList());
     }
 
+    public List<Sala> getByCinemaId(long cinemaId){
+        RestTemplate restTemplate =
+                new RestTemplate();
+        ResponseEntity<List<SalaDTO>> response =
+                restTemplate.exchange("http://localhost:8080/sala/cinema/" + cinemaId, HttpMethod.GET, null,new ParameterizedTypeReference<List<SalaDTO>>(){});
+        System.out.println("RestTemplate response : " + response.getBody());
+
+        List<SalaDTO> salas = response.getBody();
+        return salas.stream()
+                .map(Sala::new)
+                .collect(Collectors.toList());
+    }
+
     public  Sala getById(long id){
         RestTemplate restTemplate =
                 new RestTemplate();

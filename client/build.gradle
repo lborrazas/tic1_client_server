@@ -35,5 +35,5 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-devtools'
 	compile fileTree(dir: 'lib', include: '*.jar')
-
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 }

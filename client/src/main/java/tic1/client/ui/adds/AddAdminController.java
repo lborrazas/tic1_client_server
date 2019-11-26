@@ -6,8 +6,10 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.Provider;
@@ -34,6 +36,7 @@ public class AddAdminController implements Initializable {
     @FXML
     void addAdmin(ActionEvent event) {
 
+        close(event);
     }
 
     @Override
@@ -57,5 +60,12 @@ public class AddAdminController implements Initializable {
         /*ObservableList<Provider> providers = FXCollections.observableArrayList(providerRestTemplate.findAll());
 
         providerName.setItems(providers);*/
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

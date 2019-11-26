@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @DiscriminatorValue("Manager")
-public class UserManeger extends User {
+public class UserManager extends User {
     @Column
     private String role;
 

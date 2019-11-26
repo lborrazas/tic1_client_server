@@ -3,17 +3,15 @@ package tic1.client.models;
 import tic1.commons.transfers.UserDTO;
 
 
-
 public class UserManeger extends User {
 
-    public  UserManeger(UserDTO userDTO){
+    public UserManeger(UserDTO userDTO) {
         super(userDTO);
-        this.provider=userDTO.getProvider();
-        this.role=userDTO.getRole();
+        this.provider = userDTO.getProvider();
+        this.role = userDTO.getRole();
     }
 
     private String role;
-
 
     private long provider;  //todo provider hasMany Managers
 
@@ -34,8 +32,6 @@ public class UserManeger extends User {
     }
 
 
-
-
     @Override
     public UserDTO toDTO() {
         UserDTO userDTO = new UserDTO();
@@ -45,6 +41,6 @@ public class UserManeger extends User {
         userDTO.setType("Manager");
         userDTO.setRole(this.role);
         userDTO.setProvider(this.provider);
-        return  userDTO;
+        return userDTO;
     }
 }

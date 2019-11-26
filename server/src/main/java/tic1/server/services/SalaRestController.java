@@ -99,7 +99,7 @@ public class SalaRestController {
         return  salaDTOS;
     }
     @GetMapping("/sala/cinema/{cinema_id}")
-    public List<SalaDTO> getByCinemaName(@PathVariable long cinema_id ) {
+    public List<SalaDTO> getByCinemaId(@PathVariable long cinema_id ) {
         List<SalaDTO> salaDTOS = new ArrayList<>();
         for( Sala salatemp:salaMgr.findAllByCinema(cinemaMgr.getOne(cinema_id))){
             salaDTOS.add(salatemp.toDTO())   ;

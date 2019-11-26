@@ -7,8 +7,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.Actor;
@@ -50,6 +52,8 @@ public class AddCinemaController implements Initializable {
 
 //        cinemaRestTemplate.createCinema(cinema);
 
+        close(event);
+
     }
 
     @Override
@@ -75,5 +79,12 @@ public class AddCinemaController implements Initializable {
 
         providerName.setItems(providers);*/
 
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

@@ -42,4 +42,17 @@ public class CinemaRestTemplate {
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
+    public List<Cinema> getByProvider(long providerId){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<CinemaDto>> response =
+                restTemplate.exchange("http://localhost:8080/cinema/provider/" + providerId, HttpMethod.GET, null,new ParameterizedTypeReference<List<CinemaDto>>(){});
+        System.out.println("RestTemplate response : " + response.getBody());
+
+        List<CinemaDto> cines = response.getBody();
+        return cines.stream()
+                .map(Cinema::new)
+                .collect(Collectors.toList());
+
+    }
+
 }

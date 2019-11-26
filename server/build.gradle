@@ -22,4 +22,5 @@ dependencies {
 	compile('tic1:commons')
 	compile "org.springframework.boot:spring-boot-configuration-processor"
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+//	implementation 'org.springframework.boot:spring-boot-starter-security'
 }

@@ -11,14 +11,15 @@ import tic1.server.entities.Provider;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @RestController
 public class CinemaRestController {
-@Autowired
+    @Autowired
     CinemaMgr cinemaMgr;
-@Autowired
+    @Autowired
     ProviderMgr providerMgr;
 
-    private Provider providerFromDto(ProviderDTO providerDTO){
+    private Provider providerFromDto(ProviderDTO providerDTO) {
         Provider provider = new Provider();
         provider.setName(providerDTO.getName());
         provider.setId(providerDTO.getId());
@@ -26,15 +27,14 @@ public class CinemaRestController {
         return provider;
     }
 
-    private Cinema cinemaFromDto( CinemaDto cinemaDto){
+    private Cinema cinemaFromDto(CinemaDto cinemaDto) {
         Cinema cinema = new Cinema();
         cinema.setProvider(providerMgr.getById(cinemaDto.getProviderId()));
         cinema.setLocation(cinemaDto.getLocation());
-       cinema.setId(cinemaDto.getId());
+        cinema.setId(cinemaDto.getId());
         cinema.setName(cinemaDto.getName());
         return cinema;
     }
-
 
 
     @GetMapping("/cinema/")
@@ -47,44 +47,46 @@ public class CinemaRestController {
         return cinemasDtos;
 
     }
+
     @GetMapping("/cinema/{id}")
-    public CinemaDto cine(@PathVariable long id){
+    public CinemaDto cine(@PathVariable long id) {
         Cinema cinema = cinemaMgr.getOne(id);
         return cinema.toDTO(); // mate hacete el dto
     }
+
     @GetMapping("/cinema/name/{name}")
-    public List<CinemaDto> cineByName(@PathVariable  String name){
+    public List<CinemaDto> cineByName(@PathVariable String name) {
         List<CinemaDto> cinemasDtos = new ArrayList<>();
         List<Cinema> cinemas = cinemaMgr.getByName(name);
-        for (Cinema cin:cinemas){
+        for (Cinema cin : cinemas) {
             cinemasDtos.add(cin.toDTO()); // mate hacete el dto
         }
-       return cinemasDtos;
+        return cinemasDtos;
     }
+
     @GetMapping("/cinema/provider/{id}")
-    public List<CinemaDto> cineByByProviderId(@PathVariable long id){
-        List<CinemaDto> cinemasDtos= new ArrayList<>();
+    public List<CinemaDto> cineByProviderId(@PathVariable long id) {
+        List<CinemaDto> cinemasDtos = new ArrayList<>();
         List<Cinema> cinemas = cinemaMgr.getByProviderId(id);
-        for (Cinema cin:cinemas){
+        for (Cinema cin : cinemas) {
             cinemasDtos.add(cin.toDTO()); // mate hacete el dto
         }
-       return cinemasDtos;
+        return cinemasDtos;
     }
 
     @GetMapping("/cinema/{providerDTo}")
-    public List<CinemaDto> cineByByProviderName(@PathVariable ProviderDTO providerDTO){
+    public List<CinemaDto> cineByByProviderName(@PathVariable ProviderDTO providerDTO) {
         List<CinemaDto> cinemasDtos = new ArrayList<>();
         List<Cinema> cinemas = cinemaMgr.getByProviderName(providerDTO.getName());
-        for (Cinema cin:cinemas){
+        for (Cinema cin : cinemas) {
             cinemasDtos.add(cin.toDTO()); // mate hacete el dto
         }
         return cinemasDtos;
     }
 
 
-
     @PostMapping("/cinema/{providerId}")
-    public void save(@RequestBody CinemaDto cinemaDto,@PathVariable("providerId") long providerID){
+    public void save(@RequestBody CinemaDto cinemaDto, @PathVariable("providerId") long providerID) {
         System.out.println(providerID);
         cinemaDto.setProvider(providerID);
         Cinema cinema = cinemaFromDto(cinemaDto);
@@ -92,7 +94,7 @@ public class CinemaRestController {
     }
 
     @DeleteMapping("/cinema/{id}")
-    public void delete(@PathVariable long id){
+    public void delete(@PathVariable long id) {
         cinemaMgr.deleteCinema(id);
     }
 }
