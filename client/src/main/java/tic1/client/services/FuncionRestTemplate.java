@@ -66,8 +66,35 @@ public class FuncionRestTemplate {
         ResponseEntity<String> response =
                 restTemplate.exchange("http://localhost:8080/funcion/", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
+    }
 
+    @Deprecated
+    public List<Funcion> findAllbyProvider(long id){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<FunctionDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/funcion/provider/"+ id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<FunctionDTO>>(){});
+        List<FunctionDTO> functions = response.getBody();
+        return functions.stream()
+                .map(Funcion::new)
+                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
+    }
 
+    public List<Funcion> findAllByProviderIdPaged(long id, int page){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<FunctionDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/funcion/provider/"+ id +"/paged/" + page,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<FunctionDTO>>(){});
+        List<FunctionDTO> functions = response.getBody();
+        return functions.stream()
+                .map(Funcion::new)
+                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
     }
 
     public List<Funcion> getByMovieId(Movie movie) {
@@ -81,6 +108,7 @@ public class FuncionRestTemplate {
                 // .map(movieDTO -> new Movie(movieDTO))
                 .collect(Collectors.toList());
     }
+
 
 
 }

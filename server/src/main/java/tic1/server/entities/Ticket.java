@@ -45,7 +45,7 @@ public class Ticket {
         isLock = lock;
     }
 
-    public boolean isBought() {
+    public boolean getIsBought() {
         return isBought;
     }
 
@@ -74,13 +74,12 @@ public class Ticket {
     }
 
     public void setTransaccion(Transaccion transaccion) {
-        this.setBought(true);
         this.transaccion = transaccion;
     }
 
     public TicketDTO toDTO() {
         TicketDTO ticketDTO = new TicketDTO();
-        ticketDTO.setBought(this.isBought());
+        ticketDTO.setBought(this.getIsBought());
         ticketDTO.setDiscount(this.getDiscount());
         ticketDTO.setFuncion_id(this.id.getFuncion().toDTO());
         ticketDTO.setLock(this.isLock());

@@ -63,8 +63,10 @@ public class TicketRestController {
 
         Ticket ticket = new Ticket();
         ticket.setLock(ticketDTO.isLock());
-        ticket.setTransaccion(transaccionMgr.getOne(ticketDTO.getTransaccion_id())); // IMPORTANTE QUE PASA CUNADO NO LOS COMPRARON ??? NO HAH YRANSACION EL GET ONE TE DEVUELCE NULL?? NDEAH
-        ticket.setPrice(ticketDTO.getPrice());
+
+       if(ticketDTO.getTransaccionId() != 0) {
+          ticket.setTransaccion(transaccionMgr.getOne(ticketDTO.getTransaccionId())); // IMPORTANTE QUE PASA CUNADO NO LOS COMPRARON ??? NO HAH YRANSACION EL GET ONE TE DEVUELCE NULL?? NDEAH
+       }ticket.setPrice(ticketDTO.getPrice());
         ticket.setDiscount(ticketDTO.getDiscount());
         ticket.setBought(ticketDTO.isBought());
         ticket.setId(ticketPk);
