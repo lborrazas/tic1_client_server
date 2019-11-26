@@ -1,6 +1,9 @@
 package tic1.server.business;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -70,6 +73,17 @@ public class FunctionMgr {
 
         return ResponseEntity.ok().build();
     }
+
+    public List<Funcion> findByProvider(long id){
+        return funcionRepository.findByProvider(id);
+    }
+
+    public List<Funcion> findByProviderPaged(long id, int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        Page<Funcion> movies = funcionRepository.findByProviderPaged(id, pageable);
+        return movies.getContent();
+    }
+
 
     public void updatefuncion(@PathVariable("id") FunctionPK id, @Valid @RequestBody Funcion tempFuncion) {
         Funcion existingFuncion = funcionRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));

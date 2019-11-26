@@ -21,15 +21,6 @@ public class TicketDTO {
         this.funcion_id = funcion_id;
     }
 
-    public long getTransaccion_id() {
-        return transaccion_id;
-    }
-
-    public void setTransaccion_id(long transaccion_id) {
-        this.transaccion_id = transaccion_id;
-    }
-
-
     public SeatDTO getSeat() {
         return seat;
     }
@@ -75,7 +66,6 @@ public class TicketDTO {
     }
 
     public void setTransaccionId(long transaccion_id) {
-        this.isBought=true;
         this.transaccion_id =transaccion_id;
     }
 }

@@ -3,18 +3,18 @@ package tic1.server.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tic1.commons.transfers.FunctionDTO;
-import tic1.commons.transfers.NewMovieDTO;
 import tic1.server.business.FunctionMgr;
 import tic1.server.business.MovieMgr;
 import tic1.server.business.SalaMgr;
 import tic1.server.entities.Funcion;
 import tic1.server.entities.FunctionPK;
 import tic1.server.entities.Movie;
-import tic1.server.entities.Sala;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 public class FuncionRestController {
 
@@ -46,6 +46,24 @@ public class FuncionRestController {
             functionDTOS.add(funcion.toDTO());
         }
         return functionDTOS;
+    }
+
+    @GetMapping("/funcion/provider/{provider_id}")
+    public List<FunctionDTO> allByProvider(@PathVariable("provider_id") long provId){
+        List<Funcion> funcions = functionMgr.findByProvider(provId);
+        List<FunctionDTO> functionDTOS = new ArrayList<>();
+        for (Funcion funcion:funcions){
+            functionDTOS.add(funcion.toDTO());
+        }
+        return functionDTOS;
+    }
+
+    @GetMapping("/funcion/provider/{provider_id}/paged/{page}")
+    public List<FunctionDTO> moviesPaged(@PathVariable("page") int page, @PathVariable("provider_id") long provId) {
+        List<Funcion> movies = functionMgr.findByProviderPaged(provId, page);
+        return movies.stream()
+                .map(Funcion::toDTO)
+                .collect(Collectors.toList());
     }
 
     /*@GetMapping("/function/{sala_id}/{date}")

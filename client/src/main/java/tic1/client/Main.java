@@ -4,15 +4,20 @@ import tic1.client.models.*;
 import tic1.client.services.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Main {
     public static void main(String[] args) throws IOException {
-//        MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
-//        GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
-//        ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
+        MovieRestTemplate movieRestTemplate = new MovieRestTemplate();
+        GenreRestTemplate genreRestTemplate = new GenreRestTemplate();
+        ActorRestTemplate actorRestTemplate = new ActorRestTemplate();
         UserRestTemplate uRT = new UserRestTemplate();
         ProviderRestTemplate pRT = new ProviderRestTemplate();
+        FuncionRestTemplate fRT = new FuncionRestTemplate();
+        SalaRestTemplate sRT = new SalaRestTemplate();
+        TicketRestTemplate tRT = new TicketRestTemplate();
 //        Genre genre = genreRestTemplate.showGenre(6);
 //        Genre genre2 = genreRestTemplate.showGenre(9);
 //        Actor actor = actorRestTemplate.showActor(1);
@@ -66,12 +71,38 @@ public class Main {
 //        userManager.setPassword("password");
 //        uRT.createUser(userManager);
 
-        UserAdmin userAdmin = new UserAdmin();
-        userAdmin.setPassword("password");
-        userAdmin.setUsername("juan");
-        uRT.createUser(userAdmin);
+//        UserAdmin userAdmin = new UserAdmin();
+//        userAdmin.setPassword("password");
+//        userAdmin.setUsername("juan");
+//        uRT.createUser(userAdmin);
+
+//        List<Funcion> funcions =  fRT.findAllByProviderIdPaged(1,0);
+//        System.out.println(funcions.get(7).getMovie().getName());
+
+        List<Funcion> funcions =  fRT.findAllbyProvider(1);
+        Funcion funcion = funcions.get(7);
+
+        Sala sala = sRT.getById(45);
+        System.out.println(sala.getName());
+
+        List<Ticket> tickets2 = tRT.findByFunction_dateAndsalaid(funcion.getDate(), funcion.getSalaId());
+        System.out.println(tickets2.get(5).getFuncion().getDate());
+        Ticket ticket = tickets2.get(15);
+
+        System.out.println(ticket.isBought());
+
+      ticket.setBought(true);
+
+//       List<Ticket> ticketsJuanito = new ArrayList<>();
+//       ticketsJuanito = tickets2.stream().map(ticket1 -> {
+//           ticket1.setBought(true);
+//           return ticket1;
+//       })
+//      tRT.update(tickets2);
 
 
 
+
+       // List<Ticket> tickets = tRT.findByFunction_dateAndsalaid()
     }
 }
