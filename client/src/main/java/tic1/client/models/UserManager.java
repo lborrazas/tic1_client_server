@@ -3,9 +3,9 @@ package tic1.client.models;
 import tic1.commons.transfers.UserDTO;
 
 
-public class UserManeger extends User {
+public class UserManager extends User {
 
-    public UserManeger(UserDTO userDTO) {
+    public UserManager(UserDTO userDTO) {
         super(userDTO);
         this.provider = userDTO.getProvider();
         this.role = userDTO.getRole();
@@ -14,6 +14,10 @@ public class UserManeger extends User {
     private String role;
 
     private long provider;  //todo provider hasMany Managers
+
+    public UserManager() {
+
+    }
 
     public String getRole() {
         return role;

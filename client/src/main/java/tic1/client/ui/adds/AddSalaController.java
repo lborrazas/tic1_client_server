@@ -1,25 +1,17 @@
 package tic1.client.ui.adds;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableSet;
-import javafx.css.PseudoClass;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +20,6 @@ import tic1.client.ClientApplication;
 import tic1.client.models.*;
 import tic1.client.services.CinemaRestTemplate;
 import tic1.client.services.SalaRestTemplate;
-import javafx.collections.SetChangeListener.Change;
 
 import java.net.URL;
 import java.util.*;
@@ -36,7 +27,7 @@ import java.util.*;
 @Controller
 public class AddSalaController implements Initializable {
 
-    private UserManeger userManeger;
+    private UserManager userManager;
 
     @Autowired
     private CinemaRestTemplate cinemaRestTemplate;
@@ -56,7 +47,7 @@ public class AddSalaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userManeger = ClientApplication.userManeger;
+        userManager = ClientApplication.userManager;
         seats.clear();
         for (int[] i : seatsSelected) {
             for (int j : i) {
@@ -64,7 +55,7 @@ public class AddSalaController implements Initializable {
             }
         }
         ObservableList<Cinema> cinemas =
-                FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(userManeger.getProvider()));
+                FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(userManager.getProvider()));
 
         this.cinemas.setItems(cinemas);
 

@@ -12,6 +12,7 @@ import tic1.server.persistence.*;
 import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class FunctionMgr {
@@ -29,25 +30,21 @@ public class FunctionMgr {
 
         funcionRepository.save(funcion);
 
-        for (int n = 1; n <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxColumn(); n++) {
-            for (int m = 1; m <= salaRepository.findById(funcion.getId().getSala().getId()).get().getMaxFila(); m++) {
-                SeatPk seatPk = new SeatPk();
-                seatPk.setSala(salaRepository.findById(funcion.getId().getSala().getId()).get());
-                seatPk.setFila(m);
-                seatPk.setColumna(n);
-                Seat seat = seatRepository.findById(seatPk).get();
+      List<Seat> seats = funcion.getId().getSala().getSeats();
+      List<Ticket> tickets = seats.stream().map(seat -> {
+        Ticket ticket = new Ticket();
+        TicketPk pk = new TicketPk();
+        pk.setFuncion(funcion);
+        pk.setSeat(seat);
+        ticket.setId(pk);
+        return ticket;
+      }).collect(Collectors.toList());
 
-                Ticket ticket = new Ticket();
-                TicketPk pk= new TicketPk();
-                pk.setSeat(seat);
-                pk.setFuncion(funcion);
-                ticket.setId(pk);
-                ticket.setBought(false);
-                ticket.setLock(false);
-                ticket.setPrice(150);
-                ticketRepository.save(ticket);
-            }
+        for (Ticket ticket : tickets) {
+            ticketRepository.save(ticket);
         }
+
+
 
     }
 

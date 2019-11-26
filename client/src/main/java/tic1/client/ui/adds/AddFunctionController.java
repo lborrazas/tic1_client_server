@@ -1,7 +1,6 @@
 package tic1.client.ui.adds;
 
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDatePicker;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,11 +18,9 @@ import tic1.client.services.CinemaRestTemplate;
 import tic1.client.services.FuncionRestTemplate;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.SalaRestTemplate;
-import tic1.client.ui.Principal2;
 import tic1.client.ui.PrincipalManagerController;
 
 import java.net.URL;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -54,7 +51,7 @@ public class AddFunctionController implements Initializable {
         this.principal = principal;
     }
 
-    private UserManeger userManeger;
+    private UserManager userManager;
 
     @FXML
     private JFXComboBox<Cinema> cinemaName;
@@ -120,7 +117,7 @@ public class AddFunctionController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        userManeger = ClientApplication.userManeger;
+        userManager = ClientApplication.userManager;
 
         salaName.setDisable(true);
 
@@ -175,7 +172,7 @@ public class AddFunctionController implements Initializable {
         salaName.setButtonCell(factory2.call(null));
 
         ObservableList<Cinema> cinemas =
-                FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(userManeger.getProvider()));
+                FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(userManager.getProvider()));
 
         cinemaName.setItems(cinemas);
 
