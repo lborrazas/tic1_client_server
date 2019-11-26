@@ -160,6 +160,19 @@ public class LoginController {
         });
 
     }
+    @FXML
+    public void login2(ActionEvent event) throws Exception {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+        stage.setScene(scene);
+        stage.show();
+        close(event);
+        ClientApplication.userClient=null;
 
     @FXML
     public void login(ActionEvent event) throws Exception {
