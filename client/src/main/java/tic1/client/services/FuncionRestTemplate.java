@@ -110,5 +110,17 @@ public class FuncionRestTemplate {
     }
 
 
+    public void deleteFuncion( Funcion function) {
+        Long salaId = function.getSalaId();
+        LocalDateTime localDateTime = function.getDate();
+        RestTemplate restTemplate =
+                new RestTemplate();
+        ResponseEntity<String> response =
+                restTemplate.exchange("http://localhost:8080/function/"+ salaId  + "/" + localDateTime, HttpMethod.DELETE, null, String.class);
+        System.out.println("RestTemplate response : " + response.getBody());
+    }
+
+
+
 
 }

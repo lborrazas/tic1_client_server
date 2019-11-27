@@ -1,5 +1,6 @@
 package tic1.server.entities;
 
+import org.hibernate.annotations.OnDelete;
 import tic1.commons.transfers.TicketDTO;
 
 import javax.persistence.*;
