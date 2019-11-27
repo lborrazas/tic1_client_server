@@ -12,10 +12,7 @@ import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
-import tic1.client.ui.adds.AddAdminController;
-import tic1.client.ui.adds.AddCinemaController;
-import tic1.client.ui.adds.AddProviderController;
-import tic1.client.ui.adds.AddSalaController;
+import tic1.client.ui.adds.*;
 import tic1.client.ui.client.EndUserController;
 import tic1.client.ui.login.LoginController;
 import tic1.client.ui.movie.MovieController;
@@ -333,13 +330,34 @@ public class Principal2 implements Initializable {
     }
 
     @FXML
-    public void createActor(ActionEvent actionEvent) {
+    public void addAtor(ActionEvent actionEvent) {
         try {
 
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
             Parent root = null;
-            root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddActor.fxml"));
+            root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/adds/AddActor.fxml"));
+
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+            stage.setScene(scene);
+            stage.show();
+            refreshTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void addGenre(ActionEvent actionEvent) {
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+            Parent root = null;
+            root = fxmlLoader.load(Principal2.class.getResourceAsStream("/movie_crud/ui/adds/AddGenre.fxml"));
 
 
             Stage stage = new Stage();

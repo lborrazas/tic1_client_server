@@ -104,9 +104,12 @@ public class Main {
 //
 //      tRT.update(ticketsJuanito);
 
-      List<Funcion> functionss =   fRT.findAllByProviderIdPaged(1,0);
-      Funcion functionn = functionss.get(1);
-      fRT.deleteFuncion(functionn);
+//      List<Funcion> functionss =   fRT.findAllByProviderIdPaged(1,0);
+//      Funcion functionn = functionss.get(1);
+//      fRT.deleteFuncion(functionn);
+
+        Movie movie = movieRestTemplate.showMovieByPath("IT 2.png");
+        System.out.println(movie.getName());
 
 
 

@@ -91,4 +91,15 @@ public class TransaccionRestTemplate {
                 restTemplate.   exchange("http://localhost:8080/transaccion/"+clientId, HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
+
+    public String cachin(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(
+                "http://localhost:8080/transaccion/saldo/"+id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<String>(){});
+        return response.getBody();
+
+    }
 }

@@ -1,5 +1,6 @@
 package tic1.client.ui;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,16 +18,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
+import tic1.client.models.Cinema;
 import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
-import tic1.client.models.Sala;
+import tic1.client.services.CinemaRestTemplate;
 import tic1.client.services.FuncionRestTemplate;
-import tic1.client.ui.adds.AddAdminController;
+import tic1.client.services.TransaccionRestTemplate;
 import tic1.client.ui.adds.AddFunctionController;
 import tic1.client.ui.adds.AddManagerController;
 import tic1.client.ui.adds.AddSalaController;
@@ -40,10 +44,16 @@ import java.util.ResourceBundle;
 
 @Controller
 public class PrincipalManagerController implements Initializable {
-
     @Autowired
     private FuncionRestTemplate funcionRestTemplate;
-
+    @Autowired
+    private TransaccionRestTemplate transaccionRestTemplate;
+    @Autowired
+    private CinemaRestTemplate cinemaRestTemplate;
+    @FXML
+    public JFXComboBox<Cinema> cinemas;
+    @FXML
+    public Text money;
     @FXML
     private TableView<Funcion> functionTable;
 
@@ -276,5 +286,42 @@ public class PrincipalManagerController implements Initializable {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+    @FXML
+    public void consultar(ActionEvent actionEvent) throws IOException {
+       // money.setVisible(false);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(PrincipalManagerController.class.getResourceAsStream("/movie_crud/ui/client/ConsultaSaldo.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+        stage.setScene(scene);
+        stage.show();
+        ObservableList<Cinema> cinemas =
+                FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(ClientApplication.userManager.getProvider()));
+
+        this.cinemas.setItems(cinemas);
+
+        Callback<ListView<Cinema>, ListCell<Cinema>> factory1 = lv1 -> new ListCell<Cinema>() {
+
+            @Override
+            protected void updateItem(Cinema item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+
+        };
+
+    }
+
+
+    public void cachin(ActionEvent actionEvent) {
+
+        String a = transaccionRestTemplate.cachin(this.cinemas.getSelectionModel().getSelectedItem().getId());
+    money.setText(""+transaccionRestTemplate.cachin(this.cinemas.getSelectionModel().getSelectedItem().getId()));
+    money.setVisible(true);
     }
 }
