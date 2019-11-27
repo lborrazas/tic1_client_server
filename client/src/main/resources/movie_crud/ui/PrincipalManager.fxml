@@ -12,6 +12,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -83,7 +84,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
                            </graphic>
                         </JFXButton>
-                                <JFXButton alignment="BASELINE_LEFT" onAction="#consultar" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Consultar Saldo">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="35.0" onAction="#consultar" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Consultar Saldo">
                                     <VBox.margin>
                                         <Insets />
                                     </VBox.margin>
@@ -97,6 +98,34 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="150.0">
+                           <children>
+                              <JFXButton fx:id="minus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#previousPage" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 0px 1px 1px; -fx-background-radius: 20px 0px 0px 20px; -fx-border-radius: 20px 0px 0px 20px; -fx-border-color: white !important;" styleClass="minus-button" textFill="TRANSPARENT">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
+                                 </graphic>
+                                 <padding>
+                                    <Insets left="2.0" top="2.0" />
+                                 </padding>
+                              </JFXButton>
+                              <TextField fx:id="pages" alignment="CENTER" disable="true" prefHeight="40.0" prefWidth="50.0" promptText="0" style="-fx-border-radius: 0; -fx-background-radius: 0; -fx-border-color: white; -fx-text-fill: white; -fx-background-color: transparent; -fx-prompt-text-fill: white;">
+                                 <font>
+                                    <Font name="Arial" size="15.0" />
+                                 </font>
+                              </TextField>
+                              <JFXButton fx:id="plus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#nextPage" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 1px 1px 0 px; -fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 20px 20px 0px; -fx-border-color: white !important;" styleClass="plus-button" textFill="#bf8a8a00">
+                                 <graphic>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15" />
+                                 </graphic>
+                                 <padding>
+                                    <Insets right="2.0" top="2.0" />
+                                 </padding>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="47.0" top="30.0" />
+                           </VBox.margin>
+                        </HBox>
                             </children>
                         </VBox>
                     </children>
@@ -138,14 +167,6 @@
                                                                 <TableColumn fx:id="colSalaId" prefWidth="175.0" text="ID Sala" />
                                                                 <TableColumn fx:id="colDate" prefWidth="175.0" text="Fecha" />
                                                             </columns>
-                                                            <contextMenu>
-                                                                <ContextMenu>
-                                                                    <items>
-                                                                        <MenuItem fx:id="edit" mnemonicParsing="false" onAction="#editFunction" text="Editar" />
-                                                                        <MenuItem fx:id="delete" mnemonicParsing="false" onAction="#deleteFunction" text="Eliminar" />
-                                                                    </items>
-                                                                </ContextMenu>
-                                                            </contextMenu>
                                                         </TableView>
                                                     </children>
                                                 </AnchorPane>

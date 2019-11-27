@@ -31,11 +31,11 @@
                         <Font name="Arial" size="22.0" />
                      </font>
                   </Label>
-                  <Text fx:id="money" fill="WHITE" >
+                  <Label fx:id="money" textFill="WHITE">
                      <font>
                         <Font name="Arial" size="22.0" />
                      </font>
-                  </Text>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="40.0" />

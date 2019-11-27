@@ -112,10 +112,10 @@ public class AddFunctionController implements Initializable {
 
                 newFunction.setDate(dateAndTime);
 
-//                funcionRestTemplate.save(newFunction, Long.parseLong(functionPrice.getText()));
+               funcionRestTemplate.save(newFunction, Long.parseLong(functionPrice.getText()));
             }
         }
-        principal.refreshTable();
+        principal.refreshTable(0);
         close(event);
     }
 

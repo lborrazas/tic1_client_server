@@ -29,11 +29,6 @@
                               <Insets left="30.0" right="30.0" />
                            </HBox.margin>
                         </JFXComboBox>
-                        <JFXComboBox focusColor="WHITE" labelFloat="true" layoutX="452.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" promptText="Idioma" unFocusColor="WHITE">
-                           <HBox.margin>
-                              <Insets left="30.0" right="30.0" />
-                           </HBox.margin>
-                        </JFXComboBox>
                         <JFXComboBox fx:id="actorFilter" focusColor="WHITE" labelFloat="true" layoutX="480.0" layoutY="28.0" prefHeight="35.0" prefWidth="190.0" promptText="Actor" unFocusColor="WHITE">
                            <HBox.margin>
                               <Insets left="30.0" right="30.0" />

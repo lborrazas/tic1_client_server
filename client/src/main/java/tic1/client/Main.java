@@ -61,10 +61,12 @@ public class Main {
        // movieRestTemplate.deleteMovie(3);
        // movieRestTemplate.createMovie(movie);
 
+        Provider provider2 = new Provider();
+        provider2.setName("cineProvider");
+        pRT.createProvider(provider2);
 
 
-
-      Provider provider = pRT.getByName("juanitos0").get(0);
+      Provider provider = pRT.getByName("cineProvider").get(0);
         UserManager userManager = new UserManager();
         userManager.setProvider(provider.getId());
         userManager.setRole("Gerente");

@@ -30,7 +30,7 @@ public class FunctionMgr {
     @Autowired
     private SeatRepository seatRepository;
 
-    public void save(Funcion funcion) {
+    public void save(Funcion funcion, long precio) {
 
         funcionRepository.save(funcion);
 
@@ -43,6 +43,7 @@ public class FunctionMgr {
             pk.setFuncion(funcion);
             pk.setSeat(seat);
             ticket.setId(pk);
+            ticket.setPrice(precio);
             return ticket;
         }).collect(Collectors.toList());
 

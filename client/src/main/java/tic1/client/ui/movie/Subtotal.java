@@ -66,7 +66,7 @@ public class Subtotal implements Initializable {
         movieName.setText(tickets.get(0).getFuncion().getMovie().getName());
         cinemaName.setText(cinema.getName());
         cinemaLocation.setText(cinema.getLocation());
-        totalPrice.setText(String.valueOf(500));
+        totalPrice.setText(String.valueOf(tickets.get(0).getPrice() * tickets.size()));
 
     }
 

@@ -481,7 +481,7 @@ public class EndUserController implements Initializable {
         String movie = filterByName.getText().toLowerCase();
         deleteFilterButton.setVisible(true);
 
-        List<String> filteredList = new ArrayList<>(loadedImages);
+        List<String> filteredList = new ArrayList<>(fileList);
         filteredList.removeIf(s -> !s.toLowerCase().contains(movie));
 
         loadMovies(filteredList);

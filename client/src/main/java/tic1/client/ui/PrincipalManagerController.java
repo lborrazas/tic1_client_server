@@ -37,9 +37,11 @@ import tic1.client.ui.adds.AddSalaController;
 import tic1.client.ui.client.EndUserController;
 import tic1.client.ui.login.LoginController;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
@@ -51,9 +53,9 @@ public class PrincipalManagerController implements Initializable {
     @Autowired
     private CinemaRestTemplate cinemaRestTemplate;
     @FXML
-    public JFXComboBox<Cinema> cinemas;
+    private JFXComboBox<Cinema> cinemas;
     @FXML
-    public Text money;
+    private Label money;
     @FXML
     private TableView<Funcion> functionTable;
 
@@ -89,6 +91,11 @@ public class PrincipalManagerController implements Initializable {
     @FXML
     private JFXTextField filter;
 
+    private int actualPage;
+
+    @FXML
+    private TextField pages;
+
     @Autowired
     public PrincipalManagerController(ClientApplication clientApplication) {
         this.clientApplication = clientApplication;
@@ -97,15 +104,17 @@ public class PrincipalManagerController implements Initializable {
 
     private ObservableList<Funcion> functionList = FXCollections.observableArrayList();
 
-    private void loadFunction() {
+    private void loadFunction(int page) {
         functionList.clear();
-        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(),0));
+        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(), page));
 
         functionTable.setItems(functionList);
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        actualPage = 0;
+        functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
         colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
         colSalaId.setCellValueFactory(new PropertyValueFactory<>("salaId"));
@@ -122,7 +131,7 @@ public class PrincipalManagerController implements Initializable {
             }
         });
 
-        loadFunction();
+        loadFunction(0);
 
         FilteredList<Funcion> filteredData = new FilteredList<>(functionList, e -> true);
 
@@ -147,9 +156,9 @@ public class PrincipalManagerController implements Initializable {
         functionTable.setItems(sortedData);
     }
 
-    public void refreshTable() {
+    public void refreshTable(int page) {
         functionList.clear();
-        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(),0));
+        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(), page));
 
         functionTable.setItems(functionList);
 
@@ -244,7 +253,7 @@ public class PrincipalManagerController implements Initializable {
         scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
         stage.show();
-        refreshTable();
+        refreshTable(actualPage);
     }
 
     @FXML
@@ -287,9 +296,10 @@ public class PrincipalManagerController implements Initializable {
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
     }
+
     @FXML
     public void consultar(ActionEvent actionEvent) throws IOException {
-       // money.setVisible(false);
+        // money.setVisible(false);
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
 
@@ -299,12 +309,12 @@ public class PrincipalManagerController implements Initializable {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
-        stage.show();
+
+
         ObservableList<Cinema> cinemas =
                 FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(ClientApplication.userManager.getProvider()));
 
         this.cinemas.setItems(cinemas);
-
         Callback<ListView<Cinema>, ListCell<Cinema>> factory1 = lv1 -> new ListCell<Cinema>() {
 
             @Override
@@ -315,13 +325,33 @@ public class PrincipalManagerController implements Initializable {
 
         };
 
+        this.cinemas.setCellFactory(factory1);
+        this.cinemas.setButtonCell(factory1.call(null));
+
+        stage.show();
     }
 
 
     public void cachin(ActionEvent actionEvent) {
 
         String a = transaccionRestTemplate.cachin(this.cinemas.getSelectionModel().getSelectedItem().getId());
-    money.setText(""+transaccionRestTemplate.cachin(this.cinemas.getSelectionModel().getSelectedItem().getId()));
-    money.setVisible(true);
+        money.setText("" + transaccionRestTemplate.cachin(this.cinemas.getSelectionModel().getSelectedItem().getId()));
+        money.setVisible(true);
+    }
+
+    @FXML
+    private void nextPage(ActionEvent event) {
+        actualPage++;
+        pages.setText(String.valueOf(actualPage));
+        refreshTable(actualPage);
+
+    }
+
+    @FXML
+    private void previousPage(ActionEvent event) {
+        if (actualPage > 0) actualPage--;
+        pages.setText(String.valueOf(actualPage));
+        refreshTable(actualPage);
+
     }
 }
