@@ -450,7 +450,6 @@ public class EndUserController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
-
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
