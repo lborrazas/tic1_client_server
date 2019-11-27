@@ -2,15 +2,15 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-
 <?import javafx.scene.text.Text?>
-<AnchorPane prefHeight="250.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.PrincipalManagerController">
+
+<AnchorPane prefHeight="250.0" prefWidth="400.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.PrincipalManagerController">
    <children>
       <VBox layoutX="200.0" layoutY="36.0" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,7 +24,23 @@
                   <Font name="Arial" size="14.0" />
                </font>
             </JFXButton>
-            <Text fx:id="money"></Text>
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="360.0">
+               <children>
+                  <Label text="\$">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Label>
+                  <Text fx:id="money" text="precio">
+                     <font>
+                        <Font name="Arial" size="22.0" />
+                     </font>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets top="40.0" />
+               </VBox.margin>
+            </HBox>
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
