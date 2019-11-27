@@ -227,16 +227,6 @@ public class MovieDetailsController implements Initializable {
         timeline2.play();
     }
 
-    public void sum() {
-        if (numberOfEntrances < 20) numberOfEntrances++;
-        movie_quantity.setText(String.valueOf(numberOfEntrances));
-    }
-
-    public void minus() {
-        if (numberOfEntrances > 0) numberOfEntrances--;
-        movie_quantity.setText(String.valueOf(numberOfEntrances));
-    }
-
     public void goToMain(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);

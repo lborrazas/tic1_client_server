@@ -5,6 +5,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import tic1.client.ClientApplication;
 import tic1.client.models.Genre;
 import tic1.client.models.Movie;
@@ -14,6 +15,8 @@ import tic1.client.ui.adds.AddAdminController;
 import tic1.client.ui.adds.AddCinemaController;
 import tic1.client.ui.adds.AddProviderController;
 import tic1.client.ui.adds.AddSalaController;
+import tic1.client.ui.client.EndUserController;
+import tic1.client.ui.login.LoginController;
 import tic1.client.ui.movie.MovieController;
 import tic1.client.ui.movie.MovieDetailsController;
 import javafx.collections.FXCollections;
@@ -71,6 +74,9 @@ public class Principal2 implements Initializable {
 
     @FXML
     private MenuItem delete;
+
+    @FXML
+    private MenuButton dropdownMenu;
 
     private ClientApplication clientApplication;
 
@@ -283,6 +289,40 @@ public class Principal2 implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
 
+    }
+
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+
+        ClientApplication.userAdmin = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
+
+    }
+
+    @FXML
+    private void goToMain(ActionEvent event) throws IOException {
+        ClientApplication.userAdmin = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
     }
 
     @FXML

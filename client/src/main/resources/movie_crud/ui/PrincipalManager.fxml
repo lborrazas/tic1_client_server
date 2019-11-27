@@ -107,10 +107,10 @@
                             <top>
                                 <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="550.0" BorderPane.alignment="CENTER">
                                     <children>
-                                        <MenuButton graphicTextGap="10.0" mnemonicParsing="false" styleClass="menu-button" text="Cuenta">
+                                        <MenuButton fx:id="dropdownMenu" graphicTextGap="10.0" mnemonicParsing="false" styleClass="menu-button" text="Cuenta">
                                             <items>
-                                                <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
-                                                <MenuItem mnemonicParsing="false" text="Ir a Inicio" />
+                                                <MenuItem mnemonicParsing="false" onAction="#logout" text="Cerrar Sesion" />
+                                                <MenuItem mnemonicParsing="false" onAction="#goToMain" text="Ir a Inicio" />
                                             </items>
                                             <font>
                                                 <Font name="Arial" size="16.0" />
