@@ -14,6 +14,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -21,13 +22,8 @@ import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
-import tic1.client.models.Funcion;
-import tic1.client.models.Sala;
-import tic1.client.models.Seat;
-import tic1.client.models.Ticket;
-import tic1.client.services.FuncionRestTemplate;
-import tic1.client.services.TicketRestTemplate;
-import tic1.client.services.TransaccionRestTemplate;
+import tic1.client.models.*;
+import tic1.client.services.*;
 import tic1.client.ui.client.EndUserController;
 
 import java.io.IOException;
@@ -127,16 +123,18 @@ public class BuyTicketController implements Initializable {
                 ticket.setBought(true);
             }
             ticketRestTemplate.update(ticketsSelected);
-
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
             Parent root = null;
-            root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
-
+            root = fxmlLoader.load(Subtotal.class.getResourceAsStream("/movie_crud/ui/client/subtotal.fxml"));
+            Subtotal subtotal = fxmlLoader.getController();
+            subtotal.loadBuyInfo(ticketsSelected);
+            Stage stage = new Stage();
             Scene scene = new Scene(root);
-            Stage stage = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+            scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
             stage.setScene(scene);
             stage.show();
+            close(event);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -153,6 +151,7 @@ public class BuyTicketController implements Initializable {
         Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(scene);
         stage.show();
+
 
        /* FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
@@ -203,5 +202,11 @@ public class BuyTicketController implements Initializable {
             if (seat.getFila() == row && seat.getColumna() == column) return ticket;
         }
         return null;
+    }
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }
