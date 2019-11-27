@@ -282,12 +282,13 @@ public class EndUserController implements Initializable {
             }
         });
 */
-        String idToCut = loadedImages.get(index);
-        String id = idToCut.substring(0, (idToCut.length() - 4));
+        String id = loadedImages.get(index);
+       // String id = idToCut.substring(0, (idToCut.length() - 4));
         // System.out.println(id);
         // System.out.println(fileList.get(i).getName());
         ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
-        image = imageRestTemplate.showImage(loadedImages.get(index));
+        image = imageRestTemplate.showImage(id);
+        image = imageRestTemplate.showImage(id);
         pic = new ImageView();
         pic.setFitWidth(160);
         pic.setFitHeight(220);
@@ -304,10 +305,10 @@ public class EndUserController implements Initializable {
 
         });
 
-        Tooltip.install(pic, new Tooltip(id));
+//        Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
             try {
-                Movie selectedForPreview = movieRestTemplate.filterTitlePaged(id, 0).get(0);
+                Movie selectedForPreview = movieRestTemplate.showMovieByPath(id);
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);

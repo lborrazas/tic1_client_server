@@ -31,7 +31,7 @@
                         <Font name="Arial" size="22.0" />
                      </font>
                   </Label>
-                  <Text fx:id="money" text="precio">
+                  <Text fx:id="money" fill="WHITE" >
                      <font>
                         <Font name="Arial" size="22.0" />
                      </font>
