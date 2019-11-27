@@ -135,6 +135,11 @@ public class EndUserController implements Initializable {
     @FXML
     private MenuButton dropdownMenu;
 
+    private int actualPage;
+
+    @FXML
+    private TextField pages;
+
     private ObservableList<String> fileList = FXCollections.observableArrayList();
 
     private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
@@ -240,8 +245,9 @@ public class EndUserController implements Initializable {
                 drawer.toFront();
             }
         });
-        List<String> movieImages = new ArrayList<>();
-        List<Movie> movies = movieRestTemplate.findAllPaged(0);
+        actualPage = 0;
+        pages.setText(String.valueOf(actualPage));
+        List<Movie> movies = movieRestTemplate.findAllPaged(actualPage);
 
         for (Movie movie : movies) {
             fileList.add(movie.getImagePath());
@@ -417,6 +423,55 @@ public class EndUserController implements Initializable {
                 }
             }
         }
+    }
+
+    @FXML
+    private void nextPage(ActionEvent event) {
+        allMovies.clear();
+        fileList.clear();
+        actualPage++;
+        pages.setText(String.valueOf(actualPage));
+
+
+        List<Movie> movies = movieRestTemplate.findAllPaged(actualPage);
+
+        for (Movie movie : movies) {
+            fileList.add(movie.getImagePath());
+        }
+
+        loadedImages.addAll(fileList);
+        allMovies.addAll(movies);
+
+        try {
+            loadMovies(fileList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    private void previousPage(ActionEvent event) {
+        allMovies.clear();
+        fileList.clear();
+        if (actualPage > 0) actualPage--;
+        pages.setText(String.valueOf(actualPage));
+
+        List<Movie> movies = movieRestTemplate.findAllPaged(actualPage);
+
+        for (Movie movie : movies) {
+            fileList.add(movie.getImagePath());
+        }
+
+        loadedImages.addAll(fileList);
+        allMovies.addAll(movies);
+
+        try {
+            loadMovies(fileList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     @FXML

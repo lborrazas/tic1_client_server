@@ -186,42 +186,6 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT">
                            <children>
-                              <Label text="Cantidad:" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="2.0" top="-14.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox>
-                                 <children>
-                                    <JFXButton fx:id="minus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#minus" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 0px 1px 1px; -fx-background-radius: 20px 0px 0px 20px; -fx-border-radius: 20px 0px 0px 20px; -fx-border-color: white !important;" styleClass="minus-button" textFill="TRANSPARENT">
-                                       <graphic>
-                                          <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
-                                       </graphic>
-                                       <padding>
-                                          <Insets left="2.0" top="2.0" />
-                                       </padding>
-                                    </JFXButton>
-                                    <TextField fx:id="movie_quantity" alignment="CENTER" disable="true" prefHeight="40.0" prefWidth="50.0" promptText="0" style="-fx-border-radius: 0; -fx-background-radius: 0; -fx-border-color: white; -fx-text-fill: white; -fx-background-color: transparent; -fx-prompt-text-fill: white;">
-                                       <font>
-                                          <Font name="Arial" size="15.0" />
-                                       </font>
-                                    </TextField>
-                                    <JFXButton fx:id="plus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#sum" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 1px 1px 0 px; -fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 20px 20px 0px; -fx-border-color: white !important;" styleClass="plus-button" textFill="#bf8a8a00">
-                                       <graphic>
-                                          <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15" />
-                                       </graphic>
-                                       <padding>
-                                          <Insets right="2.0" top="2.0" />
-                                       </padding>
-                                    </JFXButton>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="30.0" />
-                                 </VBox.margin>
-                              </HBox>
                               <JFXButton fx:id="buy_btn" alignment="CENTER" mnemonicParsing="false" onAction="#buyAction" prefHeight="40.0" prefWidth="115.0" styleClass="buy-button" text="Siguiente" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="15.0" />

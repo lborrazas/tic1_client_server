@@ -1,7 +1,6 @@
 package tic1.client.ui;
 
 import com.jfoenix.controls.JFXTextField;
-//import com.sun.xml.internal.ws.api.FeatureConstructor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -31,6 +30,7 @@ import tic1.client.ui.adds.AddAdminController;
 import tic1.client.ui.adds.AddFunctionController;
 import tic1.client.ui.adds.AddManagerController;
 import tic1.client.ui.adds.AddSalaController;
+import tic1.client.ui.client.EndUserController;
 import tic1.client.ui.login.LoginController;
 
 import java.io.IOException;
@@ -40,11 +40,9 @@ import java.util.ResourceBundle;
 
 @Controller
 public class PrincipalManagerController implements Initializable {
+
     @Autowired
     private FuncionRestTemplate funcionRestTemplate;
-    @FXML
-    public MenuButton dropdownMenu;
-
 
     @FXML
     private TableView<Funcion> functionTable;
@@ -72,6 +70,9 @@ public class PrincipalManagerController implements Initializable {
 
     @FXML
     private MenuItem delete;
+
+    @FXML
+    private MenuButton dropdownMenu;
 
     private ClientApplication clientApplication;
 
@@ -237,20 +238,13 @@ public class PrincipalManagerController implements Initializable {
     }
 
     @FXML
-    private void close(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
+    public void logout(ActionEvent event) throws IOException {
 
-    public void logOut(ActionEvent actionEvent) {
-        try {
+        ClientApplication.userManager = null;
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
+        FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = null;
-           root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
-
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
@@ -259,8 +253,28 @@ public class PrincipalManagerController implements Initializable {
         stage.show();
         Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
         stage1.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        }
+
+    }
+
+    @FXML
+    private void goToMain(ActionEvent event) throws IOException {
+        ClientApplication.userManager = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
 }

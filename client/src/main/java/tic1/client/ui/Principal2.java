@@ -1,4 +1,5 @@
 package tic1.client.ui;
+
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -11,7 +12,11 @@ import tic1.client.models.Genre;
 import tic1.client.models.Movie;
 import tic1.client.services.MovieRestTemplate;
 import tic1.client.services.alert.AlertMaker;
-import tic1.client.ui.adds.*;
+import tic1.client.ui.adds.AddAdminController;
+import tic1.client.ui.adds.AddCinemaController;
+import tic1.client.ui.adds.AddProviderController;
+import tic1.client.ui.adds.AddSalaController;
+import tic1.client.ui.client.EndUserController;
 import tic1.client.ui.login.LoginController;
 import tic1.client.ui.movie.MovieController;
 import tic1.client.ui.movie.MovieDetailsController;
@@ -42,8 +47,6 @@ import java.util.stream.Collectors;
 public class Principal2 implements Initializable {
     @Autowired
     private MovieRestTemplate movieRestTemplate; //todo all movimgr references to controller
-    @FXML
-    public MenuButton dropdownMenu;
 
     @FXML
     private TableView<Movie> movieTable;
@@ -71,6 +74,9 @@ public class Principal2 implements Initializable {
 
     @FXML
     private MenuItem delete;
+
+    @FXML
+    private MenuButton dropdownMenu;
 
     private ClientApplication clientApplication;
 
@@ -192,8 +198,8 @@ public class Principal2 implements Initializable {
 //        movieDetailsController.loadData(selectedForPreview);
         movieDetailsController.setParent("Principal2");
 
-        Scene scene = new Scene(root,800,600);
-        Stage stage =  (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+        Scene scene = new Scene(root, 800, 600);
+        Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
         stage.setScene(scene);
         stage.show();
     }
@@ -201,7 +207,7 @@ public class Principal2 implements Initializable {
     @FXML
     public void deleteMovie(ActionEvent event) {
         //Fetch the selected row
-       Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
+        Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
@@ -213,8 +219,8 @@ public class Principal2 implements Initializable {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         if (answer.get() == ButtonType.OK) {
             movieRestTemplate.deleteMovie(selectedForDeletion.getId());
-           // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
-            alert1.setContentText("Pelicula " +  selectedForDeletion.getName() + " borrada con exito.");
+            // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
+            alert1.setContentText("Pelicula " + selectedForDeletion.getName() + " borrada con exito.");
             movieList.remove(selectedForDeletion);
 
         } else {
@@ -225,7 +231,7 @@ public class Principal2 implements Initializable {
     @FXML
     public void editMovie(ActionEvent event) {
         //Fetch the selected row
-       Movie selectedForEdit = movieTable.getSelectionModel().getSelectedItem();
+        Movie selectedForEdit = movieTable.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
@@ -286,34 +292,10 @@ public class Principal2 implements Initializable {
     }
 
     @FXML
-    private void close(ActionEvent actionEvent) {
-        Node source = (Node) actionEvent.getSource();
-        Stage stage = (Stage) source.getScene().getWindow();
-        stage.close();
-    }
-    @FXML
-    public void createActor(ActionEvent actionEvent) {
-        try {
+    public void logout(ActionEvent event) throws IOException {
 
-            FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = null;
-           root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddActor.fxml"));
+        ClientApplication.userAdmin = null;
 
-
-        Stage stage = new Stage();
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
-        stage.setScene(scene);
-        stage.show();
-        refreshTable();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        }
-
-    @FXML
-    void LogOut(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
@@ -325,5 +307,49 @@ public class Principal2 implements Initializable {
         stage.show();
         Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
         stage1.close();
+
+    }
+
+    @FXML
+    private void goToMain(ActionEvent event) throws IOException {
+        ClientApplication.userAdmin = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    public void createActor(ActionEvent actionEvent) {
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+            Parent root = null;
+            root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddActor.fxml"));
+
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+            stage.setScene(scene);
+            stage.show();
+            refreshTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

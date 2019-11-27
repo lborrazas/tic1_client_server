@@ -27,7 +27,7 @@
                     <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="250.0">
                             <children>
-                                <Label text="Admin V1.0.2">
+                                <Label text="Admin V1.0.0">
                                     <font>
                                         <Font name="Arial" size="24.0" />
                                     </font>
@@ -61,7 +61,7 @@
                                         <Insets left="25.0" />
                                     </padding>
                                 </JFXButton>
-                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#createActor" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Actor">
+                                <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" layoutX="10.0" layoutY="10.0" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Teatro">
                                     <VBox.margin>
                                         <Insets />
                                     </VBox.margin>
@@ -97,7 +97,7 @@
                               <FontAwesomeIconView fill="WHITE" glyphName="PLUS_CIRCLE" size="22" />
                            </graphic>
                         </JFXButton>
-                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#addAdmin" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Manager">
+                        <JFXButton alignment="BASELINE_LEFT" buttonType="RAISED" graphicTextGap="15.0" onAction="#addAdmin" prefHeight="60.0" prefWidth="250.0" styleClass="toolbar-button-admin" text="Agregar Admin">
                            <font>
                               <Font name="Arial" size="18.0" />
                            </font>
@@ -132,9 +132,10 @@
                             <top>
                                 <HBox alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="550.0" BorderPane.alignment="CENTER">
                                     <children>
-                                        <MenuButton graphicTextGap="10.0" fx:id="dropdownMenu" mnemonicParsing="false" styleClass="menu-button" text="Cuenta">
+                                        <MenuButton fx:id="dropdownMenu" graphicTextGap="10.0" mnemonicParsing="false" styleClass="menu-button" text="Cuenta">
                                             <items>
-                                                <MenuItem mnemonicParsing="false"  onAction="#LogOut" text="Cerrar Sesion" />
+                                                <MenuItem mnemonicParsing="false" onAction="#logout" text="Cerrar Sesion" />
+                                                <MenuItem mnemonicParsing="false" onAction="#goToMain" text="Ir a Inicio" />
                                             </items>
                                             <font>
                                                 <Font name="Arial" size="16.0" />
