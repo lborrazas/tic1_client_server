@@ -91,7 +91,7 @@ public class AddSalaController implements Initializable {
 
         if (seatsSelected[row][column] == 0) {
             seats.add(seat);
-            buttonPressed.getStyleClass().add("buttonSelected");
+            buttonPressed.getStyleClass().add("seatsSelected");
             seatsSelected[row][column] = 1;
 
         } else {

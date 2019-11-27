@@ -143,8 +143,13 @@ public class EndUserController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        dropdownMenu.setText("Hola, " + ClientApplication.userClient.getUsername());
-        allMovies.clear();
+
+        if(ClientApplication.userClient !=null) {
+            dropdownMenu.setText("Hola, " + ClientApplication.userClient.getUsername());
+        }else {
+            dropdownMenu.setText("Hola, "+ "Souris"+ (int) (Math.random() * 10) +"" + (int) (Math.random() * 10) +""+ (int) (Math.random() * 10) +""+ (int) (Math.random() * 10));
+
+        }allMovies.clear();
         fileList.clear();
         filterByName.setVisible(true);
         filterButton.setVisible(true);

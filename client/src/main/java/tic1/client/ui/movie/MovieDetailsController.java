@@ -26,6 +26,7 @@ import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 import tic1.client.models.*;
 import tic1.client.services.*;
+import tic1.client.services.alert.AlertMaker;
 import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.client.ui.client.EndUserController;
@@ -196,7 +197,8 @@ public class MovieDetailsController implements Initializable {
     }
     @FXML
     public void buyAction(ActionEvent event) throws IOException {
-
+        Alert a = new Alert(Alert.AlertType.NONE);
+        if(ClientApplication.userClient!=null){
         Funcion funcion = functionsFilter3.get(0);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -225,6 +227,12 @@ public class MovieDetailsController implements Initializable {
         timeline2.getKeyFrames().add(kf2);
         timeline1.play();
         timeline2.play();
+    }else {
+            //a.setHeaderText("No se encuentra registrado");
+            //a.setContentText("Para poder realizar una compra,por favor,salga de la secion visitante e ingrese con su cuenta");
+            //a.show();
+
+    }
     }
 
     public void sum() {

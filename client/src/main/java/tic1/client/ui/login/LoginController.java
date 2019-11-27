@@ -172,8 +172,9 @@ public class LoginController {
         scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
         stage.show();
-        close(event);
         ClientApplication.userClient = null;
+        close(event);
+
     }
 
     @FXML
