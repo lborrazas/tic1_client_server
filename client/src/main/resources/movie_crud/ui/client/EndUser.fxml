@@ -50,8 +50,8 @@
                             <children>
                                 <MenuButton fx:id="dropdownMenu" graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
-                                        <MenuItem mnemonicParsing="false" text="Configuracion" />
+                                        <MenuItem mnemonicParsing="false" text="Cerrar Sesion" onAction="#logout" />
+                                        <MenuItem mnemonicParsing="false" text="Configuracion" onAction="#settings"/>
                                     </items>
                                     <font>
                                         <Font name="Arial" size="15.0" />
