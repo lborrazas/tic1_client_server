@@ -65,6 +65,13 @@ public class MovieRestController {
         return movie.toDTO();
     }
 
+    @GetMapping("/movie/path/{path}")
+    public NewMovieDTO moviesById(@PathVariable("path") String path) {
+        Movie movie = movieMgr.findByImagePath(path);
+        return movie.toDTO();
+    }
+
+
     @GetMapping("/movie/genre/{genre}/{page}")
     public List<NewMovieDTO> moviesByGenresWithPages(@PathVariable("genre") long genreId, @PathVariable("page") int page){
         Genre genre =  genreMgr.getOne(genreId);

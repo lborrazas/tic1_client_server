@@ -67,5 +67,8 @@ public class SalaMgr {
     }
 
 
+    public List<Sala> getByCinema(long id) {
+    return salaRepository.findAllByCinemaId(id);
+    }
 }
 

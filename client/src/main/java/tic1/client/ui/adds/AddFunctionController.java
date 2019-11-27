@@ -1,6 +1,7 @@
 package tic1.client.ui.adds;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,6 +78,9 @@ public class AddFunctionController implements Initializable {
     @FXML
     private TextArea hoursList;
 
+    @FXML
+    private JFXTextField functionPrice;
+
     private Set<LocalDate> selectedDates = new HashSet<>();
     private Set<LocalTime> selectedTimes = new HashSet<>();
 
@@ -108,7 +112,7 @@ public class AddFunctionController implements Initializable {
 
                 newFunction.setDate(dateAndTime);
 
-                funcionRestTemplate.save(newFunction);
+//                funcionRestTemplate.save(newFunction, Long.parseLong(functionPrice.getText()));
             }
         }
         principal.refreshTable();

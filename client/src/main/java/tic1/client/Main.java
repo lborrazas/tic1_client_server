@@ -63,18 +63,19 @@ public class Main {
 
 
 
-//        Provider provider = pRT.getByName("juanitos0").get(0);
-//        UserManager userManager = new UserManager();
-//        userManager.setProvider(provider.getId());
-//        userManager.setRole("Gerente");
-//        userManager.setUsername("Mate");
-//        userManager.setPassword("password");
-//        uRT.createUser(userManager);
 
-//        UserAdmin userAdmin = new UserAdmin();
-//        userAdmin.setPassword("password");
-//        userAdmin.setUsername("juan");
-//        uRT.createUser(userAdmin);
+      Provider provider = pRT.getByName("juanitos0").get(0);
+        UserManager userManager = new UserManager();
+        userManager.setProvider(provider.getId());
+        userManager.setRole("Gerente");
+        userManager.setUsername("Mate");
+        userManager.setPassword("password");
+       uRT.createUser(userManager);
+
+        UserAdmin userAdmin = new UserAdmin();
+        userAdmin.setPassword("password");
+        userAdmin.setUsername("juan");
+        uRT.createUser(userAdmin);
 
 //        List<Funcion> funcions =  fRT.findAllByProviderIdPaged(1,0);
 //        System.out.println(funcions.get(7).getMovie().getName());
@@ -105,11 +106,8 @@ public class Main {
 //      tRT.update(ticketsJuanito);
 
 //      List<Funcion> functionss =   fRT.findAllByProviderIdPaged(1,0);
-//      Funcion functionn = functionss.get(1);
-//      fRT.deleteFuncion(functionn);
-
-        Movie movie = movieRestTemplate.showMovieByPath("IT 2.png");
-        System.out.println(movie.getName());
+  //    Funcion functionn = functionss.get(1);
+  //    fRT.deleteFuncion(functionn);
 
 
 

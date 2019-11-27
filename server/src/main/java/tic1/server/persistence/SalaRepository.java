@@ -10,9 +10,11 @@ import java.util.List;
 @Repository
 public interface SalaRepository extends JpaRepository<Sala,Long> {
 
-    List<Sala> findAllByName(String name);
-    List<Sala> findAll();
-    List<Sala> findAllByCinema(Cinema cinema);
+    public List<Sala> findAllByName(String name);
+    public List<Sala> findAll();
+    public List<Sala> findAllByCinema(Cinema cinema);
 
-    List<Sala> findTopByOrderByIdDesc();
+    public List<Sala> findTopByOrderByIdDesc();
+
+    public List<Sala> findAllByCinemaId(long id);
 }

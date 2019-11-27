@@ -83,8 +83,13 @@ MovieMgr movieMgr;
 
 
         transaccionMgr.addTransaccion(tickets,clientid);
-
     }
+    @GetMapping("transaccion/saldo/{id}")
+        public String consultarSaldo(@PathVariable("id") long id){
+        String retu = transaccionMgr.consultar(id)+"";
+        return retu;
+    }
+
     @DeleteMapping("/transaccion/{id}")
     public void delate(@PathVariable("id") long id){
         transaccionMgr.deleteTransaccion(id);
