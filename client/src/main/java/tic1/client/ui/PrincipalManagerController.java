@@ -1,6 +1,7 @@
 package tic1.client.ui;
 
 import com.jfoenix.controls.JFXTextField;
+//import com.sun.xml.internal.ws.api.FeatureConstructor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -16,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,7 @@ import tic1.client.ui.adds.AddAdminController;
 import tic1.client.ui.adds.AddFunctionController;
 import tic1.client.ui.adds.AddManagerController;
 import tic1.client.ui.adds.AddSalaController;
+import tic1.client.ui.login.LoginController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -37,9 +40,11 @@ import java.util.ResourceBundle;
 
 @Controller
 public class PrincipalManagerController implements Initializable {
-
     @Autowired
     private FuncionRestTemplate funcionRestTemplate;
+    @FXML
+    public MenuButton dropdownMenu;
+
 
     @FXML
     private TableView<Funcion> functionTable;
@@ -238,4 +243,24 @@ public class PrincipalManagerController implements Initializable {
         stage.close();
     }
 
+    public void logOut(ActionEvent actionEvent) {
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = null;
+           root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        }
 }

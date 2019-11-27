@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ import tic1.client.models.Ticket;
 import tic1.client.services.FuncionRestTemplate;
 import tic1.client.services.TicketRestTemplate;
 import tic1.client.services.TransaccionRestTemplate;
+import tic1.client.ui.client.EndUserController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -119,17 +121,40 @@ public class BuyTicketController implements Initializable {
 
     @FXML
     private void buyAction(ActionEvent event) {
+        try {
 
-        for (Ticket ticket : ticketsSelected) {
-            ticket.setBought(true);
+            for (Ticket ticket : ticketsSelected) {
+                ticket.setBought(true);
+            }
+            ticketRestTemplate.update(ticketsSelected);
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+            Parent root = null;
+            root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((JFXButton) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        ticketRestTemplate.update(ticketsSelected);
-
     }
 
     @FXML
     public void goToDetails(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = null;
+        root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((JFXButton) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+
+       /* FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
         MovieDetailsController movieDetailsController = fxmlLoader.getController();
@@ -153,15 +178,15 @@ public class BuyTicketController implements Initializable {
         KeyFrame kf2 = new KeyFrame(Duration.seconds(0.7), kv2);
         timeline2.getKeyFrames().add(kf2);
         timeline1.play();
-        timeline2.play();
+        timeline2.play();*/
     }
 
-    private Node getNodeByRowColumnIndex (final long row, final long column) {
+    private Node getNodeByRowColumnIndex(final long row, final long column) {
         Node result = null;
         ObservableList<Node> childrens = grid.getChildren();
 
         for (Node node : childrens) {
-            if(GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
+            if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == column) {
                 result = node;
                 break;
             }
@@ -170,10 +195,11 @@ public class BuyTicketController implements Initializable {
         return result;
     }
 
+
     private Ticket find(long row, long column) {
         Seat seat;
         for (Ticket ticket : tickets) {
-             seat = ticket.getSeat();
+            seat = ticket.getSeat();
             if (seat.getFila() == row && seat.getColumna() == column) return ticket;
         }
         return null;
