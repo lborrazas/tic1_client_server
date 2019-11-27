@@ -9,13 +9,10 @@ import org.springframework.web.client.RestTemplate;
 import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
 import tic1.commons.transfers.FunctionDTO;
-import tic1.commons.transfers.NewMovieDTO;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -58,13 +55,13 @@ public class FuncionRestTemplate {
         return funcions;
     }
 
-    public void save(Funcion funcion) {
+    public void save(Funcion funcion, long l) {
         RestTemplate restTemplate =
                 new RestTemplate();
         HttpEntity<FunctionDTO> body = new HttpEntity<>(
                 funcion.toDTO());
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/funcion/", HttpMethod.POST, body, String.class);
+                restTemplate.exchange("http://localhost:8080/funcion/"+l, HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 

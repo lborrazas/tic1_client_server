@@ -14,7 +14,7 @@
    <children>
       <VBox layoutX="200.0" layoutY="36.0" prefHeight="300.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <JFXComboBox fx:id="cinemas" labelFloat="true" prefHeight="35.0" prefWidth="360.0" promptText="Proveedor" />
+            <JFXComboBox fx:id="cinemas" labelFloat="true" prefHeight="35.0" prefWidth="360.0" promptText="Cine" />
 
             <JFXButton onAction="#cachin" prefHeight="35.0" prefWidth="360.0" text="Consultar">
                <VBox.margin>
@@ -31,11 +31,11 @@
                         <Font name="Arial" size="22.0" />
                      </font>
                   </Label>
-                  <Text fx:id="money" text="precio">
+                  <Label fx:id="money">
                      <font>
                         <Font name="Arial" size="22.0" />
                      </font>
-                  </Text>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets top="40.0" />

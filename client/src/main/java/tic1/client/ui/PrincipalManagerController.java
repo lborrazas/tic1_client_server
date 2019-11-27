@@ -51,9 +51,9 @@ public class PrincipalManagerController implements Initializable {
     @Autowired
     private CinemaRestTemplate cinemaRestTemplate;
     @FXML
-    public JFXComboBox<Cinema> cinemas;
+    private JFXComboBox<Cinema> cinemas;
     @FXML
-    public Text money;
+    private Label money;
     @FXML
     private TableView<Funcion> functionTable;
 
@@ -299,12 +299,12 @@ public class PrincipalManagerController implements Initializable {
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
-        stage.show();
+
+
         ObservableList<Cinema> cinemas =
                 FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(ClientApplication.userManager.getProvider()));
 
         this.cinemas.setItems(cinemas);
-
         Callback<ListView<Cinema>, ListCell<Cinema>> factory1 = lv1 -> new ListCell<Cinema>() {
 
             @Override
@@ -315,6 +315,10 @@ public class PrincipalManagerController implements Initializable {
 
         };
 
+        this.cinemas.setCellFactory(factory1);
+        this.cinemas.setButtonCell(factory1.call(null));
+
+        stage.show();
     }
 
 

@@ -26,15 +26,15 @@ public class FuncionRestController {
     MovieMgr movieMgr;
 
 
-    @PostMapping("/funcion/")
-    public void save(@RequestBody FunctionDTO function) {
+    @PostMapping("/funcion/{precio}")
+    public void save(@RequestBody FunctionDTO function,@PathVariable("precio" )long precio) {
         FunctionPK functionPK = new FunctionPK();
         functionPK.setSala(salaMgr.getSalaById(function.getSala()));
         functionPK.setDate(function.getStartTime());
         Funcion funcion = new Funcion();
         funcion.setId(functionPK);
         funcion.setMovie(movieMgr.getOne(function.getMovie().getId()));
-        functionMgr.save(funcion);
+        functionMgr.save(funcion,precio);
     }
 
     @GetMapping("/funcion")
