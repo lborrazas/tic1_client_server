@@ -54,6 +54,15 @@ public class MovieRestTemplate { //todo try and catch for Templates
         return new Movie(movie);
     }
 
+
+    public Movie showMovieByPath(String path){
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<NewMovieDTO> response = restTemplate.exchange(
+                "http://localhost:8080/movie/path/" + path, HttpMethod.GET, null, NewMovieDTO.class);
+        NewMovieDTO movie = response.getBody();
+        return new Movie(movie);
+    }
+
     @Deprecated
     public List<Movie> findAll(){
         RestTemplate restTemplate = new RestTemplate();

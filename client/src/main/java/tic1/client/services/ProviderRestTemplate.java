@@ -49,7 +49,7 @@ public class ProviderRestTemplate {
         RestTemplate restTemplate =
                 new RestTemplate();
         ResponseEntity<List<ProviderDTO>> response =
-                restTemplate.exchange("http://localhost:8080/provider/"+name, HttpMethod.GET, null,new ParameterizedTypeReference<List<ProviderDTO>>(){});
+                restTemplate.exchange("http://localhost:8080/provider/name/"+name, HttpMethod.GET, null,new ParameterizedTypeReference<List<ProviderDTO>>(){});
         System.out.println("RestTemplate response : " + response.getBody());
 
         List<ProviderDTO> providers = response.getBody();

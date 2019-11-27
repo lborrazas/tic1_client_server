@@ -6,6 +6,8 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,15 +19,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
 import tic1.client.models.*;
-import tic1.client.services.FuncionRestTemplate;
-import tic1.client.services.MovieRestTemplate;
-import tic1.client.services.SalaRestTemplate;
-import tic1.client.services.TicketRestTemplate;
+import tic1.client.services.*;
+import tic1.client.services.alert.AlertMaker;
 import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.Principal2;
 import tic1.client.ui.client.EndUserController;
@@ -35,8 +36,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -48,13 +48,16 @@ public class MovieDetailsController implements Initializable {
     private MovieRestTemplate movieRestTemplate;
     @Autowired
     private SalaRestTemplate salaRestTemplate;
+    @Autowired
+    private FuncionRestTemplate funcionRestTemplate;
+    @Autowired
+    private CinemaRestTemplate cinemaRestTemplate;
+
     private  ClientApplication clientApplication;
     @Autowired
     public MovieDetailsController(ClientApplication clientApplication) {
     this.clientApplication=clientApplication;
     }
-
-
 
     @FXML
     private Text movie_name;
@@ -87,12 +90,6 @@ public class MovieDetailsController implements Initializable {
     private Button buy_btn;
 
     @FXML
-    private JFXComboBox<LocalDate> movie_date;
-
-    @FXML
-    private JFXComboBox<LocalTime> movie_time;
-
-    @FXML
     private JFXButton minus_button;
 
     @FXML
@@ -112,10 +109,20 @@ public class MovieDetailsController implements Initializable {
     private String parent;
 
     private Movie movieDetails;
-    @Autowired
-    private FuncionRestTemplate funcionRestTemplate;
+
+    private List<Funcion> functions;
+
+    private List<Funcion> functionsFilter = new ArrayList<>();
+    private List<Funcion> functionsFilter2 = new ArrayList<>();
+    private List<Funcion> functionsFilter3 = new ArrayList<>();
+
+    private Set<LocalDate> dates = new HashSet<>();
+    private Set<LocalTime> times = new HashSet<>();
+    private Set<Cinema> cinemas = new HashSet<>();
+    private Set<Sala> salas = new HashSet<>();
+
     @FXML
-    public void loadData(Movie movie) {
+    public void loadData(Movie movie, List<Funcion> functions) {
 
         movie_name.setText(movie.getName());
         movie_description.setText(movie.getDescription());
@@ -125,6 +132,18 @@ public class MovieDetailsController implements Initializable {
         movie_genres.setText(movie.getGenre().stream().map(Genre::getGenre)
                 .collect(Collectors.joining(", ")));
         ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+
+        this.functions = functions;
+
+        for (Funcion funcion : this.functions) {
+            dates.add(funcion.getDate().toLocalDate());
+            /*times.add(funcion.getDate().toLocalTime());
+            cinemas.add(cinemaRestTemplate.getOne(funcion.getCinemaId()));
+            salas.add(salaRestTemplate.getById(funcion.getSalaId()));*/
+        }
+
+        ObservableList<LocalDate> fechas = FXCollections.observableArrayList(dates);
+        fecha.setItems(fechas);
 
         try {
             movie_image.setImage(imageRestTemplate.showImage(movie.getImagePath()));
@@ -136,27 +155,59 @@ public class MovieDetailsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        loadData();
+
+        Callback<ListView<Cinema>, ListCell<Cinema>> factory1 = lv1 -> new ListCell<Cinema>() {
+
+            @Override
+            protected void updateItem(Cinema item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+
+        };
+
+        cinema.setCellFactory(factory1);
+        cinema.setButtonCell(factory1.call(null));
+
+        Callback<ListView<Sala>, ListCell<Sala>> factory2 = lv1 -> new ListCell<Sala>() {
+
+            @Override
+            protected void updateItem(Sala item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+
+        };
+
+        sala.setCellFactory(factory2);
+        sala.setButtonCell(factory2.call(null));
+
+        functionsFilter.clear();
+        functionsFilter2.clear();
+        functionsFilter3.clear();
+        dates.clear();
+        times.clear();
+        cinemas.clear();
+        salas.clear();
+
+        hora.setDisable(true);
+        cinema.setDisable(true);
+        sala.setDisable(true);
+
     }
     @FXML
     public void buyAction(ActionEvent event) throws IOException {
-//        LocalDate fecha = movie_date.getSelectionModel().getSelectedItem();
-  //      LocalTime hora = movie_time.getSelectionModel().getSelectedItem();
-        Funcion funciontemp = funcionRestTemplate.returnAll().get(0);
-        Sala salatemp = salaRestTemplate.getById(funciontemp.getSalaId());
-        List<Ticket> tickets = ticketRestTemplate.findByFunction_dateAndsalaid(funciontemp.getDate(),funciontemp.getSalaId());
-        //funcionRestTemplate.getByMovieIdAndDate()
-
+        Alert a = new Alert(Alert.AlertType.NONE);
+        if(ClientApplication.userClient!=null){
+        Funcion funcion = functionsFilter3.get(0);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
-        Parent root = fxmlLoader.load(BuyTicket.class.getResourceAsStream("/movie_crud/ui/movie/CompraTicket.fxml"));
-        BuyTicket buyTicket = fxmlLoader.getController();
-        buyTicket.setSala(salatemp);
-        buyTicket.setFuncion(funciontemp);
-        buyTicket.setTickets(tickets);
-//        buyTicket.setSala();
-        buyTicket.empezar();
+        Parent root = fxmlLoader.load(BuyTicketController.class.getResourceAsStream("/movie_crud/ui/movie/BuyTicket.fxml"));
+        BuyTicketController buyTicketController = fxmlLoader.getController();
+
+        buyTicketController.loadSala(ticketRestTemplate.findByFunction_dateAndsalaid(funcion.getDate(),funcion.getSalaId()));
+
         Scene scene = buy_btn.getScene();
         root.translateXProperty().set(scene.getWidth());
 
@@ -176,16 +227,12 @@ public class MovieDetailsController implements Initializable {
         timeline2.getKeyFrames().add(kf2);
         timeline1.play();
         timeline2.play();
-    }
+    }else {
+            //a.setHeaderText("No se encuentra registrado");
+            //a.setContentText("Para poder realizar una compra,por favor,salga de la secion visitante e ingrese con su cuenta");
+            //a.show();
 
-    public void sum() {
-        if (numberOfEntrances < 20) numberOfEntrances++;
-        movie_quantity.setText(String.valueOf(numberOfEntrances));
     }
-
-    public void minus() {
-        if (numberOfEntrances > 0) numberOfEntrances--;
-        movie_quantity.setText(String.valueOf(numberOfEntrances));
     }
 
     public void goToMain(ActionEvent actionEvent) throws IOException {
@@ -205,7 +252,91 @@ public class MovieDetailsController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
 
+    @FXML
+    private void selectedDate(ActionEvent event) {
+
+        times.clear();
+        cinemas.clear();
+        salas.clear();
+        hora.setItems(null);
+        cinema.setItems(null);
+        sala.setItems(null);
+        functionsFilter.clear();
+        functionsFilter2.clear();
+        functionsFilter3.clear();
+
+        if (!fecha.getSelectionModel().isEmpty()) {
+
+            hora.setDisable(false);
+            cinema.setDisable(true);
+            sala.setDisable(true);
+
+            LocalDate date = fecha.getSelectionModel().getSelectedItem();
+
+            for (Funcion funcion :this.functions) {
+                if (funcion.getDate().toLocalDate().equals(date)){
+                    functionsFilter.add(funcion);
+                    times.add(funcion.getDate().toLocalTime());
+                }
+            }
+            hora.setItems(FXCollections.observableArrayList(times));
+        }
+
+    }
+
+    @FXML
+    private void selectedHour(ActionEvent event) {
+
+        cinemas.clear();
+        salas.clear();
+        functionsFilter2.clear();
+        cinema.setItems(null);
+        sala.setItems(null);
+        functionsFilter2.clear();
+        functionsFilter3.clear();
+
+        if (!hora.getSelectionModel().isEmpty()) {
+
+            cinema.setDisable(false);
+            sala.setDisable(true);
+
+            LocalTime time = hora.getSelectionModel().getSelectedItem();
+
+            for (Funcion funcion : functionsFilter) {
+                if (funcion.getDate().toLocalTime().equals(time)){
+                    functionsFilter2.add(funcion);
+                    cinemas.add(cinemaRestTemplate.getOne(funcion.getCinemaId()));
+                }
+            }
+            cinema.setItems(FXCollections.observableArrayList(cinemas));
+        }
+
+    }
+
+    @FXML
+    private void selectedCinema(ActionEvent event) {
+
+        salas.clear();
+        functionsFilter3.clear();
+        sala.setItems(null);
+        functionsFilter3.clear();
+
+        if (!cinema.getSelectionModel().isEmpty()) {
+
+            sala.setDisable(false);
+
+            Cinema cinema = this.cinema.getSelectionModel().getSelectedItem();
+
+            for (Funcion funcion : functionsFilter2) {
+                if (funcion.getCinemaId() == cinema.getId()){
+                    functionsFilter3.add(funcion);
+                    salas.add(salaRestTemplate.getById(funcion.getSalaId()));
+                }
+            }
+            sala.setItems(FXCollections.observableArrayList(salas));
+        }
     }
 
     public String getParent() {

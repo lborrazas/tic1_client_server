@@ -7,9 +7,12 @@ import tic1.server.entities.Provider;
 import java.awt.print.Pageable;
 import java.util.List;
 
-public interface CinemaRepository extends JpaRepository<Cinema,Long> {
+public interface CinemaRepository extends JpaRepository<Cinema, Long> {
     List<Cinema> findByName(String name);
-    List<Cinema> findAllByProvider(Provider  provider);
-    List<Cinema> findAllByProviderId(long  providerId);
-    List<Cinema> findAllByProviderName(String  providerName);
+
+    List<Cinema> findAllByProvider(Provider provider);
+
+    List<Cinema> findAllByProviderId(long providerId);
+
+    List<Cinema> findAllByProviderName(String providerName);
 }

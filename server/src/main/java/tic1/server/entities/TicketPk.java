@@ -1,11 +1,15 @@
 package tic1.server.entities;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Embeddable
 public class TicketPk implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumns({@JoinColumn(foreignKey = @ForeignKey(name= "fksalaFuncion_ticket")),@JoinColumn(foreignKey = @ForeignKey(name= "fkdateFuncion_ticekt"))})
     private Funcion funcion;
     @ManyToOne(cascade = CascadeType.ALL)

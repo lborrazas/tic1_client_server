@@ -7,7 +7,6 @@ import tic1.server.entities.Transaccion;
 import java.util.List;
 
 public interface TransaccionRepository extends JpaRepository<Transaccion,Long> {
-
     public  List<Transaccion> findAllByClient(Client client);
     public List<Transaccion> findAllByClientId(long id);
     public List<Transaccion> findAllByClientUsername(String username);

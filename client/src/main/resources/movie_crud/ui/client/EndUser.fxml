@@ -10,13 +10,14 @@
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.layout.GridPane?>
 <AnchorPane fx:id="rootContainer" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="695.0" prefWidth="1000.0" stylesheets="/movie_crud/ui/styles/dark-theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tic1.client.ui.client.EndUserController">
     <children>
         <JFXDrawer fx:id="header" prefHeight="70.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -29,29 +30,30 @@
                             </HBox.margin>
                         </JFXHamburger>
                         <Pane prefHeight="110.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
-                     <children>
-                        <JFXTextField fx:id="filterByName" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="18.0" onAction="#filter" onKeyPressed="#removeFilters" prefHeight="35.0" prefWidth="200.0" promptText="Buscar..." unFocusColor="WHITE">
-                           <font>
-                              <Font name="Arial" size="14.0" />
-                           </font>
-                        </JFXTextField>
-                        <JFXButton fx:id="filterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="214.0" layoutY="21.0" onAction="#filter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
-                           <graphic>
-                              <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" styleClass="search-button" />
-                           </graphic>
-                        </JFXButton>
-                        <JFXButton fx:id="deleteFilterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="260.0" layoutY="21.0" onAction="#removeFilter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
-                           <graphic>
-                              <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="25" styleClass="search-button" />
-                           </graphic>
-                        </JFXButton>
-                     </children></Pane>
+                            <children>
+                                <JFXTextField fx:id="filterByName" focusColor="WHITE" labelFloat="true" layoutX="14.0" layoutY="18.0" onAction="#filter" onKeyPressed="#removeFilters" prefHeight="35.0" prefWidth="200.0" promptText="Buscar..." unFocusColor="WHITE">
+                                    <font>
+                                        <Font name="Arial" size="14.0" />
+                                    </font>
+                                </JFXTextField>
+                                <JFXButton fx:id="filterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="214.0" layoutY="21.0" onAction="#filter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
+                                    <graphic>
+                                        <FontAwesomeIconView fill="WHITE" glyphName="SEARCH" size="25" styleClass="search-button" />
+                                    </graphic>
+                                </JFXButton>
+                                <JFXButton fx:id="deleteFilterButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" layoutX="260.0" layoutY="21.0" onAction="#removeFilter" prefHeight="35.0" prefWidth="39.0" styleClass="search-button">
+                                    <graphic>
+                                        <FontAwesomeIconView fill="WHITE" glyphName="REMOVE" size="25" styleClass="search-button" />
+                                    </graphic>
+                                </JFXButton>
+                            </children>
+                        </Pane>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <MenuButton graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
+                                <MenuButton fx:id="dropdownMenu" graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
                                     <items>
-                                        <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
-                                        <MenuItem mnemonicParsing="false" text="Configuracion" />
+                                        <MenuItem mnemonicParsing="false" onAction="#logout" text="Cerrar Sesion" />
+                                        <MenuItem mnemonicParsing="false" onAction="#settings" text="Configuracion" />
                                     </items>
                                     <font>
                                         <Font name="Arial" size="15.0" />
@@ -72,9 +74,36 @@
                     <children>
                         <ScrollPane fx:id="pane" hbarPolicy="NEVER" prefHeight="625.0" prefWidth="1000.0" styleClass="edge-to-edge" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <content>
-                                <AnchorPane prefHeight="1200.0" prefWidth="1000.0">
+                                <AnchorPane prefHeight="625.0" prefWidth="1000.0">
                                     <children>
                                         <GridPane fx:id="grid" layoutY="69.0" prefHeight="625.0" prefWidth="1000.0" style="-fx-background-color: #2A2E37" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                    </children>
+                                    <children>
+                                        <HBox layoutX="856.0" layoutY="560.0">
+                                            <children>
+                                                <JFXButton fx:id="minus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#previousPage" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 0px 1px 1px; -fx-background-radius: 20px 0px 0px 20px; -fx-border-radius: 20px 0px 0px 20px; -fx-border-color: white !important;" styleClass="minus-button" textFill="TRANSPARENT">
+                                                    <graphic>
+                                                        <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
+                                                    </graphic>
+                                                    <padding>
+                                                        <Insets left="2.0" top="2.0" />
+                                                    </padding>
+                                                </JFXButton>
+                                                <TextField fx:id="pages" alignment="CENTER" disable="true" prefHeight="40.0" prefWidth="50.0" promptText="0" style="-fx-border-radius: 0; -fx-background-radius: 0; -fx-border-color: white; -fx-text-fill: white; -fx-background-color: transparent; -fx-prompt-text-fill: white;">
+                                                    <font>
+                                                        <Font name="Arial" size="15.0" />
+                                                    </font>
+                                                </TextField>
+                                                <JFXButton fx:id="plus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#nextPage" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 1px 1px 0 px; -fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 20px 20px 0px; -fx-border-color: white !important;" styleClass="plus-button" textFill="#bf8a8a00">
+                                                    <graphic>
+                                                        <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15" />
+                                                    </graphic>
+                                                    <padding>
+                                                        <Insets right="2.0" top="2.0" />
+                                                    </padding>
+                                                </JFXButton>
+                                            </children>
+                                        </HBox>
                                     </children>
                                 </AnchorPane>
                             </content>

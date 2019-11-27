@@ -66,6 +66,11 @@ public class MovieMgr {
         return movies;
     }
 
+    public Movie findByImagePath(String path){
+     List<Movie> movies = movieRepository.findAllByImagePath(path);
+     return movies.get(0);
+    }
+
     public List<Movie> findByActorPaged(Actor actor, int page) {
         Pageable pageable = PageRequest.of(page, 5);
         List<Movie> movies = movieRepository.findAllByActors(actor, pageable);

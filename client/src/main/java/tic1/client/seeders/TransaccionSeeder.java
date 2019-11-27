@@ -37,6 +37,6 @@ public class TransaccionSeeder {
         transaccion.setClient(user.getId());
 
         List<Ticket> tockets = ticketRestTemplate.findByFunction_dateAndsalaid(funcion.get(0).getDate(), funcion.get(0).getSalaId());
-        transaccionRestTemplate.create(transaccion, tockets);
+        //transaccionRestTemplate.create(, tockets);
     }
 }

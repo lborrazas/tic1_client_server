@@ -79,20 +79,27 @@ public class TransaccionRestTemplate {
                 .collect(Collectors.toList());
     }
 
-    public void create(Transaccion transaccion, List<Ticket> tickets) { // aca mate
+    public void create(long clientId, List<Ticket> tickets) { // aca mate
         ArrayList<TicketDTO> DTOS = new ArrayList<>();
         for (Ticket ticket:tickets){
             DTOS.add(ticket.toDTO()); // aca hay unr prolbe a von los tickets
         }
-        Nodo skere = new Nodo();
-
-        skere.setTransaccionDTO(transaccion.toDTO());
-        skere.setTicketDTOS( DTOS);
         RestTemplate restTemplate =
                 new RestTemplate();
-        HttpEntity<Nodo> body = new HttpEntity<>(skere);
+        HttpEntity<List<TicketDTO>> body = new HttpEntity<>(DTOS);
         ResponseEntity<String> response =
-                restTemplate.   exchange("http://localhost:8080/transaccion", HttpMethod.POST, body, String.class);
+                restTemplate.   exchange("http://localhost:8080/transaccion/"+clientId, HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
+    }
+
+    public String cachin(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.exchange(
+                "http://localhost:8080/transaccion/saldo/"+id,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<String>(){});
+        return response.getBody();
+
     }
 }

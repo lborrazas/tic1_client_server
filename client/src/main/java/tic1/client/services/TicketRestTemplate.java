@@ -6,6 +6,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import tic1.client.ClientApplication;
 import tic1.client.models.Ticket;
 import tic1.commons.transfers.TicketDTO;
 
@@ -62,7 +63,7 @@ public class TicketRestTemplate {
         HttpEntity<List<TicketDTO>> body = new HttpEntity<>(
                 ticketDTOS);
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/ticket/posCompra", HttpMethod.POST, body, String.class);
+                restTemplate.exchange("http://localhost:8080/transaccion/"+ ClientApplication.userClient.getId(), HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 

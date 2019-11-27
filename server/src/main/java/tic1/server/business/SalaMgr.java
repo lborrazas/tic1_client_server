@@ -21,7 +21,7 @@ public class SalaMgr {
     private SalaRepository salaRepository;
 
     public Sala getSalaById(long id) {
-        return salaRepository.getOne(id);
+        return salaRepository.findById(id).get();
     }
 
     public Sala addSala(Sala sala) {
@@ -67,5 +67,8 @@ public class SalaMgr {
     }
 
 
+    public List<Sala> getByCinema(long id) {
+    return salaRepository.findAllByCinemaId(id);
+    }
 }
 

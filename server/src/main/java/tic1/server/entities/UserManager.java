@@ -1,21 +1,18 @@
-package tic1.client.models;
+package tic1.server.entities;
 
 import tic1.commons.transfers.UserDTO;
 
+import javax.persistence.*;
 
-
-public class UserManeger extends User {
-
-    public  UserManeger(UserDTO userDTO){
-        super(userDTO);
-        this.provider=userDTO.getProvider();
-        this.role=userDTO.getRole();
-    }
-
+@Entity
+@DiscriminatorValue("Manager")
+public class UserManager extends User {
+    @Column
     private String role;
 
-
-    private long provider;  //todo provider hasMany Managers
+    @ManyToOne
+    @JoinColumn(name = "id_provider")
+    private Provider provider;  //todo provider hasMany Managers
 
     public String getRole() {
         return role;
@@ -25,16 +22,13 @@ public class UserManeger extends User {
         this.role = role;
     }
 
-    public long getProvider() {
+    public Provider getProvider() {
         return provider;
     }
 
-    public void setProvider(long provider) {
+    public void setProvider(Provider provider) {
         this.provider = provider;
     }
-
-
-
 
     @Override
     public UserDTO toDTO() {
@@ -44,7 +38,7 @@ public class UserManeger extends User {
         userDTO.setId(super.getId());
         userDTO.setType("Manager");
         userDTO.setRole(this.role);
-        userDTO.setProvider(this.provider);
+        userDTO.setProvider(this.provider.getId());
         return  userDTO;
     }
 }

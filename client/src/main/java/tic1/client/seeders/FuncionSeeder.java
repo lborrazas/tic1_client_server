@@ -22,10 +22,10 @@ public class FuncionSeeder {
         int a= (int) (Math.random()*10);
         funcion.setSalaId(salas.get(a).getId());
         CinemaRestTemplate cinemaRestTemplate = new CinemaRestTemplate();
-        List<Cinema> cines = cinemaRestTemplate.get();
-        funcion.setCinemaId(cines.get(a).getId());
-        funcion.setMovie(movieRestTemplate.showMovie(53));
-        funcionRestTemplate.save(funcion);
+      //  List<Cinema> cines = cinemaRestTemplate.get();
+       // funcion.setCinemaId(cines.get(a).getId());
+      ///  funcion.setMovie(movieRestTemplate.showMovie(53));
+       // funcionRestTemplate.save(funcion, Long.parseLong(functionPrice.getText()));
 //        funcion.setSalaId();
     }
 }

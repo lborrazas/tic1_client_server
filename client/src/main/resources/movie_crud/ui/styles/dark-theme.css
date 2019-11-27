@@ -150,18 +150,19 @@ Label {
 .button-back {
     -fx-font-family: "FontAwesome";
     -fx-background-color: transparent;
-    -fx-border-color: none;
+    -fx-border-color: none !important;
     -fx-background-insets: 0 0 -1 0, 0, 1, 2;
     -fx-font-size: 18;
 }
 
 .button-back .glyph-icon {
     -fx-font-size: 22;
+    -fx-border-color: none !important;
 }
 
 .button-back:hover, .button-back:pressed {
     -fx-font-family: "FontAwesome";
-    -fx-border-color: none;
+    -fx-border-color: none !important;
     -fx-background-color: transparent;
     -fx-text-fill: -fx-secondary;
     -fx-fill: -fx-secondary;
@@ -172,7 +173,7 @@ Label {
 
 .button-back:hover .glyph-icon, .button-back:pressed .glyph-icon {
     -fx-font-family: "FontAwesome";
-    -fx-border-color: none;
+    -fx-border-color: none !important;
     -fx-background-color: transparent;
     -fx-fill: -fx-secondary;
     -fx-effect: null;
@@ -778,7 +779,6 @@ Label {
     -fx-font-style: italic;
     -fx-fill: -fx-primary;
 }
-
 .pics:hover {
     -fx-background-color: white;
     -fx-opacity: 0.6;
@@ -929,14 +929,22 @@ Label {
 
 /*Sala*/
 
-.buttonSelected {
+.seatsDisabled {
+    -fx-opacity: 0;
+}
+
+.seatsAvailable {
+    -fx-opacity: 1;
+    -fx-background-color: -fx-primary;
+}
+
+.seatsOccupied {
+    -fx-opacity: 0.3;
+    -fx-background-color: -fx-primary;
+}
+
+.seatsSelected {
+    -fx-opacity: 1;
     -fx-background-color: green;
-    -fx-border-color: -fx-secondary;
 }
-
-.occupiedSeat {
-    -fx-border-color: -fx-secondary;
-    -fx-opacity: 0.5;
-}
-
 /*End Sala*/

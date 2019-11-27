@@ -110,10 +110,42 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="960.0">
                      <children>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="190.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="40" />
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="161.0">
+                                       <children>
+                                          <ComboBox fx:id="fecha" onAction="#selectedDate" prefHeight="40.0" prefWidth="135.0" promptText="Fecha:" styleClass="combo-box" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" />
+                                 </padding>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <FontAwesomeIconView fill="WHITE" glyphName="CLOCK_ALT" size="40" />
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="165.0">
+                                       <children>
+                                          <ComboBox fx:id="hora" onAction="#selectedHour" prefHeight="40.0" prefWidth="135.0" promptText="Hora:" styleClass="combo-box" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="190.0">
+                           <children>
+                              <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
                         <VBox alignment="CENTER" prefHeight="88.0" prefWidth="188.0">
-                           <HBox.margin>
-                              <Insets left="30.0" />
-                           </HBox.margin>
                            <children>
                               <HBox alignment="CENTER_LEFT">
                                  <children>
@@ -124,7 +156,7 @@
                                     </FontAwesomeIconView>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="154.0">
                                        <children>
-                                          <ComboBox fx:id="cinema" prefHeight="40.0" prefWidth="135.0" promptText="Complejo:" styleClass="combo-box" />
+                                          <ComboBox fx:id="cinema" onAction="#selectedCinema" prefHeight="40.0" prefWidth="135.0" promptText="Complejo:" styleClass="combo-box" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -144,41 +176,6 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="190.0">
-                           <children>
-                              <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
-                           </children>
-                           <padding>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </padding>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="190.0">
-                           <children>
-                              <HBox alignment="CENTER_LEFT">
-                                 <children>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="CALENDAR_ALT" size="40" />
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="161.0">
-                                       <children>
-                                          <ComboBox fx:id="fecha" prefHeight="40.0" prefWidth="135.0" promptText="Fecha:" styleClass="combo-box" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="20.0" />
-                                 </padding>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT">
-                                 <children>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="CLOCK_ALT" size="40" />
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="165.0">
-                                       <children>
-                                          <ComboBox fx:id="hora" prefHeight="40.0" prefWidth="135.0" promptText="Hora:" styleClass="combo-box" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </HBox>
-                           </children>
-                        </VBox>
                         <VBox alignment="CENTER" layoutX="233.0" layoutY="10.0" prefHeight="200.0" prefWidth="190.0">
                            <children>
                               <FontAwesomeIconView fill="WHITE" glyphName="ARROW_RIGHT" size="32" />
@@ -189,48 +186,12 @@
                         </VBox>
                         <VBox alignment="CENTER_LEFT">
                            <children>
-                              <Label text="Cantidad:" textFill="WHITE">
-                                 <font>
-                                    <Font name="Arial" size="14.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets bottom="2.0" top="-14.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <HBox>
-                                 <children>
-                                    <JFXButton fx:id="minus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#minus" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 0px 1px 1px; -fx-background-radius: 20px 0px 0px 20px; -fx-border-radius: 20px 0px 0px 20px; -fx-border-color: white !important;" styleClass="minus-button" textFill="TRANSPARENT">
-                                       <graphic>
-                                          <FontAwesomeIconView fill="WHITE" glyphName="MINUS" size="15" />
-                                       </graphic>
-                                       <padding>
-                                          <Insets left="2.0" top="2.0" />
-                                       </padding>
-                                    </JFXButton>
-                                    <TextField fx:id="movie_quantity" alignment="CENTER" disable="true" prefHeight="40.0" prefWidth="50.0" promptText="0" style="-fx-border-radius: 0; -fx-background-radius: 0; -fx-border-color: white; -fx-text-fill: white; -fx-background-color: transparent; -fx-prompt-text-fill: white;">
-                                       <font>
-                                          <Font name="Arial" size="15.0" />
-                                       </font>
-                                    </TextField>
-                                    <JFXButton fx:id="plus_button" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" onAction="#sum" prefHeight="40.0" prefWidth="40.0" style="-fx-border-width: 1px 1px 1px 0 px; -fx-background-radius: 0px 20px 20px 0px; -fx-border-radius: 0px 20px 20px 0px; -fx-border-color: white !important;" styleClass="plus-button" textFill="#bf8a8a00">
-                                       <graphic>
-                                          <FontAwesomeIconView fill="WHITE" glyphName="PLUS" size="15" />
-                                       </graphic>
-                                       <padding>
-                                          <Insets right="2.0" top="2.0" />
-                                       </padding>
-                                    </JFXButton>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets bottom="30.0" />
-                                 </VBox.margin>
-                              </HBox>
-                              <JFXButton fx:id="buy_btn" alignment="CENTER" mnemonicParsing="false" onAction="#buyAction" prefHeight="40.0" prefWidth="115.0" styleClass="buy-button" text="Comprar" textFill="WHITE">
+                              <JFXButton fx:id="buy_btn" alignment="CENTER" mnemonicParsing="false" onAction="#buyAction" prefHeight="40.0" prefWidth="115.0" styleClass="buy-button" text="Siguiente" textFill="WHITE">
                                  <font>
                                     <Font name="Arial" size="15.0" />
                                  </font>
                                  <graphic>
-                                    <FontAwesomeIconView fill="WHITE" glyphName="TAG" size="22" />
+                                    <FontAwesomeIconView fill="WHITE" glyphName="PAPER_PLANE" size="22" />
                                  </graphic>
                               </JFXButton>
                            </children>

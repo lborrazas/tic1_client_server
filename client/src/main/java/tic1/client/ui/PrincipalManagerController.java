@@ -1,5 +1,6 @@
 package tic1.client.ui;
 
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,30 +17,45 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
+import tic1.client.models.Cinema;
 import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
+import tic1.client.services.CinemaRestTemplate;
 import tic1.client.services.FuncionRestTemplate;
-import tic1.client.ui.adds.AddAdminController;
+import tic1.client.services.TransaccionRestTemplate;
 import tic1.client.ui.adds.AddFunctionController;
 import tic1.client.ui.adds.AddManagerController;
 import tic1.client.ui.adds.AddSalaController;
+import tic1.client.ui.client.EndUserController;
+import tic1.client.ui.login.LoginController;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 
 @Controller
 public class PrincipalManagerController implements Initializable {
-
     @Autowired
     private FuncionRestTemplate funcionRestTemplate;
-
+    @Autowired
+    private TransaccionRestTemplate transaccionRestTemplate;
+    @Autowired
+    private CinemaRestTemplate cinemaRestTemplate;
+    @FXML
+    private JFXComboBox<Cinema> cinemas;
+    @FXML
+    private Label money;
     @FXML
     private TableView<Funcion> functionTable;
 
@@ -47,7 +63,7 @@ public class PrincipalManagerController implements Initializable {
     private TableColumn<Funcion, Movie> colMovie;
 
     @FXML
-    private TableColumn<Funcion, Long> colSalaID;
+    private TableColumn<Funcion, Long> colSalaId;
 
     @FXML
     private TableColumn<Funcion, LocalDateTime> colDate;
@@ -67,10 +83,18 @@ public class PrincipalManagerController implements Initializable {
     @FXML
     private MenuItem delete;
 
+    @FXML
+    private MenuButton dropdownMenu;
+
     private ClientApplication clientApplication;
 
     @FXML
     private JFXTextField filter;
+
+    private int actualPage;
+
+    @FXML
+    private TextField pages;
 
     @Autowired
     public PrincipalManagerController(ClientApplication clientApplication) {
@@ -80,18 +104,20 @@ public class PrincipalManagerController implements Initializable {
 
     private ObservableList<Funcion> functionList = FXCollections.observableArrayList();
 
-    private void loadFunction() {
+    private void loadFunction(int page) {
         functionList.clear();
-//        functionList.addAll(funcionRestTemplate.);
+        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(), page));
 
         functionTable.setItems(functionList);
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        actualPage = 0;
+        functionTable.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
-        /*colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
-        colSalaID.setCellValueFactory(new PropertyValueFactory<>("salaId"));
+        colMovie.setCellValueFactory(new PropertyValueFactory<>("movie"));
+        colSalaId.setCellValueFactory(new PropertyValueFactory<>("salaId"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colMovie.setCellFactory(col -> new TableCell<Funcion, Movie>() {
             @Override
@@ -103,8 +129,9 @@ public class PrincipalManagerController implements Initializable {
                     setText(movie.getName());
                 }
             }
-        });*/
-        loadFunction();
+        });
+
+        loadFunction(0);
 
         FilteredList<Funcion> filteredData = new FilteredList<>(functionList, e -> true);
 
@@ -129,9 +156,9 @@ public class PrincipalManagerController implements Initializable {
         functionTable.setItems(sortedData);
     }
 
-    public void refreshTable() {
+    public void refreshTable(int page) {
         functionList.clear();
-//        functionList.addAll(funcionRestTemplate.findAllPaged(0));
+        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(), page));
 
         functionTable.setItems(functionList);
 
@@ -226,6 +253,41 @@ public class PrincipalManagerController implements Initializable {
         scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
         stage.setScene(scene);
         stage.show();
+        refreshTable(actualPage);
+    }
+
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+
+        ClientApplication.userManager = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
+
+    }
+
+    @FXML
+    private void goToMain(ActionEvent event) throws IOException {
+        ClientApplication.userManager = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(EndUserController.class.getResourceAsStream("/movie_crud/ui/client/EndUser.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
     }
 
     @FXML
@@ -233,5 +295,63 @@ public class PrincipalManagerController implements Initializable {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void consultar(ActionEvent actionEvent) throws IOException {
+        // money.setVisible(false);
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+
+        Parent root = fxmlLoader.load(PrincipalManagerController.class.getResourceAsStream("/movie_crud/ui/client/ConsultaSaldo.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+        stage.setScene(scene);
+
+
+        ObservableList<Cinema> cinemas =
+                FXCollections.observableArrayList(cinemaRestTemplate.getByProvider(ClientApplication.userManager.getProvider()));
+
+        this.cinemas.setItems(cinemas);
+        Callback<ListView<Cinema>, ListCell<Cinema>> factory1 = lv1 -> new ListCell<Cinema>() {
+
+            @Override
+            protected void updateItem(Cinema item, boolean empty) {
+                super.updateItem(item, empty);
+                setText(empty ? "" : item.getName());
+            }
+
+        };
+
+        this.cinemas.setCellFactory(factory1);
+        this.cinemas.setButtonCell(factory1.call(null));
+
+        stage.show();
+    }
+
+
+    public void cachin(ActionEvent actionEvent) {
+
+        String a = transaccionRestTemplate.cachin(this.cinemas.getSelectionModel().getSelectedItem().getId());
+        money.setText("" + transaccionRestTemplate.cachin(this.cinemas.getSelectionModel().getSelectedItem().getId()));
+        money.setVisible(true);
+    }
+
+    @FXML
+    private void nextPage(ActionEvent event) {
+        actualPage++;
+        pages.setText(String.valueOf(actualPage));
+        refreshTable(actualPage);
+
+    }
+
+    @FXML
+    private void previousPage(ActionEvent event) {
+        if (actualPage > 0) actualPage--;
+        pages.setText(String.valueOf(actualPage));
+        refreshTable(actualPage);
+
     }
 }

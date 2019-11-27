@@ -34,7 +34,7 @@ public class TicketMgr {
     }
     public void updateTicket(@PathVariable("id") TicketPk id, @Valid @RequestBody Ticket ticket){
         Ticket existingTicket = ticketRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Note", "id", id));
-        existingTicket.setBought(ticket.isBought());                                                                  //falta el catcheo de exepciones ("SKERE")
+        existingTicket.setBought(ticket.getIsBought());                                                                  //falta el catcheo de exepciones ("SKERE")
         existingTicket.setDiscount(ticket.getDiscount());
         existingTicket.setPrice(ticket.getPrice());
         existingTicket.setTransaccion(ticket.getTransaccion());

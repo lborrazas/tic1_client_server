@@ -17,6 +17,7 @@ private boolean isLocked;
     public Seat() {
     }
 
+
     public SeatPk getId() {
         return id;
     }

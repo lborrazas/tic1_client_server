@@ -4,6 +4,8 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.stage.Stage;
 import org.springframework.stereotype.Controller;
 import tic1.client.models.Provider;
 import tic1.client.services.ProviderRestTemplate;
@@ -26,12 +28,21 @@ public class AddProviderController implements Initializable {
 
         provider.setName(providerName.getText());
 
-//        providerRestTemplate.createProvider(provider);
+        providerRestTemplate.createProvider(provider);
+
+        close(event);
 
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    @FXML
+    private void close(ActionEvent actionEvent) {
+        Node source = (Node) actionEvent.getSource();
+        Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
     }
 }

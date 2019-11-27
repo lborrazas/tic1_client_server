@@ -7,11 +7,7 @@ import tic1.commons.transfers.UserDTO;
 
 public class UserClient extends User{
 
-
-
     private String creditCard;
-
-
 
     public String getCreditCard() {
         return creditCard;
@@ -26,6 +22,9 @@ public class UserClient extends User{
         this.creditCard=userDTO.getCreditCard();
     }
 
+    public UserClient() {
+        super();
+    }
 
     @Override
     public UserDTO toDTO() {
