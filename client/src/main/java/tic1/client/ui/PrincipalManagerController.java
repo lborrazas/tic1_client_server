@@ -83,7 +83,7 @@ public class PrincipalManagerController implements Initializable {
 
     private void loadFunction() {
         functionList.clear();
-        functionList.addAll(funcionRestTemplate.returnAll());
+        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(),0));
 
         functionTable.setItems(functionList);
     }
@@ -133,7 +133,7 @@ public class PrincipalManagerController implements Initializable {
 
     public void refreshTable() {
         functionList.clear();
-        functionList.addAll(funcionRestTemplate.returnAll());
+        functionList.addAll(funcionRestTemplate.findAllByProviderIdPaged(ClientApplication.userManager.getProvider(),0));
 
         functionTable.setItems(functionList);
 

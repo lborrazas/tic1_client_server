@@ -76,7 +76,7 @@ public class FunctionMgr {
     }
 
     public List<Funcion> findByProviderPaged(long id, int page) {
-        Pageable pageable = PageRequest.of(page, 10);
+        Pageable pageable = PageRequest.of(page, 9);
         Page<Funcion> movies = funcionRepository.findByProviderPaged(id, pageable);
         return movies.getContent();
     }
