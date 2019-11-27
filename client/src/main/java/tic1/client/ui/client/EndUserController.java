@@ -10,10 +10,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,10 +22,7 @@ import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -41,6 +35,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import tic1.client.ClientApplication;
@@ -48,21 +43,20 @@ import tic1.client.models.Funcion;
 import tic1.client.models.Movie;
 import tic1.client.services.FuncionRestTemplate;
 import tic1.client.services.MovieRestTemplate;
+import tic1.client.services.alert.ImageRestTemplate;
 import tic1.client.ui.login.LoginController;
 import tic1.client.ui.movie.MovieDetailsController;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.net.URLDecoder;
 import java.util.*;
 
 @Controller
 public class EndUserController implements Initializable {
 
     @Autowired
-    private MovieRestTemplate movieMgr;
+    private MovieRestTemplate movieRestTemplate;
 
     @Autowired
     private FuncionRestTemplate funcionRestTemplate;
@@ -110,8 +104,6 @@ public class EndUserController implements Initializable {
     @FXML
     String id;
 
-//    private ArrayList<File> fileList = new ArrayList<>();
-
     private HBox hb = new HBox();
 
     @FXML
@@ -143,9 +135,11 @@ public class EndUserController implements Initializable {
     @FXML
     private MenuButton dropdownMenu;
 
-    private ObservableList<File> fileList = FXCollections.observableArrayList();
+    private ObservableList<String> fileList = FXCollections.observableArrayList();
 
-    private ObservableList<File> allMovies = FXCollections.observableArrayList();
+    private ObservableList<Movie> allMovies = FXCollections.observableArrayList();
+
+    private ObservableList<String> loadedImages = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -159,7 +153,7 @@ public class EndUserController implements Initializable {
         header.setSidePane(box);
         header.setDefaultDrawerSize(70);
         header.setOverLayVisible(false);
-        header.setResizableOnDrag(true);
+//        header.setResizableOnDrag(true);
         DropShadow effect = new DropShadow();
         effect.setColor(Color.BLACK);
         effect.setOffsetX(0f);
@@ -168,6 +162,17 @@ public class EndUserController implements Initializable {
         header.setEffect(effect);
         header.open();
 
+        header.setResizableOnDrag(false);
+        header.onDragDroppedProperty().addListener((observable, oldValue, newValue) -> {
+            header.open();
+        });
+
+        header.onDrawerClosingProperty().addListener(new ChangeListener<EventHandler<JFXDrawerEvent>>() {
+            @Override
+            public void changed(ObservableValue<? extends EventHandler<JFXDrawerEvent>> observable, EventHandler<JFXDrawerEvent> oldValue, EventHandler<JFXDrawerEvent> newValue) {
+                header.open();
+            }
+        });
 
         pane.heightProperty().addListener(new ChangeListener<Number>() {
             @Override
@@ -230,22 +235,25 @@ public class EndUserController implements Initializable {
                 drawer.toFront();
             }
         });
-        String path = null;
+        List<String> movieImages = new ArrayList<>();
+        List<Movie> movies = movieRestTemplate.findAllPaged(0);
+
+        for (Movie movie : movies) {
+            fileList.add(movie.getImagePath());
+        }
+
+        loadedImages.addAll(fileList);
+        allMovies.addAll(movies);
+
         try {
-            path = URLDecoder.decode("C:/Users/telematica/Documents/tic1_client_server/client/src/main/resources/movie_crud/ui/images/movieImages", "UTF-8");
-        } catch (UnsupportedEncodingException e) {
+            loadMovies(fileList);
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        File folder = new File(path);
-
-        allMovies.addAll(Arrays.asList(folder.listFiles()));
-
-        loadMovies(allMovies);
-
     }
 
-    private void addImage(int index, int colIndex, int rowIndex) {
+    private void addImage(int index, int colIndex, int rowIndex) throws IOException {
 
         hb.setAlignment(Pos.CENTER);
 
@@ -263,11 +271,12 @@ public class EndUserController implements Initializable {
             }
         });
 */
-        String idToCut = fileList.get(index).getName();
+        String idToCut = loadedImages.get(index);
         String id = idToCut.substring(0, (idToCut.length() - 4));
         // System.out.println(id);
         // System.out.println(fileList.get(i).getName());
-        image = new Image(fileList.get(index).toURI().toString());
+        ImageRestTemplate imageRestTemplate = new ImageRestTemplate();
+        image = imageRestTemplate.showImage(loadedImages.get(index));
         pic = new ImageView();
         pic.setFitWidth(160);
         pic.setFitHeight(220);
@@ -287,7 +296,7 @@ public class EndUserController implements Initializable {
         Tooltip.install(pic, new Tooltip(id));
         pic.setOnMouseClicked(e -> {
             try {
-                Movie selectedForPreview = movieMgr.filterTitlePaged(id, 0).get(0);
+                Movie selectedForPreview = movieRestTemplate.filterTitlePaged(id, 0).get(0);
 
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
@@ -375,10 +384,10 @@ public class EndUserController implements Initializable {
         transition.play();
     }
 
-    private void loadMovies(List<File> movies) {
-        fileList.clear();
+    private void loadMovies(List<String> movies) throws IOException {
+        loadedImages.clear();
         grid.getChildren().clear();
-        fileList.addAll(movies);
+        loadedImages.addAll(movies);
 
         grid.setPadding(new Insets(7, 7, 7, 7));
         grid.setHgap(10);
@@ -396,7 +405,7 @@ public class EndUserController implements Initializable {
         } else {
             for (int i = 0; i < rows; i++) {
                 for (int j = 0; j < columns; j++) {
-                    if (imageIndex < fileList.size()) {
+                    if (imageIndex < loadedImages.size()) {
                         addImage(imageIndex, j, i);
                         imageIndex++;
                     }
@@ -406,31 +415,50 @@ public class EndUserController implements Initializable {
     }
 
     @FXML
-    private void filter(ActionEvent event) {
+    private void filter(ActionEvent event) throws IOException {
 
         String movie = filterByName.getText().toLowerCase();
         deleteFilterButton.setVisible(true);
 
-        List<File> filteredList = new ArrayList<>(allMovies);
-        filteredList.removeIf(s -> !s.getName().toLowerCase().contains(movie));
+        List<String> filteredList = new ArrayList<>(loadedImages);
+        filteredList.removeIf(s -> !s.toLowerCase().contains(movie));
 
         loadMovies(filteredList);
     }
 
     @FXML
-    private void removeFilter(ActionEvent event) {
+    private void removeFilter(ActionEvent event) throws IOException {
         filterByName.clear();
-        loadMovies(allMovies);
+        loadMovies(fileList);
         deleteFilterButton.setVisible(false);
     }
 
     @FXML
-    void removeFilters(KeyEvent event) {
+    void removeFilters(KeyEvent event) throws IOException {
         if (event.getCode() == KeyCode.ESCAPE) {
             filterByName.clear();
-            loadMovies(allMovies);
+            loadMovies(fileList);
             deleteFilterButton.setVisible(false);
         }
     }
 
+    @FXML
+    public void logout(ActionEvent event) throws IOException {
+
+        ClientApplication.userClient = null;
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+        Parent root = fxmlLoader.load(LoginController.class.getResourceAsStream("/movie_crud/ui/login/Login.fxml"));
+
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        stage.setScene(scene);
+        stage.initStyle(StageStyle.TRANSPARENT);
+        stage.show();
+        Stage stage1 = (Stage) dropdownMenu.getScene().getWindow();
+        stage1.close();
+
+    }
 }
