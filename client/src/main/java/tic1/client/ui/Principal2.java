@@ -1,4 +1,5 @@
 package tic1.client.ui;
+
 import com.jfoenix.controls.JFXTextField;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -44,7 +45,6 @@ import java.util.stream.Collectors;
 
 @Controller
 public class Principal2 implements Initializable {
-
     @Autowired
     private MovieRestTemplate movieRestTemplate; //todo all movimgr references to controller
 
@@ -198,8 +198,8 @@ public class Principal2 implements Initializable {
 //        movieDetailsController.loadData(selectedForPreview);
         movieDetailsController.setParent("Principal2");
 
-        Scene scene = new Scene(root,800,600);
-        Stage stage =  (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
+        Scene scene = new Scene(root, 800, 600);
+        Stage stage = (Stage) ((MenuItem) event.getSource()).getParentPopup().getOwnerWindow();
         stage.setScene(scene);
         stage.show();
     }
@@ -207,7 +207,7 @@ public class Principal2 implements Initializable {
     @FXML
     public void deleteMovie(ActionEvent event) {
         //Fetch the selected row
-       Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
+        Movie selectedForDeletion = movieTable.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText(null);
@@ -219,8 +219,8 @@ public class Principal2 implements Initializable {
         Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
         if (answer.get() == ButtonType.OK) {
             movieRestTemplate.deleteMovie(selectedForDeletion.getId());
-           // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
-            alert1.setContentText("Pelicula " +  selectedForDeletion.getName() + " borrada con exito.");
+            // movieRestTemplate.deleteMovie(selectedForDeletion.getId()); todo id to movie
+            alert1.setContentText("Pelicula " + selectedForDeletion.getName() + " borrada con exito.");
             movieList.remove(selectedForDeletion);
 
         } else {
@@ -231,7 +231,7 @@ public class Principal2 implements Initializable {
     @FXML
     public void editMovie(ActionEvent event) {
         //Fetch the selected row
-       Movie selectedForEdit = movieTable.getSelectionModel().getSelectedItem();
+        Movie selectedForEdit = movieTable.getSelectionModel().getSelectedItem();
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
@@ -330,5 +330,26 @@ public class Principal2 implements Initializable {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+    }
+
+    @FXML
+    public void createActor(ActionEvent actionEvent) {
+        try {
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
+            Parent root = null;
+            root = fxmlLoader.load(AddFunctionController.class.getResourceAsStream("/movie_crud/ui/adds/AddActor.fxml"));
+
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("/movie_crud/ui/styles/dark-theme.css");
+            stage.setScene(scene);
+            stage.show();
+            refreshTable();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
