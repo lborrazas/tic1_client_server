@@ -29,30 +29,27 @@ public class FunctionMgr {
     private SalaRepository salaRepository;
     @Autowired
     private SeatRepository seatRepository;
+
     public void save(Funcion funcion) {
 
         funcionRepository.save(funcion);
 
-      long salaId = funcion.getId().getSala().getId();
-      Sala sala = salaRepository.findById(salaId).get();
-      List<Seat> seats = sala.getSeats();
-      List<Ticket> tickets = seats.stream().map(seat -> {
-        Ticket ticket = new Ticket();
-        TicketPk pk = new TicketPk();
-        pk.setFuncion(funcion);
-        pk.setSeat(seat);
-        ticket.setId(pk);
-        return ticket;
-      }).collect(Collectors.toList());
+        long salaId = funcion.getId().getSala().getId();
+        Sala sala = salaRepository.findById(salaId).get();
+        List<Seat> seats = sala.getSeats();
+        List<Ticket> tickets = seats.stream().map(seat -> {
+            Ticket ticket = new Ticket();
+            TicketPk pk = new TicketPk();
+            pk.setFuncion(funcion);
+            pk.setSeat(seat);
+            ticket.setId(pk);
+            return ticket;
+        }).collect(Collectors.toList());
 
         for (Ticket ticket : tickets) {
             ticketRepository.save(ticket);
         }
-
-
-
     }
-
 
     public Funcion getFunctionByPk(Sala sala, LocalDateTime localDateTime) {
         FunctionPK functionPK = new FunctionPK(sala, localDateTime);
@@ -117,6 +114,10 @@ public class FunctionMgr {
 
     public List<Funcion> getByMovieAndDate(Movie movie, LocalDateTime today) {
         return funcionRepository.findAllByMovieAndIdDateAfter(movie, today);//cuando se llame la funcion usar now()
+    }
+
+    public List<Funcion> getByMovie(Movie movie) {
+        return funcionRepository.findAllByMovie(movie);
     }
 
     ;//cuando se llame la funcion usar now()

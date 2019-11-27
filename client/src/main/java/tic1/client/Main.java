@@ -79,26 +79,30 @@ public class Main {
 //        List<Funcion> funcions =  fRT.findAllByProviderIdPaged(1,0);
 //        System.out.println(funcions.get(7).getMovie().getName());
 
-        List<Funcion> funcions =  fRT.findAllbyProvider(1);
-        Funcion funcion = funcions.get(7);
+        List<Funcion> funcions =  fRT.findAllbyProvider(46);
+        Funcion funcion = funcions.get(0);
 
-        Sala sala = sRT.getById(45);
-        System.out.println(sala.getName());
+//        Sala sala = sRT.getById(45);
+//        System.out.println(sala.getName());
 
         List<Ticket> tickets2 = tRT.findByFunction_dateAndsalaid(funcion.getDate(), funcion.getSalaId());
         System.out.println(tickets2.get(5).getFuncion().getDate());
-        Ticket ticket = tickets2.get(15);
+        Ticket ticket = tickets2.get(0);
 
         System.out.println(ticket.isBought());
 
       ticket.setBought(true);
 
-//       List<Ticket> ticketsJuanito = new ArrayList<>();
+       List<Ticket> ticketsJuanito = new ArrayList<>();
+       ticketsJuanito.add(ticket);
 //       ticketsJuanito = tickets2.stream().map(ticket1 -> {
 //           ticket1.setBought(true);
 //           return ticket1;
 //       })
+
       tRT.update(tickets2);
+
+      tRT.update(ticketsJuanito);
 
 
 

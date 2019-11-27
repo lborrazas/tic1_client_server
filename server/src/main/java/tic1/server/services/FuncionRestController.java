@@ -96,12 +96,11 @@ public class FuncionRestController {
         }
         return functionDTOs;
     }
-    @GetMapping("/function/{movie_id}")
-    public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") long movie_id){
-        LocalDateTime localDateTime= null;
-        localDateTime = LocalDateTime.now();
-        Movie tempMovie = movieMgr.getOne(movie_id);
-        List<Funcion> funtions = functionMgr.getByMovieAndDate(tempMovie, localDateTime);
+    @GetMapping("/function/movie/{movie_id}")
+    public List<FunctionDTO> getFunctionDtos(@PathVariable("movie_id") String movie_id){
+        long id = Long.parseLong(movie_id);
+        Movie tempMovie = movieMgr.getOne(id);
+        List<Funcion> funtions = functionMgr.getByMovie(tempMovie);
         List<FunctionDTO> functionDTOs = new ArrayList<>();
 
         for (Funcion tempFuntion:funtions){

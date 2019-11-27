@@ -48,7 +48,7 @@
                      </children></Pane>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                             <children>
-                                <MenuButton graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
+                                <MenuButton fx:id="dropdownMenu" graphicTextGap="10.0" mnemonicParsing="false" text="Hola, Jope">
                                     <items>
                                         <MenuItem mnemonicParsing="false" text="Cerrar Sesion" />
                                         <MenuItem mnemonicParsing="false" text="Configuracion" />

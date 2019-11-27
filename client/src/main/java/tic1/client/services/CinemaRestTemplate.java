@@ -17,11 +17,12 @@ import java.util.stream.Collectors;
 @Service
 public class CinemaRestTemplate {
 
-    public List<Cinema> get(){
+    public List<Cinema> get() {
         RestTemplate restTemplate =
                 new RestTemplate();
         ResponseEntity<List<CinemaDto>> response =
-                restTemplate.exchange("http://localhost:8080/cinema/", HttpMethod.GET, null,new ParameterizedTypeReference<List<CinemaDto>>(){});
+                restTemplate.exchange("http://localhost:8080/cinema/", HttpMethod.GET, null, new ParameterizedTypeReference<List<CinemaDto>>() {
+                });
         System.out.println("RestTemplate response : " + response.getBody());
 
         List<CinemaDto> cines = response.getBody();
@@ -30,6 +31,7 @@ public class CinemaRestTemplate {
                 .collect(Collectors.toList());
 
     }
+
     public void createCinema(Cinema cinema) {
         RestTemplate restTemplate =
                 new RestTemplate();
@@ -38,14 +40,15 @@ public class CinemaRestTemplate {
                 pepe);
 
         ResponseEntity<String> response =
-                restTemplate.exchange("http://localhost:8080/cinema/"+pepe.getProviderId()+"/", HttpMethod.POST, body, String.class);
+                restTemplate.exchange("http://localhost:8080/cinema/" + pepe.getProviderId() + "/", HttpMethod.POST, body, String.class);
         System.out.println("RestTemplate response : " + response.getBody());
     }
 
-    public List<Cinema> getByProvider(long providerId){
+    public List<Cinema> getByProvider(long providerId) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<CinemaDto>> response =
-                restTemplate.exchange("http://localhost:8080/cinema/provider/" + providerId, HttpMethod.GET, null,new ParameterizedTypeReference<List<CinemaDto>>(){});
+                restTemplate.exchange("http://localhost:8080/cinema/provider/" + providerId, HttpMethod.GET, null, new ParameterizedTypeReference<List<CinemaDto>>() {
+                });
         System.out.println("RestTemplate response : " + response.getBody());
 
         List<CinemaDto> cines = response.getBody();
@@ -55,4 +58,16 @@ public class CinemaRestTemplate {
 
     }
 
+    public Cinema getOne(long cinemaId) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<CinemaDto> response =
+                restTemplate.exchange("http://localhost:8080/cinema/id/" + cinemaId, HttpMethod.GET, null, new ParameterizedTypeReference<CinemaDto>() {
+                });
+        System.out.println("RestTemplate response : " + response.getBody());
+
+        CinemaDto cine = response.getBody();
+
+        return new Cinema(cine);
+    }
 }
+

@@ -85,7 +85,7 @@ public class SalaRestController {
     @GetMapping("/sala/{id}")
     public  SalaDTO getOne(@PathVariable String id){
 
-        int idint = Integer.parseInt(id);
+        long idint = Long.parseLong(id);
 
 
         return salaMgr.getSalaById(idint).toDTO();

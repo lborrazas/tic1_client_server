@@ -43,7 +43,7 @@ public class SeatSelectionController implements Initializable {
         fxmlLoader.setControllerFactory(ClientApplication.getContext()::getBean);
         Parent root = fxmlLoader.load(MovieDetailsController.class.getResourceAsStream("/movie_crud/ui/movie/MovieDetails.fxml"));
         MovieDetailsController movieDetailsController = fxmlLoader.getController();
-        movieDetailsController.loadData(movieDetailsController.getMovieDetails() );
+//        movieDetailsController.loadData(movieDetailsController.getMovieDetails() );
         Scene scene = backButton.getScene();
         root.translateXProperty().set(-scene.getWidth());
 

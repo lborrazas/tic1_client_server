@@ -34,7 +34,7 @@ public class FuncionRestTemplate {
     public List<Funcion> getByMovieIdAndDate(LocalDateTime fecha, Movie Movie) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<List<FunctionDTO>> response = restTemplate.exchange(
-                " http://localhost:8080/function/" + fecha + '/' + Movie.getId(), HttpMethod.GET, null, new ParameterizedTypeReference<List<FunctionDTO>>() {
+                "http://localhost:8080/function/" + fecha + '/' + Movie.getId(), HttpMethod.GET, null, new ParameterizedTypeReference<List<FunctionDTO>>() {
                 });
         List<FunctionDTO> functionDTOS = response.getBody();
         return functionDTOS.stream()
@@ -92,6 +92,18 @@ public class FuncionRestTemplate {
                 new ParameterizedTypeReference<List<FunctionDTO>>(){});
         List<FunctionDTO> functions = response.getBody();
         return functions.stream()
+                .map(Funcion::new)
+                // .map(movieDTO -> new Movie(movieDTO))
+                .collect(Collectors.toList());
+    }
+
+    public List<Funcion> getByMovieId(Movie movie) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<FunctionDTO>> response = restTemplate.exchange(
+                "http://localhost:8080/function/movie/" + movie.getId(), HttpMethod.GET, null, new ParameterizedTypeReference<List<FunctionDTO>>() {
+                });
+        List<FunctionDTO> functionDTOS = response.getBody();
+        return functionDTOS.stream()
                 .map(Funcion::new)
                 // .map(movieDTO -> new Movie(movieDTO))
                 .collect(Collectors.toList());

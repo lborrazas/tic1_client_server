@@ -8,6 +8,7 @@ import tic1.server.entities.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class TransaccionRestController {
@@ -75,18 +76,14 @@ MovieMgr movieMgr;
 
         return ticket;
     }
-    @PostMapping("/transaccion")
-    public void save(@RequestBody Nodo skere)
-    { TransaccionDTO transaccionDTO = skere.getTransaccionDTO();
-    List<TicketDTO> tickets = skere.getTicketDTOS();
+    @PostMapping("/transaccion/{id}")
+    public void save(@RequestBody List<TicketDTO> tickets,@PathVariable("id") String clientId)
+    {
+        long clientid= Long.parseLong(clientId);
 
-        transaccionDTO.setPrecioTotal(tickets.size());
-        Transaccion transaccion=transaccionFromDTO(transaccionDTO);
-        transaccionMgr.addTransaccion(transaccion);
-        for (TicketDTO ticketDTO:tickets){
-            ticketDTO.setTransaccionId(transaccion.getId());
-            ticketMgr.updateTicket(ticketFromDto(ticketDTO).getId(),ticketFromDto(ticketDTO));
-        }
+
+        transaccionMgr.addTransaccion(tickets,clientid);
+
     }
     @DeleteMapping("/transaccion/{id}")
     public void delate(@PathVariable("id") long id){
